@@ -3,7 +3,8 @@
 Plain code (lecturer's redesign of 14 November 2026). Each notebook is:
   a short opening (at most 5 lines), ONE supplied code cell "Setup: run me first" (collapsed), then for each task a heading with two or three
   lines, the INPUT and the RESULT names, and one empty code cell (students add as many cells as they like), and the Part B MEMO form.
-  The rehearsal has the same tasks on another target, with short notes (at most 4 bullets) before the tasks that need them.
+  The rehearsal is the project exactly (same files, tasks, result names and memo) with the split's random_state=29, and short notes
+  (at most 4 bullets) before the tasks that need them.
 Writes, for each cohort (CML3112, CML3113, CML3111):
   Notebooks/<cohort>/ML_PROJECT_student.ipynb, Rehearsal/<cohort>/ML_PROJECT_rehearsal.ipynb,
   grader_spec/solutions/<cohort>/ML_PROJECT_solution.ipynb (NEVER give to students) and grader_spec/supplied_cell_hashes.json.
@@ -42,9 +43,8 @@ def intro_cell(code, mode, configured, deadline_slot=False):
     """At most 5 lines. deadline_slot is kept for the bundle builder; the deadline is shown by the countdown line after every cell."""
     w = PC.WINDOW
     if mode == 'rehearsal':
-        cfg = PC.CFGS['rehearsal']
-        return f'''# {code} Engineering ML project: REHEARSAL (unmarked), predicting {cfg['short']} ({cfg['unit']})
-Run **Setup: run me first**, then do each task in order and store the results it names. Practise with a 3-hour timer.
+        return f'''# {code} Engineering ML project: REHEARSAL (unmarked), the same tasks as the project
+Run **Setup: run me first**, then do each task in order and store the results it names. The split uses random_state=29 here, so the numbers differ from the project's. Practise with a 3-hour timer.
 There is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.
 No AI tools and no help from other people, as in the project.
 {PC.OWN_CELLS}'''
@@ -71,9 +71,9 @@ def build_notebook(code, mode, require_forms=False):
         cells.append(cell(PC.task_markdown(i, task)))
         starters.append(task['starter'])
         cells.append(cell(task['solution'] if mode == 'solution' else task['starter'], True))
-    cells.append(cell(PC.memo_markdown(code, cfg, len(tasks) + 1)))
-    memo = PC.memo_solution(code, cfg) if mode == 'solution' else PC.MEMO_STARTER.replace('UNIT', cfg['unit'])
-    starters.append(PC.MEMO_STARTER.replace('UNIT', cfg['unit']))
+    cells.append(cell(PC.memo_markdown(code, cfg, PC.memo_task_no(cfg))))
+    memo = PC.memo_solution(code, cfg) if mode == 'solution' else PC.MEMO_STARTER.replace('UNIT', cfg['h_unit'])
+    starters.append(PC.MEMO_STARTER.replace('UNIT', cfg['h_unit']))
     cells.append(cell(memo, True))
     nb = dict(cells=cells, metadata=dict(iuea_exam_version=PC.VERSION, kernelspec=dict(display_name='Python 3', language='python', name='python3')), nbformat=4, nbformat_minor=4)
     return nb, setup, starters

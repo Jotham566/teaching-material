@@ -43,6 +43,7 @@ PEOPLE = {   # registration: (course, name, email)
     'T': ('26/E2E/012/TTT', 'CML3112', 'Test Learner Tau', 'tau.typo@example.org'),    # typed the wrong email, corrects it on the page
     'U': ('26/E2E/013/UUU', 'CML3112', 'Test Learner Upsilon', 'ups@example.org'),     # tries to correct the email after saving work
     'V': ('26/E2E/014/VVV', 'CML3112', 'Test Learner Phi', 'phi@example.org'),         # edits the setup cell
+    'W': ('26/E2E/015/WWW', 'CML3112', 'Test Learner Omega', 'omega@example.org'),     # NOT on the class list (open entry)
 }
 results = []
 
@@ -123,7 +124,7 @@ def main():
 
     try:
         t0 = datetime.now(timezone.utc)
-        roster_rows = [[c, r, n] for r, c, n, _ in PEOPLE.values()] + [['CML3113', '99/999/OTHER-X', 'Other Course Learner']]
+        roster_rows = [[c, r, n] for k, (r, c, n, _) in PEOPLE.items() if k != 'W'] + [['CML3113', '99/999/OTHER-X', 'Other Course Learner']]
         st.call('/admin/setup', dict(open=(t0 - timedelta(hours=1)).isoformat(), close=(t0 + timedelta(days=2)).isoformat(), classList=[]))
         csv_text = 'student_id,name,course\n' + '\n'.join(f'{r},{n},{c}' for c, r, n in roster_rows)
         _, r = st.call('/admin/classlist', dict(csv=csv_text))
@@ -135,9 +136,15 @@ def main():
         _, r = st.call('/api/check', dict(test=P12, registration='26/e2e/001/aaa'))
         check('entry page: a registration on the list shows the name to confirm', r.get('ok') and r['result']['nameHint'] == 'Test L. A.', r)
         _, r = st.call('/api/check', dict(test=P12, registration='26/E2E/011/KKK'))
-        check('wrong-course registration: refused with the right course named', not r.get('ok') and 'CML3113 class list' in r['error'], r.get('error'))
+        check('wrong-course registration: refused with "You are listed in CML3113. Use that link."', not r.get('ok') and r['error'] == 'You are listed in CML3113. Use that link.', r.get('error'))
         _, r = st.call('/api/files', dict(test=P12, name='x', email='kappa@example.org', registration='26/E2E/011/KKK'))
         check('wrong-course registration: no notebook is issued', not r.get('ok') and 'CML3113' in r.get('error', ''), r.get('error'))
+        _, r = st.call('/api/check', dict(test=P12, registration='26/E2E/015/WWW'))
+        check('open entry: a registration not on the list is not refused; the page asks for the full name', r.get('ok') and r['result']['onList'] is False, r)
+        _, r = st.call('/api/check', dict(test=P12, registration='hello 123'))
+        check('open entry: a malformed registration is refused with a clear message', not r.get('ok') and 'as it is on your student card' in r.get('error', ''), r.get('error'))
+        _, r = st.call('/api/files', dict(test=P12, name='(class list)', email='omega@example.org', registration='26/E2E/015/WWW'))
+        check('open entry: an off-list student must type a full name', not r.get('ok') and 'full name' in r.get('error', ''), r.get('error'))
 
         issued, attempt, fileid = {}, {}, {}
         st.at(0)
@@ -145,7 +152,7 @@ def main():
             if k == 'D':
                 continue
             key = course + ('|ML_REHEARSAL' if k == 'R' else '|ML_PROJECT')
-            _, r = st.call('/api/files', dict(test=key, name='typed name ignored', email=mail, registration=reg))
+            _, r = st.call('/api/files', dict(test=key, name=name if k == 'W' else 'typed name ignored', email=mail, registration=reg))
             assert r.get('ok'), (k, r)
             issued[k] = json.loads(r['result']['notebook'])
             attempt[k] = r['result']['attempt']
@@ -161,6 +168,10 @@ def main():
               and '"deadline":"' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A']) and issued['A']['cells'][1]['metadata'].get('cellView') == 'form', ident[:300])
         check('the setup cell prints the time left after every cell and adds Press Ctrl+S in the last 30 and 10 minutes', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and 'left (deadline' in ident)
         check('the notebook opens with at most 5 lines', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 5, ''.join(issued['A']['cells'][0]['source'])[:200])
+
+        check('open entry: the off-list student starts normally with the typed name', '"name":"Test Learner Omega"' in ''.join(issued['W']['cells'][1]['source']))
+        _, r = st.call('/api/files', dict(test=P12, name='Someone Else', email='other.person@example.org', registration='26/E2E/015/WWW'))
+        check('open entry: an off-list registration already used with another email is refused', not r.get('ok') and 'do not match' in r.get('error', ''), r.get('error'))
 
         # the wrong Google account
         _, r = st.call('/api/files', dict(test=P12, name='x', email='someone.else@example.org', registration=PEOPLE['H'][0]))
@@ -248,6 +259,7 @@ def main():
         f_nb = solved(issued['F'], 'CML3112', broken=True)
         st.call('/admin/save', dict(file=fileid['F'], email='zeta@example.org', notebook=json.dumps(f_nb)))
         st.call('/api/backup', dict(attempt=attempt['F'], href='https://colab.research.google.com/drive/' + fileid['F'], notebook=as_backup(f_nb)), origin=False)
+        st.call('/admin/save', dict(file=fileid['W'], email='omega@example.org', notebook=json.dumps(solved(issued['W'], 'CML3112'))))
         t_nb = solved(issued['T'], 'CML3112')
         st.call('/admin/save', dict(file=fileid['T'], email='tau@example.org', notebook=json.dumps(t_nb)))
         v_nb = solved(issued['V'], 'CML3112')
@@ -278,7 +290,7 @@ def main():
         rows = {x[6]: x for x in state['collection'][1:] if x[10] == 'COLLECTED'}
         reg = lambda k: PEOPLE[k][0]
         check('deadline: the trigger collects every project attempt past its deadline and none before',
-              set(rows) == {reg(k) for k in 'ABCEFGHITUV'} and reg('K') not in rows and reg('R') not in rows, sorted(rows))
+              set(rows) == {reg(k) for k in 'ABCEFGHITUVW'} and reg('K') not in rows and reg('R') not in rows, sorted(rows))
         check('deadline: editing stops (read only); the newer of the last save and the last backup is used', state['perms'][fileid['A']][0]['role'] == 'reader' and rows[reg('A')][13] in ('drive-revision', 'backup'), rows[reg('A')][14])
         check('saved a copy: the newest on-time backup is marked, with the source on the row', rows[reg('B')][13] == 'backup' and 'another file' in rows[reg('B')][14], rows[reg('B')][14])
         check('laptop died at minute 170: the newest of the last save (minute 160) and the last backup (minute 165) is collected',
@@ -344,6 +356,7 @@ def main():
         flags = lambda k: res[reg(k)]['flags'].split() if reg(k) in res else []
         check('final run: one command re-grades, writes the gradebook files and agrees with Actions', done.returncode == 0 and 'DIFFERENT' not in done.stdout and (work / 'out/gradebook').is_dir(), done.stderr[-300:])
         check('marks: full work collected from a save or a backup earns 45 (A, B, C, G, I, K, and T after the email fix)', all(total(k) == 45 for k in 'ABCGIKT'), {k: total(k) for k in 'ABCGIKT'})
+        check('open entry: the off-list student is collected, graded like anyone else (45) and flagged NOT_ON_LIST for information', total('W') == 45 and 'NOT_ON_LIST' in flags('W') and 'NOT_ON_LIST' not in flags('A'), (total('W'), flags('W')))
         check('tampering: an edited setup cell is replaced by the original, so the work earns 45 and is flagged', total('V') == 45 and 'SUPPLIED_CELL_EDITED' in flags('V'), (total('V'), flags('V')))
         check('marks: the mistake collected at the deadline costs marks; the corrected late backup does not count (F)', total('F') is not None and total('F') < 45, total('F'))
         check('marks: Start and nothing else earns 0 and is flagged NO_WORK (E, H, U)', total('E') == 0 and 'NO_WORK' in flags('E') and total('H') == 0 and total('U') == 0, (total('E'), total('H'), total('U')))

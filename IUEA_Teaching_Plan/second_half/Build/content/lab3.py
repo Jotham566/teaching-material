@@ -16,7 +16,7 @@ def build(code):
     d2 = lambda v: f'{v:.2f}'
     nb = Notebook()
     nb.md(f'# Class 3 lab: can I trust this model?\n\n**{f["name"].replace("  |  ", ", ")}**  |  Week 10  |  KLAi at IUEA\n\n'
-          f'Today you test how far you can trust a model that predicts **{short}** (in **{unit}**): you watch a decision tree overfit, score it with cross-validation, plant three kinds of data leakage on purpose, fix the random seed, and practise the records form that the project uses.\n\n'
+          f'Today you test how far you can trust a model that predicts **{short}** (in **{unit}**): you watch a decision tree overfit, score it with cross-validation, plant three kinds of data leakage on purpose, fix the random seed, and store named results with plain code, as the project tasks do.\n\n'
           '**How to use this notebook**\n\n'
           '1. Run the cells in order from the top. Press Shift and Enter to run a cell.\n'
           '2. Every step has the same rhythm: **PREDICT** what will happen, **RUN** the cell, **READ** the output, then **CHANGE** one thing and see what moves.\n'
@@ -220,40 +220,30 @@ def build(code):
             'print("python", platform.python_version(), "| numpy", np.__version__, "| pandas", pd.__version__, "| scikit-learn", sklearn.__version__)')
     nb.md('Copy this record under every result you report. Your version numbers may differ from your neighbour\'s.')
 
-    nb.step(6, 'Functions on records, as in the project', 'The project gives you rows as **records**: each row is a dictionary (the keys are the column names), and a table is a list of dictionaries. Its functions take records and return plain lists. This step practises that form. '
-            '`predict_records` wraps a pipeline in a function: it trains on a list of training records and returns one prediction per new record, in order. '
-            'A *list comprehension* builds a new list in one line: `[expression for item in a_list if condition]`. `sorted(a_list, key=lambda r: ...)` sorts the items by the value that the small `lambda` function gives for each one.')
+    nb.step(6, 'Store named results, as in the project', 'Each project task names its inputs and the results to store, for example `linear_mae`. You write plain code under the task and store each result under that exact name. No functions are needed. This step practises that form. '
+            'A *dictionary* collects the results by name. `sorted(..., key=lambda name: ...)` sorts the names by the value that the small `lambda` function gives for each one.')
     nb.predict('Three models: linear regression, the depth-4 tree and the tree with your chosen depth. Which one will come first when we sort by validation MAE?')
-    nb.code('record_columns = ["record_id", "equipment_id", "load_pct", "ambient_c", "target"]\n'
-            'train_records = training_data[record_columns].to_dict("records")     # a list of dictionaries, one per row\n'
-            'valid_records = validation_data[record_columns].to_dict("records")\n'
-            'print("training records:", len(train_records))\n'
-            'print("first training record:", train_records[0])\n\n'
-            'def predict_records(model, training_records, new_records):\n'
-            '    """Train the pipeline on a list of records and return one prediction per new record, in order."""\n'
-            '    table = pd.DataFrame(training_records)\n'
-            '    new_table = pd.DataFrame(new_records)\n'
-            '    model.fit(table[feature_columns], table["target"])\n'
-            '    return model.predict(new_table[feature_columns]).tolist()\n\n'
-            'valid_features = [{key: value for key, value in r.items() if key != "target"} for r in valid_records]   # the new rows have no target\n'
-            'valid_actual = [r["target"] for r in valid_records]\n\n'
-            'models = {"Linear regression": make_pipeline(SimpleImputer(strategy="median"), LinearRegression()),\n'
-            '          "Decision tree, depth 4": make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=4, random_state=17)),\n'
-            '          "Decision tree, chosen depth": make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=best_depth, random_state=17))}\n\n'
-            'model_results = []\n'
-            'for name, model in models.items():\n'
-            '    predictions = predict_records(model, train_records, valid_features)\n'
-            '    errors = [abs(a - p) for a, p in zip(valid_actual, predictions)]      # a list comprehension: one error per row\n'
-            '    model_results.append({"name": name, "validation_mae": sum(errors) / len(errors)})\n\n'
-            'ranked = sorted(model_results, key=lambda r: (r["validation_mae"], r["name"]))   # smallest MAE first; a tie goes to the name\n'
-            'for r in ranked:\n'
-            f'    print(f"{{r[\'name\']}}: validation MAE {{r[\'validation_mae\']:.2f}} {unit}")\n'
-            'print("first after sorting:", ranked[0]["name"])')
-    nb.read('Are the three MAEs the same as in Steps 2 and 3? Why does `valid_features` leave out the target? What does `ranked[0]` hold?')
+    nb.code('# Input: training_data, validation_data. Store: linear_mae, tree4_mae, chosen_tree_mae\n'
+            'print("training rows:", len(training_data))\n\n'
+            'linear_pipe = make_pipeline(SimpleImputer(strategy="median"), LinearRegression())\n'
+            'linear_pipe.fit(training_data[feature_columns], training_data["target"])\n'
+            'linear_mae = mean_absolute_error(validation_data["target"], linear_pipe.predict(validation_data[feature_columns]))\n\n'
+            'tree4_pipe = make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=4, random_state=17))\n'
+            'tree4_pipe.fit(training_data[feature_columns], training_data["target"])\n'
+            'tree4_mae = mean_absolute_error(validation_data["target"], tree4_pipe.predict(validation_data[feature_columns]))\n\n'
+            'chosen_pipe = make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=best_depth, random_state=17))\n'
+            'chosen_pipe.fit(training_data[feature_columns], training_data["target"])\n'
+            'chosen_tree_mae = mean_absolute_error(validation_data["target"], chosen_pipe.predict(validation_data[feature_columns]))\n\n'
+            'validation_mae = {"Linear regression": linear_mae, "Decision tree, depth 4": tree4_mae, "Decision tree, chosen depth": chosen_tree_mae}\n'
+            'ranked = sorted(validation_mae, key=lambda name: (validation_mae[name], name))   # smallest MAE first; a tie goes to the name\n'
+            'for name in ranked:\n'
+            f'    print(f"{{name}}: validation MAE {{validation_mae[name]:.2f}} {unit}")\n'
+            'print("first after sorting:", ranked[0])')
+    nb.read('Are the three MAEs the same as in Steps 2 and 3? Which named result would a project task ask you to store here? What does `ranked[0]` hold?')
     cur = {d: v for d, _, v in N['curve']}
     first = min([('Linear regression', N['line_mae']), ('Decision tree, depth 4', N['tree4_valid']), ('Decision tree, chosen depth', cur[N['best']])], key=lambda x: (x[1], x[0]))[0]
-    nb.md(f'**CHECK.** You should see: {f["b"]["n_tr"]} training records; linear regression {d2(N["line_mae"])}, depth-4 tree {d2(N["tree4_valid"])}, chosen depth {d2(cur[N["best"]])} {unit}; first after sorting: {first}.')
-    nb.change('Change the key to `key=lambda r: r["name"]` and run the cell again. What order do you get now, and why is it a poor way to rank models?')
+    nb.md(f'**CHECK.** You should see: {f["b"]["n_tr"]} training rows; linear regression {d2(N["line_mae"])}, depth-4 tree {d2(N["tree4_valid"])}, chosen depth {d2(cur[N["best"]])} {unit}; first after sorting: {first}.')
+    nb.change('Change the key to `key=lambda name: name` and run the cell again. What order do you get now, and why is it a poor way to rank models?')
 
     nb.step(7, 'Your conclusion, and save your work', 'Write three sentences: which max_depth you chose and why, what cross-validation says about how far to trust the score, and which kind of data leakage surprised you most.\n\n> My conclusion: \n\n'
             '**What this does not prove.** The data are synthetic teaching data, the validation group has only a few rows, and the test set (group E6) has not been used. '
@@ -289,7 +279,7 @@ def CHECK(code, res, f):
         want.append(f'random_state {sd}: chosen max_depth {N["seed_pick"][sd]}')
     cur = {d: v for d, _, v in N['curve']}
     trio = [('Linear regression', N['line_mae']), ('Decision tree, depth 4', N['tree4_valid']), ('Decision tree, chosen depth', cur[N['best']])]
-    want.append(f'training records: {b["n_tr"]}')
+    want.append(f'training rows: {b["n_tr"]}')
     for name, v in trio:
         want.append(f'{name}: validation MAE {v:.2f} {f["unit"]}')
     want.append('first after sorting: ' + min(trio, key=lambda x: (x[1], x[0]))[0])

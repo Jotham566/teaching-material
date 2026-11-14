@@ -468,7 +468,7 @@ def build(code):
                   widths=[1.7, 5.4, 4.8],
                   notes=('This is how every row of the model comparison table is scored. The validation MAE is the one you know from Class 1, on the rows of group E5. '
                          'The first formula repeats the MAE on four folds. In each fold one equipment group is held out, the model learns from the other three, and we average the four results. '
-                         f'The second is the sample standard deviation of the four fold errors. We divide by k minus one, here three, exactly as the project does; in Python that is np.std of the scores with ddof equal to 1. For linear regression the mean is {f2(line["cv_mean"])} {u} and the standard deviation {f2(line["cv_sd"])}.')))
+                         f'The second is the sample standard deviation of the four fold errors. We divide by k minus one, here three, exactly as in Class 3; in Python that is np.std of the scores with ddof equal to 1. For linear regression the mean is {f2(line["cv_mean"])} {u} and the standard deviation {f2(line["cv_sd"])}.')))
 
     # 17 the model comparison table
     S.append(dict(kind='table', title=f'Model comparison table: five candidate models on the same {n_va} validation rows',
@@ -551,7 +551,7 @@ def build(code):
                   widths=[4.6, 2.0, 2.2, 3.1], icons=['pin'] * 5 + ['chart', 'calculator'],
                   note=(f'Linear regression on the {cv5["n"]} development rows with no missing value. E5 joins because the choice is made. '
                         'In Python: np.std(folds, ddof=1).'),
-                  notes=('Once the model is chosen, the validation group has done its job, so it can join the cross-validation. The project does the same, with months as the groups. Here we hold out each of E1 to E5 in turn, five folds, trains linear regression on the other four groups and scores the held-out group. '
+                  notes=('Once the model is chosen, the validation group has done its job, so it can join the cross-validation. Here we hold out each of E1 to E5 in turn, five folds, trains linear regression on the other four groups and scores the held-out group. '
                          f'It uses the rows with no missing value, so no imputation is needed inside the folds. The mean of the five fold errors is {f2(cv5["mean"])} {u}. '
                          f'The sample standard deviation squares each fold’s gap from the mean, adds them, divides by four, and takes the square root: {f2(cv5["sd"])}. More folds give a steadier picture of new equipment.')))
 
@@ -660,7 +660,7 @@ def build(code):
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               f'Prepare the Block 2 quiz (forms Q9 and Q10) for the end of the class. The deck and the student guide say it opens in the last 20 minutes of the class and each form stays open for 24 hours; the last 20 minutes of the clock are for it. The deck has {len(S)} authored slides, so keep the formula slides brisk.',
               'The Engineering ML project ran online from Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time, and Class 4 content is not in it. For CML3112 (Tuesday 24 November) the window is still open during this class: say so, remind the class of the support hours on the class channel, and do not answer project questions in the room in a way the other cohorts cannot see. Project marks are final by Wednesday 2 December.',
-              'The deck teaches the rule the project states as an instruction (client limits on validation MAE, 2.0 deg C, 2.0 kW or 1.0 kWh/t, and on latency, 50 ms; then the lowest validation MAE; ties by latency, then name). It also recalls the cost table for the threshold (Class 2), shows five-group cross-validation with ddof=1 and the refit on E1 to E5 before the one test opening. The latencies and costs are invented teaching numbers.'],
+              'The deck teaches the kind of rule the project supplies in its setup cell as choose_model (there: validation MAE at most 25,000 USD on the Ames house prices, latency at most 50 ms, then the lowest validation MAE). Here the limits are 2.0 deg C, 2.0 kW or 1.0 kWh/t on validation MAE and 50 ms on latency; ties by latency, then name. It also recalls the cost table for the threshold (Class 2), shows five-group cross-validation with ddof=1 and the refit on E1 to E5 before the one test opening. The latencies and costs are invented teaching numbers.'],
         misconceptions=[('A clever new feature must help', 'Test it. Here the load_x_ambient column changes the error by hardly anything.'),
                         ('The model with the lowest number on the table is the one to choose', 'Only if it meets the client’s limits on error and latency. For CML3113, k-NN has the lowest validation MAE but takes 60 ms, so linear regression is chosen.'),
                         ('Equipment_id should be a feature because it is in the file', 'The model must work on equipment it has never met, and a new group has no column of its own.'),

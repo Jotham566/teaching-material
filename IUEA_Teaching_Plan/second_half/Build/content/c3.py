@@ -163,7 +163,7 @@ def build(code):
                            'If the prediction is wrong, a winding burns or a motor stops when it did not need to.']}[code]
 
     clock = [(10, 'Recall from Class 2, and why trust matters'), (40, 'Concepts, part 1: overfitting, validation curve, cross-validation'), (25, 'Concepts, part 2: data leakage, random seed, pipeline'), (15, 'Break'),
-             (70, 'Lab: curve, cross-validation, leakage, seeds, records'), (20, 'The project, and how this class counts')]
+             (70, 'Lab: curve, cross-validation, leakage, seeds, named results'), (20, 'The project, and how this class counts')]
     plan_note = ('We have three hours. The first seventy-five minutes are concepts only, with no laptop, so you can listen and ask. Then a break. '
                  'Then the lab, about seventy minutes, where you run everything on your own data. In the last twenty minutes I explain the project, which opens online on Monday 23 November.')
 
@@ -517,12 +517,12 @@ def build(code):
     S.append(dict(kind='steps', title='The lab has seven steps, and the first six end with a check',
                   steps=[dict(head='1 Prepare', text='Load, clean and split the data again', icon='folder'), dict(head='2 Validation curve', text='Train 10 depths, choose max_depth', icon='chart'),
                          dict(head='3 K-fold CV', text='KFold and GroupKFold', icon='grid'), dict(head='4 Data leakage', text='Three kinds, planted on purpose', icon='shield'),
-                         dict(head='5 Random seed', text='Change the seed, print the run record', icon='clock'), dict(head='6 Records', text='A function on records, as in the project', icon='doc'),
+                         dict(head='5 Random seed', text='Change the seed, print the run record', icon='clock'), dict(head='6 Named results', text='Store results by name', icon='doc'),
                          dict(head='7 Save', text='Three sentences, run all, save', icon='notebook')],
                   caption='In each step: predict, run, then read the output. Steps 1 to 6 end with a CHECK of your numbers.',
                   notes=('Here are the seven steps. One, prepare the data again, briefly. Two, train trees of depth one to ten, plot the validation curve and choose max_depth using the validation set only. '
                          'Three, run K-fold and GroupKFold cross-validation and print the mean and the standard deviation. Four, reproduce the three kinds of leakage. Five, change the random seed and print the run record. '
-                         'Six is new and the project needs it: you wrap a pipeline in a function that takes records, a list of dictionaries, and you rank models with a list comprehension and sorted. Seven is your short conclusion and a save.')))
+                         'Six practises the project form: plain code that stores each result under a given name, such as linear_mae, then ranks the models with sorted. Seven is your short conclusion and a save.')))
 
     S.append(dict(kind='table', title='Check your numbers against these before you move on',
                   headers=['What you print', 'You should see'],
@@ -585,15 +585,15 @@ def build(code):
 
     S.append(dict(kind='table', title='The project tests data cleaning, three regression models, a warning question and one honest test',
                   headers=['Part', 'What it tests'],
-                  rows=[['The data', 'Real steel plant meter readings, one every 15 minutes for a year, the same file for everyone. You predict the energy used (kWh) in months the model has not seen.'],
-                        ['Part A, 30 marks', 'Clean the data, two labelled charts, split by month (rule given), baseline, linear regression and decision tree in pipelines, MAE and RMSE, no leakage, the warning question, the test set opened once, results and MEMO present. Not tested: cross-validation, Class 4.'],
-                        ['Warning question', 'Logistic regression probabilities, then TP, FP, FN, TN, precision and recall at the fixed threshold 0.5.'],
+                  rows=[['The data', 'Two files, the same for everyone: 2,930 real house sales in Ames, Iowa (De Cock 2011) and 10,000 synthetic machine records (AI4I 2020).'],
+                        ['Part A, 30 marks', 'Clean 6, charts 2, split 2, three models 6, MAE and RMSE 3, no leakage 2, warning 3, test set once 2, results and MEMO 2, text columns (Task 3b) 2.'],
+                        ['Two questions', 'Predict the sale price (USD): baseline, linear regression, tree. Warn of a machine failure: logistic regression at 0.5, then TP, FP, FN, TN, precision, recall.'],
                         ['Part B, 15 marks', 'The memo form: the chosen model, your numbers, limits, a next step.'],
                         ['Rules', 'Work alone, with no AI tool. Anyone may be asked online to explain their code.']],
                   widths=[3.0, 8.9], icons=['chart', 'gear', 'bell', 'doc', 'shield'],
-                  notes=('Here is what the project tests. The data are real: meter readings from a steel plant, one every fifteen minutes for a whole year, the same file for every student. You predict the energy used in kilowatt hours, for months the model has not seen. '
-                         'In Part A you clean the data, draw two labelled charts, split by month with the rule given, fit a baseline, a linear regression and a decision tree in pipelines, and score them with MAE and RMSE. '
-                         'Then a light warning question with logistic regression at the fixed threshold 0.5, and the test set opened once with the supplied cell. Part B is the memo form. '
+                  notes=('Here is what the project tests. There are two files, the same for every student: real house sales from Ames, Iowa, and synthetic machine records from the AI4I 2020 data. '
+                         'Question 1 predicts the sale price in US dollars with a baseline, a linear regression and a decision tree, scored by MAE and RMSE. Task 3b adds the text columns with one-hot encoding, from a recipe in the task. '
+                         'Question 2 warns of a machine failure with logistic regression at the fixed threshold 0.5. The split uses a fixed seed, and the test set is opened once with the supplied cell. Part B is the memo form. '
                          f'You work alone, with no AI tool. Class 4 is on {c4day}. Which item worries you most?')))
 
     s['facilitator'] = dict(
@@ -607,7 +607,7 @@ def build(code):
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               'Say early that the test group E6 stays sealed. It is opened once, after the model and any threshold are chosen; the chosen model is then refitted on E1 to E5 and scored once on E6 (Class 4 shows this). Say that the validation fold in K-fold cross-validation is a different thing from the test set E6.',
               'The deck has five formula slides (training and validation error, the generalisation gap, the simplest-model-within-a-tolerance rule, K-fold mean and standard deviation, the pipeline rule). Each names every symbol and works the cohort numbers. The GroupKFold slide states that the same formulas apply with four groups. Students can revise from the PDF alone.',
-              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number and the Google email typed twice (one typo fix in the first 15 minutes), run Setup: run me first, plain code under each task storing the named results, a countdown line after every cell, no Submit button (work collected at the deadline), Check my work and I have finished on the entry page, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data only as a steel plant\'s real meter readings, split by month.',
+              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number and the Google email typed twice (one typo fix in the first 15 minutes), run Setup: run me first, plain code under each task storing the named results, a countdown line after every cell, no Submit button (work collected at the deadline), Check my work and I have finished on the entry page, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data as two files: Ames house sales (real, De Cock 2011; all numeric columns, and the text columns one-hot encoded in Task 3b) and AI4I 2020 machine records (synthetic, UCI, CC BY 4.0; the failure-type columns are dropped because they give the answer away). The split is a seeded random split, sample(frac=0.25, random_state=17); the rehearsal uses random_state=29.',
               'Have the rehearsal entry link (same entry page, practice target, nothing locked or marked) ready to release right after the class: CML3112 Tuesday 17 November, CML3113 and CML3111 Friday 20 November.',
               'All three cohorts use the same deck and the same clock for this class.'],
         misconceptions=[('The model with the lowest training error is the best model', 'Training error can reach zero by overfitting (fitting the noise in the training set). Judge on held-out rows.'),
@@ -633,11 +633,11 @@ def build(code):
                    ('Step 3: cross-validation', 'Five fold scores with the groups in each validation fold (all four every time), a mean and a sample standard deviation (ddof=1), then four group scores, sorted E1 to E4 (scikit-learn holds them out in its own order). The shortcut with cross_val_score must give the same means.'),
                    ('Step 4: data leakage', 'Honest and leaky MAE at depth 10. The leaky one is 0.00 or 0.01. The preprocessing leakage demo prints two different medians and the same MAE. The target-leakage feature gives a very small error.'),
                    ('Step 5: seeds and record', 'Three seeds, three different numbers, and the chosen max_depth for each seed. The run record prints versions: they will differ from the stand-in used to check the notebook, which is fine.'),
-                   ('Step 6: records', 'The project form: a pipeline wrapped in predict_records, which takes lists of dictionaries and returns a list. A list comprehension gives one error per row, and sorted with key=lambda ranks three models by validation MAE. Linear regression comes first in every cohort.'),
+                   ('Step 6: named results', 'The project form: plain code that stores linear_mae, tree4_mae and chosen_tree_mae, then a dictionary and sorted with key=lambda rank the three models by validation MAE. Linear regression comes first in every cohort.'),
                    ('Step 7: conclusion and save', 'Three written sentences, then restart and run all, then save a copy.')],
         rescue=['If the concepts run over, skip the by-hand table of the five fold scores and say: the standard deviation is the typical distance of a fold score from the mean. The notebook does the arithmetic.',
                 'If the concepts still run over, show the run record slide briefly: the notebook prints the record in Step 5.',
-                'If only thirty minutes of lab remain, do steps 1 to 3, the first kind of leakage in step 4, and step 6 (records), which the project needs. Set the rest as practice before the rehearsal.',
+                'If only thirty minutes of lab remain, do steps 1 to 3, the first kind of leakage in step 4, and step 6 (named results), the form the project uses. Set the rest as practice before the rehearsal.',
                 'Never cut the three project slides at the end. If time is short, read them aloud and post them on the class channel.',
                 'If wifi fails in the room, the notebook runs unchanged in VS Code with the same libraries.',
                 'If several learners are stuck at the same cell, stop the room, run that cell on the projector and let them copy the fix.'],

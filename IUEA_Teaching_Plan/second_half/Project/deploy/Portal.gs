@@ -38,7 +38,7 @@ function portalAssertNotSubmitted_(book,key,email,registration) {
 function requestTestFiles(input) {
  input=input||{};var key=String(input.test||'');
  if(/^(CML3111|CML3112|CML3113)\|TEST2$/.test(key))throw Error(PORTAL_TEST2_MESSAGE);
- if(!/^(CML3111|CML3112|CML3113)\|(TEST1|ML_PROJECT|ML_REHEARSAL)$/.test(key))throw Error('Use your lecturer’s test link.');if(/\|ML_(PROJECT|REHEARSAL)$/.test(key)){var classEntry=portalClassEntry_(SpreadsheetApp.openById(PORTAL_BOOK_ID),key,input.registration);input={test:key,name:classEntry.name,email:input.email,registration:classEntry.registration};}
+ if(!/^(CML3111|CML3112|CML3113)\|(TEST1|ML_PROJECT|ML_REHEARSAL)$/.test(key))throw Error('Use your lecturer’s test link.');if(/\|ML_(PROJECT|REHEARSAL)$/.test(key)){var classEntry=portalClassEntry_(SpreadsheetApp.openById(PORTAL_BOOK_ID),key,input.registration,String(input.name||''));input={test:key,name:classEntry.name,email:input.email,registration:classEntry.registration};}
  var name=portalIdentity_(input.name,'full name',160),email=portalIdentity_(input.email,'Google-account email',254).toLowerCase(),reg=portalIdentity_(input.registration,'Student ID/ Registration Number',160);
  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Enter the email of the Google account you will use in Colab and the submission form.');
  var normalized=reg.toUpperCase(),book=SpreadsheetApp.openById(PORTAL_BOOK_ID),w=portalWindow_(book,key);
@@ -144,11 +144,11 @@ function portalCountdownCode_(deadline){return "\n# This display is a reminder. 
 
 var PORTAL_ML_INSTRUCTIONS = {
  "CML3112|ML_PROJECT": "# CML3112 Engineering ML project: Part A 30 + Part B 15 marks, scaled to 40 percent\nRun **Setup: run me first**, then do each task in order and store the results it names. Window Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 Kampala time; 3 hours from Start.\nThere is no Submit button: your work saves itself and is collected automatically at your deadline. Press Ctrl+S now and then.\nNo AI tools and no help from other people; any student may be asked to explain their code in an online call.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
- "CML3112|ML_REHEARSAL": "# CML3112 Engineering ML project: REHEARSAL (unmarked), predicting lagging reactive power (kVarh)\nRun **Setup: run me first**, then do each task in order and store the results it names. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
+ "CML3112|ML_REHEARSAL": "# CML3112 Engineering ML project: REHEARSAL (unmarked), the same tasks as the project\nRun **Setup: run me first**, then do each task in order and store the results it names. The split uses random_state=29 here, so the numbers differ from the project's. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
  "CML3113|ML_PROJECT": "# CML3113 Engineering ML project: Part A 30 + Part B 15 marks, scaled to 40 percent\nRun **Setup: run me first**, then do each task in order and store the results it names. Window Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 Kampala time; 3 hours from Start.\nThere is no Submit button: your work saves itself and is collected automatically at your deadline. Press Ctrl+S now and then.\nNo AI tools and no help from other people; any student may be asked to explain their code in an online call.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
- "CML3113|ML_REHEARSAL": "# CML3113 Engineering ML project: REHEARSAL (unmarked), predicting lagging reactive power (kVarh)\nRun **Setup: run me first**, then do each task in order and store the results it names. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
+ "CML3113|ML_REHEARSAL": "# CML3113 Engineering ML project: REHEARSAL (unmarked), the same tasks as the project\nRun **Setup: run me first**, then do each task in order and store the results it names. The split uses random_state=29 here, so the numbers differ from the project's. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
  "CML3111|ML_PROJECT": "# CML3111 Engineering ML project: Part A 30 + Part B 15 marks, scaled to 40 percent\nRun **Setup: run me first**, then do each task in order and store the results it names. Window Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 Kampala time; 3 hours from Start.\nThere is no Submit button: your work saves itself and is collected automatically at your deadline. Press Ctrl+S now and then.\nNo AI tools and no help from other people; any student may be asked to explain their code in an online call.\nAdd as many cells as you like under a task; plain code is fine (no functions needed).",
- "CML3111|ML_REHEARSAL": "# CML3111 Engineering ML project: REHEARSAL (unmarked), predicting lagging reactive power (kVarh)\nRun **Setup: run me first**, then do each task in order and store the results it names. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed)."
+ "CML3111|ML_REHEARSAL": "# CML3111 Engineering ML project: REHEARSAL (unmarked), the same tasks as the project\nRun **Setup: run me first**, then do each task in order and store the results it names. The split uses random_state=29 here, so the numbers differ from the project's. Practise with a 3-hour timer.\nThere is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.\nNo AI tools and no help from other people, as in the project.\nAdd as many cells as you like under a task; plain code is fine (no functions needed)."
 };
 function portalMlInstructions_(course,deadline,test){
  test=test||'ML_PROJECT';
@@ -159,19 +159,23 @@ function portalMlInstructions_(course,deadline,test){
 // The class list: a sheet "Class list" in the same workbook, columns cohort | registration | full_name (paste it from the gradebook roster).
 // No token (collection design of 14 November 2026): the issued notebook is a Drive file shared with the student's Google account as an
 // editor; the collector stops editing and collects it at the deadline. The allocation code links the automatic backups to the attempt.
-var PORTAL_REG_FORMAT=/^\d{2}\/(UG\/)?\d{1,5}\/[A-Z]{2,8}(-[A-Z]{1,3})?$/;
+var PORTAL_REG_FORMAT=/^\d{2}\/[A-Z0-9]{1,8}(\/[A-Z0-9]{1,8}){1,3}(-[A-Z0-9]{1,4})?$/;
 function portalRegNormal_(value){return String(value||'').toUpperCase().replace(/\s+/g,'');}
-function portalClassEntry_(book,key,registration){
+// Open entry (lecturer, 14 November 2026): nobody is refused for not being on the class list. The registration must match a sensible
+// pattern (Test 1 normalisation: upper case, spaces removed). On the list: the student confirms the name. Not on the list: the student types
+// the full name, starts normally and is graded like anyone else; the collector flags NOT_ON_LIST (information only).
+function portalClassEntry_(book,key,registration,typedName){
  var reg=portalRegNormal_(registration),course=String(key).split('|')[0];
  if(!reg)throw Error('Enter your registration number.');
- var sheet=book.getSheetByName('Class list');
- if(!sheet)throw Error('Files are unavailable: the class list is not loaded. Tell the lecturer.');
- var rows=sheet.getDataRange().getValues().slice(1).filter(function(r){return portalRegNormal_(r[1])===reg;});
- var here=rows.filter(function(r){return String(r[0]).trim().toUpperCase()===course;})[0];
- if(here)return {registration:String(here[1]).trim(),name:String(here[2]).trim(),course:course};
- if(rows.length)throw Error('This registration number is on the '+String(rows[0][0]).trim().toUpperCase()+' class list, not '+course+'. Use the '+String(rows[0][0]).trim().toUpperCase()+' project link from your lecturer.');
  if(!PORTAL_REG_FORMAT.test(reg))throw Error('Enter your registration number as it is on your student card, for example 24/351/BSCE-S.');
- throw Error('This registration number is not on the '+course+' class list. Check it against your student card. If it is right, tell your lecturer on the class channel.');
+ var sheet=book.getSheetByName('Class list');
+ var rows=sheet?sheet.getDataRange().getValues().slice(1).filter(function(r){return portalRegNormal_(r[1])===reg;}):[];
+ var here=rows.filter(function(r){return String(r[0]).trim().toUpperCase()===course;})[0];
+ if(here)return {registration:String(here[1]).trim(),name:String(here[2]).trim(),course:course,onList:true};
+ if(rows.length)throw Error('You are listed in '+String(rows[0][0]).trim().toUpperCase()+'. Use that link.');
+ var name=String(typedName||'').trim();
+ if(typedName!==undefined&&(name.length<3||name.length>160||/[\x00-\x1f\x7f]/.test(name)||name==='(class list)'))throw Error('Enter your full name: your registration number is not on the class list.');
+ return {registration:String(registration).trim().toUpperCase(),name:name,course:course,onList:false};
 }
 // The identity goes into the ONE supplied cell (the setup cell): the line _IUEA_IDENTITY = {...} is replaced. The countdown and the backup read it.
 function portalMlFill_(nb,record,email,deadline,parts){
@@ -190,7 +194,7 @@ function portalCheckRegistration(input){
  input=input||{};var key=String(input.test||'');
  if(!/^(CML3111|CML3112|CML3113)\|ML_(PROJECT|REHEARSAL)$/.test(key))throw Error('Use your lecturer’s test link.');
  var entry=portalClassEntry_(SpreadsheetApp.openById(PORTAL_BOOK_ID),key,input.registration);
- return {registration:entry.registration,nameHint:portalNameHint_(entry.name),course:entry.course};
+ return {registration:entry.registration,nameHint:entry.onList?portalNameHint_(entry.name):'',onList:entry.onList,course:entry.course};
 }
 // The countdown for the ML project and its rehearsal: Ctrl+S reminders 30 and 10 minutes before the deadline. Information only:
 // at the deadline the collector stops editing on the server (the rehearsal is never stopped).

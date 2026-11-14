@@ -100,6 +100,11 @@ function mlpSaveState_(book,st){
  var sheet=mlpSheet_(book,'Attempt state',MLP_STATE_COLUMNS);
  sheet.getRange(st._row,1,1,MLP_STATE_COLUMNS.length).setValues([MLP_STATE_COLUMNS.map(function(c){return mlpText_(st[c]==null?'':st[c]);})]);
 }
+/** Open entry: anyone with a sensible registration may start. This only records whether the registration is on the course's class list. */
+function mlpOnClassList_(book,course,registration){
+ var sheet=book.getSheetByName('Class list');if(!sheet)return false;
+ return sheet.getDataRange().getValues().slice(1).some(function(r){return String(r[0]).trim().toUpperCase()===course&&mlpReg_(r[1])===mlpReg_(registration);});
+}
 function mlpLock_(){var l=LockService.getScriptLock();if(!l.tryLock(25000))throw Error('Wait a few seconds and try again: the server is busy.');return l;}
 function mlpFileIdFromHref_(href){var m=/\/drive\/([A-Za-z0-9_-]{10,})/.exec(String(href||''));return m?m[1]:'';}
 
@@ -154,9 +159,10 @@ function mlpCollect_(book,a,st,cutoffIso,reason){
  var pick=rev&&(!backup||Date.parse(rev.time)>=Date.parse(backup.time))?{source:'drive-revision',time:rev.time,text:rev.text}:backup?{source:'backup',time:backup.time,text:backup.text}:null;
  var parts=a.key.split('|'),id='S-'+Utilities.getUuid().replace(/-/g,'').slice(0,20);
  var collection=mlpSheet_(book,'Collection',MLP_COLUMNS);
+ var onList=mlpOnClassList_(book,parts[0],a.registration);
  var detail='Collected ('+reason+') from the '+(pick?(pick.source==='backup'?'newest on-time backup':'issued Drive file')+' saved '+mlpKampala_(pick.time):'nothing')+
   (rev&&pick&&pick.source==='backup'?'; the Drive file was last saved '+mlpKampala_(rev.time):'')+(st.other_file_seen?'; backups came from another file: '+st.other_file_seen:'')+
-  (st.late_at?'; a backup after the deadline was kept and not used ('+mlpKampala_(st.late_at)+')':'')+'.';
+  (st.late_at?'; a backup after the deadline was kept and not used ('+mlpKampala_(st.late_at)+')':'')+(onList?'':'; NOT_ON_LIST: the registration is not on the class list (information only)')+'.';
  if(!pick){
   collection.appendRow([id,parts[0],parts[1],a.variant,a.name,a.email,a.registration,new Date().toISOString(),a.started,cutoffIso,'COLLECTION_ERROR','','','',detail].map(mlpText_));
   st.state=rehearsal?'OPEN':'COLLECTED';st.collected_at=new Date().toISOString();mlpSaveState_(book,st);return null;
@@ -433,7 +439,7 @@ function exportMlProjectBatch(){
   blobs.push(DriveApp.getFileById(r[11]).getBlob().setName(r[0]+'.ipynb'));
   var st=states[r[0]]||[];
   jobs.push({response_id:r[0],cohort:r[1],assessment:r[2],variant:r[3],full_name:r[4],email:r[5],email_verified:true,student_registration_number:r[6],submitted_at:r[7],opens_at:r[8],closes_at:r[9],
-   notebook_sha256:r[12],file:r[0]+'.ipynb',source:r[13],source_time:r[7],other_file:String(st[8]||''),late_backup_at:String(st[13]||'')});
+   notebook_sha256:r[12],file:r[0]+'.ipynb',source:r[13],source_time:r[7],other_file:String(st[8]||''),late_backup_at:String(st[13]||''),not_on_list:/NOT_ON_LIST/.test(String(r[14]))});
  });
  var instant=mlpSheet_(book,'Instant checks',MLP_CHECK_COLUMNS).getDataRange().getValues().slice(1).map(mlpCheckObj_).filter(function(o){return o.kind==='grade';});
  blobs.push(Utilities.newBlob(JSON.stringify({schema:1,exported_at:new Date().toISOString(),jobs:jobs,collection_issues:issues,instant_results:instant},null,2),'application/json','manifest.json'));

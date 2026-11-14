@@ -11,7 +11,7 @@ Run `deploy/setup_pipeline.sh` (first with `--dry-run`). The steps it takes, and
 | Question | Answer |
 |---|---|
 | Where is the limit set? | The `Test windows` row: `opens_at`, `closes_at`, `enabled`, and `duration_minutes` (180). `openMlProjectWindow` in the collector sets it. |
-| Who starts the clock? | The student, by pressing Start on the entry page after the registration number is found on the class list and the name is confirmed. The portal saves `started_at` and `personal_deadline` (start plus 180 minutes, capped at `closes_at`). |
+| Who starts the clock? | The student, by pressing Start on the entry page after choosing the course and typing a registration number in the usual pattern; on the class list the name is confirmed (This is me), otherwise the student types a full name and the result is flagged NOT_ON_LIST (information only). The portal saves `started_at` and `personal_deadline` (start plus 180 minutes, capped at `closes_at`). |
 | What is issued? | A copy of the notebook in your Drive folder, named by registration and allocation, shared with the student's Google email as an editor, opened in Colab. Returning to the page gives the same file and the same deadline. |
 | Is there a Submit step? | No. Colab saves to the shared file. The setup cell also sends a backup every 5 minutes. |
 | What happens at the deadline? | The collector's every-minute trigger makes the file read only and collects the newer of the last Drive save at or before the deadline (Drive's modifiedTime) and the last backup received before the deadline. The source and its time go on the Collection row and the spot-check list. It then asks GitHub Actions to mark it. |
@@ -23,7 +23,7 @@ Run `deploy/setup_pipeline.sh` (first with `--dry-run`). The steps it takes, and
 
 | File in this folder | Based on | Change |
 |---|---|---|
-| `Portal.gs` | `test_portal/Portal.gs` | Accepts `ML_PROJECT` and `ML_REHEARSAL`; the class list decides the name and registration; the identity cell gets the allocation code; the Drive copy is named by registration and allocation; the countdown has Ctrl+S reminders at 30 and 10 minutes; the entry page gets the allocation code; the rehearsal is never closed by its timer. |
+| `Portal.gs` | `test_portal/Portal.gs` | Accepts `ML_PROJECT` and `ML_REHEARSAL`; open entry: the class list gives the name when the number is on it, otherwise the typed full name is used and flagged NOT_ON_LIST; a malformed number or one on another course's list is refused; the identity cell gets the allocation code; the Drive copy is named by registration and allocation; the countdown has Ctrl+S reminders at 30 and 10 minutes; the entry page gets the allocation code; the rehearsal is never closed by its timer. |
 | `Gateway.gs` | `test_portal/Gateway.gs` | Also answers the class-list check. |
 | `PacketsMLProject.gs` | new, generated | The project and rehearsal notebooks for the 18 packet keys (3 courses, 2 kinds, 3 allocation labels) and the data block once. Student files only. |
 | `Index.html`, `ProjectIndex.html` | `test_portal/Index.html`, new | The project entry page: the registration checked as it is typed, the name to confirm, Check my work, I have finished, the status. |

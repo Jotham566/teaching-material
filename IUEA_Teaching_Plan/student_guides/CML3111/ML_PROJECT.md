@@ -5,6 +5,7 @@
 <!-- PROJECT_ONLINE_20261113 -->
 <!-- PROJECT_CORE_20261114 -->
 <!-- PROJECT_NO_SUBMIT_20261114 -->
+<!-- PROJECT_AMES_AI4I_20261114 -->
 **What:** an individual, timed, auto-marked project in Google Colab. 40 percent of the course (Part A 30 + Part B 15 = 45 marks, scaled to 40).
 
 **When:** opens **Monday 23 November 2026, 00:00**, closes **Wednesday 25 November 2026, 23:59** (Kampala time). You have 3 hours from **Start**; they cannot be paused and stop at the window's close. **Start by Wednesday 25 November, 20:59** for the full 3 hours.
@@ -13,35 +14,40 @@
 
 ## The data
 
-One real file for everyone: Steel Industry Energy Consumption, DAEWOO Steel, Gwangyang, 2018, one reading every 15 minutes, 35,040 rows. It is inside the notebook. Source: Sathishkumar V E, Changsun Shin, Yongyun Cho (2021), UCI Machine Learning Repository, https://doi.org/10.24432/C52G8C, CC BY 4.0.
+Two files, the same for everyone. Both are inside the notebook.
 
-- **Question 1:** predict `Usage_kWh` from the lagging and leading reactive power, `NSM` and a weekend flag. The power factors and `CO2(tCO2)` are calculated from `Usage_kWh`: do not use them.
-- **Question 2:** a warning is a reading with `Usage_kWh` at or above 60 kWh. Logistic regression probabilities; a warning at 0.5 or more; confusion matrix counts, precision and recall.
-- **Split by month:** train January to August, validate September and October, test November and December.
+- **Houses (real):** the Ames housing data, 2,930 house sales in Ames, Iowa, 2006 to 2010. Source: Dean De Cock (2011), Journal of Statistics Education 19(3), https://doi.org/10.1080/10691898.2011.11889627.
+- **Machines (synthetic):** the AI4I 2020 predictive maintenance data, 10,000 rows. It is made up to look like a real machine, not measured on one. Source: Stephan Matzka (2020), UCI Machine Learning Repository, https://doi.org/10.24432/C5HS5C, CC BY 4.0.
+
+- **Question 1:** predict a house's `SalePrice` (USD) from all its numeric columns (`H_FEATURES`). Task 3b (2 marks) adds the text columns (`TEXT_FEATURES`) with one-hot encoding; the recipe is given in the task and shown in the revision class.
+- **Question 2:** warn when a machine fails (`Machine failure` is 1), from the five sensor readings and the machine `Type` (L, M, H mapped to 0, 1, 2). Logistic regression probabilities; a warning at 0.5 or more; confusion matrix counts, precision and recall.
+- **Cleaning:** keep the listed columns (`H_KEEP`: every column except PID), remove houses larger than 4,000 sq ft of living area, add `living_m2`, map `Type`. The failure-type columns (TWF, HDF, PWF, OSF, RNF) give the answer away, so they are dropped.
+- **Split:** a fixed seeded split, `sample(frac=0.25, random_state=17)` for validation. The test rows are kept apart in the setup cell and opened once.
 
 ## Tasks
 
 Each task names its inputs and the results to store. Write plain code in as many cells as you like; functions, loops and `if` are optional.
 
-1. Clean `raw` into `clean`; Chart 1.
-2. Split `clean` into `train` and `valid`.
-3. Baseline, linear regression and decision tree on `train`, predicting `valid`: `baseline_pred`, `linear_pred`, `tree_pred`, the three `_mae` and three `_rmse`; Chart 2.
-4. Warnings at 0.5: `warning_proba`, `tp`, `fp`, `fn`, `tn`, `precision`, `recall`.
+1. Clean `houses_raw` and `machines_raw` into `houses` and `machines`; Chart 1.
+2. Split into `houses_train`, `houses_valid`, `machines_train`, `machines_valid`.
+3. Baseline, linear regression and decision tree on `houses_train`, predicting `houses_valid`: `baseline_pred`, `linear_pred`, `tree_pred`, the three `_mae` and three `_rmse`; Chart 2.
+3b. Do the text columns help? The given one-hot recipe on `houses_train`, predicting `houses_valid`: `encoded_pred`, `encoded_mae`. A comparison only, not part of the choice.
+4. Warnings at 0.5 on the machines: `warning_proba`, `tp`, `fp`, `fn`, `tn`, `precision`, `recall`.
 5. `chosen_model = choose_model({...})` with the supplied rule.
-6. `test_rows = open_test_set(chosen_model)` once; refit on `train` and `valid`; `test_mae`, `test_recall`.
+6. `house_test, machine_test = open_test_set(chosen_model)` once; refit on training and validation rows; `test_mae`, `test_recall`.
 7. Fill in the `MEMO` form.
 
 The only supplied cell is **Setup: run me first**. Each task's cells are also run on hidden data, so typed numbers fail and a mistake in one task does not cost the next.
 
 ## Marks
 
-- **Part A (30):** A1 cleaning 7; A2 two labelled charts 2; A3 split 2; A4 three models 6; A5 MAE and RMSE 3; A6 no leakage 2; A7 warnings 3; A8 test set opened once 2; A9 results, reproducible (`random_state=17`), results and MEMO present 3.
+- **Part A (30):** A1 cleaning 6; A2 two labelled charts 2; A3 split 2; A4 three models 6; A5 MAE and RMSE 3; A6 no leakage 2; A7 warnings 3; A8 test set opened once 2; A9 results, reproducible (`random_state=17`), results and MEMO present 2; A10 Task 3b, the text columns 2.
 - **Part B (15):** recommended model 3, validation MAE 3, test MAE and recall 2, improvement over the baseline 1, three limits 3, next step 1, two written answers 2.
 - Final by Wednesday 2 December 2026.
 
 ## Steps
 
-1. Open the entry link. Type your registration number, tick **This is me**, type the Google email you use in Colab twice, press **Start**. Your 3 hours begin. A typo in the email can be corrected once on the page in the first 15 minutes.
+1. Open the entry link. Choose your course and type your registration number (for example 26/BCE/001/PS). Tick **This is me**; if your name is not shown, type your full name instead. type the Google email you use in Colab twice, press **Start**. Your 3 hours begin. A typo in the email can be corrected once on the page in the first 15 minutes.
 2. Click **Open my project in Colab** with that Google account. Do not use Save a copy.
 3. Run **Setup: run me first** (it starts a backup every 5 minutes and shows the time left after every cell).
 4. Work from the top. Store the results under the names each task gives. Press **Ctrl+S** now and then.
@@ -62,4 +68,4 @@ After a disconnect, open the entry page and click Resume; the timer continues.
 - Class channel, 08:00 to 20:00 each day of the window (hours to be confirmed by the lecturer).
 - If something fails, post a screenshot there at once. The lecturer can give one fresh attempt; it still ends at the window's close.
 
-**Rehearsal (unmarked):** released **Friday 20 November 2026** for the revision class. Same tasks and steps, same file, another target (lagging reactive power, kVarh). Nothing is locked or marked. It has short self-study notes. Do it with a 3-hour timer.
+**Rehearsal (unmarked):** released **Friday 20 November 2026** for the revision class. Exactly the project's tasks, files, result names and memo, with one change: the split uses `random_state=29`, so the numbers differ from the project's. Nothing is locked or marked. It has short self-study notes. Do it with a 3-hour timer.

@@ -18,7 +18,7 @@ const windowSheet = { getDataRange: () => ({ getValues: () => windowRows }), get
   getRange: (r, c, h, w) => ({ setValues: v => { v.forEach((row, i) => row.forEach((x, j) => { windowRows[r - 1 + i][c - 1 + j] = x; })); }, setNumberFormat() {} }) };
 let receipts = [['headers']];
 // The class list (made-up identities only). The same registration is on all three lists so the packet loop can use one identity.
-const classList = [['cohort', 'registration', 'full_name']].concat(['CML3111', 'CML3112', 'CML3113'].flatMap(c => [[c, 'DEMO / ML 1', 'Synthetic Learner One'], [c, 'DEMO / ML 2', 'Synthetic Learner Two']]),
+const classList = [['cohort', 'registration', 'full_name']].concat(['CML3111', 'CML3112', 'CML3113'].flatMap(c => [[c, '26/DEMO/001/ML', 'Synthetic Learner One'], [c, '26/DEMO/002/ML', 'Synthetic Learner Two']]),
   [['CML3113', '99/123/TEST-X', 'Other Course Learner']]);
 const book = { getSheetByName: n => n === 'Collection' ? { getDataRange: () => ({ getValues: () => receipts }) } : n === 'Test windows' ? windowSheet : n === 'Test allocations' ? sheet : n === 'Class list' ? { getDataRange: () => ({ getValues: () => classList }) } : null };
 const formsMade = [];
@@ -40,23 +40,24 @@ const ctx = { Date: Clock, Math, JSON, console, Object, Array, Error, Number, St
 vm.createContext(ctx);
 for (const f of ['Portal.gs', 'Gateway.gs', 'PacketsMLProject.gs', 'exam_collection.gs', 'ml_project_collection.gs']) vm.runInContext(fs.readFileSync(path.join(deploy, f), 'utf8'), ctx);
 vm.runInContext("var PORTAL_PACKETS = {};", ctx);   // the Test 1 packets are not needed here: the project lookup must work without them
-const input = { test: windowKey, registration: 'DEMO / ML 1', email: 'synthetic@example.com', name: 'Synthetic learner' };
+const input = { test: windowKey, registration: '26/DEMO/001/ML', email: 'synthetic@example.com', name: 'Synthetic learner' };
 
 // 0. the entry page checks the registration against the class list as it is typed (item 6)
-assert.deepEqual({ ...ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: ' demo / ml 1 ' }) }, { registration: 'DEMO / ML 1', nameHint: 'Synthetic L. O.', course: 'CML3112' });
-assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' }), /on the CML3113 class list, not CML3112/);
-assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '24/999/BSCE-S' }), /not on the CML3112 class list/);
+assert.deepEqual({ ...ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: ' 26/demo/001/ml ' }) }, { registration: '26/DEMO/001/ML', nameHint: 'Synthetic L. O.', onList: true, course: 'CML3112' });
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' }), /^Error: You are listed in CML3113\. Use that link\.$|You are listed in CML3113\. Use that link\./);
+assert.equal(ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '24/999/BSCE-S' }).onList, false, 'open entry: a registration not on the list is not refused');
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: 'hello' }), /as it is on your student card/);
-assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|TEST1', registration: 'DEMO / ML 1' }), /Use your lecturer/);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|TEST1', registration: '26/DEMO/001/ML' }), /Use your lecturer/);
 // the same checks through the gateway entry (Gateway.gs doPost); the messages reach the student
 const viaGateway = body => { props.PORTAL_GATEWAY_KEY = 'k'.repeat(40); return JSON.parse(ctx.doPost({ postData: { contents: JSON.stringify({ secret: 'k'.repeat(40), ...body }) } }).text); };
 ctx.ContentService = { createTextOutput: t => ({ text: t, setMimeType() { return this; } }), MimeType: { JSON: 'json' } };
-assert.equal(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: 'DEMO / ML 2' } }).result.nameHint, 'Synthetic L. T.');
-assert.match(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' } }).error, /CML3113 class list/);
-// a registration not on the list never gets a notebook, whatever name is typed
+assert.equal(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '26/DEMO/002/ML' } }).result.nameHint, 'Synthetic L. T.');
+assert.match(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' } }).error, /^You are listed in CML3113\. Use that link\.$/);
+// open entry: a registration not on the list starts with the typed full name; a missing name or a malformed number is refused
 now = Date.parse(open) + 1000;
-assert.throws(() => ctx.requestTestFiles({ ...input, registration: '24/999/BSCE-S' }), /not on the CML3112 class list/);
-assert.throws(() => ctx.requestTestFiles({ ...input, registration: '99/123/TEST-X' }), /CML3113 class list/);
+assert.throws(() => ctx.requestTestFiles({ ...input, registration: '24/999/BSCE-S', name: '(class list)' }), /Enter your full name/);
+assert.throws(() => ctx.requestTestFiles({ ...input, registration: 'abc 12' }), /as it is on your student card/);
+assert.throws(() => ctx.requestTestFiles({ ...input, registration: '99/123/TEST-X' }), /You are listed in CML3113\. Use that link\./);
 now = Date.parse('2026-11-22T20:59:00Z');
 
 // 1. before the window, after the window, wrong keys
@@ -85,7 +86,7 @@ const issuedNb = {};
 for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['A', 'B', 'C']) {
   windowKey = cohort + '|ML_PROJECT'; windowRows = [['key', 'open', 'close', 'enabled', 'duration'], [windowKey, open, close, 'YES', 180]];
   now = Date.parse(open) + 60000;
-  rows = [['headers'], [windowKey, 'DEMO / ML 1', input.email, 'T-' + cohort + '-' + variant, variant, '2026-11-30T00:00:00Z']];
+  rows = [['headers'], [windowKey, '26/DEMO/001/ML', input.email, 'T-' + cohort + '-' + variant, variant, '2026-11-30T00:00:00Z']];
   const issued = ctx.requestTestFiles({ ...input, test: windowKey }); const nb = JSON.parse(issued.notebook);
   const packet = ctx.PORTAL_PACKETS_ML[windowKey + '|' + variant];
   assert.equal(issued.csv, packet.csv);
@@ -96,7 +97,7 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   assert(!String(nb.cells[0].source).includes('Test 1'));
   const setup = String(nb.cells[1].source); assert(setup.startsWith('#@title Setup: run me first') && nb.cells[1].metadata.cellView === 'form');
   const ident = JSON.parse(/^_IUEA_IDENTITY = (.*)$/m.exec(setup)[1]);
-  assert.deepEqual([ident.course, ident.test, ident.allocation, ident.deadline, ident.registration], [cohort, 'ML_PROJECT', rows[1][3], issued.personalDeadline, 'DEMO / ML 1']);
+  assert.deepEqual([ident.course, ident.test, ident.allocation, ident.deadline, ident.registration], [cohort, 'ML_PROJECT', rows[1][3], issued.personalDeadline, '26/DEMO/001/ML']);
   assert.equal(ident.name, 'Synthetic Learner One', 'the name comes from the class list, not from what was typed');
   assert(setup.includes(packet.data) && !setup.includes('__IUEA_PACKED_DATA__'), 'the data block is put back into the setup cell');
   assert(setup.includes('post_run_cell') && setup.includes('Press Ctrl+S'), 'the countdown line after every cell, with the Ctrl+S reminders');
@@ -117,7 +118,7 @@ windowKey = 'CML3112|ML_PROJECT'; windowRows = [['key', 'open', 'close', 'enable
 now = Date.parse(open) + 60000; rows = [['headers']]; const started = ctx.requestTestFiles({ ...input, test: windowKey });
 let collected = [], collection = { getLastRow: () => 1, appendRow: r => collected.push(r), getDataRange: () => ({ getValues: () => receipts }) };
 const original = book.getSheetByName; book.getSheetByName = n => n === 'Collection' ? collection : original(n);
-const vals = { 'Full name': 'Synthetic learner', 'Student Registration Number': 'DEMO / ML 1', 'Test allocation code': rows[1][3] };
+const vals = { 'Full name': 'Synthetic learner', 'Student Registration Number': '26/DEMO/001/ML', 'Test allocation code': rows[1][3] };
 const response = { getId: () => 'late', getTimestamp: () => new Date(Date.parse(close) + 1000), getRespondentEmail: () => input.email,
   getItemResponses: () => Object.entries(vals).map(([k, v]) => ({ getItem: () => ({ getTitle: () => k }), getResponse: () => v })) };
 ctx.examCollect_(response, windowKey, { bookId: 'book' });
@@ -131,9 +132,9 @@ ctx.examCollect_(response, windowKey, { bookId: 'book', folderId: 'private-folde
 assert.equal(collected.at(-1)[10], 'COLLECTED'); assert.equal(collected.at(-1)[9], started.personalDeadline);
 // a form after the personal 3 hours, while the window is still open, is OUTSIDE_PERSONAL_WINDOW
 now = Date.parse(open) + 60000;
-rows = [['headers']]; const early = ctx.requestTestFiles({ ...input, test: windowKey, registration: 'DEMO / ML 2', email: 'two@example.com' });
+rows = [['headers']]; const early = ctx.requestTestFiles({ ...input, test: windowKey, registration: '26/DEMO/002/ML', email: 'two@example.com' });
 assert.equal(early.personalDeadline, new Date(Date.parse(open) + 60000 + H3).toISOString(), 'the personal 3 hours apply inside the long window');
-vals['Student Registration Number'] = 'DEMO / ML 2'; vals['Test allocation code'] = rows[1][3]; response.getId = () => 'late-personal'; response.getRespondentEmail = () => 'two@example.com';
+vals['Student Registration Number'] = '26/DEMO/002/ML'; vals['Test allocation code'] = rows[1][3]; response.getId = () => 'late-personal'; response.getRespondentEmail = () => 'two@example.com';
 response.getTimestamp = () => new Date(Date.parse(early.personalDeadline) + 60000);
 ctx.examCollect_(response, windowKey, { bookId: 'book' }); assert.equal(collected.at(-1)[10], 'OUTSIDE_PERSONAL_WINDOW');
 rows[1][7] = ''; rows[1][8] = ''; response.getId = () => 'no-timer'; response.getTimestamp = () => new Date(now + 60000); ctx.examCollect_(response, windowKey, { bookId: 'book' }); assert.equal(collected.at(-1)[10], 'COLLECTION_ERROR');

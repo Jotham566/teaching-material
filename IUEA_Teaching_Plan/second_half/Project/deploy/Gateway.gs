@@ -11,7 +11,7 @@ function doPost(e) {
   reply={ok:true,result:request.action==='check'?portalCheckRegistration(request.input):requestTestFiles(request.input)};
  } catch(error) {
   var message=String(error.message||'');
-  var safe=/^(This test |This registration |Enter |Use your lecturer|These details |This Google email |The page is busy|Files are unavailable)/.test(message);
+  var safe=/^(This test |This registration |You are listed in |Enter |Use your lecturer|These details |This Google email |The page is busy|Files are unavailable)/.test(message);
   reply={ok:false,error:safe?message:'Could not prepare files. Tell your lecturer.'};
  }
  return gatewayJson_(reply);
