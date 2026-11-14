@@ -90,22 +90,24 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   const packet = ctx.PORTAL_PACKETS_ML[windowKey + '|' + variant];
   assert.equal(issued.csv, packet.csv);
   assert(nb.cells[0].source.join ? nb.cells[0].source.join('').includes('Engineering ML project') : nb.cells[0].source.includes('Engineering ML project'));
-  assert(String(nb.cells[0].source).includes('Your submission deadline'));
+  // plain-code redesign of 14 November 2026: the notebook's own short opening, then ONE supplied cell (Setup: run me first) that holds
+  // the identity, the data and the deadline; no identity cell, no token, no Submit cell, no other supplied cell
+  assert(String(nb.cells[0].source).trim().split('\n').length <= 5, 'the opening is at most 5 lines');
   assert(!String(nb.cells[0].source).includes('Test 1'));
-  const identity = nb.cells[1].source; assert(identity.includes('TEST_ID = "ML_PROJECT"') && identity.includes('COHORT = "' + cohort + '"') && identity.includes('_IUEA_DEADLINE' ) === false);
-  assert(identity.includes('Project countdown') && identity.includes('30 minutes or less left: press Ctrl+S now'), 'the countdown, with the Ctrl+S reminders, is in the identity cell');
-  assert(nb.cells[3].source.includes(JSON.stringify(packet.csv)), 'the exact CSV of this variant is restored by the setup cell');
-  const last = nb.cells.at(-1).source; assert(last.includes('VARIANT = "' + variant + '"') && last.includes('# IUEA-ATTEMPT-CELL') && !last.includes('_IUEA_TOKEN'));
-  // collection design of 14 November 2026: no token, no Submit cell; the identity cell carries the allocation code for the backups
-  assert(identity.includes('_IUEA_ALLOCATION = ' + JSON.stringify(rows[1][3])), 'the allocation code is in the identity cell');
-  assert(!nb.cells.some(c => (c.metadata.tags || []).includes('iuea-submission')), 'no Submit cell');
+  const setup = String(nb.cells[1].source); assert(setup.startsWith('#@title Setup: run me first') && nb.cells[1].metadata.cellView === 'form');
+  const ident = JSON.parse(/^_IUEA_IDENTITY = (.*)$/m.exec(setup)[1]);
+  assert.deepEqual([ident.course, ident.test, ident.allocation, ident.deadline, ident.registration], [cohort, 'ML_PROJECT', rows[1][3], issued.personalDeadline, 'DEMO / ML 1']);
+  assert.equal(ident.name, 'Synthetic Learner One', 'the name comes from the class list, not from what was typed');
+  assert(setup.includes(packet.data) && !setup.includes('__IUEA_PACKED_DATA__'), 'the data block is put back into the setup cell');
+  assert(setup.includes('post_run_cell') && setup.includes('Press Ctrl+S'), 'the countdown line after every cell, with the Ctrl+S reminders');
+  assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-|Do not edit/.test(String(c.source))).length, 1, 'exactly one supplied cell');
+  assert(!JSON.stringify(nb).includes('_IUEA_TOKEN') && !nb.cells.some(c => (c.metadata.tags || []).includes('iuea-submission')), 'no token, no Submit cell');
   assert.equal(issued.attempt, rows[1][3], 'the entry page receives the allocation code');
-  assert(identity.includes('FULL_NAME = "Synthetic Learner One"'), 'the name comes from the class list, not from what was typed');
   assert.equal(nb.metadata.iuea_allocation_code, rows[1][3]);
   assert.equal(issued.personalDeadline, new Date(now + H3).toISOString());
   assert.equal(issued.csv, '', 'the data is inside the notebook; no CSV is sent');
   const base = JSON.parse(packet.notebook);
-  for (let i = 4; i < nb.cells.length - 1; i++) if (base.cells[i].cell_type === 'code') assert.deepEqual(nb.cells[i].source, base.cells[i].source);
+  for (let i = 2; i < nb.cells.length; i++) if (base.cells[i].cell_type === 'code') assert.deepEqual(nb.cells[i].source, base.cells[i].source);
   if (cohort === 'CML3112') issuedNb[variant] = nb;
 }
 if (out) fs.writeFileSync(out, JSON.stringify(issuedNb));
@@ -154,4 +156,4 @@ assert.throws(() => ctx.authoriseFreshTestAttempt('CML3112|TEST9', 'REG1', 'tech
 // 6. size: the gateway reads at most 4 MiB from Apps Script
 const one = JSON.stringify({ notebook: JSON.stringify(issuedNb.A) });
 assert(Buffer.byteLength(one) < 2 * 1024 * 1024, 'an issued notebook stays far below the gateway limit: ' + Buffer.byteLength(one));
-console.log('PASS ML_PROJECT deployment bundle: class list check (format, membership, wrong course), name from the class list, the allocation code in the identity cell (no token, no Submit cell), Ctrl+S reminders, window 23 to 25 November, personal deadline (earlier of start+180 and the window close), resume, one notebook per course for the 3 allocation labels (issued size ' + Math.round(Buffer.byteLength(one) / 1024) + ' KiB), Test 1 collector refusal rules, the windows rows, window setter guards.');
+console.log('PASS ML_PROJECT deployment bundle: class list check (format, membership, wrong course), name from the class list, one supplied setup cell holding the identity and the data (no token, no Submit cell), the countdown line with Ctrl+S reminders, window 23 to 25 November, personal deadline (earlier of start+180 and the window close), resume, one notebook per course for the 3 allocation labels (issued size ' + Math.round(Buffer.byteLength(one) / 1024) + ' KiB), Test 1 collector refusal rules, the windows rows, window setter guards.');

@@ -27,16 +27,16 @@ W = CONTENT_CM
 FONTS = PC.PLAN / 'second_half/Build/brand/fonts'
 WEEKS = dict(clean='Weeks 3 to 7', charts='Weeks 3 to 8', split='Week 10', regression='Weeks 8 and 9', errors='Week 8', leakage='Weeks 8 to 10',
              warning='Week 9', test='Week 10', results='Weeks 8 to 10')
-CHECKED = dict(
-    clean='Your function on rows built from the real file with problems added: midnight readings moved to the next day, the all-zero reading dropped, CO2(tCO2) removed, the first copy of a timestamp kept, impossible values and a missing target dropped, month and weekend added, your input unchanged. Each rule earns its own share.',
-    charts='Chart 1 and Chart 2 (under any name, or only shown) each have a title, named axes and the unit, and plot the right data. One mark each.',
-    split='Your function on other rows, also in a different order: months 1 to 8 training set, 9 and 10 validation set, 11 and 12 test set.',
-    regression='Baseline model, linear regression and decision tree (max_depth 4, random_state 17) predictions on other rows with missing values, each in a pipeline with median imputation learned from the training rows.',
-    errors='MAE and RMSE on other numbers, including a case with no error.',
-    leakage='Two probes: adding extreme feature rows does not change the other predictions (imputation from training rows only), and the baseline predicts the mean of the training targets it is given.',
-    warning='Warning probabilities (logistic regression) on other rows (1 mark); the confusion matrix counts, precision and recall at the fixed threshold 0.5 on other cases, one with no predicted warning (2 marks).',
-    test='The test set opened once with the supplied cell, after you chose the model, with that model; the supplied cells unedited; no November or December row among your development rows; the test result is the correct one for your model.',
-    results='Your validation errors and chosen model on the file, wherever they are (a variable of any name, or printed; typed-in numbers earn nothing) (1); the same answer every time with random_state=17 (1); every required function and the MEMO form exist (1).')
+CHECKED = dict(       # the marking guide's wording: the same checks as the rubric descriptions (build_grader_spec.py)
+    clean='Task 1 cells re-run on a hidden raw table with problems added. Nine shares per table: the whole result, rows in order, the date fix, the all-zero reading, CO2 removed, repeats, impossible values, month and weekend, raw unchanged.',
+    charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): title, named axes, unit, right data.',
+    split='Task 2 cells re-run on hidden clean tables, also reversed: train months 1 to 8, valid 9 and 10, rows in order.',
+    regression='Task 3 cells re-run on hidden train and valid: baseline, linear regression and decision tree predictions (median imputation, max_depth 4, random_state 17).',
+    errors='MAE and RMSE of the student\'s own Task 3 predictions (a model mistake is not counted twice); printed values count.',
+    leakage='Task 3 re-run twice more: extreme rows added to valid leave the other predictions unchanged; the baseline is the mean of the (shifted) train targets.',
+    warning='Task 4 re-run: probabilities (1 mark); counts, precision and recall at 0.5 from the student\'s own probabilities (2 marks).',
+    test='Task 6 re-run on hidden train, valid and test rows (MAE and recall after refitting); opened once, after the choice, with it; no November or December row in train or valid.',
+    results='Validation MAE of the three models and the chosen model on the real file (1); the same predictions twice, random_state=17, no unseeded randomness (1); every result and MEMO present (1).')
 SMALL = 'Written 14 November 2026'
 
 
@@ -123,6 +123,18 @@ def pdf_fonts(pdf):
 
 
 # ------------------------------------------------------------------------------------------------ the student brief
+CHECKED_BRIEF = dict(
+    clean='Your Task 1 cells re-run on a hidden raw table with problems added: midnight fix, all-zero row dropped, CO2(tCO2) removed, first copy kept, impossible values and missing target dropped, month and weekend added, raw unchanged. Each rule earns a share.',
+    charts='Chart 1 and Chart 2: title, both axis labels, unit, right data. 1 mark each.',
+    split='Your Task 2 cells re-run on hidden clean tables, also in another order.',
+    regression='Your Task 3 cells re-run on hidden train and valid: the three models\' predictions.',
+    errors='The MAE and RMSE of your own predictions on hidden valid rows.',
+    leakage='Extra extreme rows in valid leave the other predictions unchanged; the baseline follows the train targets.',
+    warning='Your Task 4 cells re-run: probabilities (1); counts, precision and recall at 0.5 (2).',
+    test='Your Task 6 cells re-run (test MAE and recall after refitting); opened once, after the choice, with that model; no November or December row in train or valid.',
+    results='Results on the real file calculated, not typed (1); the same answer every time with random_state=17 (1); every result and MEMO present (1).')
+
+
 def student_brief(code):
     c = PC.COHORT[code]
     cfg = P.EXAM
@@ -130,88 +142,67 @@ def student_brief(code):
     n = PC.numbers()['p']['n']
     w = PC.WINDOW
     d = new(f'{code} Engineering ML project: student brief', 'IUEA Machine Learning for Engineers  |  Student Brief')
-    title(d, 'Engineering ML project: energy use at a steel plant', f'{code}  |  {c["name"]}  |  Part A 30 marks + Part B 15 marks = 45 marks, scaled to 40 percent of the course  |  Online, 3 hours, individual work, marked by computer')
+    title(d, 'Engineering ML project: energy use at a steel plant', f'{code}  |  {c["name"]}  |  Part A 30 + Part B 15 = 45 marks, scaled to 40 percent  |  Online, 3 hours, individual, marked by computer')
     box(d, 'At a glance', [
-        f'The window: opens {w["opens"]} and closes {w["closes"]} Kampala time, the same for all three courses. You have 3 hours from the moment you press Start test. Start by {w["last_full_start"]} to get the full 3 hours.',
-        'Online, from anywhere: your own laptop, your own Google account and an internet connection. There is no room and nobody watching. There is no Submit button: your notebook is your own file in Drive, it saves itself, and it is collected automatically at your deadline.',
-        f'The rehearsal (unmarked): released {PC.REHEARSAL_TEXT[code]}. Same structure and the same kinds of task, on the same file with a different target. A solved walk-through is not given.',
-        'One notebook, one person. Everything is marked automatically. Part A is the coded notebook (30 marks). Part B is the decision memo (15 marks), written as a form inside the notebook.',
-        'It covers what we taught in Weeks 1 to 8, with a light warning question from Week 9 and the month split and the sealed test set from Week 10. There is nothing new to learn. No cross-validation, no cost table and no threshold choice.',
-        'Every student works on the same real file, so your numbers will match a classmate\'s. Most marks come from checks of your functions on rows you cannot see, and a short online understanding check may follow for anyone.'])
-    h2(d, '1. The situation and the two questions', 4)
-    para(d, f'You work for the energy manager of a steel plant ({PC.SOURCE["plant"]}). They give you one year of electricity readings: {n["file"]:,} rows, one every 15 minutes for 2018. Each row has the energy used (Usage_kWh, the target variable), the lagging and leading reactive power, two power factors, the seconds since midnight (NSM), the day and a CO2 column. You answer two questions.', 10, after=4)
-    grid(d, [['Question 1\nHow much?', f'How much energy will the plant use in a 15-minute reading, in {u}, in months the model has never seen?\nCompare a baseline model, a multiple linear regression model and a decision tree of depth 4, on the same rows, with MAE and RMSE in {u}. The features are the lagging and leading reactive power, NSM and a weekend flag.'],
-             ['Question 2\nWarn or not?', f'A reading is a warning (1, the positive class) when its Usage_kWh is at or above {cfg["limit"]:g} {u}, and no warning (0) below it. A quarter hour at or above 60 kWh means at least 240 kW on average, which is when peak-demand charges build up.\nGive each reading a probability with logistic regression, raise a warning when the probability is 0.5 or more (one fixed decision threshold), and report the confusion matrix counts, precision and recall.'],
-             ['The client\'s limits', f'A typical prediction error of at most {cfg["max_mae"]:g} {u} (MAE) and a prediction time of at most {P.MAX_MS} ms. A supplied rule in your notebook picks one model with these limits. Both numbers, and the 60 kWh limit, are invented for teaching.']],
-         [3.6, W - 3.6], header=['', 'What you must answer'], size=9.5)
-    h2(d, '2. The data and the test set')
-    bullets(d, [('Where the data comes from.', f'{PC.CITATION} The file is stored inside the supplied setup cell of your notebook and written out with a check, so nothing is uploaded or downloaded.'),
-                ('What is really in it.', 'We checked the file before the project. It has no missing cells and no repeated rows. It does have three things you must handle in Task 1: each day\'s last reading is written with that day\'s date and the time 00:00 (it really belongs to midnight at the end of the day); one reading on 7 November has every measurement 0 (the meter recorded nothing); and CO2(tCO2) is calculated from Usage_kWh, so it would leak the answer. The two power factors are calculated from the energy and the reactive power, so they are not used as features either.'),
-                ('Split by month.', f'Train on January to August ({n["train"]:,} rows, the training set), validate on September and October ({n["validation"]:,} rows, the validation set). November and December ({n["test"]:,} rows after cleaning) are the test set.'),
-                ('Why not a random split?', 'Readings 15 minutes apart are almost the same. A random split would put near-copies of the same hour in the training and validation sets, and let the model learn from days after the ones it is tested on. The score would look better than it will be next month. Splitting by month keeps the future in the future.'),
-                ('Fit on the training rows only.', 'The median used to fill a missing value and the mean of the baseline model are learned from the training rows, then applied to the other rows. A pipeline does this for you.')], 10)
-    box(d, 'How the test set is opened once', [
-        'The supplied cell "Open the test set" is in your notebook. Do not edit it. It defines open_test_set(model_name).',
-        'Near the end you call it ONE time: test_result = open_test_set(chosen_model), after the supplied rule has chosen the model on the validation set. It cleans the whole file with your clean_rows, refits your functions on January to October, evaluates on November and December (warnings at 0.5) and prints the result.',
-        'The notebook counts how often you call it. A second call loses part of the test set marks, even with the same model, and prints a warning that stays in your notebook. A second call with a different model loses more.',
-        'Never use November or December to choose a model or a hyperparameter. Once you have looked at them and then changed your mind, they can no longer tell you how the model behaves on new months.'])
-    h2(d, '3. How the window works')
-    numbered(d, [('Before you start.', 'Use a charged laptop, your own Google account and a working internet connection, somewhere quiet. Do the rehearsal first. Open the entry link or scan the QR code your lecturer shared. Check the course and the title "Engineering ML project".'),
-                 ('Start.', 'Type your registration number. The page checks it against your course list as you type and shows your name: tick This is me. Enter the Google email you will use in Colab, then press Start. Your three hours begin at that moment. Opening the page alone does not start the clock. A registration number from another course is refused: use your own course link.'),
-                 ('Your notebook.', 'Press Open my project in Colab. It is your own notebook in Drive and it saves itself; do not use Save a copy. Run the first code cell (your details and the countdown), then the supplied setup cell. Work from the top. Save often with File, then Save.'),
-                 ('The deadline.', f'Your deadline is the earlier of three hours after you started and the window\'s close ({w["closes"]}). The clock cannot be paused. Refreshing, a new device or an internet interruption does not restart it. If you start after {w["last_full_start"]}, you only have the time left until the close.'),
-                 ('The end.', 'At your deadline your notebook becomes read only and your work is collected automatically. The deadline is kept on the server, so nothing typed in the notebook changes it. Work done in a copy after the deadline is not marked.'),
-                 ('Help.', f'The lecturer answers questions about wording and technical problems on the class channel, {PC.SUPPORT_HOURS}. The lecturer does not write or debug your answers.'),
-                 ('If something fails.', 'Report it at once on the class channel with a screenshot. The lecturer can give one fresh attempt (also after a wrong Google account); it still ends at the window\'s close. Do not make a second identity and do not use another student\'s file. If Colab disconnects or your laptop dies, open the entry page again and click Resume: your work up to the last save or the last automatic backup is safe, and the timer continues.')], 10)
+        f'Window: opens {w["opens"]}, closes {w["closes"]} Kampala time. You have 3 hours from Start. Start by {w["last_full_start"]} for the full 3 hours.',
+        'Online, from anywhere: your own laptop, Google account and internet.',
+        'No Submit button. Your notebook saves itself and is collected automatically at your deadline.',
+        f'Rehearsal (unmarked): {PC.REHEARSAL_TEXT[code]}. Same tasks, same file, another target.',
+        'Part A: the coded notebook (30). Part B: the MEMO form in the notebook (15). All marked automatically.'])
+    h2(d, '1. The two questions', 4)
+    grid(d, [['Question 1', f'How much energy (Usage_kWh) does a 15-minute reading use, in months the model has not seen? Compare a baseline, a linear regression and a decision tree (depth 4) with MAE and RMSE in {u}. Features: lagging and leading reactive power, NSM, a weekend flag.'],
+             ['Question 2', f'A reading is a warning (1) when Usage_kWh is at or above {cfg["limit"]:g} {u}. Logistic regression gives each reading a probability; a warning when it is 0.5 or more. Report the confusion matrix counts, precision and recall.'],
+             ['Model choice', f'A supplied rule picks one model: validation MAE at most {cfg["max_mae"]:g} {u} and prediction time at most {P.MAX_MS} ms.']],
+         [3.2, W - 3.2], size=9.5)
+    h2(d, '2. The data')
+    bullets(d, [('File:', f'{n["file"]:,} readings, one every 15 minutes in 2018, {PC.SOURCE["plant"]}. Stored inside the setup cell: no upload or download.'),
+                ('Handle in Task 1:', 'each day\'s last reading is written as that day\'s date at 00:00 (it belongs to the next midnight); one reading on 7 November is all 0; CO2(tCO2) leaks the target and is removed.'),
+                ('Not features:', 'the two power factors (calculated from the target) and Load_Type.'),
+                ('Split by month:', f'training January to August ({n["train"]:,} rows), validation September and October ({n["validation"]:,}), test November and December ({n["test"]:,} after cleaning).'),
+                ('Test set:', 'open it once with the supplied open_test_set(chosen_model), after the rule has chosen. A second call loses marks.')], 10)
+    h2(d, '3. On the day')
+    numbered(d, [('Start.', 'Open the entry link. Type your registration number, tick This is me, type the Google email you use in Colab twice, press Start. A typo can be corrected once on the page in the first 15 minutes. Your 3 hours begin. A number from another course is refused.'),
+                 ('Work.', 'Press Open my project in Colab. Run Setup: run me first, then each task from the top. Do not use Save a copy. Press Ctrl+S now and then; the line after every cell shows the time left.'),
+                 ('Deadline.', f'3 hours after Start, or the window\'s close ({w["closes"]}) if earlier. It cannot be paused or restarted.'),
+                 ('Check.', 'Check my work on the entry page runs your saved notebook from the top: does it run, are all results and MEMO there, is it your issued notebook. No mark is shown.'),
+                 ('End.', 'At your deadline editing stops and your work is collected: the last save before the deadline, or the newest 5-minute backup if newer. Finished early? Press I have finished.'),
+                 ('Help.', f'The class channel, {PC.SUPPORT_HOURS}. The lecturer does not write or debug answers.'),
+                 ('Failure.', 'Post a screenshot on the class channel at once. The lecturer can give one fresh attempt, also for a wrong Google account; it still ends at the window\'s close. After a disconnect, open the entry page and click Resume: the timer continues.')], 10)
     rows = [[name, f'{m} min'] for name, m in PC.TIME_PLAN] + [['Total', f'{PC.MINUTES} min']]
     grid(d, rows, [W - 3.0, 3.0], header=['Suggested time plan', 'Time'], size=9)
-    h2(d, '4. What you hand in, exactly')
-    grid(d, [['One notebook', 'Your issued notebook, with Tasks 1 to 6 done and the Part B memo form (Task 7) filled in. Restarted and run from the top, then checked with Check my notebook.'],
-             ['How', 'Nothing to press. Your notebook is a file in Drive shared with your Google account; Colab saves it as you work (press Ctrl+S now and then; the countdown reminds you at 30 and 10 minutes). The setup cell also sends a backup to the lecturer every 5 minutes. At your deadline your editing stops and your work is collected: the last version saved before the deadline, or the newest backup if that is newer. Finished early? Press I have finished on the entry page.'],
-             ['Check my work', 'On the entry page. It runs your saved notebook from the top on the lecturer\'s computer and tells you whether it runs, whether every required function and the MEMO form are there, and whether it is the notebook issued to you. It never shows a mark. Nothing else is handed in: no form, ZIP, CSV, PDF or screenshot.']],
-         [3.2, W - 3.2], header=['Item', 'Detail'], size=9.5)
-    h2(d, '5. Allowed tools and the AI rule')
-    para(d, 'These are the same rules as Practical Test 1.', 10, after=3)
-    bullets(d, [('Permitted:', 'Google Colab, your notebook, Python with pandas, NumPy, matplotlib and scikit-learn as used in class, and your lecture slides, your lab notebooks from Classes 1 to 3, the revision guide, the cheatsheet and your own course notes.'),
-                ('No AI or outside help:', 'do not use Gemini, ChatGPT, Copilot or any other AI tool to generate, complete, rewrite, explain or debug your answers. Do not get answers from another person, collaborate, message or copy someone else\'s work.'),
-                ('Understanding check:', 'after the window, any student may be asked, in an online call, to explain their submitted code or make a small change to it, without AI or another person\'s help.'),
-                ('Declaration:', 'by working in your issued notebook until your deadline, you confirm that you completed this project yourself without AI assistance or another person\'s help, using only the permitted resources, and that you can explain and change the code you hand in.')], 10)
-    para(d, 'The copy checks and the identity checks run on every notebook. The lecturer\'s computer compares notebooks for copying and lists unusual cases for a person to look at. A flag never changes a mark by itself.', 9.5, italic=True, before=2, after=3)
-    h2(d, '6. Rules that make your notebook run every time')
-    numbered(d, [('Restart and run all.', 'Choose Runtime, then Restart session and run all, before your deadline. Every cell must run from the top without an error, in under five minutes in total and under 30 seconds per cell. With 35,040 rows, look timestamps up in a set: a list is far too slow.'),
-                 ('Your own cells are fine.', PC.OWN_CELLS),
-                 ('Keep the supplied cells and names.', 'Do not edit the supplied cells (the ones that say Do not edit this cell). Keep each function name, argument order, returned keys and variable name exactly as printed. The test-set cell calls your functions by these names.'),
-                 ('Use only the arguments.', 'A function uses the lists it is given (and the constants such as TARGET and FEATURES), never a global table. It is marked on other rows you cannot see.'),
-                 ('Train on the training set only.', 'The imputation, the StandardScaler and the baseline model\'s mean are learned from the training rows. Using validation or test rows in them is data leakage and loses marks.'),
-                 ('Seeds.', 'Keep random_state=17 for the decision tree. Do not add random choices without a seed, and never use a random split.'),
-                 ('Calculate, do not type.', 'Your results come from your code. A number typed in by hand earns nothing in Part A.'),
-                 ('No extras.', 'No pip installs, no downloads, no extra files.')], 10)
-    h2(d, '7. How Part A is marked (30 marks)')
-    para(d, 'The lecturer\'s computer runs your notebook from the top in a locked box that has the same Python and libraries as Colab. The self-check cells and Check my notebook are not marked: they use tiny examples with known answers and show PASS or TODO. The hidden checks run your functions on other rows built from the same plant file and compare the numbers. You cannot see them, so test your functions with your own small examples too. Each item earns the share of its checks that pass, so one wrong task does not cost the others. Because everyone has the same file, your results on the file are worth only 1 mark (inside A9).', 10, after=4)
-    rows = [[f'A{i}. {K.TITLES[t]}', CHECKED[t], WEEKS[t], str(m)] for i, (t, m) in enumerate(K.PARTS, 1)]
+    h2(d, '4. Rules')
+    bullets(d, [('Allowed:', 'Colab, your slides, your lab notebooks from Classes 1 to 3, the revision guide, the cheatsheet, your own notes.'),
+                ('No AI:', 'no Gemini, ChatGPT, Copilot or any other AI tool to write, complete, explain or debug your answers.'),
+                ('No outside help:', 'no help from another person, no copying. Copy and identity checks run on every notebook.'),
+                ('Understanding check:', 'any student may be asked afterwards, in an online call, to explain or change their code.'),
+                ('Declaration:', 'by working in your issued notebook until your deadline, you declare the work is your own.')], 10)
+    h2(d, '5. How to write your answers')
+    numbered(d, [('Plain code.', 'Each task names its inputs (for example train and valid) and the results to store (for example linear_mae). Write ordinary code in as many cells as you like; functions, loops and if statements are optional.'),
+                 ('Keep the result names', 'exactly as printed. A near name or a printed value still counts, but the exact name is safest.'),
+                 ('Each task is checked on its own', 'with hidden versions of its inputs, so a mistake in one task does not cost the next. Use only the task\'s inputs and the setup constants (TARGET, FEATURES, LIMIT...).'),
+                 ('Restart and run all', 'before your deadline. No errors; under 30 seconds a cell. Never split at random; keep random_state=17.'),
+                 ('Calculate, do not type', 'numbers: a typed number fails on the hidden inputs. The setup cell is always restored to its original before marking, so editing it changes nothing.')], 10)
+    h2(d, '6. Part A (30 marks)')
+    para(d, 'Your notebook runs from the top in a box with Colab\'s Python. Then the cells of each task run again on hidden rows from the same file; each item earns the share of its checks that pass.', 10, after=4)
+    rows = [[f'A{i}. {K.TITLES[t]}', CHECKED_BRIEF[t], WEEKS[t], str(m)] for i, (t, m) in enumerate(K.PARTS, 1)]
     rows.append(['Total', '', '', str(K.PART_A_MAX)])
-    grid(d, rows, [4.2, 8.4, 2.8, 2.0], header=['Part A item', 'What is checked', 'Taught in', 'Marks'], size=8.5, label_cols=(0,))
-    h2(d, '8. Part B: the decision memo form (15 marks)')
-    para(d, f'The memo is for {PC.PAYER}, who is not a data scientist. You write it as a form: a Python dictionary called MEMO in Task 7. Every field is checked automatically, so type your numbers carefully (two decimals are enough, in {u}). The lists of limits and next steps are printed in your notebook; each course has its own lettering.', 10, after=3)
-    grid(d, [['recommended_model', 'A model you trained ("baseline", "linear" or "tree"). It must be the model the supplied rule chose and the model you opened the test set with.', '3'],
-             ['validation_mae', 'The validation MAE of the three models. Compared with the values your own notebook computed.', '3'],
-             ['test_mae, test_recall', 'The MAE and the warning recall on the test set from your one opening. Compared with the value the marking computer calculates from the same predictions.', '2'],
-             ['improvement_over_baseline', f'The validation MAE of the baseline minus the validation MAE of your recommended model, in {u}. Compared with your own values.', '1'],
-             ['limits', 'Three different letters: the statements that are true limits of this study. Ten statements are listed and six are false. One mark for each true one.', '3'],
-             ['next_step', 'One letter: the best next step, from five.', '1'],
-             ['answer_choice, answer_test_set', 'Two short written answers of 8 to 80 words each: why you recommend your model (use a validation number and say what you compared it with) and why the test set is opened only once. One mark each. Several correct wordings are accepted; write sentences in your own words.', '2'],
+    grid(d, rows, [4.2, 8.4, 2.8, 2.0], header=['Item', 'What is checked', 'Taught in', 'Marks'], size=8.5, label_cols=(0,))
+    h2(d, '7. Part B: the MEMO form (15 marks)')
+    para(d, f'For {PC.PAYER}. Numbers with at least two decimals, in {u}. The lists of limits and next steps are in the notebook.', 10, after=3)
+    grid(d, [['recommended_model', '"baseline", "linear" or "tree": the model the rule chose and you opened the test set with.', '3'],
+             ['validation_mae', 'The validation MAE of the three models, from your notebook.', '3'],
+             ['test_mae, test_recall', 'From your one test opening.', '2'],
+             ['improvement_over_baseline', f'Baseline validation MAE minus your model\'s, in {u}.', '1'],
+             ['limits', 'Three different letters: the true limits of this study. One mark each.', '3'],
+             ['next_step', 'One letter: the best next step.', '1'],
+             ['answer_choice, answer_test_set', 'Why you recommend your model (give a validation number and what you compared it with), and why the test set is opened once. 8 to 80 words each, your own words. One mark each.', '2'],
              ['Total', '', '15']],
-         [4.6, W - 6.4, 1.8], header=['Field', 'What you enter and how it is checked', 'Marks'], size=9, label_cols=(0,))
-    h2(d, '9. Rehearsal, help and results')
-    bullets(d, [f'Rehearsal: {PC.REHEARSAL_TEXT[code]}. It predicts the lagging reactive power (kVarh) from the same file, with its own warning. Do it with a timer. It is unmarked.',
-                f'Window: {PC.WINDOW_TEXT}.',
-                f'Questions about task wording and technical problems: the class channel, {PC.SUPPORT_HOURS}.',
-                f'Results: marks are final about a week after the window closes, by {PC.RESULTS_BY}.',
-                'Practise the whole path in the rehearsal: restart and run all, fill in the MEMO form until every memo self-check passes, and read the self-check output. The rehearsal has short self-study notes before the tasks that need them.'], 10)
+         [4.6, W - 6.4, 1.8], header=['Field', 'Enter', 'Marks'], size=9, label_cols=(0,))
+    para(d, f'Results: final by {PC.RESULTS_BY}.', 10, before=4, after=3)
     h2(d, 'Before your deadline')
-    grid(d, [['☐', 'Identity cell correct (name, email, registration number). COHORT and TEST_ID unchanged.'], ['☐', 'Restart session and run all: no error, every cell ran.'],
-             ['☐', 'The test set was opened one time, after the choice. Chart 1 and Chart 2 have a title, named axes and the unit.'], ['☐', 'The MEMO form is complete and the memo self-check passes.'],
-             ['☐', 'Worked only in the notebook the entry page opened; Ctrl+S pressed; Check my work on the entry page shows no failing cell.']],
+    grid(d, [['☐', 'Restart session and run all: no error. Every result named in the tasks is stored.'],
+             ['☐', 'Test set opened once, after the choice. Both charts have a title, axis labels and the unit.'], ['☐', 'MEMO complete, with your own numbers.'],
+             ['☐', 'Worked only in the issued notebook; Ctrl+S pressed; Check my work shows no failing cell.']],
          [1.0, W - 1.0], size=9.5, label_cols=())
     para(d, f'Data credit: {PC.CITATION} Introductory paper: {PC.SOURCE["paper"]}.', 8.5, italic=True, before=4, after=2)
     save_pdf(d, OUT / f'Student_Brief_{code}.docx')
@@ -244,7 +235,7 @@ def marking_guide():
     rows = [[c, f'{w["opens"]} to {w["closes"]}', PC.REHEARSAL_TEXT[c]] for c in PC.CODES]
     grid(d, rows, [2.4, 8.4, 6.6], header=['Course', 'Window (the same for all)', 'Rehearsal released'], size=9, label_cols=(0,))
     h2(d, 'The data')
-    para(d, f'Every student has the same real file: {PC.CITATION} {p["n"]["file"]:,} rows, one every 15 minutes for 2018. Checked on 13 November 2026 (SHA-256 {P.DATA_SHA256[:16]}...): no missing cells, no repeated rows. Real problems the students handle: each day\'s last reading is written with that day\'s date at 00:00 (365 rows; their real time is midnight at the end of the day); one reading on 7 November has every measurement 0; CO2(tCO2) and the two power factors are calculated from Usage_kWh, so they would leak the target. No error was invented in the file. The function checks use rows sampled from the file with a small seeded change and with problems added, which the brief says plainly. Split: training January to August ({p["n"]["train"]:,} rows), validation September and October ({p["n"]["validation"]:,}), test November and December ({p["n"]["test"]:,} after cleaning). The file is stored inside the setup cell (bzip2 and base64, about 380 KB) and written out with a SHA-256 check.', 10, after=3)
+    para(d, f'Every student has the same real file: {PC.CITATION} {p["n"]["file"]:,} rows, one every 15 minutes for 2018. Checked on 13 November 2026 (SHA-256 {P.DATA_SHA256[:16]}...): no missing cells, no repeated rows. Real problems the students handle: each day\'s last reading is written with that day\'s date at 00:00 (365 rows; their real time is midnight at the end of the day); one reading on 7 November has every measurement 0; CO2(tCO2) and the two power factors are calculated from Usage_kWh, so they would leak the target. No error was invented in the file. The hidden re-runs use rows sampled from the file with a small seeded change and with problems added, which the brief says plainly. Split: training January to August ({p["n"]["train"]:,} rows), validation September and October ({p["n"]["validation"]:,}), test November and December ({p["n"]["test"]:,} after cleaning). The file is stored inside the setup cell (bzip2 and base64, about 380 KB) and written out with a SHA-256 check.', 10, after=3)
     vm = p['validation_mae']
     para(d, f'Reference results (the model solution, real scikit-learn): validation MAE baseline {vm["baseline"]:.2f}, linear {vm["linear"]:.2f}, tree {vm["tree"]:.2f} kWh; chosen model {nums["chosen"]} (MAX_MAE {P.EXAM["max_mae"]:g} kWh); improvement over the baseline {p["improvement"]:.2f} kWh; validation warnings at 0.5: precision {p["warning_scores"]["precision"]:.3f}, recall {p["warning_scores"]["recall"]:.3f}; test MAE {nums["test"]["mae"]:.2f} kWh and test recall {nums["test"]["warning"]["recall"]:.3f}. Everyone should reach these same numbers, so the results share is worth 1 mark.', 10, after=4)
     h2(d, '1. How the time limit works (the Test 1 mechanism, reused)')
@@ -291,14 +282,14 @@ def marking_guide():
     rows = [[f, str(v[0]), v[1], v[2]] for f, v in GP.FLAGS.items()]
     grid(d, rows, [4.8, 1.0, 5.6, 6.0], header=['Flag', 'Pri.', 'What it means', 'What to do'], size=8, label_cols=(0,))
     h2(d, '6. How the marks are earned')
-    para(d, 'Own cells count (your rule of 13 November 2026). Before a notebook runs, the grader works on a copy: an issued TODO cell that the student left unedited is left out when the student defined the same function or variable in a cell of their own; a required function found under a near name with the same arguments is marked in full and flagged RENAMED_FUNCTION; results count wherever their values are (a variable of any name, a print, or a cell\'s last value), except numbers typed in and numbers in the memo form; Chart 1 and Chart 2 count under any name. The brief tells students: ' + PC.OWN_CELLS, 9.5, after=3)
+    para(d, 'Plain code (your redesign of 14 November 2026). Students write ordinary code under each task heading and store the named results. Before a notebook runs, the grader works on a copy: the supplied setup cell is put back to its original (whatever was done to it, even deleted; flagged SUPPLIED_CELL_EDITED); then, after the run from the top, the cells of each task (every code cell between its heading and the next task heading, the student\'s own cells included) run again in a fresh namespace with hidden versions of the task\'s inputs. Typed or copied numbers fail, an earlier mistake never costs a later task, a result under a near name counts (flagged RENAMED_RESULT), and a printed number counts. ' + PC.OWN_CELLS, 9.5, after=3)
     rows = [[f'A{i}. {K.TITLES[t]}', CHECKED[t], str(m)] for i, (t, m) in enumerate(K.PARTS, 1)]
     grid(d, rows, [4.6, 11.0, 1.8], header=['Part A item', 'Automatic check', 'Marks'], size=8.5, label_cols=(0,))
     spacer(d, 4)
     ex = {
         'b1': 'recommended_model is a model the student trained (1), equals the student\'s own rule choice (1), and is the model the test set was opened with (1).',
         'b2': 'validation_mae for baseline, linear and tree each within 0.011 of the student\'s own computed value (1 each).',
-        'b3': 'test_mae (1) and test_recall (1) within 0.011 of the value the grader computes by calling the student\'s own functions for the model that was opened (warnings at 0.5).',
+        'b3': 'test_mae (1) and test_recall (1) within 0.011 of the student\'s own Task 6 values (or the reference for the model that was opened, when they are missing).',
         'b4': 'improvement_over_baseline within 0.011 of the student\'s own validation MAE of the baseline minus that of the recommended model.',
         'b5': 'Three different letters; one mark for each of the four true limits chosen (four true and six false statements, lettered differently for each course).',
         'b6': 'The one correct next step of five (collect readings from more years or another plant and check the chosen model again on months it has never seen).',
@@ -309,7 +300,7 @@ def marking_guide():
     marks = proof_example()
     a = sum(marks[t] for t, _ in K.PARTS)
     b = sum(marks[t] for t, _ in K.PARTB)
-    para(d, 'A CML3112 student has written every function correctly except RMSE, which they left without the square root, and filled in the memo form from their own notebook. This is one of the wrong solutions the grader was tested on, so the numbers below are what the grader gives.', 10, after=3)
+    para(d, 'A CML3112 student has done every task correctly except RMSE, which they left without the square root, and filled in the memo form from their own notebook. This is one of the wrong solutions the grader was tested on, so the numbers below are what the grader gives.', 10, after=3)
     rows = [[f'A{i}. {K.TITLES[t]}', fmt(marks[t]), str(m)] for i, (t, m) in enumerate(K.PARTS, 1)]
     rows.append(['Part A total', fmt(a), str(K.PART_A_MAX)])
     rows += [[f'Part B {M_t}', fmt(marks[k]), str(m)] for (k, M_t, m) in M.PARTB]
@@ -320,7 +311,7 @@ def marking_guide():
     grid(d, [['The midnight readings left at the start of the day', 'Item A1 loses the date-fix share and the whole-result share: the timestamps are wrong and a later reading can look like a repeat.'],
              ['CO2(tCO2) kept, or a power factor used as a feature', 'Item A1 loses the CO2 share. A power factor added to the features changes every prediction, so items A4, A7 and A8 lose marks.'],
              ['Imputation fitted on all rows', 'Item A4 fails on the linear and tree lists, and item A6 (no leakage) drops.'],
-             ['Baseline model built from other targets', 'The baseline list is wrong and item A6 drops. Often a global table used inside the function.'],
+             ['Baseline model built from other targets', 'The baseline predictions are wrong and item A6 drops. Often pd.concat of train and valid.'],
              ['Wrong months in the split, or a random split', 'Item A3 scores 0 and the results share of A9 fails, because the validation set is different. A random split also loses the reproducibility share.'],
              ['Looking timestamps up in a list', 'The split cell runs for minutes and stops at 30 seconds; everything after it fails. The brief and the task text warn about this.'],
              ['RMSE without the square root', 'Part of item A5 and of item A8.'],
@@ -330,7 +321,7 @@ def marking_guide():
              ['Chart without an axis name or unit', 'Part of item A2 is lost.'],
              ['Editing a supplied cell', 'Detected by a hash; item A8 drops and the case is flagged.'],
              ['Results typed in', 'The results share of item A9 earns 0 for those numbers; flagged RESULTS_NOT_CALCULATED.'],
-             ['A required function missing or misnamed beyond recognition', 'That function\'s own item, and the "functions and MEMO present" share of item A9.'],
+             ['A required result missing or named beyond recognition', 'That result\'s share, and the "results and MEMO present" share of item A9.'],
              ['Memo numbers copied wrongly', 'The Part B field loses its mark; flagged MEMO_NUMBERS_DISAGREE. Look for a missing decimal point before overriding.'],
              ['STUDENT_ID blank or someone else\'s', 'IDENTITY_MISMATCH. The allocation and its Drive file say who it was issued to; speak to the student.']],
          [5.4, W - 5.4], header=['Mistake', 'What happens and what to do'], size=9, label_cols=(0,))
@@ -338,10 +329,10 @@ def marking_guide():
     bullets(d, ['Everyone has the same file, so the numbers, the chosen model and (within a course) the memo letters are the same for honest students. Numbers alone prove nothing. Look for shared code, shared sentences and shared unusual choices.',
                 'grade_project.py compares only what each student wrote, after removing the issued template, and compares the written answers. The tasks are short and guided, so honest notebooks can look alike: talk to a pair only when you can also see the same sentences or the same unusual choices.',
                 'Understanding check: the brief says that any student may be asked, after the window, in an online call, to explain their code or make a small change. Suggested questions: why is the midnight reading moved to the next day, why is CO2 removed, why split by month and not at random, why is the median learned from the training rows, why is the test set opened once, what does recall mean for a missed warning.',
-                'The hidden checks run on rows built from the file that no student has, so a function copied without understanding still has to work on them.'], 10)
+                'Each task\'s cells are re-run on rows built from the file that no student has, so copied code or copied numbers still have to work on them.'], 10)
     h2(d, '10. What was proved and what was not')
     n, ok = counts()
-    para(d, f'Proved on this Mac in the Colab-matching Docker sandbox (iuea-notebooks:colab-2026.11: Python 3.13.18, numpy 2.4.6, pandas 2.2.3, scikit-learn 1.6.1, matplotlib 3.10.0, IPython 7.34.0, the versions Colab lists on 13 November 2026), through grader_spec/run_proofs.py --docker, the real batch_grade.py and the hidden spec: {ok} of {n} proof cases behave as required, for all three courses. They cover the model solution, a differently written correct solution, the own-cells cases, the Colab habits that broke Test 1 (display and IPython imports, a re-uploaded "(1)" copy, an unnamed chart and a later plt call), leaks, a wrong split, each cleaning rule, a wrong metric, the warning counts at 0.5, edited supplied cells, the test set opened twice or early, a missing function, memo values that disagree with the notebook, copied notebooks, the untouched template, grade_project.py end to end, the gradebook import under the real gradebook.gs, and the patched portal under node, including the notebook exactly as the portal issues it.', 10, after=3)
+    para(d, f'Proved on this Mac in the Colab-matching Docker sandbox (iuea-notebooks:colab-2026.11: Python 3.13.18, numpy 2.4.6, pandas 2.2.3, scikit-learn 1.6.1, matplotlib 3.10.0, IPython 7.34.0, the versions Colab lists on 13 November 2026), through grader_spec/run_proofs.py --docker, the real batch_grade.py and the hidden spec: {ok} of {n} proof cases behave as required, for all three courses. They cover the model solution, a differently written correct solution, the own-cells cases (several cells, a near name, a printed result), the tampered, deleted and edited setup cell, the Colab habits that broke Test 1 (display and IPython imports, a re-uploaded "(1)" copy, an unnamed chart and a later plt call), leaks, a wrong split, each cleaning rule, a wrong metric, the warning counts at 0.5, edited supplied cells, the test set opened twice or early, a missing result, memo values that disagree with the notebook, copied notebooks, the untouched template, grade_project.py end to end, the gradebook import under the real gradebook.gs, and the patched portal under node, including the notebook exactly as the portal issues it.', 10, after=3)
     para(d, 'The collection and instant marking were proved end to end with no network (actions/test_actions_e2e.py): the real Portal.gs, Gateway.gs, the collector ml_project_pipeline.gs and the Cloudflare worker run on in-memory fakes of Sheets and Drive (permissions and revisions with their modifiedTime). The cases: an ordinary student, one who saved a copy, a laptop that died at minute 170, a student who never pressed anything and one who pressed only Start, a backup after the deadline, a stopped backup thread, the wrong Google account (and its fresh attempt), a wrong-course registration, a whole-course and a one-student extension, I have finished, Check my work and the rehearsal. The marks stay hidden until the release switch and the window close, and final_regrade.py agrees with the instant marks.', 10, after=3)
     para(d, 'Not proved (needs you): a real Colab session (that the background backup can read the notebook on screen from a thread, and that a shared editor file opens without the Copy to Drive banner), the Apps Script deployments, the GitHub repository and its minutes, and the Cloudflare gateway. deploy/setup_pipeline.sh does the set-up; deploy/SETUP_GITHUB_ACTIONS.md says what is left.', 10, after=3)
     h2(d, '11. Open points for you')
@@ -351,7 +342,7 @@ def marking_guide():
                 'The secrecy of grader_spec/ (hidden checks, model solutions) is the same as for Tests 1 and 2. If the repository is public, students can read it. Publish without Project/grader_spec/ if you want to avoid that, and grade from a private copy.',
                 'The written answers are marked by keyword and length rules, so a vague but keyword-rich answer earns the mark. The spot-check list shows the extreme cases.',
                 'Within a course every student sees the same lettering of the limits and next-step lists. Only the lettering between courses differs.',
-                'The split inside Part A follows your blueprint: 21 marks for functions on hidden rows (A1, A3, A4, A5, A7), 2 for no leakage, 2 for the charts, 2 for the test set, 3 for results, reproducibility and the required parts.'], 10)
+                'The split inside Part A follows your blueprint: 21 marks for task code re-run on hidden rows (A1, A3, A4, A5, A7), 2 for no leakage, 2 for the charts, 2 for the test set, 3 for results, reproducibility and the required parts.'], 10)
     save_pdf(d, OUT / 'Lecturer_Marking_Guide.docx')
 
 

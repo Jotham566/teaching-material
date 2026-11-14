@@ -34,52 +34,21 @@ KEY_NEW = r'/^(CML3111|CML3112|CML3113)\|(TEST[12]|ML_PROJECT)$/'
 
 
 def sub(text, old, new, count=1):
+    if text.count(old) == 0 and new in text:      # already patched (setup_pipeline.sh copies the patched gateway back): leave it
+        return text
     assert text.count(old) == count, f'expected {count} match(es), found {text.count(old)}: {old[:80]!r}'
     return text.replace(old, new)
 
 
 def instructions_js():
-    """The project's student instructions as the portal inserts them (cell 0 of every issued notebook)."""
-    text = f'''# __COURSE__ Engineering ML project: online, 3 hours
-
-Individual work • Part A 30 marks and Part B 15 marks (45 marks, scaled to 40 percent of the course) • Up to three hours from **Start test**.
-
-__DEADLINE__
-The timer includes setup, internet interruptions and submission. It cannot be paused or restarted by refreshing, changing devices or reopening Colab. Your deadline is the earlier of three hours after starting or the window's close ({PC.WINDOW['closes']} Kampala time). Colab may still allow editing afterwards, but late work is not accepted for grading.
-
-## 1. Work in your private notebook
-Click **Open my test in Colab** on the entry page and use the same Google account throughout. This is your own private, editable notebook: work in it directly. Click **Connect** if shown. To resume after a closed tab or a shutdown, reopen the entry link with the same email and registration number and click Resume my test in Colab. Save regularly with **File, then Save**: only saved work can be recovered.
-
-## 2. Load the data
-Check the identity cell near the top. Tell your lecturer at once on the class channel if the details are wrong; do not change the supplied course, test or allocation settings. Run the first code cell using the triangle beside it to check your details and display the countdown. Then run **Prepare the data and the libraries**. The steel plant data file is stored inside that cell and is written out for you: no upload or download is needed. After a runtime reset, rerun these two cells before your work.
-
-Data: {P.CITATION}
-
-## 3. Complete the tasks
-Work from top to bottom. Tasks 1 to 6 are coded functions and results (Task 5 uses the supplied model-choice rule); Task 7 is the Part B memo form (a dictionary called `MEMO`). Keep supplied function names, variable names and required output formats unchanged. {PC.OWN_CELLS} The self-check cells are not marked. Everything is marked automatically by the lecturer's computer, on other rows you cannot see. Use the time plan in the notebook and leave at least 20 minutes to submit.
-
-## 4. The end: there is no Submit button
-1. Choose **Runtime, then Restart session and run all**. Every cell must run without an error. Press **Ctrl+S** now and then; the countdown reminds you 30 and 10 minutes before your deadline.
-2. Your notebook saves itself to your Drive, and a backup goes to your lecturer every 5 minutes. At your deadline your editing stops and your work is collected automatically: the last version saved before the deadline, or the newest backup if that is newer.
-3. On the entry page, **Check my work** runs your saved notebook from the top and tells you whether it runs, whether every required function and the `MEMO` form are there, and whether it is the issued file. Marks are shown only after the window closes.
-4. Finished early? Press **I have finished** on the entry page. Your editing stops at once and your work is collected.
-5. Work only in the notebook the entry page opened for you. If you open a copy, it is still backed up and the setup cell warns you; go back to the entry page and click Resume.
-
-Do not upload a CSV, PDF, ZIP or screenshots.
-
-## If something fails
-Report it at once on the class channel, with a screenshot. The lecturer answers on the channel {PC.SUPPORT_HOURS.split(' (')[0]}. The lecturer can authorise one fresh attempt; it still ends at the window's close. Do not create a second identity or use another student's files. If Colab disconnects, reconnect and rerun the setup cells; your saved notebook remains in Drive, but runtime variables may need to be recreated. The timer continues.
-
-**Permitted resources:** Your lecture slides, your lab notebooks from Classes 1 to 3, the revision guide, cheatsheet and personal course notes. Write the code yourself.
-
-**No AI or outside help:** Do not use Gemini, ChatGPT, Copilot or any other AI tool to generate, complete, rewrite, explain or debug your answers. Do not obtain answers from another person, collaborate, or copy someone else's work.
-
-**Understanding check:** After the window, any student may be asked, in an online call, to explain their submitted code or make a small change, without AI or another person's help. The copy checks and the identity checks run on every notebook.
-
-**Declaration:** By submitting, I confirm that I completed this project myself without AI assistance or another person's help, using only the permitted resources. I can explain and modify the code I submitted.
-'''
-    return ('function portalMlInstructions_(course,deadline){\n return ' + json.dumps(text, ensure_ascii=False) +
-            ".replace('__COURSE__',course).replace('__DEADLINE__','**Your submission deadline: '+deadline+'.**');\n}\n")
+    """The first cell of every issued project and rehearsal notebook, as the portal inserts it: the notebook's own intro (one text, so the
+    two never disagree) with the student's deadline under the heading."""
+    import build_project_notebooks as BN
+    texts = {f'{c}|{t}': BN.intro_cell(c, 'rehearsal' if t == 'ML_REHEARSAL' else 'student', True, deadline_slot=True)
+             for c in PC.CODES for t in ('ML_PROJECT', 'ML_REHEARSAL')}
+    return ('var PORTAL_ML_INSTRUCTIONS = ' + json.dumps(texts, ensure_ascii=False, indent=1) + ';\n'
+            'function portalMlInstructions_(course,deadline,test){\n test=test||\'ML_PROJECT\';\n'
+            " return PORTAL_ML_INSTRUCTIONS[course+'|'+test].replace('__DEADLINE__',test==='ML_REHEARSAL'?'**Practice deadline (nothing is locked): '+deadline+'.**':'**Your submission deadline: '+deadline+'.**');\n}\n")
 
 PORTAL_PIPELINE_JS = r'''
 // ---------------------------------------------------------------- ML project pipeline (13 November 2026)
@@ -99,6 +68,14 @@ function portalClassEntry_(book,key,registration){
  if(rows.length)throw Error('This registration number is on the '+String(rows[0][0]).trim().toUpperCase()+' class list, not '+course+'. Use the '+String(rows[0][0]).trim().toUpperCase()+' project link from your lecturer.');
  if(!PORTAL_REG_FORMAT.test(reg))throw Error('Enter your registration number as it is on your student card, for example 24/351/BSCE-S.');
  throw Error('This registration number is not on the '+course+' class list. Check it against your student card. If it is right, tell your lecturer on the class channel.');
+}
+// The identity goes into the ONE supplied cell (the setup cell): the line _IUEA_IDENTITY = {...} is replaced. The countdown and the backup read it.
+function portalMlFill_(nb,record,email,deadline,parts){
+ var cell=nb.cells[1],src=Array.isArray(cell.source)?cell.source.join(''):cell.source;
+ if(src.indexOf('# IUEA-SETUP-CELL')<0)throw Error('Files are unavailable. Tell the lecturer.');
+ var ident={name:String(record[6]||''),registration:String(record[1]),email:email,course:parts[0],test:parts[1],allocation:String(record[3]),deadline:deadline};
+ cell.source=src.replace(/^_IUEA_IDENTITY = .*$/m,function(){return '_IUEA_IDENTITY = '+JSON.stringify(ident);});
+ cell.metadata=cell.metadata||{};cell.metadata.cellView='form';
 }
 function portalNameHint_(name){
  var words=String(name||'').trim().split(/\s+/).filter(String);
@@ -127,7 +104,7 @@ function portalMlCountdownCode_(deadline,test){
 
 GATEWAY_ROUTES = r''' // ML project collection (14 November 2026): the class-list check while typing, the silent backups from Colab, and the entry page's
  // Check my work, I have finished and status. The allocation code (issued once, unguessable) identifies the attempt; no token.
- if(['/api/check','/api/backup','/api/mywork','/api/finish','/api/status'].includes(url.pathname)){
+ if(['/api/check','/api/backup','/api/mywork','/api/finish','/api/status','/api/fixemail'].includes(url.pathname)){
   if(request.method!=='POST')return json({ok:false,error:'Use POST.'},405);
   if(!(request.headers.get('Content-Type')||'').startsWith('application/json'))return json({ok:false,error:'Invalid request.'},415);
   // Backups come from Colab's Python, which sends no Origin. Everything else comes from the entry page itself (same origin only).
@@ -143,10 +120,12 @@ GATEWAY_ROUTES = r''' // ML project collection (14 November 2026): the class-lis
   }else{
    if(!env.COLLECTOR_GATEWAY_KEY||env.COLLECTOR_GATEWAY_KEY.length<32||!env.COLLECTOR_URL)return json({ok:false,error:'The collection service is unavailable. Tell your lecturer.'},503);
    if(!attempt)return json({ok:false,error:'Open your project from the entry page first.'},400);
-   const action={'/api/backup':'backup','/api/mywork':'checkwork','/api/finish':'finish','/api/status':'status'}[url.pathname];
+   const action={'/api/backup':'backup','/api/mywork':'checkwork','/api/finish':'finish','/api/status':'status','/api/fixemail':'fixemail'}[url.pathname];
+   if(action==='fixemail'&&!(typeof body.new_email==='string'&&body.new_email.length<=254&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.new_email.trim())))return json({ok:false,error:'Enter the Google email you are signed into in Colab.'},400);
    if(action==='backup'&&(typeof body.notebook!=='string'||typeof body.href!=='string'||body.href.length>500))return json({ok:false,error:'Invalid backup.'},400);
    payload={secret:env.COLLECTOR_GATEWAY_KEY,action,attempt};
    if(action==='backup'){payload.notebook=body.notebook;payload.href=body.href;}
+   if(action==='fixemail')payload.new_email=body.new_email.trim();
    target=env.COLLECTOR_URL;
   }
   try{
@@ -175,10 +154,13 @@ def patch_portal():
             r"if(/\|ML_(PROJECT|REHEARSAL)$/.test(key)){var classEntry=portalClassEntry_(SpreadsheetApp.openById(PORTAL_BOOK_ID),key,input.registration);input={test:key,name:classEntry.name,email:input.email,registration:classEntry.registration};}")
     s = sub(s, "var packet=PORTAL_PACKETS[key+'|'+record[4]];if(!packet)", "var packet=PORTAL_PACKETS[key+'|'+record[4]]||(typeof PORTAL_PACKETS_ML!=='undefined'?PORTAL_PACKETS_ML[key+'|'+record[4]]:undefined);if(!packet)")
     s = sub(s, "var nb=JSON.parse(packet.notebook),parts=key.split('|');",
-            "var nb=JSON.parse(packet.notebook),parts=key.split('|');if(packet.data){var packed=Array.isArray(nb.cells[3].source)?nb.cells[3].source.join(''):nb.cells[3].source;nb.cells[3].source=packed.replace('__IUEA_PACKED_DATA__',packet.data);}")
-    s = sub(s, "+'\\nTEST_ID = '+JSON.stringify(parts[1])+'\\n';",
-            "+'\\nTEST_ID = '+JSON.stringify(parts[1])+'\\n';if(/^ML_/.test(parts[1]))nb.cells[1].source+='_IUEA_ALLOCATION = '+JSON.stringify(record[3])+'  # Do not edit: links the automatic backup to your attempt.\\n';")
-    s = sub(s, "  nb.cells[0].source=instructions;\n", "  if(/^ML_/.test(parts[1])){instructions=portalMlInstructions_(parts[0],w.label);}\n  nb.cells[0].source=instructions;\n")
+            "var nb=JSON.parse(packet.notebook),parts=key.split('|');if(packet.data){var si=/^ML_/.test(parts[1])?1:3,packed=Array.isArray(nb.cells[si].source)?nb.cells[si].source.join(''):nb.cells[si].source;nb.cells[si].source=packed.replace('__IUEA_PACKED_DATA__',packet.data);}")
+    # the project has ONE supplied cell (the setup cell, position 1): none of the Test 1 cell edits apply to it
+    s = sub(s, " nb.cells[1].source='# Do not edit this cell: identifies your attempt", " if(!/^ML_/.test(parts[1]))nb.cells[1].source='# Do not edit this cell: identifies your attempt")
+    s = sub(s, "finalCell.source='# Do not edit this cell: links your saved answers", "if(!/^ML_/.test(parts[1]))finalCell.source='# Do not edit this cell: links your saved answers")
+    s = sub(s, "  nb.metadata.iuea_started_at=record[7];nb.metadata.iuea_deadline=deadline;\n", "  nb.metadata.iuea_started_at=record[7];nb.metadata.iuea_deadline=deadline;\n  if(/^ML_/.test(parts[1])){portalMlFill_(nb,record,email,deadline,parts);}else{\n")
+    s = sub(s, "  setup.metadata=setup.metadata||{};setup.metadata.cellView='form';\n", "  setup.metadata=setup.metadata||{};setup.metadata.cellView='form';\n  }\n")
+    s = sub(s, "  nb.cells[0].source=instructions;\n", "  if(/^ML_/.test(parts[1])){instructions=portalMlInstructions_(parts[0],w.label,parts[1]);}else nb.cells[0].source=instructions;\n")
     s = sub(s, "+portalCountdownCode_(deadline);", "+(/^ML_/.test(parts[1])?portalMlCountdownCode_(deadline,parts[1]):portalCountdownCode_(deadline));")
     # the rehearsal is never closed by the personal deadline (practice only)
     s = sub(s, "if(Date.now()>Math.min(Date.parse(record[8]),Date.parse(w.close)))throw Error(", "if(!/\\|ML_REHEARSAL$/.test(key)&&Date.now()>Math.min(Date.parse(record[8]),Date.parse(w.close)))throw Error(")
@@ -307,21 +289,21 @@ def build_packets():
     for test, pattern in sources.items():
         for code in PC.CODES:
             nb = json.loads((PC.PROJECT / pattern.format(code=code)).read_text())
-            assert 'iuea-attempt' in nb['cells'][-1]['metadata']['tags'] and not nb['cells'][-1]['outputs'], 'the last cell must be the empty information cell'
-            assert ''.join(nb['cells'][1]['source']).startswith('FULL_NAME') and '# IUEA-SETUP-CELL' in ''.join(nb['cells'][3]['source']), 'cells 1 and 3 must be the identity and setup cells (the portal edits them by position)'
+            assert '# IUEA-SETUP-CELL' in ''.join(nb['cells'][1]['source']), 'cell 1 must be the one supplied setup cell (the portal edits it by position)'
+            assert sum('# IUEA-SETUP-CELL' in ''.join(c['source']) for c in nb['cells']) == 1, 'exactly one supplied cell'
             assert not any('iuea-submission' in c.get('metadata', {}).get('tags', []) for c in nb['cells']), 'no Submit cell any more'
-            cell3 = ''.join(nb['cells'][3]['source'])
-            assert cell3.count(packed) == 1, 'the setup cell must hold the data block once'
+            cell1 = ''.join(nb['cells'][1]['source'])
+            assert cell1.count(packed) == 1, 'the setup cell must hold the data block once'
             light = json.loads(json.dumps(nb))
-            light['cells'][3]['source'] = cell3.replace(packed, '__IUEA_PACKED_DATA__')
+            light['cells'][1]['source'] = cell1.replace(packed, '__IUEA_PACKED_DATA__')
             lines.append(f'ML_PROJECT_NOTEBOOKS[{json.dumps(code + "|" + test)}] = ' + json.dumps(json.dumps(light, ensure_ascii=False), ensure_ascii=False) + ';')
             if test == 'ML_PROJECT':
-                instructions = (f'{code} ML_PROJECT: Engineering ML project, online, 3 hours from Start. The window {PC.WINDOW_TEXT}.\n'
-                                'Open your private notebook in Colab from the entry page. Individual work, no AI or outside help. '
-                                'Run the countdown cell and the setup cell, complete Tasks 1 to 7, Restart session and run all, press Ctrl+S. There is no Submit button: your work is collected at your personal deadline.\n')
+                instructions = (f'{code} ML_PROJECT: Engineering ML project, 3 hours from Start. The window {PC.WINDOW_TEXT}.\n'
+                                'Individual work. No AI. Run the countdown and setup cells, do Tasks 1 to 7, Restart session and run all, press Ctrl+S. '
+                                'No Submit button: your work is collected at your deadline.\n')
             else:
-                instructions = (f'{code} ML_REHEARSAL: the unmarked rehearsal of the Engineering ML project. Same steps as the project: Start, work in the notebook '
-                                'that opens (it saves itself), Check my work and I have finished on the entry page. Nothing is locked or marked.\n')
+                instructions = (f'{code} ML_REHEARSAL: unmarked rehearsal of the Engineering ML project. Same steps: Start, work in the notebook that opens, '
+                                'then Check my work and I have finished on the entry page. Nothing is locked or marked.\n')
             for v in ('A', 'B', 'C'):
                 key = f'{code}|{test}|{v}'
                 lines.append(f'PORTAL_PACKETS_ML[{json.dumps(key)}] = {{notebook: ML_PROJECT_NOTEBOOKS[{json.dumps(code + "|" + test)}], data: ML_PROJECT_DATA, csv: "", instructions: {json.dumps(instructions)}}};')

@@ -62,7 +62,8 @@ const DriveApp = { createFolder: () => ({ getId: () => 'folder' }), getFolderByI
 const Drive = {
   Permissions: { list: id => ({ permissions: files[id].perms.map((p, i) => ({ id: 'p' + i, emailAddress: p.email, role: p.role })) }),
     update: (res, id, pid) => { files[id].perms[Number(pid.slice(1))].role = res.role; },
-    create: (res, id) => { files[id].perms.push({ email: res.emailAddress.toLowerCase(), role: res.role }); } },
+    create: (res, id) => { files[id].perms.push({ email: res.emailAddress.toLowerCase(), role: res.role }); },
+    remove: (id, pid) => { files[id].perms.splice(Number(pid.slice(1)), 1); } },
   Revisions: { list: id => ({ revisions: files[id].revisions.map(r => ({ id: r.id, modifiedTime: r.modifiedTime })) }) } };
 const Utilities = { getUuid: () => crypto.randomUUID(), newBlob: blob, sleep() {},
   formatDate: d => new Date(new Date(d).getTime() + 3 * 3600000).toISOString().replace('T', ' ').slice(0, 19),

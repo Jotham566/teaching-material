@@ -24,7 +24,8 @@
  */
 var MLP_COLUMNS = ['response_id','cohort','assessment','variant','full_name','email','student_registration_number','submitted_at','opens_at','closes_at','status','snapshot_id','notebook_sha256','source_id','detail'];
 var MLP_CHECK_COLUMNS = ['submission_id','kind','attempt','received_at','dispatched_at','dispatch_status','checked_at','runs_from_top','first_failed_cell','failed_cells','functions_found','missing_functions','memo_found','part_a','part_b','total','grader','detail','content_file','issued_file'];
-var MLP_STATE_COLUMNS = ['attempt','assessment_key','registration','state','collected_at','source','source_time','submission_id','other_file_seen','last_backup_at','ontime_file','ontime_at','late_file','late_at','backups'];
+var MLP_STATE_COLUMNS = ['attempt','assessment_key','registration','state','collected_at','source','source_time','submission_id','other_file_seen','last_backup_at','ontime_file','ontime_at','late_file','late_at','backups','email_fixed'];
+var MLP_EMAIL_FIX_MINUTES = 15;
 var MLP_EXT_COLUMNS = ['at','who','minutes','reason','attempts_changed','by'];
 var MLP_MAX_BYTES = 12 * 1024 * 1024;
 var MLP_CHECK_GAP_MS = 2 * 60000;
@@ -50,9 +51,9 @@ function doPost(e){
  try{
   var action=String(request.action||'');
   if(action==='bootstrap')return mlpJson_({ok:true,result:mlpBootstrap_(request)});
-  if(['backup','checkwork','finish','status'].indexOf(action)>=0){
+  if(['backup','checkwork','finish','status','fixemail'].indexOf(action)>=0){
    if(!mlpSame_(request.secret,mlpProp_('GATEWAY_KEY',32)))return mlpJson_({ok:false,error:'The collection service is unavailable. Tell your lecturer.'});
-   var fn={backup:mlpBackup_,checkwork:mlpCheckWork_,finish:mlpFinish_,status:mlpStatus_}[action];
+   var fn={backup:mlpBackup_,checkwork:mlpCheckWork_,finish:mlpFinish_,status:mlpStatus_,fixemail:mlpFixEmail_}[action];
    return mlpJson_({ok:true,result:fn(request)});
   }
   if(['fetch','result','ping'].indexOf(action)>=0){
@@ -63,7 +64,7 @@ function doPost(e){
  }catch(err){
   var m=String(err&&err.message||err);
   if(/^SETUP:/.test(m))return mlpJson_({ok:false,error:'The collection service is not set up yet. Tell your lecturer.'});
-  return mlpJson_({ok:false,error:/^(This |Your |Open |The notebook|You |Wait |Nothing )/.test(m)?m:'The request could not be completed. Try again; if it keeps failing, tell your lecturer.'});
+  return mlpJson_({ok:false,error:/^(This |Your |Open |The notebook|The email|You |Wait |Nothing |Enter |That )/.test(m)?m:'The request could not be completed. Try again; if it keeps failing, tell your lecturer.'});
  }
 }
 
@@ -215,6 +216,37 @@ function mlpCheckWork_(request){
  }finally{lock.releaseLock();}
  mlpDispatch_(id,'check');
  return {check:id,checked_version:mlpKampala_(when),issued_file:issued,pending:true};
+}
+
+// ---------------------------------------------------------------- the email typo fix (self-service, once, in the first 15 minutes)
+/** A student who typed the wrong Google email can correct it on the entry page, once, within 15 minutes of Start, and only while no backup
+ *  and no saved change has arrived. A new notebook is shared with the new email; the old one is unshared (read only for nobody). Logged. */
+function mlpFixEmail_(request){
+ var book=mlpBook_(),lock=mlpLock_();
+ try{
+  var a=mlpAllocation_(book,request.attempt),st=mlpState_(book,a),email=String(request.new_email||'').trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Enter the Google email you are signed into in Colab.');
+  if(email===a.email)throw Error('That is the email already used.');
+  if(st.email_fixed)throw Error('The email was already corrected once. Tell your lecturer on the class channel.');
+  if(!a.started||Date.now()-Date.parse(a.started)>MLP_EMAIL_FIX_MINUTES*60000)throw Error('The email can only be corrected in the first 15 minutes. Tell your lecturer on the class channel.');
+  var revisions=a.notebookId?(Drive.Revisions.list(a.notebookId,{fields:'revisions(id)'}).revisions||[]).length:0;
+  if(Number(st.backups||0)>0||revisions>1)throw Error('Your notebook already has saved work, so the email cannot be changed here. Tell your lecturer on the class channel.');
+  var old=DriveApp.getFileById(a.notebookId),text=old.getBlob().getDataAsString();
+  try{var nb=JSON.parse(text);nb.cells.forEach(function(c){var src=Array.isArray(c.source)?c.source.join(''):String(c.source||'');if(src.indexOf('# IUEA-SETUP-CELL')<0)return;
+   c.source=src.replace(/^_IUEA_IDENTITY = (.*)$/m,function(m,j){var o={};try{o=JSON.parse(j);}catch(e){}o.email=email;return '_IUEA_IDENTITY = '+JSON.stringify(o);});});text=JSON.stringify(nb);}catch(err){}
+  var copy=DriveApp.getFolderById(mlpProp_('FOLDER_ID')).createFile(Utilities.newBlob(text,'application/vnd.google.colaboratory',a.key.replace('|','_')+'_'+a.registration.replace(/[^A-Za-z0-9]+/g,'-')+'_'+a.code+'_email-fixed.ipynb'));
+  Drive.Permissions.create({type:'user',role:'writer',emailAddress:email},copy.getId(),{sendNotificationEmail:false,supportsAllDrives:true});
+  mlpRemoveAccess_(a.notebookId,a.email);
+  book.getSheetByName('Test allocations').getRange(a.row,3).setValue(email);
+  book.getSheetByName('Test allocations').getRange(a.row,10).setValue(copy.getId());
+  st.email_fixed=new Date().toISOString();mlpSaveState_(book,st);
+  mlpSheet_(book,'Extensions',MLP_EXT_COLUMNS).appendRow([new Date().toISOString(),a.registration,0,'email corrected by the student on the entry page: '+a.email+' to '+email,1,'student (entry page)'].map(mlpText_));
+  return {colabUrl:'https://colab.research.google.com/drive/'+copy.getId(),email:email};
+ }finally{lock.releaseLock();}
+}
+function mlpRemoveAccess_(fileId,email){
+ var list=Drive.Permissions.list(fileId,{fields:'permissions(id,emailAddress,role)',supportsAllDrives:true}).permissions||[];
+ list.filter(function(x){return String(x.emailAddress||'').toLowerCase()===email;}).forEach(function(x){Drive.Permissions.remove(fileId,x.id,{supportsAllDrives:true});});
 }
 
 // ---------------------------------------------------------------- what the student sees

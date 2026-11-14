@@ -116,7 +116,7 @@ print(json.dumps(dict(action='bootstrap', key=s['BOOTSTRAP_KEY'], smoke_registra
       ACTIONS_SECRET=s['ACTIONS_SECRET'], GITHUB_REPO=sys.argv[3], GITHUB_TOKEN=s['GITHUB_TOKEN']))))
 PYEOF
 )"
-  ANSWER="$(curl -sSL -X POST -H 'Content-Type: application/json' --data-binary @- "$COLLECTOR_URL" <<<"$BODY")"; unset BODY
+  ANSWER="$(curl -sSL -H 'Content-Type: application/json' --data-binary @- "$COLLECTOR_URL" <<<"$BODY")"; unset BODY
   echo "$ANSWER" | "$PY" -c "import json,sys;a=json.load(sys.stdin);assert a.get('ok'),a;print('   properties set:',', '.join(a['result']['properties_set']));print('   ping:',a['result']['ping'])"
   rm -f "$CDIR/_bootstrap.gs"; (cd "$CDIR" && clasp push --force >/dev/null && clasp create-deployment -i "$CDEP" -d "bootstrap removed $(date +%F)" >/dev/null)
   echo "   the bootstrap file is removed again; the route now refuses"
@@ -150,8 +150,9 @@ note "portal pushed and redeployed at the same URL"
 say "9. The Cloudflare gateway"
 step "copy worker.mjs, page.mjs and project_page.mjs into $GATEWAY, set the Worker secrets COLLECTOR_GATEWAY_KEY and COLLECTOR_URL (stdin), npx --yes wrangler deploy"
 if (( ! DRY )); then
-  cp "$HERE/gateway/worker.mjs" "$HERE/gateway/page.mjs" "$HERE/gateway/project_page.mjs" "$GATEWAY/"
-  (cd "$GATEWAY" && get "$SECRETS" GATEWAY_KEY | npx --yes wrangler secret put COLLECTOR_GATEWAY_KEY --config wrangler.jsonc >/dev/null \
+  # Deploy from a temporary copy so the source in test_portal/gateway stays unpatched (the bundle builder patches it each run).
+  GW="$(mktemp -d)/gateway"; mkdir -p "$GW"; cp "$GATEWAY/wrangler.jsonc" "$GW/"; cp "$HERE/gateway/worker.mjs" "$HERE/gateway/page.mjs" "$HERE/gateway/project_page.mjs" "$GW/"
+  (cd "$GW" && get "$SECRETS" GATEWAY_KEY | npx --yes wrangler secret put COLLECTOR_GATEWAY_KEY --config wrangler.jsonc >/dev/null \
     && printf '%s' "$COLLECTOR_URL" | npx --yes wrangler secret put COLLECTOR_URL --config wrangler.jsonc >/dev/null && npx --yes wrangler deploy --config wrangler.jsonc >/dev/null)
 fi
 note "gateway deployed with /api/check, /api/backup, /api/mywork, /api/finish, /api/status"
@@ -161,7 +162,7 @@ step "GET the rehearsal entry page; POST /api/check for $SMOKE_REG; ping the col
 if (( ! DRY )); then
   curl -sSf "$PUBLIC/?test=CML3112%7CML_REHEARSAL" -o /dev/null && echo "   entry page: OK"
   curl -sS -X POST -H 'Content-Type: application/json' -H "Origin: $PUBLIC" --data "{\"test\":\"CML3112|ML_REHEARSAL\",\"registration\":\"$SMOKE_REG\"}" "$PUBLIC/api/check" | grep -q '"ok":true' && echo "   class list check through the gateway: OK"
-  "$PY" -c "import json,sys;print(json.dumps({'action':'ping','secret':sys.argv[1]}))" "$(get "$SECRETS" ACTIONS_SECRET)" | curl -sSL -X POST -H 'Content-Type: application/json' --data-binary @- "$COLLECTOR_URL" | grep -q '"sweep_triggers":1' && echo "   collector and deadline trigger: OK"
+  "$PY" -c "import json,sys;print(json.dumps({'action':'ping','secret':sys.argv[1]}))" "$(get "$SECRETS" ACTIONS_SECRET)" | curl -sSL -H 'Content-Type: application/json' --data-binary @- "$COLLECTOR_URL" | grep -q '"sweep_triggers":1' && echo "   collector and deadline trigger: OK"
   gh workflow list -R "$REPO" | grep -q "Grade ML project submission" && echo "   workflow present: OK"
 fi
 

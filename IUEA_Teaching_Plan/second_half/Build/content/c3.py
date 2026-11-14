@@ -561,32 +561,32 @@ def build(code):
                          dict(head='2 Enter', text='Any time from Mon 23 Nov 00:00 to Wed 25 Nov 23:59', icon='calendar'),
                          dict(head='3 Press Start', text='Your 3 hours (180 minutes) begin', icon='clock'),
                          dict(head='4 Work', text='Part A notebook, 30 marks. Part B memo form, 15 marks', icon='gear'),
-                         dict(head='5 Check, submit', text='Before your countdown ends', icon='check')],
+                         dict(head='5 Collected', text='At your deadline. No Submit button', icon='check')],
                   highlight=None,
                   caption='Individual, online from anywhere, marked by computer, 40 percent. Kampala time. Start by Wednesday 20:59 for the full 3 hours.',
                   notes=('Here is how the Engineering ML project works. It is individual, it is online, and the computer marks it. It counts 40 percent of the course. '
                          'You sit it from anywhere, on your own laptop, with your own Google account and an internet connection. '
                          'Part A is a coded notebook worth 30 marks. Part B is a decision memo form inside the notebook, worth 15. '
                          'The window opens on Monday 23 November at midnight and closes on Wednesday 25 November at 23:59, Kampala time. When you press Start, you have three hours, '
-                         'but the window still closes at 23:59 on Wednesday, so if you start after 20:59 you lose time. Which day will you sit it?')))
+                         'but the window still closes at 23:59 on Wednesday, so if you start after 20:59 you lose time. There is no Submit button: at your deadline your work is collected automatically. Which day will you sit it?')))
 
-    S.append(dict(kind='table', title='You enter with your registration number, check your notebook, then submit from the last cell',
+    S.append(dict(kind='table', title='You enter on the entry page, write plain code, and your work is collected at the deadline',
                   headers=['Step', 'What you do'],
-                  rows=[['Enter', 'Open your course entry link and type your registration number. Check that the name shown is yours, then press Start. A countdown shows your 3 hours.'],
-                        ['Check my notebook', 'Restart session and run all, then run the Check my notebook cell. It runs your code again from the top and names any failing cell or missing function. It shows no mark.'],
-                        ['Submit', 'Run the last cell, Submit your test, and press Submit test. Keep the receipt code. You may submit again before your deadline: the latest one on time is marked.'],
-                        ['Your result', 'Your mark is shown after the window closes.'],
+                  rows=[['Enter', 'Registration number, check your name, then your Colab Google email twice. A typo can be fixed once in 15 minutes. Press Start: a big countdown shows your 3 hours.'],
+                        ['Setup', 'Open my project in Colab. Run Setup: run me first. After every cell a line shows the time left.'],
+                        ['Work', 'Under each task, write plain code and store the results it names. No functions needed. Press Ctrl+S now and then.'],
+                        ['Finish', 'No Submit button. On the entry page: Check my work runs your notebook from the top. I have finished ends early. Otherwise it is collected at your deadline.'],
                         ['Help', 'Class channel, 08:00 to 20:00 each day. If something fails, post a screenshot at once: I can allow one fresh attempt.']],
-                  widths=[3.0, 8.9], icons=['pin', 'check', 'doc', 'chart', 'bell'],
-                  notes=('Open the entry link for your course and type your registration number. The page shows your name. If the name is not yours, stop and tell me on the class channel. Then press Start, and the countdown begins. '
-                         'Before you submit, restart and run all, then run the Check my notebook cell. It runs your code again from the top, the way the marking computer does, and tells you what is missing. '
-                         'Then run the last cell and press Submit test. Keep the receipt code. Your mark comes after the window closes. '
-                         'I answer questions on the class channel from 08:00 to 20:00 each day. If your laptop or connection fails, post a screenshot at once. I can allow one fresh attempt, and it still closes on Wednesday at 23:59. Have you ever lost marks because a notebook did not run from the top?')))
+                  widths=[3.0, 8.9], icons=['pin', 'gear', 'doc', 'check', 'bell'],
+                  notes=('Type your registration number and check the name is yours. Then type the Google email you use in Colab, twice: the notebook is shared with that account only. A typo can be fixed once, in the first fifteen minutes. Press Start and a big countdown begins. '
+                         'In Colab, run the one supplied cell, Setup: run me first. After every cell a line shows the time left. Under each task, write plain code and store the results it names. '
+                         'There is no Submit button. Your work is collected at your deadline. Before then, restart and run all, press Control S, and use Check my work on the entry page. '
+                         'If something fails, post a screenshot on the class channel at once. Have you ever lost marks because a notebook did not run from the top?')))
 
     S.append(dict(kind='table', title='The project tests data cleaning, three regression models, a warning question and one honest test',
                   headers=['Part', 'What it tests'],
                   rows=[['The data', 'Real steel plant meter readings, one every 15 minutes for a year, the same file for everyone. You predict the energy used (kWh) in months the model has not seen.'],
-                        ['Part A, 30 marks', 'Clean the data, two labelled charts, split by month (rule given), baseline, linear regression and decision tree in pipelines, MAE and RMSE, no leakage, the warning question, the test set opened once, results and functions. Not tested: cross-validation, Class 4.'],
+                        ['Part A, 30 marks', 'Clean the data, two labelled charts, split by month (rule given), baseline, linear regression and decision tree in pipelines, MAE and RMSE, no leakage, the warning question, the test set opened once, results and MEMO present. Not tested: cross-validation, Class 4.'],
                         ['Warning question', 'Logistic regression probabilities, then TP, FP, FN, TN, precision and recall at the fixed threshold 0.5.'],
                         ['Part B, 15 marks', 'The memo form: the chosen model, your numbers, limits, a next step.'],
                         ['Rules', 'Work alone, with no AI tool. Anyone may be asked online to explain their code.']],
@@ -607,8 +607,8 @@ def build(code):
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               'Say early that the test group E6 stays sealed. It is opened once, after the model and any threshold are chosen; the chosen model is then refitted on E1 to E5 and scored once on E6 (Class 4 shows this). Say that the validation fold in K-fold cross-validation is a different thing from the test set E6.',
               'The deck has five formula slides (training and validation error, the generalisation gap, the simplest-model-within-a-tolerance rule, K-fold mean and standard deviation, the pipeline rule). Each names every symbol and works the cohort numbers. The GroupKFold slide states that the same formulas apply with four groups. Students can revise from the PDF alone.',
-              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number, Check my notebook, Submit test, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data only as a steel plant\'s real meter readings, split by month.',
-              'Have the rehearsal (practice notebook and practice data, not marked) and the entry link ready to release right after the class: CML3112 Tuesday 17 November, CML3113 and CML3111 Friday 20 November.',
+              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number and the Google email typed twice (one typo fix in the first 15 minutes), run Setup: run me first, plain code under each task storing the named results, a countdown line after every cell, no Submit button (work collected at the deadline), Check my work and I have finished on the entry page, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data only as a steel plant\'s real meter readings, split by month.',
+              'Have the rehearsal entry link (same entry page, practice target, nothing locked or marked) ready to release right after the class: CML3112 Tuesday 17 November, CML3113 and CML3111 Friday 20 November.',
               'All three cohorts use the same deck and the same clock for this class.'],
         misconceptions=[('The model with the lowest training error is the best model', 'Training error can reach zero by overfitting (fitting the noise in the training set). Judge on held-out rows.'),
                         ('More folds in cross-validation always give a better model', 'Folds give a better estimate of the score. They do not change the model itself.'),

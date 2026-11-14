@@ -12,7 +12,7 @@ Decisions of 13 November 2026 (they replace those of 4 November; see `CHANGE_BRI
 | A6 No leakage (imputation and the baseline mean from training rows only) | 2 |
 | A7 Warning question: probabilities 1; confusion counts, precision and recall at 0.5: 2 | 3 |
 | A8 Test set opened once with the supplied cell, after the choice, and its result | 2 |
-| A9 Results on the file 1, reproducible 1, functions and MEMO present 1 | 3 |
+| A9 Results on the file 1, reproducible 1, results and MEMO present 1 | 3 |
 
 Part B (15): recommended_model 3, validation_mae 3, test_mae and test_recall 2, improvement_over_baseline 1, limits 3, next_step 1, two written answers 2. No mark is entered by hand. Marks are final by Wednesday 2 December 2026.
 
@@ -22,7 +22,7 @@ Part B (15): recommended_model 3, validation_mae 3, test_mae and test_recall 2, 
 
 **Collection and instant checks** (collection design of 14 November 2026, no Submit step): the entry page checks the registration number against the class list as it is typed and shows the name to confirm. Start copies the issued notebook into the lecturer's Drive, shares it with the student's Google email as an editor and opens it in Colab, which saves to it. The setup cell sends a silent backup every 5 minutes and warns a student who is in another file. At the deadline a time trigger makes the file read only and collects the newer of the last Drive save before the deadline and the last on-time backup; GitHub Actions marks it in the Colab-matching sandbox. Students use Check my work and I have finished on the entry page; marks are shown only after the release switch. The rehearsal runs the same flow without locking or marking. Set-up: `deploy/setup_pipeline.sh` and `deploy/SETUP_GITHUB_ACTIONS.md`.
 
-**Own cells count** (13 November 2026): students may add their own cells; work is marked wherever it is, as long as the required function names exist when the notebook runs from the top. See `grader_spec/own_cells.py`.
+**Plain code** (14 November 2026): students write ordinary code under each task heading and store the named results (no function placeholders). The notebook has ONE supplied cell, "Setup: run me first" (data, constants, `choose_model`, `open_test_set`, the backup and the countdown line). The grader puts the original setup cell back, runs the notebook from the top, then re-runs each task's cells (its own added cells included) in a fresh namespace with hidden inputs. See `grader_spec/own_cells.py` and `project_contracts.py`.
 
 ## Files
 
@@ -40,7 +40,7 @@ Part B (15): recommended_model 3, validation_mae 3, test_mae and test_recall 2, 
 | `grader_spec/project_contracts.py`, `memo_spec.py`, `project_numpy_reference.py`, `own_cells.py` | The hidden checks, the Part B keys and keyword rules, the NumPy expected values, the own-cells preparation. PRIVATE. |
 | `grader_spec/spec_ML_PROJECT.py`, `hidden/spec_ML_PROJECT_hidden.py` | Handout spec and hidden spec (16 questions: q01 to q09 Part A, q10 to q16 Part B). |
 | `grader_spec/rubrics/ML_PROJECT_partA.json`, `ML_PROJECT_partB.json` | The mark schemes (all automatic; 30 and 15). |
-| `grader_spec/hidden_data/` | The hidden rows of the function checks (sampled from the file with a small seeded change and problems added), with hashes, for audit. |
+| `grader_spec/hidden_data/` | The hidden inputs of the task re-runs (sampled from the file with a small seeded change and problems added), with hashes, for audit. |
 | `grader_spec/supplied_cell_hashes.json` | Hashes of the three supplied cells and of every issued TODO cell. |
 | `grader_spec/solutions/<cohort>/ML_PROJECT_solution.ipynb` | Model solutions for the proofs. NEVER give to students. |
 | `grader_spec/grade_project.py` | The grading command. Writes the results, the spot-check list, feedback and memo files. |
@@ -48,7 +48,7 @@ Part B (15): recommended_model 3, validation_mae 3, test_mae and test_recall 2, 
 | `grader_spec/similarity_check.py`, `offline_harness.py`, `gradebook_import_check.cjs` | Copy check, the no-Docker harness (proofs only) and the real-gradebook import check. |
 | `grader_spec/run_proofs.py`, `test_project_grader.py`, `proof_results.txt`, `.json` | The proof matrix, the quick regression test and the recorded result. |
 | `tools/project_content.py` | One source for course facts, the window, tasks, starter and solution code, the memo form, the rehearsal notes. |
-| `tools/pipeline_cells.py` | The supplied backup code (in the setup cell), the optional Check my notebook cell and the information cell (built from the spec). |
+| `tools/pipeline_cells.py` | The backup code and the countdown line inside the setup cell, and the runner of Check my work (built from the spec). |
 | `tools/build_grader_spec.py`, `build_project_notebooks.py`, `build_deploy_bundle.py`, `build_project_docs.py`, `build_dean_summary.py` | The builders. |
 | `tools/install_project_bank.py` | Copies the notebooks to `assessment_banks/ML_PROJECT/<cohort>/A/`. |
 

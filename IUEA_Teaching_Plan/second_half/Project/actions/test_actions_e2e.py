@@ -40,6 +40,9 @@ PEOPLE = {   # registration: (course, name, email)
     'I': ('26/E2E/009/III', 'CML3112', 'Test Learner Iota', 'iota@example.org'),       # I have finished
     'K': ('26/E2E/011/KKK', 'CML3113', 'Test Learner Kappa', 'kappa@example.org'),     # whole-class (course) extension
     'R': ('26/E2E/010/JJJ', 'CML3112', 'Test Learner Rho', 'rho@example.org'),         # the rehearsal
+    'T': ('26/E2E/012/TTT', 'CML3112', 'Test Learner Tau', 'tau.typo@example.org'),    # typed the wrong email, corrects it on the page
+    'U': ('26/E2E/013/UUU', 'CML3112', 'Test Learner Upsilon', 'ups@example.org'),     # tries to correct the email after saving work
+    'V': ('26/E2E/014/VVV', 'CML3112', 'Test Learner Phi', 'phi@example.org'),         # edits the setup cell
 }
 results = []
 
@@ -76,11 +79,12 @@ def solved(issued, code, broken=False):
     nb = json.loads(json.dumps(issued))
     assert len(nb['cells']) == len(sol['cells']), (len(nb['cells']), len(sol['cells']))
     for i, (a, b) in enumerate(zip(nb['cells'], sol['cells'])):
-        if i in (0, 1, 3) or i >= len(nb['cells']) - 1:
+        if i == 1:            # the setup cell, with the identity the portal wrote
             continue
         a['source'] = b['source']
-        if broken and ''.join(b['source']).startswith('def regression_errors'):
-            a['source'] = [''.join(b['source']).replace('float(np.sqrt(np.mean(residuals ** 2)))', 'float(np.mean(residuals ** 2))')]   # RMSE without the root
+        line = 'tree_rmse = np.sqrt(np.mean((y_valid - tree_pred) ** 2))'
+        if broken and line in ''.join(b['source']):
+            a['source'] = [''.join(b['source']).replace(line, 'tree_rmse = np.mean((y_valid - tree_pred) ** 2)')]   # RMSE without the root
     return nb
 
 
@@ -151,10 +155,12 @@ def main():
         check('Start: the notebook is a Drive file shared with the Google email as an editor, recorded against the allocation',
               a_row[9] == fileid['A'] and state['perms'][fileid['A']] == [{'email': 'alpha@example.org', 'role': 'writer'}])
         ident = ''.join(issued['A']['cells'][1]['source'])
-        check('the identity cell is information only: name from the class list, the allocation code, no token, no deadline logic',
-              'FULL_NAME = "Test Learner Alpha"' in ident and '_IUEA_ALLOCATION = ' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A'])
-              and not any('iuea-submission' in c['metadata'].get('tags', []) for c in issued['A']['cells']))
-        check('the countdown reminds the student to press Ctrl+S at 30 and 10 minutes', '30 minutes or less left: press Ctrl+S now' in ident and '10 minutes or less left' in ident)
+        supplied = [c for c in issued['A']['cells'] if c['cell_type'] == 'code' and ('Do not edit' in ''.join(c['source']) or '# IUEA-' in ''.join(c['source']))]
+        check('ONE supplied cell (Setup: run me first, collapsed) holds the identity: name from the class list, the allocation, the deadline; no token',
+              len(supplied) == 1 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
+              and '"deadline":"' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A']) and issued['A']['cells'][1]['metadata'].get('cellView') == 'form', ident[:300])
+        check('the setup cell prints the time left after every cell and adds Press Ctrl+S in the last 30 and 10 minutes', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and 'left (deadline' in ident)
+        check('the notebook opens with at most 5 lines', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 5, ''.join(issued['A']['cells'][0]['source'])[:200])
 
         # the wrong Google account
         _, r = st.call('/api/files', dict(test=P12, name='x', email='someone.else@example.org', registration=PEOPLE['H'][0]))
@@ -173,6 +179,30 @@ def main():
               r['changed'] == 1 and r2.get('ok') and state['perms'][new_file] == [{'email': 'theta.right@example.org', 'role': 'writer'}] and state['perms'][fileid['H']][0]['role'] == 'reader', r2.get('error'))
         if r2.get('ok'):
             attempt['H'], fileid['H'], issued['H'] = r2['result']['attempt'], new_file, json.loads(r2['result']['notebook'])
+
+        # the email typo fix on the entry page (once, in the first 15 minutes, before any saved work)
+        st.at(5)
+        st.call('/admin/save', dict(file=fileid['U'], email='ups@example.org', notebook=json.dumps(issued['U'])))
+        code, r = st.call('/api/fixemail', dict(attempt=attempt['T'], new_email='tau@example.org'), origin=False)
+        check('email fix: only the entry page itself can ask (same origin)', code == 403)
+        _, r = st.call('/api/fixemail', dict(attempt=attempt['T'], new_email='tau@example.org'))
+        state = st.call('/admin/state')[1]
+        new_t = r['result']['colabUrl'].rsplit('/', 1)[1] if r.get('ok') else ''
+        check('email fix: a new notebook is shared with the corrected email and the old one is unshared',
+              r.get('ok') and state['perms'].get(new_t) == [{'email': 'tau@example.org', 'role': 'writer'}] and state['perms'][fileid['T']] == [], r.get('error'))
+        code, _ = st.call('/admin/save', dict(file=fileid['T'], email='tau.typo@example.org', notebook=json.dumps(issued['T'])))
+        check('email fix: the old account can no longer save to the old notebook', code == 403)
+        _, r2 = st.call('/api/fixemail', dict(attempt=attempt['T'], new_email='tau.other@example.org'))
+        check('email fix: only once per attempt', not r2.get('ok') and 'already corrected once' in r2.get('error', ''), r2.get('error'))
+        _, r3 = st.call('/api/fixemail', dict(attempt=attempt['U'], new_email='ups.right@example.org'))
+        check('email fix: refused once work has been saved', not r3.get('ok') and 'already has saved work' in r3.get('error', ''), r3.get('error'))
+        alloc_t = [x for x in state['allocations'] if x[3] == attempt['T']][0]
+        check('email fix: the allocation now records the corrected email and the new file, and the change is logged',
+              alloc_t[2] == 'tau@example.org' and alloc_t[9] == new_t and any('email corrected' in str(x[3]) for x in state['extensions']))
+        fileid['T'] = new_t
+        st.at(16)
+        _, r4 = st.call('/api/fixemail', dict(attempt=attempt['E'], new_email='eps.right@example.org'))
+        check('email fix: refused after the first 15 minutes', not r4.get('ok') and '15 minutes' in r4.get('error', ''), r4.get('error'))
 
         # minute 10: B saves a copy and works in it
         st.at(10)
@@ -218,6 +248,14 @@ def main():
         f_nb = solved(issued['F'], 'CML3112', broken=True)
         st.call('/admin/save', dict(file=fileid['F'], email='zeta@example.org', notebook=json.dumps(f_nb)))
         st.call('/api/backup', dict(attempt=attempt['F'], href='https://colab.research.google.com/drive/' + fileid['F'], notebook=as_backup(f_nb)), origin=False)
+        t_nb = solved(issued['T'], 'CML3112')
+        st.call('/admin/save', dict(file=fileid['T'], email='tau@example.org', notebook=json.dumps(t_nb)))
+        v_nb = solved(issued['V'], 'CML3112')
+        for c in v_nb['cells']:
+            text = ''.join(c['source']) if isinstance(c['source'], list) else c['source']
+            if '# IUEA-SETUP-CELL' in text:
+                c['source'] = text.replace('LIMIT = ', 'LIMIT = 5 + ').replace('    TEST_OPEN_LOG.append([model_name, THRESHOLD])\n', '')
+        st.call('/admin/save', dict(file=fileid['V'], email='phi@example.org', notebook=json.dumps(v_nb)))
         # minute 160 to 165: C's last save and last backup, then the laptop dies
         st.at(160)
         c_nb = solved(issued['C'], 'CML3112')
@@ -240,7 +278,7 @@ def main():
         rows = {x[6]: x for x in state['collection'][1:] if x[10] == 'COLLECTED'}
         reg = lambda k: PEOPLE[k][0]
         check('deadline: the trigger collects every project attempt past its deadline and none before',
-              set(rows) == {reg(k) for k in 'ABCEFGHI'} and reg('K') not in rows and reg('R') not in rows, sorted(rows))
+              set(rows) == {reg(k) for k in 'ABCEFGHITUV'} and reg('K') not in rows and reg('R') not in rows, sorted(rows))
         check('deadline: editing stops (read only); the newer of the last save and the last backup is used', state['perms'][fileid['A']][0]['role'] == 'reader' and rows[reg('A')][13] in ('drive-revision', 'backup'), rows[reg('A')][14])
         check('saved a copy: the newest on-time backup is marked, with the source on the row', rows[reg('B')][13] == 'backup' and 'another file' in rows[reg('B')][14], rows[reg('B')][14])
         check('laptop died at minute 170: the newest of the last save (minute 160) and the last backup (minute 165) is collected',
@@ -305,9 +343,10 @@ def main():
         total = lambda k: float(res[reg(k)]['project_total']) if reg(k) in res else None
         flags = lambda k: res[reg(k)]['flags'].split() if reg(k) in res else []
         check('final run: one command re-grades, writes the gradebook files and agrees with Actions', done.returncode == 0 and 'DIFFERENT' not in done.stdout and (work / 'out/gradebook').is_dir(), done.stderr[-300:])
-        check('marks: full work collected from a save or a backup earns 45 (A, B, C, G, I, K)', all(total(k) == 45 for k in 'ABCGIK'), {k: total(k) for k in 'ABCGIK'})
+        check('marks: full work collected from a save or a backup earns 45 (A, B, C, G, I, K, and T after the email fix)', all(total(k) == 45 for k in 'ABCGIKT'), {k: total(k) for k in 'ABCGIKT'})
+        check('tampering: an edited setup cell is replaced by the original, so the work earns 45 and is flagged', total('V') == 45 and 'SUPPLIED_CELL_EDITED' in flags('V'), (total('V'), flags('V')))
         check('marks: the mistake collected at the deadline costs marks; the corrected late backup does not count (F)', total('F') is not None and total('F') < 45, total('F'))
-        check('marks: Start and nothing else earns 0 and is flagged NO_WORK (E, H)', total('E') == 0 and 'NO_WORK' in flags('E') and total('H') == 0, (total('E'), total('H')))
+        check('marks: Start and nothing else earns 0 and is flagged NO_WORK (E, H, U)', total('E') == 0 and 'NO_WORK' in flags('E') and total('H') == 0 and total('U') == 0, (total('E'), total('H'), total('U')))
         check('spot-check list: the source and time are listed with no action needed (backup, other file, late backup)',
               'COLLECTED_FROM_BACKUP' in flags('B') and 'WORKED_IN_OTHER_FILE' in flags('B') and 'COLLECTED_FROM_BACKUP' in flags('C') and 'LATE_BACKUP_IGNORED' in flags('F') and res[reg('B')]['source'] == 'backup',
               {k: flags(k) for k in 'BCF'})

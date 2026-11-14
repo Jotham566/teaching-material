@@ -15,15 +15,16 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import project_content as PC  # noqa: E402
 
-INSTRUCTIONS = """{code} ML_PROJECT: Engineering ML project, online, 3 hours from Start test. The window {window}.
+INSTRUCTIONS = """{code} ML_PROJECT: Engineering ML project. Online, individual, 3 hours from Start. The window {window}.
+Start by {last} to get the full 3 hours.
 
-1. Open the entry page, enter your name, Google email and Student Registration Number, and press Start test. Your 3 hours start then.
-   Start by {last} to get the full 3 hours.
-2. Press Open my test in Colab. Run the countdown cell, then the setup cell. The data file is inside the notebook: no upload or download.
-3. Complete Tasks 1 to 7 and the Part B memo form (Task 8). Choose Runtime, then Restart session and run all.
-4. Run the last cell, click Submit test, open the form link, check your details and press Submit before your personal deadline.
-Rules: the same as Practical Test 1. Individual work. No AI or outside help. {own}
-Help: the class channel, {support}. A technical failure: report it at once on the class channel with a screenshot.
+1. Open the entry link. Type your registration number, tick This is me, enter your Google email, press Start.
+2. Press Open my project in Colab. Run the first cell, then Prepare the data and the libraries (the data is inside it).
+3. Do Tasks 1 to 6 and the MEMO form (Task 7). Choose Runtime, Restart session and run all. Press Ctrl+S.
+4. On the entry page: Check my work shows whether your notebook runs; I have finished stops editing and collects your work.
+There is no Submit button. At your deadline your work is collected automatically.
+Rules: individual work. No AI. No help from another person. {own}
+Help: the class channel, {support}. If something fails, post a screenshot there at once.
 """
 
 

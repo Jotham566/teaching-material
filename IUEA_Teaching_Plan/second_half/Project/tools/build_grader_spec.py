@@ -57,15 +57,15 @@ def main():
         f'QUESTION_ORDER={list(questions)!r}\nQUESTIONS={questions!r}\n')
     (G / 'hidden/spec_ML_PROJECT_hidden.py').write_text(
         'import sys\nfrom pathlib import Path\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n' + K.hidden_spec_source())
-    desc = dict(clean='Hidden rows built from the real file with the real problems and others added (midnight readings, the all-zero reading, repeats, impossible values, a missing target). Nine checks per set: the whole result, the rows in order, the date fix, the all-zero reading, CO2 removed, repeats, impossible values, month and weekend, the input unchanged.',
-                charts='Chart 1 and Chart 2 (under any name, or only shown) have a title, named axes and the unit, and plot the right data.',
-                split='Hidden rows, also in reverse order: months 1 to 8 training, 9 and 10 validation, 11 and 12 test.',
-                regression='Hidden rows built from the real file: baseline, linear regression and decision tree (max_depth 4, random_state 17), each with median imputation.',
-                errors='Two small known cases and one hidden case: MAE and RMSE.',
-                leakage='Probes: the predictions do not change when extreme feature rows are added (imputation from training rows only), and the baseline predicts the mean of the training targets it is given.',
-                warning='Warning probabilities on hidden rows (1 mark); confusion matrix counts, precision and recall at the fixed threshold 0.5 on three cases, one with no predicted warning (2 marks).',
-                test='Supplied cells intact, the test result equals the reference for the student\'s own model; opened once, after the choice, with that choice, no November or December row in the development variables.',
-                results='Validation MAE of the three models and the chosen model on the file (1); reproducible with random_state=17 and no unseeded randomness (1); the required functions and the MEMO form exist (1).')
+    desc = dict(clean='The Task 1 cells re-run on a hidden raw table built from the real file with problems added (midnight readings, the all-zero reading, repeats, impossible values, a missing target). Nine checks per table: the whole result, the rows in order, the date fix, the all-zero reading, CO2 removed, repeats, impossible values, month and weekend, raw left unchanged.',
+                charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): a title, named axes, the unit, the right data.',
+                split='The Task 2 cells re-run on hidden clean tables, also in reverse order: train is months 1 to 8, valid is 9 and 10, rows in order.',
+                regression='The Task 3 cells re-run on hidden train and valid tables: baseline, linear regression and decision tree (max_depth 4, random_state 17) predictions, each with median imputation.',
+                errors='MAE and RMSE of the student\'s own Task 3 predictions on the hidden valid table (a model mistake is not counted twice); printed values count.',
+                leakage='The Task 3 cells re-run twice more: extreme rows added to valid must not change the other predictions, and the baseline must be the mean of the (shifted) train targets.',
+                warning='The Task 4 cells re-run on hidden train and valid: the probabilities (1 mark); the counts, precision and recall at 0.5 from the student\'s own probabilities (2 marks).',
+                test='The Task 6 cells re-run on hidden train, valid and test rows: test MAE and recall after refitting on train and valid; opened once, after the choice, with it, no November or December row in train or valid.',
+                results='Validation MAE of the three models and the chosen model on the real file (1); the same predictions twice, random_state=17, no unseeded randomness (1); every result and the MEMO form present (1).')
     partA = [dict(id=f'q{i:02d}', title=K.TITLES[t], maximum=m, description=desc.get(t, 'Hidden rows built from the real file. Partial credit by the share of checks passed.')) for i, (t, m) in enumerate(K.PARTS, 1)]
     off = len(K.PARTS)
     partB = [dict(id=f'q{off + i:02d}', title=K.PART_B_TITLES[t], maximum=m, description=d) for i, ((t, m), d) in enumerate(zip(K.PARTB, [
@@ -88,9 +88,9 @@ def main():
         folder = G / 'hidden_data' / code
         sets[code] = []
         for seed in seeds:
-            training, features = K.regression_case(seed)
-            for label, rows in (('clean', K.clean_case(seed)), ('train', training), ('held_features', features),
-                                ('split', P.clean_rows(P.hidden_rows(seed, 15)))):
+            training, valid, test = K.model_case(seed)
+            for label, rows in (('raw_for_task1', K.clean_case(seed)), ('train', training), ('valid', valid), ('test', test),
+                                ('clean_for_task2', P.clean_rows(P.hidden_rows(seed, 15)))):
                 path = folder / f'hidden_{seed}_{label}.csv'
                 write_csv(path, rows)
                 sets[code].append(dict(seed=seed, role=label, rows=len(rows), file=str(path.relative_to(G)), sha256=hashlib.sha256(path.read_bytes()).hexdigest()))

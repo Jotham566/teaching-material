@@ -37,8 +37,9 @@ def public_url():
 
 
 def required_functions():
-    import project_contracts as K
-    return list(dict.fromkeys(K.NAMES.values()))
+    """The RESULT names every task asks for (plain code: there are no required functions any more)."""
+    import project_content as PC
+    return [n for t in PC.tasks() for n in t['results']]
 
 
 def memo_fields():
@@ -102,7 +103,7 @@ for cell in nb.get("cells", []):
     finally:
         signal.alarm(0)
         plt.close("all")
-report["missing_functions"] = [n for n in needed if not callable(ns.get(n))]
+report["missing_functions"] = [n for n in needed if n not in ns]
 memo = ns.get("MEMO")
 report["memo_found"] = isinstance(memo, dict)
 report["memo_missing_fields"] = [f for f in memo_fields if not isinstance(memo, dict) or f not in memo]
@@ -128,9 +129,8 @@ def check_cell():
     args = json.dumps([SKIP_MARKERS, SELF_CHECK_MARKERS, names, fields, CELL_TIMEOUT])
     return f'''{CHECK_TITLE}
 {CHECK_MARKER}  (supplied: do not edit. It is not marked and it never shows a mark.)
-# Run it before you submit. Click "Check my notebook". It runs a copy of your code cells again from the top, in a fresh Python, the way the
-# marking computer does, and tells you which cell fails, whether every required function and the MEMO form are there, and what the
-# self-checks say. Your notebook itself is not changed. It takes one to three minutes.
+# Optional, before your deadline. Click "Check my notebook". It reruns a copy of your code from the top, like the marking computer, and
+# lists failing cells, missing functions and MEMO fields, and the self-check results. Your notebook is not changed. One to three minutes.
 import json as _ck_json, os as _ck_os, subprocess as _ck_sp, sys as _ck_sys, tempfile as _ck_tmp
 import ipywidgets as _ck_w
 from IPython.display import display as _ck_display, clear_output as _ck_clear
@@ -177,7 +177,7 @@ def _ck_run(_):
                     print("  code cell", f["cell"], "starting", repr(f["first_line"]), "->", f["error"])
             else:
                 print("Every code cell runs from the top without an error.")
-            print("Required functions missing:", ", ".join(report["missing_functions"]) if report["missing_functions"] else "none. All are there.")
+            print("Required results missing:", ", ".join(report["missing_functions"]) if report["missing_functions"] else "none. All are there.")
             if not report["memo_found"]:
                 print("The MEMO form was not found. Run the MEMO cell and keep its name MEMO.")
             elif report["memo_missing_fields"]:
@@ -260,6 +260,43 @@ def _iuea_backup_start(address={base + "/api/backup"!r}, minutes={BACKUP_MINUTES
     thread.start()
     globals()["_iuea_backup_thread"] = thread
 _iuea_backup_start()
+'''
+
+
+def countdown_code():
+    """After every cell (IPython post_run_cell), one line: the time left and the deadline in Kampala time; Press Ctrl+S at 30 and 10 minutes."""
+    return '''
+def _iuea_countdown_start():
+    import datetime
+    try:
+        from IPython import get_ipython
+        shell = get_ipython()
+        if shell is None or "google.colab" not in type(shell).__module__ or not _IUEA_DEADLINE:
+            return
+    except Exception:
+        return
+    end = datetime.datetime.fromisoformat(_IUEA_DEADLINE.replace("Z", "+00:00"))
+    local = (end + datetime.timedelta(hours=3)).strftime("%H:%M")
+    practice = TEST_ID == "ML_REHEARSAL"
+    def line(*_):
+        left = (end - datetime.datetime.now(datetime.timezone.utc)).total_seconds()
+        if left <= 0:
+            print("\u23f1 time is up (deadline " + local + " Kampala)" + ("" if practice else ": your work is collected"))
+            return
+        m = int(left // 60)
+        text = "\u23f1 %d:%02d left (deadline %s Kampala)" % (m // 60, m % 60, local)
+        if m < 30:
+            text += "  Press Ctrl+S" + (" now: 10 minutes or less" if m < 10 else "")
+        print(text)
+    old = globals().get("_iuea_countdown")
+    if old is not None:
+        try:
+            shell.events.unregister("post_run_cell", old)
+        except Exception:
+            pass
+    shell.events.register("post_run_cell", line)
+    globals()["_iuea_countdown"] = line
+_iuea_countdown_start()
 '''
 
 

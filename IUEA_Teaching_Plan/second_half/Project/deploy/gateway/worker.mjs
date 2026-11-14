@@ -23,7 +23,7 @@ export async function handle(request,env,upstream=fetch){
  }
  // ML project collection (14 November 2026): the class-list check while typing, the silent backups from Colab, and the entry page's
  // Check my work, I have finished and status. The allocation code (issued once, unguessable) identifies the attempt; no token.
- if(['/api/check','/api/backup','/api/mywork','/api/finish','/api/status'].includes(url.pathname)){
+ if(['/api/check','/api/backup','/api/mywork','/api/finish','/api/status','/api/fixemail'].includes(url.pathname)){
   if(request.method!=='POST')return json({ok:false,error:'Use POST.'},405);
   if(!(request.headers.get('Content-Type')||'').startsWith('application/json'))return json({ok:false,error:'Invalid request.'},415);
   // Backups come from Colab's Python, which sends no Origin. Everything else comes from the entry page itself (same origin only).
@@ -39,10 +39,12 @@ export async function handle(request,env,upstream=fetch){
   }else{
    if(!env.COLLECTOR_GATEWAY_KEY||env.COLLECTOR_GATEWAY_KEY.length<32||!env.COLLECTOR_URL)return json({ok:false,error:'The collection service is unavailable. Tell your lecturer.'},503);
    if(!attempt)return json({ok:false,error:'Open your project from the entry page first.'},400);
-   const action={'/api/backup':'backup','/api/mywork':'checkwork','/api/finish':'finish','/api/status':'status'}[url.pathname];
+   const action={'/api/backup':'backup','/api/mywork':'checkwork','/api/finish':'finish','/api/status':'status','/api/fixemail':'fixemail'}[url.pathname];
+   if(action==='fixemail'&&!(typeof body.new_email==='string'&&body.new_email.length<=254&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.new_email.trim())))return json({ok:false,error:'Enter the Google email you are signed into in Colab.'},400);
    if(action==='backup'&&(typeof body.notebook!=='string'||typeof body.href!=='string'||body.href.length>500))return json({ok:false,error:'Invalid backup.'},400);
    payload={secret:env.COLLECTOR_GATEWAY_KEY,action,attempt};
    if(action==='backup'){payload.notebook=body.notebook;payload.href=body.href;}
+   if(action==='fixemail')payload.new_email=body.new_email.trim();
    target=env.COLLECTOR_URL;
   }
   try{
