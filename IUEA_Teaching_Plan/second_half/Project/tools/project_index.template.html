@@ -1,30 +1,51 @@
 <!doctype html><html lang="en"><head><base target="_top"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Engineering ML project</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:#172c40;font:17px/1.55 Arial,sans-serif}main{max-width:760px;margin:32px auto;padding:30px;background:#fff;border-radius:12px}
-h1{font-size:28px;line-height:1.2;margin:6px 0 14px}h2{font-size:21px;margin-top:28px}label{display:block;font-weight:bold;margin-top:16px}
-input{width:100%;padding:12px;border:1px solid #8194a6;border-radius:5px;font:inherit}input[type=checkbox]{width:auto;margin-right:8px}
-button,.go{background:#126573;color:#fff;border:0;border-radius:5px;padding:12px 18px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block;margin:10px 6px 6px 0}
-button:disabled{opacity:.55;cursor:not-allowed}.muted{color:#526577;font-size:15px}.error{color:#9f251e;font-weight:bold}.ok{color:#1f6b35;font-weight:bold}
-.who{border:2px solid #126573;border-radius:6px;padding:10px 14px;margin-top:10px}.brand{font-size:14px;letter-spacing:1px;font-weight:bold;color:#526577}
-input:focus,button:focus,.go:focus{outline:3px solid #edab37;outline-offset:3px}[hidden]{display:none!important}
-@media(max-width:650px){main{margin:0;padding:18px 16px;border-radius:0}h1{font-size:25px}.go{display:block;text-align:center}}
+*{box-sizing:border-box}body{margin:0;background:#eef2f6;color:#172c40;font:17px/1.55 Arial,sans-serif}
+main{max-width:720px;margin:28px auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(23,44,64,.08)}
+header{background:#126573;color:#fff;padding:24px 30px 20px}.brand{font-size:13px;letter-spacing:1.5px;font-weight:bold;opacity:.85}
+h1{font-size:27px;line-height:1.2;margin:6px 0 4px}.badge{display:inline-block;background:#edab37;color:#172c40;font-size:13px;font-weight:bold;letter-spacing:.5px;padding:3px 10px;border-radius:20px;vertical-align:middle}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 0}.facts div{background:rgba(255,255,255,.12);border-radius:8px;padding:8px 12px;font-size:14px;line-height:1.35}.facts b{display:block;font-size:12px;letter-spacing:.8px;opacity:.85;text-transform:uppercase}
+.body{padding:24px 30px 30px}h2{font-size:21px;margin:26px 0 8px}
+.step{border:1px solid #d3dce5;border-radius:10px;padding:16px 18px;margin-top:16px}.step.todo{border:2px solid #edab37;background:#fffaf0}.step.done{border-color:#7fb08c}
+.step legend,.stephead{font-weight:bold;font-size:18px;padding:0 6px;margin-left:-6px}.num{display:inline-block;width:26px;height:26px;border-radius:50%;background:#126573;color:#fff;text-align:center;font-size:15px;line-height:26px;margin-right:8px}
+.step.done .num{background:#1f6b35}.step.bad{border:2px solid #9f251e;background:#fdf1f0}.step.bad .num{background:#9f251e}fieldset{margin:0;min-width:0}fieldset:disabled{opacity:.5}
+label{display:block;font-weight:bold;margin-top:14px}input,select{width:100%;padding:12px;border:1px solid #8194a6;border-radius:6px;font:inherit;background:#fff;color:inherit}
+select{font-size:18px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,#126573 50%),linear-gradient(135deg,#126573 50%,transparent 50%);background-position:calc(100% - 22px) 52%,calc(100% - 16px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px}
+input[type=checkbox]{width:22px;height:22px;margin:0 10px 0 0;vertical-align:middle}
+button,.go{background:#126573;color:#fff;border:0;border-radius:6px;padding:13px 20px;font:inherit;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;margin:10px 6px 6px 0}
+button.alt{background:#fff;color:#126573;border:2px solid #126573}button:disabled{opacity:.5;cursor:not-allowed}
+.muted{color:#526577;font-size:15px}.error{color:#9f251e;font-weight:bold}.ok{color:#1f6b35;font-weight:bold}
+.who{border:2px solid #126573;border-radius:8px;padding:10px 14px;margin-top:12px}.warn{border:2px solid #9f251e;background:#fdf1f0;border-radius:8px;padding:10px 14px;margin-top:12px}
+.chosen{margin-top:10px;font-size:15px}.summary{background:#f4f7fa;border-radius:8px;padding:12px 14px;margin-top:18px;font-size:15px}
+input:focus,select:focus,button:focus,.go:focus{outline:3px solid #edab37;outline-offset:2px}[hidden]{display:none!important}
+@media(max-width:820px){main{margin:0;border-radius:0}header,.body{padding-left:16px;padding-right:16px}h1{font-size:24px}.facts{grid-template-columns:1fr;gap:2px;margin-top:12px}.facts div{background:none;padding:0;font-size:14px}.facts b{display:inline;margin-right:6px}header{padding-top:18px;padding-bottom:16px}.go,#start{display:block;width:100%;text-align:center}}
 </style></head><body><main>
-<div class="brand">IUEA ENGINEERING ML PROJECT</div><h1 id="heading">Engineering ML project</h1>
-<p><strong>Window:</strong> __WINDOW__ (Kampala time). You have 3 hours from <strong>Start</strong>; they cannot be paused. Start by __LAST_START__ to get the full 3 hours.</p>
-<p>Use a laptop with steady internet, in your normal browser (not WhatsApp). Coming back later gives the same notebook and deadline.</p>
+<header><div class="brand">IUEA ENGINEERING ML PROJECT</div><h1 id="heading">Engineering ML project</h1><span class="badge" id="mode">FINAL PROJECT, MARKED</span>
+<div class="facts"><div><b>Window</b><span id="fWindow">__WINDOW__</span></div><div><b>Your time</b><span id="fTime">3 hours from Start. It cannot be paused.</span></div><div><b>Last full start</b><span id="fLast">__LAST_START__</span></div></div></header>
+<div class="body">
+<p class="muted">Kampala time. Use a laptop with steady internet, in your normal browser (not inside WhatsApp). Coming back later gives the same notebook and deadline.</p>
 <form id="identity" autocomplete="off">
-<label for="courseSel">Your course</label>
-<select id="courseSel"><option value="CML3112">CML3112</option><option value="CML3113">CML3113</option><option value="CML3111">CML3111</option></select>
+<div class="step todo" id="courseStep"><div class="stephead"><span class="num">1</span>Your course</div>
+<label for="courseSel">Choose the course you are registered for</label>
+<select id="courseSel" required aria-describedby="courseChosen"><option value="" selected disabled>Choose your course...</option>
+<option value="CML3111">CML3111: Electrical, Mechatronics, Robotics and Communications (BSEE, BSMRE)</option>
+<option value="CML3112">CML3112: Civil Engineering and Architecture (BSCE, BARC)</option>
+<option value="CML3113">CML3113: Mining and Petroleum Engineering (BSME, BSPE, BPE)</option></select>
+<div id="courseChosen" class="chosen muted" role="status" aria-live="polite">Not chosen yet. The letters near the end of your registration number (for example BSCE in 24/351/BSCE-S) show your programme.</div></div>
+<fieldset class="step" id="whoStep" disabled><legend><span class="num">2</span>Who you are</legend>
 <label for="registration">Registration number</label>
 <input id="registration" required maxlength="40" placeholder="for example 24/351/BSCE-S" aria-describedby="regHelp regResult">
 <div id="regHelp" class="muted">As on your student card.</div>
 <div id="regResult" role="status" aria-live="polite"></div>
-<div id="whoBox" class="who" hidden><label for="isMe"><input type="checkbox" id="isMe">This is me: <span id="whoName"></span></label></div>
-<div id="nameBox" class="who" hidden><label for="fullName">Your full name</label><input id="fullName" maxlength="160" autocomplete="name"><div class="muted">Your number is not on the class list yet. You can still start; your lecturer will check it later.</div></div>
+<div id="otherCourse" class="warn" hidden></div>
+<div id="whoBox" class="who" hidden><label for="isMe" style="margin:0"><input type="checkbox" id="isMe">This is me: <span id="whoName"></span></label></div>
+<div id="nameBox" class="who" hidden><label for="fullName" style="margin-top:0">Your full name</label><input id="fullName" maxlength="160" autocomplete="name"><div class="muted">Your number is not on this course's class list yet. You can still start; your lecturer will check it later.</div></div></fieldset>
+<fieldset class="step" id="emailStep" disabled><legend><span class="num">3</span>Your Google account</legend>
 <label for="email">Google account email</label>
 <input id="email" type="email" required maxlength="254" autocomplete="email">
 <label for="email2">Type the same email again</label>
 <input id="email2" type="email" required maxlength="254" autocomplete="off">
-<div id="emailHelp" class="muted">Use the account you are signed into in Colab (top-right of colab.research.google.com). Your notebook is shared with this account only.</div>
+<div id="emailHelp" class="muted">Use the account you are signed into in Colab (top-right of colab.research.google.com). Your notebook is shared with this account only.</div></fieldset>
+<div id="summary" class="summary" hidden></div>
 <button id="start" type="submit" disabled>Start / resume my project</button>
 </form>
 <p id="status" role="status" aria-live="polite"></p>
@@ -39,12 +60,22 @@ input:focus,button:focus,.go:focus{outline:3px solid #edab37;outline-offset:3px}
 <button id="checkWork" type="button">Check my work</button> <button id="finish" type="button">I have finished</button>
 <div id="workResult" role="status" aria-live="polite"></div>
 <p class="muted"><strong>Check my work</strong> runs your saved notebook from the top: does it run, are all results and MEMO there, is it your issued notebook. No mark is shown. <strong>I have finished</strong> stops editing and collects your work. If something fails, post a screenshot on the class channel at once.</p></section>
-</main><script>
+</div></main><script>
 let testKey=__TEST_KEY_JSON__;
-let course=testKey.split('|')[0];
-const courseSel=document.getElementById('courseSel');courseSel.value=course;
-courseSel.addEventListener('change',()=>{course=courseSel.value;testKey=course+'|'+testKey.split('|')[1];reg.dispatchEvent(new Event('input'));});
-document.getElementById('heading').textContent=course+': Engineering ML project (online, 3 hours)';
+// The course is never pre-chosen: the student must pick it, so a wrong link cannot put them on the wrong class list.
+const assessment=testKey.split('|')[1];let course='';
+const COURSES={CML3111:'Electrical, Mechatronics, Robotics and Communications',CML3112:'Civil Engineering and Architecture',CML3113:'Mining and Petroleum Engineering'};
+const courseSel=document.getElementById('courseSel');courseSel.value='';
+function setCourse(c){
+ course=c;testKey=course+'|'+assessment;courseSel.value=c;
+ document.getElementById('courseStep').className='step done';
+ document.getElementById('courseChosen').className='chosen ok';
+ document.getElementById('courseChosen').textContent='Chosen: '+c+', '+COURSES[c]+'. Wrong course? Change it here before you start.';
+ document.getElementById('whoStep').disabled=false;document.getElementById('emailStep').disabled=false;
+ document.getElementById('heading').textContent=c+': Engineering ML project';
+ reg.dispatchEvent(new Event('input'));
+}
+courseSel.addEventListener('change',()=>setCourse(courseSel.value));
 const onGateway=typeof google==='undefined'||!google.script;
 function call(route,body,server){
  if(!onGateway)return new Promise((ok,fail)=>{if(!server)return fail(Error('Open the project link from your lecturer to use this.'));google.script.run.withSuccessHandler(ok).withFailureHandler(fail)[server](body);});
@@ -54,26 +85,39 @@ const email2=document.getElementById('email2');
 const reg=document.getElementById('registration'),email=document.getElementById('email'),isMe=document.getElementById('isMe'),start=document.getElementById('start');
 let checked='',checkTimer,timerInterval,attempt='',pollTimer;
 const rehearsal=testKey.endsWith('|ML_REHEARSAL');
-if(rehearsal){document.getElementById('heading').textContent=course+': Engineering ML project, REHEARSAL (unmarked)';}
+if(rehearsal){document.getElementById('mode').textContent='REHEARSAL, NOT MARKED';document.getElementById('fWindow').textContent='Practice, open until Sunday 22 November 2026, 23:59. The final project is 23 to 25 November.';document.getElementById('fTime').textContent='A 3-hour practice clock. Nothing is locked or marked.';document.getElementById('fLast').textContent='Any time before the practice closes.';document.title='Engineering ML project rehearsal';}
 const sameEmail=(a,b)=>a.value.trim()&&a.value.trim().toLowerCase()===b.value.trim().toLowerCase();
 let onList=true;
 const fullName=document.getElementById('fullName');
-function canStart(){start.disabled=!(checked&&(onList?isMe.checked:fullName.value.trim().length>=3)&&sameEmail(email,email2));const h=document.getElementById('emailHelp');h.className=email2.value&&!sameEmail(email,email2)?'error':'muted';}
+function canStart(){start.disabled=!(course&&checked&&(onList?isMe.checked:fullName.value.trim().length>=3)&&sameEmail(email,email2));
+ const sum=document.getElementById('summary');sum.hidden=start.disabled;if(!start.disabled)sum.textContent='You are starting '+course+' ('+COURSES[course]+') as '+checked+', with the Google account '+email.value.trim()+'.';const h=document.getElementById('emailHelp');h.className=email2.value&&!sameEmail(email,email2)?'error':'muted';}
 function regFormat(v){return /^\d{2}\/[A-Z0-9]{1,8}(\/[A-Z0-9]{1,8}){1,3}(-[A-Z0-9]{1,4})?$/.test(v.toUpperCase().replace(/\s+/g,''));}
 reg.addEventListener('input',()=>{
- checked='';isMe.checked=false;document.getElementById('whoBox').hidden=true;document.getElementById('nameBox').hidden=true;canStart();
+ checked='';isMe.checked=false;document.getElementById('whoBox').hidden=true;document.getElementById('otherCourse').hidden=true;
+ if(course&&document.getElementById('courseStep').className==='step bad'){document.getElementById('courseStep').className='step done';const cc=document.getElementById('courseChosen');cc.className='chosen ok';cc.textContent='Chosen: '+course+', '+COURSES[course]+'. Wrong course? Change it here before you start.';}document.getElementById('nameBox').hidden=true;canStart();
  const out=document.getElementById('regResult'),v=reg.value.trim();clearTimeout(checkTimer);out.className='muted';
- if(!v){out.textContent='';return;}
+ if(!v||!course){out.textContent='';return;}
  if(!regFormat(v)){out.textContent='Keep typing. A registration number looks like 24/351/BSCE-S or 23/UG/181/BSCE-J.';}
+ else if(PROGRAMMES[programmeOf(v)]&&PROGRAMMES[programmeOf(v)]!==course){const right=PROGRAMMES[programmeOf(v)];showSwitch(right,programmeOf(v)+' students take '+right+', not '+course+'. Choose '+right+' as your course.');return;}
  else out.textContent='Checking the '+course+' class list...';
  checkTimer=setTimeout(()=>{
-  call('/api/check',{test:testKey,registration:v},'portalCheckRegistration').then(r=>{if(reg.value.trim()!==v)return;checked=r.registration;onList=r.onList!==false;out.className='ok';
+  const keyAtCall=testKey;call('/api/check',{test:testKey,registration:v},'portalCheckRegistration').then(r=>{if(reg.value.trim()!==v||testKey!==keyAtCall)return;checked=r.registration;onList=r.onList!==false;out.className='ok';
    if(onList){out.textContent='Found on the '+course+' class list.';document.getElementById('whoName').textContent=r.nameHint;document.getElementById('whoBox').hidden=false;}
    else{out.className='muted';out.textContent='Not on the '+course+' class list. Type your full name below to start.';document.getElementById('nameBox').hidden=false;}
    canStart();})
-  .catch(e=>{if(reg.value.trim()!==v)return;out.className='error';out.textContent=e.message;});
+  .catch(e=>{if(reg.value.trim()!==v||testKey!==keyAtCall)return;const m=/Choose (CML311[123]) as your course/.exec(e.message);if(m){showSwitch(m[1],e.message);return;}out.className='error';out.textContent=e.message;});
  },regFormat(v)?400:1500);
 });
+// Wrong course: say so plainly and offer the right one. Start stays locked until the course matches.
+const PROGRAMMES={BSEE:'CML3111',BSMRE:'CML3111',BSCE:'CML3112',BARC:'CML3112',BSME:'CML3113',BSPE:'CML3113',BPE:'CML3113'};
+function programmeOf(v){const parts=v.toUpperCase().replace(/\s+/g,'').split('/');return parts[parts.length-1].replace(/-.*$/,'');}
+function showSwitch(right,text){
+ const box=document.getElementById('otherCourse');box.textContent='';
+ const p=document.createElement('p');p.style.margin='0 0 6px';const s=document.createElement('strong');s.textContent=text;p.append(s);box.append(p);
+ if(right&&COURSES[right]){const b=document.createElement('button');b.type='button';b.className='alt';b.textContent='Switch to '+right+' ('+COURSES[right]+')';b.addEventListener('click',()=>setCourse(right));box.append(b);}
+ box.hidden=false;document.getElementById('regResult').textContent='';
+ document.getElementById('courseStep').className='step bad';const cc=document.getElementById('courseChosen');cc.className='chosen error';cc.textContent='Wrong course for this registration number. Choose '+(right||'the right course')+'.';
+}
 isMe.addEventListener('change',canStart);fullName.addEventListener('input',canStart);email.addEventListener('input',canStart);email2.addEventListener('input',canStart);
 document.getElementById('identity').addEventListener('submit',e=>{
  e.preventDefault();const status=document.getElementById('status');start.disabled=true;status.className='';status.textContent='Preparing your notebook...';

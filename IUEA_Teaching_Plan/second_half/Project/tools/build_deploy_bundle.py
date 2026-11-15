@@ -57,6 +57,10 @@ PORTAL_PIPELINE_JS = r'''
 // editor; the collector stops editing and collects it at the deadline. The allocation code links the automatic backups to the attempt.
 var PORTAL_REG_FORMAT=/^\d{2}\/[A-Z0-9]{1,8}(\/[A-Z0-9]{1,8}){1,3}(-[A-Z0-9]{1,4})?$/;
 function portalRegNormal_(value){return String(value||'').toUpperCase().replace(/\s+/g,'');}
+// No mixing of programmes (lecturer, 15 November 2026). Each course belongs to set programmes, read from the class list of 14 November 2026.
+// The programme code is the last part of the registration number, before any -S/-J (24/351/BSCE-S -> BSCE).
+var PORTAL_PROGRAMMES={BSEE:'CML3111',BSMRE:'CML3111',BSCE:'CML3112',BARC:'CML3112',BSME:'CML3113',BSPE:'CML3113',BPE:'CML3113'};
+function portalProgramme_(reg){var parts=String(reg).split('/');return parts[parts.length-1].replace(/-.*$/,'');}
 // Open entry (lecturer, 14 November 2026): nobody is refused for not being on the class list. The registration must match a sensible
 // pattern (Test 1 normalisation: upper case, spaces removed). On the list: the student confirms the name. Not on the list: the student types
 // the full name, starts normally and is graded like anyone else; the collector flags NOT_ON_LIST (information only).
@@ -68,7 +72,12 @@ function portalClassEntry_(book,key,registration,typedName){
  var rows=sheet?sheet.getDataRange().getValues().slice(1).filter(function(r){return portalRegNormal_(r[1])===reg;}):[];
  var here=rows.filter(function(r){return String(r[0]).trim().toUpperCase()===course;})[0];
  if(here)return {registration:String(here[1]).trim(),name:String(here[2]).trim(),course:course,onList:true};
- if(rows.length)throw Error('You are listed in '+String(rows[0][0]).trim().toUpperCase()+'. Use that link.');
+ // 1. On another course's class list: refused. 2. Not on any list: the programme code must belong to the chosen course; an unknown code is
+ // refused so the lecturer can add the student to the right list. The page shows these messages and offers the right course.
+ if(rows.length)throw Error('This registration number is on the '+String(rows[0][0]).trim().toUpperCase()+' class list, not '+course+'. Choose '+String(rows[0][0]).trim().toUpperCase()+' as your course.');
+ var programme=portalProgramme_(reg),owner=PORTAL_PROGRAMMES[programme];
+ if(!owner)throw Error('This registration number ('+programme+') does not match any of the three courses. Message your lecturer on the class channel to be added to the right class list.');
+ if(owner!==course)throw Error('This registration number is for '+programme+', which takes '+owner+', not '+course+'. Choose '+owner+' as your course.');
  var name=String(typedName||'').trim();
  if(typedName!==undefined&&(name.length<3||name.length>160||/[\x00-\x1f\x7f]/.test(name)||name==='(class list)'))throw Error('Enter your full name: your registration number is not on the class list.');
  return {registration:String(registration).trim().toUpperCase(),name:name,course:course,onList:false};

@@ -44,7 +44,13 @@ const input = { test: windowKey, registration: '26/DEMO/001/ML', email: 'synthet
 
 // 0. the entry page checks the registration against the class list as it is typed (item 6)
 assert.deepEqual({ ...ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: ' 26/demo/001/ml ' }) }, { registration: '26/DEMO/001/ML', nameHint: 'Synthetic L. O.', onList: true, course: 'CML3112' });
-assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' }), /^Error: You are listed in CML3113\. Use that link\.$|You are listed in CML3113\. Use that link\./);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' }), /This registration number is on the CML3113 class list, not CML3112\. Choose CML3113 as your course\./);
+// No mixing of programmes (15 November 2026): off the list, the programme code must belong to the chosen course; unknown codes are refused.
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3113|ML_PROJECT', registration: '24/999/BSCE-S' }), /is for BSCE, which takes CML3112, not CML3113\. Choose CML3112 as your course\./);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3111|ML_REHEARSAL', registration: '23/UG/5/BARC-J' }), /Choose CML3112 as your course/);
+assert.throws(() => ctx.requestTestFiles({ ...input, registration: '24/999/BSPE-J', name: 'Some Name' }), /Choose CML3113 as your course/);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '24/999/BSXX-S' }), /does not match any of the three courses/);
+assert.equal(ctx.portalCheckRegistration({ test: 'CML3113|ML_PROJECT', registration: '23/UG/5/BSME-J' }).onList, false, 'right programme, not on the list: open entry');
 assert.equal(ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '24/999/BSCE-S' }).onList, false, 'open entry: a registration not on the list is not refused');
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: 'hello' }), /as it is on your student card/);
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|TEST1', registration: '26/DEMO/001/ML' }), /Use your lecturer/);
@@ -52,12 +58,12 @@ assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|TEST1', registr
 const viaGateway = body => { props.PORTAL_GATEWAY_KEY = 'k'.repeat(40); return JSON.parse(ctx.doPost({ postData: { contents: JSON.stringify({ secret: 'k'.repeat(40), ...body }) } }).text); };
 ctx.ContentService = { createTextOutput: t => ({ text: t, setMimeType() { return this; } }), MimeType: { JSON: 'json' } };
 assert.equal(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '26/DEMO/002/ML' } }).result.nameHint, 'Synthetic L. T.');
-assert.match(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' } }).error, /^You are listed in CML3113\. Use that link\.$/);
+assert.match(viaGateway({ action: 'check', input: { test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' } }).error, /^This registration number is on the CML3113 class list, not CML3112\. Choose CML3113 as your course\.$/);
 // open entry: a registration not on the list starts with the typed full name; a missing name or a malformed number is refused
 now = Date.parse(open) + 1000;
 assert.throws(() => ctx.requestTestFiles({ ...input, registration: '24/999/BSCE-S', name: '(class list)' }), /Enter your full name/);
 assert.throws(() => ctx.requestTestFiles({ ...input, registration: 'abc 12' }), /as it is on your student card/);
-assert.throws(() => ctx.requestTestFiles({ ...input, registration: '99/123/TEST-X' }), /You are listed in CML3113\. Use that link\./);
+assert.throws(() => ctx.requestTestFiles({ ...input, registration: '99/123/TEST-X' }), /Choose CML3113 as your course/);
 now = Date.parse('2026-11-22T20:59:00Z');
 
 // 1. before the window, after the window, wrong keys
