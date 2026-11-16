@@ -43,6 +43,13 @@ PART_B = [('Recommended house model', 2), ('Validation error of the two house mo
           ('Best next step, chosen from five', 1), ('Two short written answers: why this model, and why the test set is used only once', 2)]
 
 
+def proof_count():
+    import json
+    data = json.loads((PC.PROJECT / 'grader_spec/proof_results.json').read_text())
+    assert all(c['ok'] for c in data['cases']), 'a proof case fails: run grader_spec/run_proofs.py first'
+    return len(data['cases'])
+
+
 def check_facts():
     assert sum(m for _, m in PART_A) == PC.AUTO_MARKS == 30 and len(PART_A) == 14
     assert sum(m for _, m in PART_B) == PC.PART_B == 15
@@ -54,7 +61,7 @@ def check_facts():
     return {c: PC.COHORT[c]['class3'] for c in ('CML3112', 'CML3113', 'CML3111')}
 
 
-def run(p, text, bold=False, italic=False, size=10.5, color=None):
+def run(p, text, bold=False, italic=False, size=10, color=None):
     r = p.add_run(text)
     r.bold, r.italic = bold, italic
     r.font.size = Pt(size)
@@ -65,7 +72,7 @@ def run(p, text, bold=False, italic=False, size=10.5, color=None):
     return r
 
 
-def para(d, text='', bold=False, size=10.5, before=0, after=6, italic=False):
+def para(d, text='', bold=False, size=10, before=0, after=6, italic=False):
     p = d.add_paragraph()
     p.paragraph_format.space_before, p.paragraph_format.space_after = Pt(before), Pt(after)
     p.paragraph_format.line_spacing = 1.15
@@ -128,13 +135,13 @@ def build():
     sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)
     sec.left_margin = sec.right_margin = Cm(2.2)
     sec.top_margin, sec.bottom_margin = Cm(2.0), Cm(2.0)
-    st = d.styles['Normal']; st.font.name = FONT; st.font.size = Pt(10.5)
+    st = d.styles['Normal']; st.font.name = FONT; st.font.size = Pt(10)
     d.core_properties.title = 'Final practical project: questions, instructions and conduct'
     d.core_properties.author = 'Jotham Martin Wambi'
 
     para(d, 'International University of East Africa, Faculty of Engineering', True, 10.5, after=10)
     for k, v in [('To', 'The Dean, Faculty of Engineering'), ('From', 'Jotham Martin Wambi, lecturer, Machine Learning for Engineers'),
-                 ('Courses', 'CML3111, CML3112 and CML3113 (Year 3)'), ('Date', '14 November 2026'),
+                 ('Courses', 'CML3111, CML3112 and CML3113 (Year 3)'), ('Date', '16 November 2026'),
                  ('Subject', 'Final practical project for Semester 1: the questions, the instructions and how it will be taken')]:
         p = para(d, after=2)
         run(p, f'{k}: ', True); run(p, v)
@@ -149,18 +156,20 @@ def build():
               '(Kampala time). There is no room booking.', 'Window.')
     bullet(d, 'Each student works alone for 3 hours, counted on our server from the moment they press Start. The clock cannot be paused. '
               'A student who starts after 20:59 on Wednesday only has the time left before 23:59.', 'Time.')
-    bullet(d, 'Students use their own laptop and Google account and work in Google Colab. They sign in on an entry page with their '
-              'registration number and Google email, typed twice. Nobody is turned away: a student not on my list can still start, and I '
-              'confirm their enrolment afterwards. Pressing Start creates their own copy of the notebook in my Google Drive and '
-              'shares it with them.', 'Setup.')
+    bullet(d, 'Students use their own laptop and Google account and work in Google Colab. On the entry page they choose their course, '
+              'type their registration number and their Google email twice. A number that belongs to another course is refused, so no '
+              'student can sit another class\'s paper. A student missing from my list can still start, and I confirm their enrolment '
+              'afterwards. Pressing Start creates their own copy of the notebook in my Google Drive and shares it with them.', 'Setup.')
     bullet(d, 'There is no submit button to forget. At each student\'s deadline their access ends and the work saved by then is '
               'collected automatically. The notebook also keeps a backup every five minutes, so a student who runs out of time, loses '
               'power or works in a copy of the file still has their work marked. Nothing saved after the deadline counts.', 'Collection.')
     bullet(d, 'I answer questions about wording and technical problems on the class channel from 08:00 to 20:00 on each day of the window. '
               'If a student\'s laptop or connection fails, they report it at once with a screenshot and I can give one fresh attempt, still '
               'ending at the window\'s close.', 'Support.')
-    bullet(d, f'Students get an unmarked practice version right after Class 3: CML3112 on {rehearsal["CML3112"]}, CML3113 and CML3111 on '
-              f'{rehearsal["CML3111"]}. It has exactly the project\'s tasks on the same data, split differently so every number differs. I will work through it with each class in that week\'s revision class, because many students are still finding their feet with the code.', 'Rehearsal.')
+    bullet(d, f'Next week is a revision class for each course (CML3112 on {rehearsal["CML3112"]}, CML3113 and CML3111 on {rehearsal["CML3111"]}). '
+              'I work through a rehearsal of the project on the projector: the same tasks on the same data, split differently so every number '
+              'differs. Students watch and take notes; only I can open the rehearsal. Many students are still finding their feet with the code, '
+              'so this is where I take them through it step by step.', 'Rehearsal.')
 
     heading(d, '2. The data')
     para(d, 'Every student gets the same two tables, built from published data and stored inside the notebook, so nothing is downloaded '
@@ -195,8 +204,9 @@ def build():
     table(d, [[t, m] for t, m in PART_B] + [['Total', 15]], [13.6, 2.6], ['Part B field', 'Marks'])
     para(d, 'The 45 marks are scaled to 40 percent. The project rests on what all three classes have been taught: Python and data handling '
             '(Weeks 1 to 7) and the regression workflow of Week 8. Question 2 uses Week 9 (logistic regression and the decision tree classifier), which two classes had as a lecture, '
-            'and the text-column task uses one-hot encoding, which no class had; both carry few marks and all three classes work through them '
-            'in next week\'s revision class. I have left out cross-validation and the later topics.')
+            'and CML3112 meets in the revision class. The text-column task uses one-hot encoding, which no class had as a lecture; it carries 2 marks '
+            'and I show it in the revision class. There is no simple average (baseline) model: the classes learned that the average is a poor '
+            'predictor, so they now compare two real models in each question. I have left out cross-validation and the later topics.')
 
     heading(d, '5. Rules for students')
     bullet(d, 'Colab, the course slides, their lab notebooks, the revision guide and their own notes.', 'Allowed:')
@@ -206,28 +216,21 @@ def build():
               'I applied the same rule when re-checking Practical Test 1 and the coding assignments.', 'Own cells:')
 
     heading(d, '6. Marking')
-    bullet(d, 'The notebooks are marked by computer, as Practical Test 1 was, but now as each one arrives, in a locked-down copy of the '
-              'Colab setup. Each student\'s code for every task is run again on rows they have never seen, so typed or copied numbers earn '
-              'nothing, and a mistake in one task does not cost marks in the next. Before the deadline a student can press Check my work to '
-              'see that the notebook runs and has every required part. The marks are released after the window closes.', 'Automatic.')
-    bullet(d, 'Before release I ran the marking on 177 prepared notebooks, correct, partly correct, wrong and dishonest ones, and each received '
-              'the mark it should.', 'Tested.')
-    bullet(d, 'The computer compares the written answers for copying, and checks each notebook against the identity '
-              'used at entry. I look at every flagged case myself. Because the project is unsupervised, I may also ask any student to explain or '
-              'change their code in a short online call after the window.', 'Honesty.')
-    bullet(d, 'Marks will be final by Wednesday 2 December 2026, after questions and checks are settled. Each student receives written '
-              'feedback for each task.', 'Results.')
+    para(d, 'I have built a grading system for this project: the computer does the marking, and I stay in the loop to check its results '
+            'and decide every case it cannot settle.', after=3)
+    bullet(d, 'Each notebook is marked as it arrives, in a locked-down copy of the Colab setup. Each student\'s code for every task is '
+              'run again on rows they have never seen, so typed or copied numbers earn nothing, and a mistake in one task does not cost '
+              'marks in the next. Before the deadline a student can press Check my work to see that the notebook runs and has every '
+              'required part. No mark is shown until the window closes.', 'Automatic marking.')
+    bullet(d, 'The system flags anything unusual: copied written answers, a notebook that does not match the identity used at entry, '
+              'work saved late, or results that were typed rather than calculated. A flag never changes a mark by itself. I review every '
+              'flagged case, decide it, and record my decision.', 'Me in the loop.')
+    bullet(d, 'Marks will be final by Wednesday 2 December 2026, after my checks and any student questions are settled. Each student '
+              'receives written feedback for each task.', 'Results.')
 
-    heading(d, '7. Still to be done before the window')
-    bullet(d, 'The marking system and entry page are already set up. Run the whole process once in Colab myself, from entry to marked result.')
-    bullet(d, 'Confirm the 08:00 to 20:00 support hours with the three classes.')
-    bullet(d, 'Any student with approved extra time or another arrangement: I would be grateful to know by 20 November so it can be set up.')
-
-    para(d, after=14)
-    t = d.add_table(rows=2, cols=3); borders(t)
-    for j, lab in enumerate(['Course lecturer', 'Head of Department', 'Dean, Faculty of Engineering']):
-        c = t.rows[0].cells[j]; c.width = Cm(5.4); run(c.paragraphs[0], lab, size=9.5)
-        c2 = t.rows[1].cells[j]; run(c2.paragraphs[0], '\n\nSignature and date', size=8.5, color='777777')
+    para(d, 'This note is for your information. I will share the results with the faculty once marking is complete.', before=6)
+    para(d, 'Jotham Martin Wambi', bold=True, before=4, after=0)
+    para(d, 'Lecturer, Machine Learning for Engineers', after=0)
 
     d.save(str(OUT))
     prof = Path(tempfile.gettempdir()) / 'iuea_dean_lo'
