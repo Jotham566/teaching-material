@@ -59,6 +59,7 @@ var PORTAL_REG_FORMAT=/^\d{2}\/[A-Z0-9]{1,8}(\/[A-Z0-9]{1,8}){1,3}(-[A-Z0-9]{1,4
 function portalRegNormal_(value){return String(value||'').toUpperCase().replace(/\s+/g,'');}
 // No mixing of programmes (lecturer, 15 November 2026). Each course belongs to set programmes, read from the class list of 14 November 2026.
 // The programme code is the last part of the registration number, before any -S/-J (24/351/BSCE-S -> BSCE).
+var PORTAL_DEMO_REGISTRATIONS=['26/SMOKE/001/TEST','26/DEMO/001/LECTURER'];
 var PORTAL_PROGRAMMES={BSEE:'CML3111',BSMRE:'CML3111',BSCE:'CML3112',BARC:'CML3112',BSME:'CML3113',BSPE:'CML3113',BPE:'CML3113'};
 function portalProgramme_(reg){var parts=String(reg).split('/');return parts[parts.length-1].replace(/-.*$/,'');}
 // Open entry (lecturer, 14 November 2026): nobody is refused for not being on the class list. The registration must match a sensible
@@ -68,6 +69,14 @@ function portalClassEntry_(book,key,registration,typedName){
  var reg=portalRegNormal_(registration),course=String(key).split('|')[0];
  if(!reg)throw Error('Enter your registration number.');
  if(!PORTAL_REG_FORMAT.test(reg))throw Error('Enter your registration number as it is on your student card, for example 24/351/BSCE-S.');
+ // The rehearsal is the lecturer's, run live in the revision class (lecturer, 16 November 2026): only the demo numbers open it, in any course.
+ // The demo numbers never open the real project.
+ var demo=PORTAL_DEMO_REGISTRATIONS.indexOf(reg)>=0;
+ if(String(key).split('|')[1]==='ML_REHEARSAL'){
+  if(!demo)throw Error('This registration number cannot open the rehearsal: your lecturer runs it in class. Your project opens on Monday 23 November 2026.');
+  return {registration:reg,name:'Lecturer demo',course:course,onList:true};
+ }
+ if(demo)throw Error('This registration number is for practice only. Enter your own registration number.');
  var sheet=book.getSheetByName('Class list');
  var rows=sheet?sheet.getDataRange().getValues().slice(1).filter(function(r){return portalRegNormal_(r[1])===reg;}):[];
  var here=rows.filter(function(r){return String(r[0]).trim().toUpperCase()===course;})[0];
@@ -89,6 +98,9 @@ function portalMlFill_(nb,record,email,deadline,parts){
  var ident={name:String(record[6]||''),registration:String(record[1]),email:email,course:parts[0],test:parts[1],allocation:String(record[3]),deadline:deadline};
  cell.source=src.replace(/^_IUEA_IDENTITY = .*$/m,function(){return '_IUEA_IDENTITY = '+JSON.stringify(ident);});
  cell.metadata=cell.metadata||{};cell.metadata.cellView='form';
+ // The deadline in plain text at the top, visible before anything runs (lecturer, 16 November 2026).
+ var intro=nb.cells[0],text=Array.isArray(intro.source)?intro.source.join(''):intro.source,when=Utilities.formatDate(new Date(deadline),'Africa/Kampala','EEEE d MMMM yyyy, HH:mm');
+ intro.source=text.replace(/\n/,'\n**'+(parts[1]==='ML_REHEARSAL'?'Practice deadline (nothing is locked)':'Your deadline')+': '+when+' Kampala time.**\n');
 }
 function portalNameHint_(name){
  var words=String(name||'').trim().split(/\s+/).filter(String);

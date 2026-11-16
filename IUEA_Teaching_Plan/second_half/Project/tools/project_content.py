@@ -3,8 +3,8 @@ Part B memo form, the marks and the window rules. The notebooks, the rehearsal, 
 
 Plain code (lecturer's redesign of 14 November 2026): students write ordinary straight-line code, no function placeholders. Each task
 names its INPUT variables and the RESULT names to store. The grader re-runs each task's cells on hidden inputs (own_cells.py).
-ONE supplied code cell, "Setup: run me first": the data (the development rows as in the file, and the cleaned test rows) packed inside it
-with a SHA-256 check, the constants, choose_model, open_test_set, the silent backup and the countdown line after every cell.
+ONE supplied code cell, "Setup: run me first": the two tables as students receive them (organised, with the added problems) packed inside it
+with a SHA-256 check, the constants, choose_model, the silent backup and the clock.
 """
 import base64
 import bz2
@@ -44,13 +44,13 @@ AUTO_MARKS = K.PART_A_MAX                         # 30
 PART_B = K.PART_B_MAX                             # 15
 TIME_PLAN = [('Run the setup cell', 5), ('Task 1: clean the data, Chart 1', 35), ('Task 2: split into training and validation rows', 10),
              ('Task 3: three models, MAE and RMSE, Chart 2', 40), ('Task 3b: the text columns (recipe given)', 10), ('Task 4: warnings', 15),
-             ('Tasks 5 and 6: choose, open the test set', 15), ('Task 7: MEMO form', 25), ('Restart and run all, Check my work', 20), ('Spare', 5)]
+             ('Tasks 5 and 6: choose, use the test set once', 15), ('Task 7: MEMO form', 25), ('Restart and run all, Check my work', 20), ('Spare', 5)]
 assert sum(m for _, m in TIME_PLAN) == MINUTES
-OWN_CELLS = 'Add as many cells as you like under a task; plain code is fine (no functions needed).'
+OWN_CELLS = 'Write your own code under each task and add cells as you need. Store each result under the name given.'
 SOURCE = P.SOURCE
 CITATION = P.CITATION
 CFGS = {'exam': P.EXAM, 'rehearsal': P.REHEARSAL}
-SETUP_TITLE = '#@title Setup: run me first'
+SETUP_TITLE = '#@title Setup: run me first. DO NOT EDIT THIS CELL'
 SETUP_MARKER = '# IUEA-SETUP-CELL'
 IDENTITY_LINE = '_IUEA_IDENTITY = {}'
 
@@ -66,9 +66,6 @@ def options(code, v=None):
 
 
 # ------------------------------------------------------------------------------------------------ the data inside the setup cell
-H_CLEAN_COLUMNS = P.H_KEEP + ['living_m2']
-
-
 def csv_text(rows, columns, delimiter=','):
     out = io.StringIO()
     w = csv.writer(out, lineterminator='\n', delimiter=delimiter)
@@ -79,15 +76,9 @@ def csv_text(rows, columns, delimiter=','):
 
 
 def data_payload():
-    """The development rows of both files exactly as written (four fifths of each), and the cleaned test rows (one fifth, opened once)."""
-    hl = P.houses_text().splitlines()
-    ml = P.machines_text().splitlines()
-    ht, mt = P.test_positions(len(hl) - 1), P.test_positions(len(ml) - 1)
-    hd = [hl[0]] + [l for i, l in enumerate(hl[1:]) if i not in ht]
-    md = [ml[0]] + [l for i, l in enumerate(ml[1:]) if i not in mt]
-    _, houses_test, _, machines_test = P.tables()
-    return json.dumps({'houses': '\n'.join(hd) + '\n', 'machines': '\n'.join(md) + '\n',
-                       'house_test': csv_text(houses_test, H_CLEAN_COLUMNS), 'machine_test': csv_text(machines_test, P.M_KEEP)}, separators=(',', ':')).encode()
+    """The two tables as students receive them (organised, with the added problems), as CSV text."""
+    return json.dumps({'houses': csv_text(P.houses_given(), P.H_COLUMNS), 'machines': csv_text(P.machines_given(), P.M_COLUMNS)},
+                      separators=(',', ':')).encode()
 
 
 def data_sha():
@@ -109,7 +100,8 @@ def setup_cell(cfg=P.EXAM, code='CML3112', test_id='ML_PROJECT'):
     import pipeline_cells as PL
     identity = json.dumps({'course': code, 'test': test_id})
     return f"""{SETUP_TITLE}
-{SETUP_MARKER} (supplied). Run it first, and again after a restart. The marking computer always uses the original of this cell.
+{SETUP_MARKER} (supplied). DO NOT EDIT OR DELETE THIS CELL. Run it first, and again after a restart. It shows your time left.
+# Any change made here is undone: the marking computer always uses the original of this cell.
 {IDENTITY_LINE[:-2]}{identity}
 import base64, bz2, hashlib, io, json, os
 import numpy as np
@@ -136,9 +128,8 @@ _bytes = bz2.decompress(base64.b64decode("".join(_PACKED.split())))
 if hashlib.sha256(_bytes).hexdigest() != {data_sha()!r}:
     raise RuntimeError("The data in this cell is damaged. Tell your lecturer.")
 _data = json.loads(_bytes)
-# Houses: Ames, Iowa sales 2006 to 2010 (De Cock 2011). Machines: AI4I 2020, SYNTHETIC data modelled on real maintenance data (Matzka 2020).
-H_KEEP = {P.H_KEEP!r}
-M_KEEP = {P.M_KEEP!r}
+# Houses: Ames, Iowa sales 2006 to 2010 (De Cock 2011). Machines: AI4I 2020, synthetic data modelled on real machine logs (Matzka 2020).
+# Both tables were organised for this project, and a few problems were ADDED on purpose for you to clean (see "The data").
 H_TARGET, H_UNIT = {cfg["h_target"]!r}, {cfg["h_unit"]!r}
 H_FEATURES = {cfg["h_features"]!r}
 TEXT_FEATURES = {cfg["h_text"]!r}
@@ -147,24 +138,50 @@ M_FEATURES = {cfg["m_features"]!r}
 THRESHOLD = {P.THRESHOLD}
 MAX_MAE, MAX_MS = {cfg["max_mae"]!r}, {P.MAX_MS}   # the client's limits: teaching numbers, not real ones
 LATENCY_MS = {P.LATENCY_MS!r}
-houses_raw = pd.read_csv(io.StringIO(_data["houses"]), sep="\\t")
+houses_raw = pd.read_csv(io.StringIO(_data["houses"]))
 machines_raw = pd.read_csv(io.StringIO(_data["machines"]))
-_HOUSE_TEST = pd.read_csv(io.StringIO(_data["house_test"]))
-_MACHINE_TEST = pd.read_csv(io.StringIO(_data["machine_test"]))
 def choose_model(maes):
     ok = [m for m in maes if maes[m] is not None and maes[m] <= MAX_MAE and LATENCY_MS[m] <= MAX_MS]
     return min(ok, key=lambda m: (maes[m], LATENCY_MS[m], m)) if ok else None
-TEST_OPEN_LOG = []
-def open_test_set(model_name):
-    if model_name not in ("baseline", "linear", "tree"):
-        raise ValueError('use "baseline", "linear" or "tree"')
-    if TEST_OPEN_LOG or os.path.exists("test_opened.json"):
-        print("WARNING: THE TEST SET WAS ALREADY OPENED. Opening it again means it is no longer an honest test.")
-    json.dump({{"model": model_name}}, open("test_opened.json", "w"))
-    TEST_OPEN_LOG.append([model_name, THRESHOLD])
-    return _HOUSE_TEST.copy(), _MACHINE_TEST.copy()
-print("houses_raw:", houses_raw.shape, "| machines_raw:", machines_raw.shape, "| H_TARGET:", H_TARGET, "| M_TARGET:", M_TARGET)
+print("houses_raw:", houses_raw.shape, "| machines_raw:", machines_raw.shape)
 """ + PL.backup_code() + PL.countdown_code()
+
+
+# ------------------------------------------------------------------------------------------------ the data, introduced to students
+def data_markdown():
+    """The cell right after Setup: what the two tables are, every column in plain words, and the problems added for cleaning."""
+    hp, mp = P.H_PROBLEMS, P.M_PROBLEMS
+    return f'''## The data
+Setup loads two tables. Both are real published data, organised for this project. **A few problems were added on purpose** for you to clean in Task 1.
+
+**`houses_raw`**: {len(P.houses_given()):,} house sales in Ames, Iowa (USA), 2006 to 2010. One row is one sale. Question 1 predicts the price.
+
+| Column | Meaning |
+|---|---|
+| `house_id` | Sale number |
+| `neighbourhood` | Area of the city (text) |
+| `building_type` | Detached, townhouse, duplex or two-family conversion (text) |
+| `overall_quality`, `overall_condition` | Rating from 1 (very poor) to 10 (excellent) |
+| `year_built`, `year_remodelled` | Year |
+| `living_area_m2`, `basement_area_m2`, `lot_area_m2`, `garage_area_m2` | Area in square metres |
+| `lot_frontage_m` | Length of the plot along the street, in metres |
+| `bedrooms`, `full_bathrooms`, `garage_cars`, `fireplaces` | Counts |
+| `kitchen_quality` | Excellent, good, average, fair or poor (text) |
+| **`sale_price_usd`** | Price paid, in US dollars. **The target of Question 1.** |
+
+**`machines_raw`**: {len(P.machines_given()):,} runs of a metal-cutting (milling) machine. The data are synthetic: generated to behave like real machine records. One row is one run. Question 2 warns of a failure.
+
+| Column | Meaning |
+|---|---|
+| `machine_id` | Record number |
+| `product_type` | Product quality: L (low), M (medium) or H (high) |
+| `air_temp_k`, `process_temp_k` | Air and process temperature, in kelvin |
+| `rotation_speed_rpm` | Spindle speed, in revolutions per minute |
+| `torque_nm` | Turning force, in newton metres |
+| `tool_wear_min` | Minutes the cutting tool has been in use |
+| **`failure`** | 1 if the machine failed during the run, 0 if not. **The target of Question 2.** |
+
+**Problems to clean (Task 1):** duplicate rows, rows with no target value, and impossible values (for example a negative area). Some values are also missing, for example `lot_frontage_m`: leave those for the imputer.'''
 
 
 # ------------------------------------------------------------------------------------------------ the tasks
@@ -177,42 +194,56 @@ def tasks(cfg=P.EXAM):
     warn = ('a machine failure (`Machine failure` is 1)' if cfg['m_target'] == 'Machine failure' else f'a reading with `{cfg["m_target"]}` at or above `M_LIMIT` ({cfg["m_limit"]})')
     out = []
     out.append(dict(key='clean', title='Clean the two tables', marks=dict(clean=marks['clean']), inputs=['houses_raw', 'machines_raw'], results=['houses', 'machines'],
-        text=('`houses`: from `houses_raw` keep only the columns `H_KEEP` (every column except the identifier PID), '
-              'drop the houses with `Gr Liv Area` above 4000 sq ft (the data\'s author advises this: 5 unusual sales), and add `living_m2` = `Gr Liv Area` times 0.092903. '
-              'Keep the missing values: the imputer fills them later from the training rows only.\n'
-              '`machines`: from `machines_raw` keep only `M_KEEP`, which drops the identifiers (`UDI`, `Product ID`) and `TWF`, `HDF`, `PWF`, `OSF`, `RNF` (they record the failure itself and would leak the answer), '
-              'and turn `Type` into a number: L is 0, M is 1, H is 2. Do not change the raw tables.\n'
-              f'Chart 1: a scatter of `{x}` (across) against `H_TARGET` (up) from `houses`, with a title, both axis names and the unit ({u}).'),
-        solution=f'''houses = houses_raw[H_KEEP].copy()
-houses = houses[~(houses["Gr Liv Area"] > 4000)]
-houses["living_m2"] = houses["Gr Liv Area"] * 0.092903
-machines = machines_raw[M_KEEP].copy()
-machines["Type"] = machines["Type"].map({{"L": 0, "M": 1, "H": 2}})
+        text=('Start from a copy (`houses = houses_raw.copy()`, the same for machines), then for each table:\n'
+              '1. Remove duplicate rows.\n'
+              '2. Remove the rows with no target value (`H_TARGET` for houses, `M_TARGET` for machines).\n'
+              f'3. Remove the rows with an impossible value. Houses: `living_area_m2` must be above 0 and `year_built` must be {P.LAST_YEAR} or earlier. '
+              'Machines: `torque_nm` and `rotation_speed_rpm` must be above 0.\n'
+              '4. Machines only: change `product_type` to a number (L = 0, M = 1, H = 2).\n\n'
+              'Leave the other missing values: in Task 3 the imputer fills them from the training rows only.\n'
+              f'**Chart 1:** a scatter of `{x}` (across) against `H_TARGET` (up), from `houses`, with a title, axis labels and the unit ({u}).'),
+        solution=f'''houses = houses_raw.copy()
+houses = houses.drop_duplicates()
+houses = houses.dropna(subset=[H_TARGET])
+houses = houses[(houses["living_area_m2"] > 0) & (houses["year_built"] <= {P.LAST_YEAR})]
+machines = machines_raw.copy()
+machines = machines.drop_duplicates()
+machines = machines.dropna(subset=[M_TARGET])
+machines = machines[(machines["torque_nm"] > 0) & (machines["rotation_speed_rpm"] > 0)].copy()
+machines["product_type"] = machines["product_type"].map({{"L": 0, "M": 1, "H": 2}})
 print(houses.shape, machines.shape)
 
 plt.figure()
 plt.scatter(houses["{x}"], houses[H_TARGET], s=4)
-plt.title("Chart 1: {cfg['short']} against {x}")
-plt.xlabel("{x}")
+plt.title("Chart 1: {cfg['short']} against living area")
+plt.xlabel("Living area (m2)")
 plt.ylabel("{cfg['short'].capitalize()} ({u})")
 plt.show()
 '''))
-    out.append(dict(key='split', title='Split into training and validation rows', marks=dict(split=marks['split']), inputs=['houses', 'machines'],
-        results=['houses_train', 'houses_valid', 'machines_train', 'machines_valid'],
-        text=(f'Use exactly this rule for each table: `houses_valid = houses.sample(frac=0.25, random_state={s})` and `houses_train = houses.drop(houses_valid.index)`; the same for `machines`. '
-              'The test rows (a fifth of each file) were set aside in the setup cell: we never tune on them, so they stay an honest test.'),
-        solution=f'''houses_valid = houses.sample(frac=0.25, random_state={s})
-houses_train = houses.drop(houses_valid.index)
-machines_valid = machines.sample(frac=0.25, random_state={s})
-machines_train = machines.drop(machines_valid.index)
-print(len(houses_train), len(houses_valid), len(machines_train), len(machines_valid))
+    out.append(dict(key='split', title='Split into training, validation and test sets', marks=dict(split=marks['split']), inputs=['houses', 'machines'],
+        results=['houses_train', 'houses_valid', 'houses_test', 'machines_train', 'machines_valid', 'machines_test'],
+        text=('Use exactly these four lines for houses, then the same four for machines:\n'
+              f'`houses_test = houses.sample(frac=0.2, random_state={s})`  \n'
+              '`houses_rest = houses.drop(houses_test.index)`  \n'
+              f'`houses_valid = houses_rest.sample(frac=0.25, random_state={s})`  \n'
+              '`houses_train = houses_rest.drop(houses_valid.index)`\n\n'
+              'This gives 60 percent training, 20 percent validation and 20 percent test rows. Do not use the test rows until Task 6.'),
+        solution=f'''houses_test = houses.sample(frac=0.2, random_state={s})
+houses_rest = houses.drop(houses_test.index)
+houses_valid = houses_rest.sample(frac=0.25, random_state={s})
+houses_train = houses_rest.drop(houses_valid.index)
+machines_test = machines.sample(frac=0.2, random_state={s})
+machines_rest = machines.drop(machines_test.index)
+machines_valid = machines_rest.sample(frac=0.25, random_state={s})
+machines_train = machines_rest.drop(machines_valid.index)
+print(len(houses_train), len(houses_valid), len(houses_test), len(machines_train), len(machines_valid), len(machines_test))
 '''))
     out.append(dict(key='regression', title=f'Question 1: predict {cfg["what"]}', marks=dict(regression=marks['regression'], errors=marks['errors'], leakage=marks['leakage'], charts=marks['charts']),
         inputs=['houses_train', 'houses_valid'], results=['baseline_pred', 'linear_pred', 'tree_pred', 'baseline_mae', 'linear_mae', 'tree_mae', 'baseline_rmse', 'linear_rmse', 'tree_rmse'],
-        text=('Fit each model on `houses_train` only (columns `H_FEATURES`, target `H_TARGET`) and predict `houses_valid`: `make_pipeline(SimpleImputer(strategy="median"), model)` with '
+        text=('Fit three models on `houses_train` (columns `H_FEATURES`, target `H_TARGET`), each as `make_pipeline(SimpleImputer(strategy="median"), model)`: '
               '`DummyRegressor()`, `LinearRegression()` and `DecisionTreeRegressor(max_depth=4, random_state=17)`.\n'
-              f'Then the MAE and RMSE of each on `houses_valid`, in {u}.\n'
-              f'Chart 2: a bar chart of the three MAE values, with a title, both axis names and the unit ({u}).'),
+              f'Predict `houses_valid` and compute the MAE and RMSE of each, in {u}.\n'
+              f'**Chart 2:** a bar chart of the three MAE values, with a title, axis labels and the unit ({u}).'),
         solution='''X_train, y_train = houses_train[H_FEATURES], houses_train[H_TARGET]
 X_valid, y_valid = houses_valid[H_FEATURES], houses_valid[H_TARGET]
 baseline = make_pipeline(SimpleImputer(strategy="median"), DummyRegressor()).fit(X_train, y_train)
@@ -236,10 +267,10 @@ plt.show()
 '''.replace('UNIT', u)))
     out.append(dict(key='encoded', label='3b', title='Do the text columns help?', marks=dict(encoded=marks['encoded']), inputs=['houses_train', 'houses_valid'],
         results=['encoded_pred', 'encoded_mae'],
-        text=('A comparison only (it is not one of the models in Task 5). Copy and adapt this recipe: it fills and one-hot encodes the text columns `TEXT_FEATURES`, learning only from `houses_train`:\n'
+        text=('A comparison only: not one of the models in Task 5. Fit this pipeline on `houses_train` (columns `H_FEATURES + TEXT_FEATURES`):\n'
               '`make_pipeline(make_column_transformer((SimpleImputer(strategy="median"), H_FEATURES), (make_pipeline(SimpleImputer(strategy="most_frequent"), '
               'OneHotEncoder(handle_unknown="ignore")), TEXT_FEATURES)), LinearRegression())`\n'
-              f'Fit it on `houses_train` (columns `H_FEATURES + TEXT_FEATURES`), predict `houses_valid`, and store the predictions and their MAE in {u}.'),
+              f'Predict `houses_valid` and compute the MAE, in {u}.'),
         solution='''encoder = make_column_transformer((SimpleImputer(strategy="median"), H_FEATURES),
                                   (make_pipeline(SimpleImputer(strategy="most_frequent"), OneHotEncoder(handle_unknown="ignore")), TEXT_FEATURES))
 encoded = make_pipeline(encoder, LinearRegression()).fit(houses_train[H_FEATURES + TEXT_FEATURES], houses_train[H_TARGET])
@@ -250,8 +281,8 @@ print(encoded_mae, linear_mae)
     out.append(dict(key='warning', title=f'Question 2: warn of {cfg["m_what"]}', marks=dict(warning=marks['warning']), inputs=['machines_train', 'machines_valid'],
         results=['warning_proba', 'tp', 'fp', 'fn', 'tn', 'precision', 'recall'],
         text=(f'A warning is {warn}: `M_TARGET >= M_LIMIT`. Fit `make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))` '
-              'on `machines_train` (columns `M_FEATURES`) and store the probability of a warning for each `machines_valid` row.\n'
-              'Warn when the probability is at least `THRESHOLD` (0.5), compare with the real warnings in `machines_valid`, and store the counts, precision and recall (0 when a count is zero).'),
+              'on `machines_train` (columns `M_FEATURES`). Store the probability of a warning for each `machines_valid` row.\n'
+              'Warn when the probability is at least `THRESHOLD` (0.5). Compare with the real warnings in `machines_valid`; store the counts, precision and recall (0 when a count is zero).'),
         solution='''y_train_warn = (machines_train[M_TARGET] >= M_LIMIT).astype(int)
 y_valid_warn = (machines_valid[M_TARGET] >= M_LIMIT).astype(int)
 warn_model = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))
@@ -264,25 +295,26 @@ recall = recall_score(y_valid_warn, warn, zero_division=0)
 print(tp, fp, fn, tn, precision, recall)
 '''))
     out.append(dict(key='choose', title='Choose one model', marks={}, inputs=['baseline_mae', 'linear_mae', 'tree_mae'], results=['chosen_model'],
-        text=(f'Use the supplied rule (MAE at most `MAX_MAE`, {cfg["max_mae"]:,} {u}, a teaching number; time at most `MAX_MS`; then the smallest MAE): '
-              '`chosen_model = choose_model({"baseline": baseline_mae, "linear": linear_mae, "tree": tree_mae})`. Never use the test rows to choose.'),
+        text=('Run `chosen_model = choose_model({"baseline": baseline_mae, "linear": linear_mae, "tree": tree_mae})`. '
+              f'The rule keeps models with MAE at most `MAX_MAE` ({cfg["max_mae"]:,} {u}) and time at most `MAX_MS`, then takes the smallest MAE. Never use the test rows to choose.'),
         solution='''chosen_model = choose_model({"baseline": baseline_mae, "linear": linear_mae, "tree": tree_mae})
 print(chosen_model)
 '''))
-    out.append(dict(key='test', title='Open the test rows once', marks=dict(test=marks['test']), inputs=['houses_train', 'houses_valid', 'machines_train', 'machines_valid', 'chosen_model'],
-        results=['house_test', 'machine_test', 'test_mae', 'test_recall'],
-        text=('After Task 5, run `house_test, machine_test = open_test_set(chosen_model)` ONCE. Refit the chosen model on `houses_train` and `houses_valid` together and the warning model on '
-              '`machines_train` and `machines_valid` together, then store the MAE on `house_test` and the recall of the warnings on `machine_test` at 0.5.'),
-        solution='''house_test, machine_test = open_test_set(chosen_model)
-both = pd.concat([houses_train, houses_valid])
+    out.append(dict(key='test', title='Use the test set once', marks=dict(test=marks['test']),
+        inputs=['houses_train', 'houses_valid', 'houses_test', 'machines_train', 'machines_valid', 'machines_test', 'chosen_model'],
+        results=['test_mae', 'test_recall'],
+        text=('Only now, after the choice in Task 5, use the test rows, once.\n'
+              '1. Refit the chosen model on `houses_train` and `houses_valid` together. Store its MAE on `houses_test` as `test_mae`.\n'
+              '2. Refit the warning model on `machines_train` and `machines_valid` together. Store its recall on `machines_test` at 0.5 as `test_recall`.'),
+        solution='''both = pd.concat([houses_train, houses_valid])
 models = {"baseline": DummyRegressor(), "linear": LinearRegression(), "tree": DecisionTreeRegressor(max_depth=4, random_state=17)}
 final = make_pipeline(SimpleImputer(strategy="median"), models[chosen_model]).fit(both[H_FEATURES], both[H_TARGET])
-test_mae = np.mean(np.abs(house_test[H_TARGET] - final.predict(house_test[H_FEATURES])))
+test_mae = np.mean(np.abs(houses_test[H_TARGET] - final.predict(houses_test[H_FEATURES])))
 mboth = pd.concat([machines_train, machines_valid])
 final_warn = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))
 final_warn.fit(mboth[M_FEATURES], (mboth[M_TARGET] >= M_LIMIT).astype(int))
-test_warn = (final_warn.predict_proba(machine_test[M_FEATURES])[:, 1] >= THRESHOLD).astype(int)
-test_recall = recall_score((machine_test[M_TARGET] >= M_LIMIT).astype(int), test_warn, zero_division=0)
+test_warn = (final_warn.predict_proba(machines_test[M_FEATURES])[:, 1] >= THRESHOLD).astype(int)
+test_recall = recall_score((machines_test[M_TARGET] >= M_LIMIT).astype(int), test_warn, zero_division=0)
 print(test_mae, test_recall)
 '''))
     number = 0
@@ -301,8 +333,7 @@ def memo_task_no(cfg=P.EXAM):
 def task_markdown(i, task):
     marks = sum(task['marks'].values())
     head = f'## Task {task.get("label", i)}: {task["title"]}' + (f' ({marks} marks)' if marks else '')
-    data = ('\nData: houses from the Ames, Iowa assessor, 2006 to 2010 (De Cock 2011, Journal of Statistics Education 19(3)); machines from AI4I 2020 '
-            '(Matzka 2020, UCI, CC BY 4.0), which is SYNTHETIC data modelled on real maintenance data.') if task['key'] == 'clean' else ''
+    data = ''
     return f"""{head}
 {task['text']}{data}
 
@@ -314,7 +345,7 @@ def memo_markdown(code, cfg=P.EXAM, task_no=7):
     lim = '\n'.join(f'- **{letter}.** {text}' for letter, text, _, _ in limit_opts)
     nxt = '\n'.join(f'- **{letter}.** {text}' for letter, text, _, _ in next_opts)
     return f'''## Task {task_no}: Part B, the decision memo form ({K.PART_B_MAX} automatic marks)
-Fill in `MEMO` in the next cell, for {PAYER}. Use your own numbers, at least two decimals, in {cfg['h_unit']}. You may add one sentence on Task 3b to `answer_choice` (no extra mark).
+Fill in `MEMO` in the next cell, for {PAYER}. Use your own numbers, with at least two decimals, in {cfg['h_unit']}.
 
 | Field | Enter | Marks |
 |---|---|---|
@@ -341,8 +372,8 @@ MEMO_STARTER = '''# Fill in every field; do not rename a field.
 MEMO = {
     "recommended_model": "",                  # "baseline", "linear" or "tree"
     "validation_mae": {"baseline": None, "linear": None, "tree": None},   # your validation MAE values, in UNIT
-    "test_mae": None,                         # the test MAE from your ONE opening, in UNIT
-    "test_recall": None,                      # the test recall from your ONE opening (0 to 1)
+    "test_mae": None,                         # test_mae from Task 6, in UNIT
+    "test_recall": None,                      # test_recall from Task 6 (0 to 1)
     "improvement_over_baseline": None,        # baseline validation MAE minus your recommended model's, in UNIT
     "limits": ["", "", ""],                   # three different letters from the Limits list
     "next_step": "",                          # one letter from the Next step list
@@ -383,10 +414,15 @@ def memo_solution(code, cfg=P.EXAM):
 # ------------------------------------------------------------------------------------------------ rehearsal self-study notes
 # Short notes for a student who missed the revision class, at most 4 bullets each, right before the task that needs them.
 REHEARSAL_NOTES = {
-    'split': '''### Note: training, validation and test rows
-- The model learns from `train`, we compare models on `valid`, and the test rows give one honest estimate at the end.
-- `sample(frac=0.25, random_state=29)` picks the same random quarter every time, so everyone gets the same split (the project uses 17, so its numbers differ from these).
-- If we tuned or chose on the test rows, they would stop being unseen: the score would look better than it really is (**leakage**).
+    'clean': '''### Note: cleaning
+- **Duplicate rows** are the same record entered twice; they count one sale or one machine run twice. `drop_duplicates()` keeps the first copy.
+- A row with **no target value** cannot teach the model anything: remove it with `dropna(subset=[...])`.
+- An **impossible value** (an area of 0 or less, a house built after the sale) is a recording error: keep only the rows that pass the rule, for example `houses[houses["living_area_m2"] > 0]`.
+- Missing values in other columns stay: the imputer fills them later, learning only from the training rows.''',
+    'split': '''### Note: training, validation and test sets
+- The model learns from `train`, we compare models on `valid`, and `test` gives one honest estimate at the end.
+- `sample(frac=0.2, random_state=29)` picks the same random rows every time, so everyone gets the same split (the project uses 17, so its numbers differ from these).
+- If we chose or tuned the model on the test rows, they would stop being unseen and the score would look better than it really is (**leakage**).
 - Slides: Class 3, "Train-test contamination: validation rows in the training set make the score look perfect".''',
     'regression': '''### Note: fit on the training rows only
 - Every number learned from data (the imputation medians, the baseline mean) comes from `train` only, then is applied to `valid`.
@@ -394,7 +430,7 @@ REHEARSAL_NOTES = {
 - Learning from all rows lets the model see the rows it is judged on, so the error looks too small.
 - Slides: Class 3, "The pipeline rule: fit on the training set only, then apply the same numbers".''',
     'encoded': '''### Note: one-hot encoding (shown in the revision class)
-- A model needs numbers. **One-hot encoding** turns a text column into one 0 or 1 column per category: `Neighborhood` "NAmes" becomes a 1 in the column `Neighborhood_NAmes`.
+- A model needs numbers. **One-hot encoding** turns a text column into one 0 or 1 column per category: `neighbourhood` "NAmes" becomes a 1 in the column `neighbourhood_NAmes`.
 - Like the medians, the categories are learned from `houses_train` only: the pipeline learns them in `fit` and reuses them in `predict`.
 - A category that never appears in `houses_train` has no column; `handle_unknown="ignore"` gives it all zeros instead of an error.
 - `SimpleImputer(strategy="most_frequent")` fills a missing text value with the commonest category in `houses_train`.''',
@@ -403,9 +439,9 @@ REHEARSAL_NOTES = {
 - **Confusion matrix:** TP right warning, FP false alarm, FN missed warning, TN rightly none; `confusion_matrix(actual, warned, labels=[0, 1]).ravel()` gives tn, fp, fn, tp.
 - **Precision** = TP / (TP + FP); **recall** = TP / (TP + FN); a zero denominator gives 0.
 - Slides: Class 2, "Logistic regression in three lines: score, probability, prediction" and "The confusion matrix counts true and false positives and negatives".''',
-    'test': '''### Note: open the test set once, then refit
+    'test': '''### Note: use the test set once, then stop
 - The validation set chooses the model; the test set gives **one honest estimate** of the chosen one.
 - Looking at the test set and then changing your choice makes its score too good to trust.
-- Refit on the training and validation rows together (more data), then measure on `house_test` and `machine_test` once.
+- Refit on the training and validation rows together (more data), then measure on `houses_test` and `machines_test` once.
 - Slides: Class 3, "We choose max_depth on the validation set and keep the test set sealed".''',
 }

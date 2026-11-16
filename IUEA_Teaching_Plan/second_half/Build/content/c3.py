@@ -557,7 +557,7 @@ def build(code):
                          'Your final mark comes from A1 to A5, Q1 to Q5, Practical Test 1 and the Engineering ML project, which is worth 40 percent. The project opens before Class 4, so the next three slides are about it.')))
 
     S.append(dict(kind='steps', title='The project is one online sitting of 3 hours between 23 and 25 November',
-                  steps=[dict(head='1 Rehearse', text='The unmarked rehearsal, in the revision class', icon='folder'),
+                  steps=[dict(head='1 Rehearse', text='Watch the rehearsal in the revision class', icon='folder'),
                          dict(head='2 Enter', text='Any time from Mon 23 Nov 00:00 to Wed 25 Nov 23:59', icon='calendar'),
                          dict(head='3 Press Start', text='Your 3 hours (180 minutes) begin', icon='clock'),
                          dict(head='4 Work', text='Part A notebook, 30 marks. Part B memo form, 15 marks', icon='gear'),
@@ -572,28 +572,28 @@ def build(code):
 
     S.append(dict(kind='table', title='You enter on the entry page, write plain code, and your work is collected at the deadline',
                   headers=['Step', 'What you do'],
-                  rows=[['Enter', 'Registration number, check your name, then your Colab Google email twice. A typo can be fixed once in 15 minutes. Press Start: a big countdown shows your 3 hours.'],
-                        ['Setup', 'Open my project in Colab. Run Setup: run me first. After every cell a line shows the time left.'],
+                  rows=[['Enter', 'Choose your course, type your registration number and check your name, then your Colab Google email twice. Press Start: a big countdown shows your 3 hours.'],
+                        ['Setup', 'Open my project in Colab. Run Setup: run me first; do not edit it. The time left shows after every cell.'],
                         ['Work', 'Under each task, write plain code and store the results it names. No functions needed. Press Ctrl+S now and then.'],
                         ['Finish', 'No Submit button. On the entry page: Check my work runs your notebook from the top. I have finished ends early. Otherwise it is collected at your deadline.'],
                         ['Help', 'Class channel, 08:00 to 20:00 each day. If something fails, post a screenshot at once: I can allow one fresh attempt.']],
                   widths=[3.0, 8.9], icons=['pin', 'gear', 'doc', 'check', 'bell'],
-                  notes=('Type your registration number and check the name is yours. Then type the Google email you use in Colab, twice: the notebook is shared with that account only. A typo can be fixed once, in the first fifteen minutes. Press Start and a big countdown begins. '
+                  notes=('Choose your course first, then type your registration number and check the name is yours. Then type the Google email you use in Colab, twice: the notebook is shared with that account only. A typo can be fixed once, in the first fifteen minutes. Press Start and a big countdown begins. '
                          'In Colab, run the one supplied cell, Setup: run me first. After every cell a line shows the time left. Under each task, write plain code and store the results it names. '
                          'There is no Submit button. Your work is collected at your deadline. Before then, restart and run all, press Control S, and use Check my work on the entry page. '
                          'If something fails, post a screenshot on the class channel at once. Have you ever lost marks because a notebook did not run from the top?')))
 
     S.append(dict(kind='table', title='The project tests data cleaning, three regression models, a warning question and one honest test',
                   headers=['Part', 'What it tests'],
-                  rows=[['The data', 'Two files, the same for everyone: 2,930 real house sales in Ames, Iowa (De Cock 2011) and 10,000 synthetic machine records (AI4I 2020).'],
+                  rows=[['The data', 'Two tidy tables, the same for everyone: real Ames house sales and synthetic AI4I machine runs, with a few problems added to clean.'],
                         ['Part A, 30 marks', 'Clean 6, charts 2, split 2, three models 6, MAE and RMSE 3, no leakage 2, warning 3, test set once 2, results and MEMO 2, text columns (Task 3b) 2.'],
                         ['Two questions', 'Predict the sale price (USD): baseline, linear regression, tree. Warn of a machine failure: logistic regression at 0.5, then TP, FP, FN, TN, precision, recall.'],
                         ['Part B, 15 marks', 'The memo form: the chosen model, your numbers, limits, a next step.'],
                         ['Rules', 'Work alone, with no AI tool. Anyone may be asked online to explain their code.']],
                   widths=[3.0, 8.9], icons=['chart', 'gear', 'bell', 'doc', 'shield'],
-                  notes=('Here is what the project tests. There are two files, the same for every student: real house sales from Ames, Iowa, and synthetic machine records from the AI4I 2020 data. '
+                  notes=('Here is what the project tests. There are two tables, the same for every student: real house sales from Ames, Iowa, and synthetic machine runs from the AI4I 2020 data. They come organised, with a few problems added for you to clean. '
                          'Question 1 predicts the sale price in US dollars with a baseline, a linear regression and a decision tree, scored by MAE and RMSE. Task 3b adds the text columns with one-hot encoding, from a recipe in the task. '
-                         'Question 2 warns of a machine failure with logistic regression at the fixed threshold 0.5. The split uses a fixed seed, and the test set is opened once with the supplied cell. Part B is the memo form. '
+                         'Question 2 warns of a machine failure with logistic regression at the fixed threshold 0.5. You split each table yourself and use the test set once, at the end. Part B is the memo form. '
                          f'You work alone, with no AI tool. Class 4 is on {c4day}. Which item worries you most?')))
 
     s['facilitator'] = dict(
@@ -607,7 +607,7 @@ def build(code):
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               'Say early that the test group E6 stays sealed. It is opened once, after the model and any threshold are chosen; the chosen model is then refitted on E1 to E5 and scored once on E6 (Class 4 shows this). Say that the validation fold in K-fold cross-validation is a different thing from the test set E6.',
               'The deck has five formula slides (training and validation error, the generalisation gap, the simplest-model-within-a-tolerance rule, K-fold mean and standard deviation, the pipeline rule). Each names every symbol and works the cohort numbers. The GroupKFold slide states that the same formulas apply with four groups. Students can revise from the PDF alone.',
-              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number and the Google email typed twice (one typo fix in the first 15 minutes), run Setup: run me first, plain code under each task storing the named results, a countdown line after every cell, no Submit button (work collected at the deadline), Check my work and I have finished on the entry page, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data as two files: Ames house sales (real, De Cock 2011; all numeric columns, and the text columns one-hot encoded in Task 3b) and AI4I 2020 machine records (synthetic, UCI, CC BY 4.0; the failure-type columns are dropped because they give the answer away). The split is a seeded random split, sample(frac=0.25, random_state=17); the rehearsal uses random_state=29.',
+              'The project slides at the end follow the blueprint of 14 November 2026: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, marked by computer; enter with the registration number and the Google email typed twice (one typo fix in the first 15 minutes), run Setup: run me first, plain code under each task storing the named results, a countdown line after every cell, no Submit button (work collected at the deadline), Check my work and I have finished on the entry page, the mark shown after the window closes; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure. No cross-validation, no cost table and no threshold choice in the project: the warning question uses the fixed threshold 0.5. Describe the data as two organised tables (16 November 2026): Ames house sales (real, De Cock 2011; 18 plain columns in metric units, three text columns one-hot encoded in Task 3b) and AI4I 2020 machine runs (synthetic, UCI, CC BY 4.0). A few duplicates, missing targets and impossible values were added on purpose for cleaning, and the notebook says so. Students split 60/20/20 with four given lines per table (random_state=17; the rehearsal uses 29) and use the test set once, after the choice. The rehearsal is run by the lecturer in the revision class; students watch.',
               'Have the rehearsal entry link (same entry page, practice target, nothing locked or marked) ready to release right after the class: CML3112 Tuesday 17 November, CML3113 and CML3111 Friday 20 November.',
               'All three cohorts use the same deck and the same clock for this class.'],
         misconceptions=[('The model with the lowest training error is the best model', 'Training error can reach zero by overfitting (fitting the noise in the training set). Judge on held-out rows.'),

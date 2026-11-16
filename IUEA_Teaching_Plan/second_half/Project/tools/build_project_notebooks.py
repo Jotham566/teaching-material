@@ -1,7 +1,7 @@
 """Build the project notebooks. python3 tools/build_project_notebooks.py [--require-forms]
 
 Plain code (lecturer's redesign of 14 November 2026). Each notebook is:
-  a short opening (at most 5 lines), ONE supplied code cell "Setup: run me first" (collapsed), then for each task a heading with two or three
+  a short opening (at most 7 short lines, the deadline among them once issued), ONE supplied code cell "Setup: run me first" (collapsed), then for each task a heading with two or three
   lines, the INPUT and the RESULT names, and one empty code cell (students add as many cells as they like), and the Part B MEMO form.
   The rehearsal is the project exactly (same files, tasks, result names and memo) with the split's random_state=29, and short notes
   (at most 4 bullets) before the tasks that need them.
@@ -42,18 +42,21 @@ def load_forms(code, require):
 def intro_cell(code, mode, configured, deadline_slot=False):
     """At most 5 lines. deadline_slot is kept for the bundle builder; the deadline is shown by the countdown line after every cell."""
     w = PC.WINDOW
+    data = '*Data: Ames, Iowa house sales 2006 to 2010 (De Cock 2011); AI4I 2020 machine data, which is synthetic (Matzka 2020, CC BY 4.0).*'
+    steps = f"""1. Run **Setup** (the next cell) first. **Do not edit it.** It shows your time left, and the time shows again after every cell.
+2. Do the tasks in order. {PC.OWN_CELLS}"""
     if mode == 'rehearsal':
-        return f'''# {code} Engineering ML project: REHEARSAL (unmarked), the same tasks as the project
-Run **Setup: run me first**, then do each task in order and store the results it names. The split uses random_state=29 here, so the numbers differ from the project's. Practise with a 3-hour timer.
-There is no Submit button: your notebook saves itself; on the entry page use Check my work and I have finished. Nothing is locked or marked.
-No AI tools and no help from other people, as in the project.
-{PC.OWN_CELLS}'''
+        return f'''# {code} Engineering ML project: REHEARSAL (practice, not marked)
+The same tasks as the project. The split uses random_state=29, so the numbers differ from the project's.
+{steps}
+3. Nothing is locked or marked.
+{data}'''
     draft = '' if configured or mode == 'solution' else ' (DRAFT: do not hand out)'
     return f'''# {code} Engineering ML project{draft}: Part A {K.PART_A_MAX} + Part B {K.PART_B_MAX} marks, scaled to 40 percent
-Run **Setup: run me first**, then do each task in order and store the results it names. Window {w['opens']} to {w['closes']} Kampala time; 3 hours from Start.
-There is no Submit button: your work saves itself and is collected automatically at your deadline. Press Ctrl+S now and then.
-No AI tools and no help from other people; any student may be asked to explain their code in an online call.
-{PC.OWN_CELLS}'''
+{steps}
+3. There is no Submit button. Your work is collected at your deadline. Press Ctrl+S now and then.
+No AI tools and no help from other people. You may be asked to explain your code.
+{data}'''
 
 
 def build_notebook(code, mode, require_forms=False):
@@ -63,6 +66,7 @@ def build_notebook(code, mode, require_forms=False):
     test_id = 'ML_REHEARSAL' if mode == 'rehearsal' else 'ML_PROJECT'
     setup = PC.setup_cell(cfg, code, test_id)
     cells = [cell(intro_cell(code, mode, configured)), cell(setup, True, ['iuea-support'], True)]
+    cells.append(cell(PC.data_markdown()))
     starters = []
     tasks = PC.tasks(cfg)
     for i, task in enumerate(tasks, 1):

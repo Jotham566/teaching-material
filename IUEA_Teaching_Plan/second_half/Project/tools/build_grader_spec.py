@@ -38,8 +38,11 @@ def screen():
         for part in ('train', 'validation', 'test'):
             assert 0.02 < p['positive_share'][part] < 0.5, f'{cfg["key"]}: the {part} set has too few of one class'
         assert p['chosen_model'] is not None, f'{cfg["key"]}: no model meets the client limit'
-        assert p['n']['houses_clean'] == 2339, p['n']
-        assert (p['n']['houses_train'], p['n']['houses_valid'], p['n']['houses_test'], p['n']['machines_train'], p['n']['machines_valid'], p['n']['machines_test']) == (1754, 585, 586, 6000, 2000, 2000), p['n']
+        assert (p['n']['houses_raw'], p['n']['houses'], p['n']['machines_raw'], p['n']['machines']) == (2935, 2913, 10012, 9984), p['n']
+        assert (p['n']['houses_train'], p['n']['houses_valid'], p['n']['houses_test'], p['n']['machines_train'], p['n']['machines_valid'], p['n']['machines_test']) == (1748, 582, 583, 5990, 1997, 1997), p['n']
+        # The added problems never touch a column an invalid-value rule reads with a missing value (so every way of writing the rule agrees).
+        assert not any(r[c] is None for r in P.houses_given() for c in ('living_area_m2', 'year_built')), 'a rule column is missing'
+        assert not any(r[c] is None for r in P.machines_given() for c in ('torque_nm', 'rotation_speed_rpm')), 'a rule column is missing'
 
 
 def screen_encoded():
@@ -74,20 +77,20 @@ def main():
         f'QUESTION_ORDER={list(questions)!r}\nQUESTIONS={questions!r}\n')
     (G / 'hidden/spec_ML_PROJECT_hidden.py').write_text(
         'import sys\nfrom pathlib import Path\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n' + K.hidden_spec_source())
-    desc = dict(clean='The Task 1 cells re-run on hidden raw tables with every original column (houses: real large houses and one at exactly 4,000 sq ft, gaps; machines: the failure-type columns and all three Types). Checks: the whole result, the rows in order, columns kept, houses over 4,000 sq ft removed, living_m2, gaps kept, failure-type columns dropped, Type mapped, raw tables left unchanged.',
+    desc = dict(clean='The Task 1 cells re-run on hidden raw tables with the same kinds of added problems (duplicates, missing targets, impossible values; machines also missing tool wear). Checks: each whole result, no duplicates, no missing target, no impossible value, other gaps kept, product_type mapped, raw tables left unchanged.',
                 charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): a title, named axes, the unit, the right data.',
-                split='The Task 2 cells re-run on hidden clean tables: the validation rows are sample(frac=0.25, random_state=17) and training is the rest, for houses and machines.',
+                split='The Task 2 cells re-run on hidden clean tables (and the same rows reversed): test is sample(frac=0.2, random_state=17), validation is sample(frac=0.25, random_state=17) of the rest, training is what remains, for houses and machines.',
                 regression='The Task 3 cells re-run on hidden train and valid tables: baseline, linear regression and decision tree (max_depth 4, random_state 17) predictions, each with median imputation.',
                 errors='MAE and RMSE of the student\'s own Task 3 predictions on the hidden valid table (a model mistake is not counted twice); printed values count.',
                 leakage='The Task 3 cells re-run twice more: extreme rows added to valid must not change the other predictions, and the baseline must be the mean of the (shifted) train targets.',
                 warning='The Task 4 cells re-run on hidden train and valid: the probabilities (1 mark); the counts, precision and recall at 0.5 from the student\'s own probabilities (2 marks).',
-                test='The Task 6 cells re-run on hidden train, valid and test rows: test MAE and recall after refitting on train and valid; opened once, after the choice, with it, no test row in train or valid.',
+                test='The Task 6 cells re-run on hidden train, valid and test rows: test MAE and recall after refitting on train and valid; the test rows read only after the choice; no test row in train or valid.',
                 results='A third each: validation MAE of the three models and the chosen model on the real file; the same predictions twice, random_state=17, no unseeded randomness; every result and the MEMO form present (Task 3b excluded).',
                 encoded='Task 3b (its cells sit under Task 3): re-run on the Task 3 hidden sets, each with real categories the training rows never show. encoded_pred equals the one-hot reference (handle_unknown="ignore" needed), encoded_mae from the student\'s own predictions, and extra validation rows leave the other predictions unchanged.')
     partA = [dict(id=f'q{i:02d}', title=K.TITLES[t], maximum=m, description=desc.get(t, 'Hidden rows built from the real file. Partial credit by the share of checks passed.')) for i, (t, m) in enumerate(K.PARTS, 1)]
     off = len(K.PARTS)
     partB = [dict(id=f'q{off + i:02d}', title=K.PART_B_TITLES[t], maximum=m, description=d) for i, ((t, m), d) in enumerate(zip(K.PARTB, [
-        'Recommended model was trained, equals the student\'s own rule choice, and is the model the test set was opened with.',
+        'Recommended model was trained, equals the student\'s own rule choice, and the notebook reports a calculated test result for it.',
         'Validation MAE of the three models agrees with the student\'s own values within 0.011.',
         'Test MAE and test recall agree with the grader\'s value on the same predictions within 0.011.',
         'Validation MAE of the baseline minus that of the recommended model, from the student\'s own values, within 0.011 (USD).',
@@ -108,7 +111,7 @@ def main():
         for seed in seeds:
             ht, hv, hx, mt, mv, mx = K.model_case(seed)
             h2, m2 = K.split_case(seed)
-            for label, rows in (('houses_raw_task1', [{c: P.number(v) for c, v in r.items()} for r in K.raw_houses_case(seed)]), ('machines_raw_task1', K.raw_machines_case(seed)),
+            for label, rows in (('houses_raw_task1', K.raw_houses_case(seed)), ('machines_raw_task1', K.raw_machines_case(seed)),
                                 ('houses_task2', h2), ('machines_task2', m2), ('houses_train', ht), ('houses_valid', hv), ('houses_test', hx),
                                 ('machines_train', mt), ('machines_valid', mv), ('machines_test', mx)):
                 path = folder / f'hidden_{seed}_{label}.csv'

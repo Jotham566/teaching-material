@@ -47,7 +47,12 @@ assert.deepEqual({ ...ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', 
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '99/123/TEST-X' }), /This registration number is on the CML3113 class list, not CML3112\. Choose CML3113 as your course\./);
 // No mixing of programmes (15 November 2026): off the list, the programme code must belong to the chosen course; unknown codes are refused.
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3113|ML_PROJECT', registration: '24/999/BSCE-S' }), /is for BSCE, which takes CML3112, not CML3113\. Choose CML3112 as your course\./);
-assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3111|ML_REHEARSAL', registration: '23/UG/5/BARC-J' }), /Choose CML3112 as your course/);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3111|ML_PROJECT', registration: '23/UG/5/BARC-J' }), /Choose CML3112 as your course/);
+// The rehearsal is the lecturer's (16 November 2026): only the demo numbers open it, in any course; they never open the real project.
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_REHEARSAL', registration: '26/DEMO/001/ML' }), /cannot open the rehearsal: your lecturer runs it in class/);
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3113|ML_REHEARSAL', registration: '24/999/BSPE-J' }), /cannot open the rehearsal/);
+for (const c of ['CML3111', 'CML3112', 'CML3113']) assert.equal(ctx.portalCheckRegistration({ test: c + '|ML_REHEARSAL', registration: '26/demo/001/lecturer' }).course, c, 'the demo number opens the rehearsal in every course');
+assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '26/SMOKE/001/TEST' }), /for practice only/);
 assert.throws(() => ctx.requestTestFiles({ ...input, registration: '24/999/BSPE-J', name: 'Some Name' }), /Choose CML3113 as your course/);
 assert.throws(() => ctx.portalCheckRegistration({ test: 'CML3112|ML_PROJECT', registration: '24/999/BSXX-S' }), /does not match any of the three courses/);
 assert.equal(ctx.portalCheckRegistration({ test: 'CML3113|ML_PROJECT', registration: '23/UG/5/BSME-J' }).onList, false, 'right programme, not on the list: open entry');
@@ -99,7 +104,7 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   assert(nb.cells[0].source.join ? nb.cells[0].source.join('').includes('Engineering ML project') : nb.cells[0].source.includes('Engineering ML project'));
   // plain-code redesign of 14 November 2026: the notebook's own short opening, then ONE supplied cell (Setup: run me first) that holds
   // the identity, the data and the deadline; no identity cell, no token, no Submit cell, no other supplied cell
-  assert(String(nb.cells[0].source).trim().split('\n').length <= 5, 'the opening is at most 5 lines');
+  assert(String(nb.cells[0].source).trim().split('\n').length <= 7, 'the opening is at most 7 short lines (title, deadline, three steps, rules, data)');
   assert(!String(nb.cells[0].source).includes('Test 1'));
   const setup = String(nb.cells[1].source); assert(setup.startsWith('#@title Setup: run me first') && nb.cells[1].metadata.cellView === 'form');
   const ident = JSON.parse(/^_IUEA_IDENTITY = (.*)$/m.exec(setup)[1]);

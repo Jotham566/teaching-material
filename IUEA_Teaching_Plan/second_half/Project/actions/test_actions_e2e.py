@@ -39,11 +39,11 @@ PEOPLE = {   # registration: (course, name, email)
     'H': ('26/E2E/008/HHH', 'CML3112', 'Test Learner Theta', 'theta@example.org'),     # the wrong Google account
     'I': ('26/E2E/009/III', 'CML3112', 'Test Learner Iota', 'iota@example.org'),       # I have finished
     'K': ('26/E2E/011/KKK', 'CML3113', 'Test Learner Kappa', 'kappa@example.org'),     # whole-class (course) extension
-    'R': ('26/E2E/010/JJJ', 'CML3112', 'Test Learner Rho', 'rho@example.org'),         # the rehearsal
+    'R': ('26/DEMO/001/LECTURER', 'CML3112', 'Lecturer demo', 'rho@example.org'),  # the rehearsal: the lecturer's demo number only (16 November 2026)
     'T': ('26/E2E/012/TTT', 'CML3112', 'Test Learner Tau', 'tau.typo@example.org'),    # typed the wrong email, corrects it on the page
     'U': ('26/E2E/013/UUU', 'CML3112', 'Test Learner Upsilon', 'ups@example.org'),     # tries to correct the email after saving work
     'V': ('26/E2E/014/VVV', 'CML3112', 'Test Learner Phi', 'phi@example.org'),         # edits the setup cell
-    'W': ('26/E2E/015/WWW', 'CML3112', 'Test Learner Omega', 'omega@example.org'),     # NOT on the class list (open entry)
+    'W': ('26/E2E/015/BSCE-W', 'CML3112', 'Test Learner Omega', 'omega@example.org'),     # NOT on the class list (open entry)
 }
 results = []
 
@@ -136,15 +136,17 @@ def main():
         _, r = st.call('/api/check', dict(test=P12, registration='26/e2e/001/aaa'))
         check('entry page: a registration on the list shows the name to confirm', r.get('ok') and r['result']['nameHint'] == 'Test L. A.', r)
         _, r = st.call('/api/check', dict(test=P12, registration='26/E2E/011/KKK'))
-        check('wrong-course registration: refused with "You are listed in CML3113. Use that link."', not r.get('ok') and r['error'] == 'You are listed in CML3113. Use that link.', r.get('error'))
+        check('wrong-course registration: refused and told the right course', not r.get('ok') and r['error'] == 'This registration number is on the CML3113 class list, not CML3112. Choose CML3113 as your course.', r.get('error'))
         _, r = st.call('/api/files', dict(test=P12, name='x', email='kappa@example.org', registration='26/E2E/011/KKK'))
         check('wrong-course registration: no notebook is issued', not r.get('ok') and 'CML3113' in r.get('error', ''), r.get('error'))
-        _, r = st.call('/api/check', dict(test=P12, registration='26/E2E/015/WWW'))
+        _, r = st.call('/api/check', dict(test=P12, registration='26/E2E/015/BSCE-W'))
         check('open entry: a registration not on the list is not refused; the page asks for the full name', r.get('ok') and r['result']['onList'] is False, r)
         _, r = st.call('/api/check', dict(test=P12, registration='hello 123'))
         check('open entry: a malformed registration is refused with a clear message', not r.get('ok') and 'as it is on your student card' in r.get('error', ''), r.get('error'))
-        _, r = st.call('/api/files', dict(test=P12, name='(class list)', email='omega@example.org', registration='26/E2E/015/WWW'))
+        _, r = st.call('/api/files', dict(test=P12, name='(class list)', email='omega@example.org', registration='26/E2E/015/BSCE-W'))
         check('open entry: an off-list student must type a full name', not r.get('ok') and 'full name' in r.get('error', ''), r.get('error'))
+        _, r = st.call('/api/files', dict(test='CML3112|ML_REHEARSAL', name='Some Student', email='sigma@example.org', registration='26/E2E/015/BSCE-W'))
+        check('the rehearsal is the lecturer\'s: a student number gets no notebook', not r.get('ok') and 'your lecturer runs it in class' in r.get('error', ''), r.get('error'))
 
         issued, attempt, fileid = {}, {}, {}
         st.at(0)
@@ -166,11 +168,11 @@ def main():
         check('ONE supplied cell (Setup: run me first, collapsed) holds the identity: name from the class list, the allocation, the deadline; no token',
               len(supplied) == 1 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
               and '"deadline":"' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A']) and issued['A']['cells'][1]['metadata'].get('cellView') == 'form', ident[:300])
-        check('the setup cell prints the time left after every cell and adds Press Ctrl+S in the last 30 and 10 minutes', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and 'left (deadline' in ident)
-        check('the notebook opens with at most 5 lines', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 5, ''.join(issued['A']['cells'][0]['source'])[:200])
+        check('the setup cell shows a live clock, the time left after every cell, Press Ctrl+S in the last 30 and 10 minutes, and a warning when there is no deadline', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and ' left. Deadline ' in ident and 'No timer: this notebook has no deadline' in ident)
+        check('the notebook opens with at most 7 short lines, the deadline among them', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 7 and 'deadline:' in ''.join(issued['A']['cells'][0]['source']), ''.join(issued['A']['cells'][0]['source'])[:200])
 
         check('open entry: the off-list student starts normally with the typed name', '"name":"Test Learner Omega"' in ''.join(issued['W']['cells'][1]['source']))
-        _, r = st.call('/api/files', dict(test=P12, name='Someone Else', email='other.person@example.org', registration='26/E2E/015/WWW'))
+        _, r = st.call('/api/files', dict(test=P12, name='Someone Else', email='other.person@example.org', registration='26/E2E/015/BSCE-W'))
         check('open entry: an off-list registration already used with another email is refused', not r.get('ok') and 'do not match' in r.get('error', ''), r.get('error'))
 
         # the wrong Google account

@@ -54,12 +54,12 @@ input:focus,select:focus,button:focus,.go:focus{outline:3px solid #edab37;outlin
 <div id="fixBox" class="who" hidden><strong>Typed the wrong email?</strong> You can correct it once, in the first 15 minutes, before any work is saved.
 <label for="fix1">Correct Google email</label><input id="fix1" type="email" maxlength="254"><label for="fix2">Type it again</label><input id="fix2" type="email" maxlength="254">
 <button id="fixGo" type="button" disabled>Use this email instead</button><div id="fixResult" role="status" aria-live="polite"></div></div>
-<ol><li>Run <strong>Setup: run me first</strong> (it also starts a backup every 5 minutes and shows the time left after every cell).</li>
-<li>Work in this notebook only. Press Ctrl+S now and then.</li>
-<li><strong>No Submit button.</strong> <span id="endText">At your deadline editing stops and your work is collected automatically.</span></li></ol>
+<ol><li>Run <strong>Setup</strong> first. Do not edit it. It shows your time left.</li>
+<li>Work only in this notebook. Press Ctrl+S now and then.</li>
+<li><strong>No Submit button.</strong> <span id="endText">At your deadline, editing stops and your work is collected.</span></li></ol>
 <button id="checkWork" type="button">Check my work</button> <button id="finish" type="button">I have finished</button>
 <div id="workResult" role="status" aria-live="polite"></div>
-<p class="muted"><strong>Check my work</strong> runs your saved notebook from the top: does it run, are all results and MEMO there, is it your issued notebook. No mark is shown. <strong>I have finished</strong> stops editing and collects your work. If something fails, post a screenshot on the class channel at once.</p></section>
+<p class="muted"><strong>Check my work:</strong> runs your saved notebook and lists anything missing. No mark is shown.<br><strong>I have finished:</strong> stops editing and collects your work now.<br>Problem? Post a screenshot on the class channel at once.</p></section>
 </div></main><script>
 let testKey=__TEST_KEY_JSON__;
 // The course is never pre-chosen: the student must pick it, so a wrong link cannot put them on the wrong class list.
@@ -85,7 +85,7 @@ const email2=document.getElementById('email2');
 const reg=document.getElementById('registration'),email=document.getElementById('email'),isMe=document.getElementById('isMe'),start=document.getElementById('start');
 let checked='',checkTimer,timerInterval,attempt='',pollTimer;
 const rehearsal=testKey.endsWith('|ML_REHEARSAL');
-if(rehearsal){document.getElementById('mode').textContent='REHEARSAL, NOT MARKED';document.getElementById('fWindow').textContent='Practice, open until Sunday 22 November 2026, 23:59. The final project is 23 to 25 November.';document.getElementById('fTime').textContent='A 3-hour practice clock. Nothing is locked or marked.';document.getElementById('fLast').textContent='Any time before the practice closes.';document.title='Engineering ML project rehearsal';}
+if(rehearsal){document.getElementById('mode').textContent='REHEARSAL, NOT MARKED';document.getElementById('fWindow').textContent='Run by your lecturer in class, until Sunday 22 November 2026. Your project is 23 to 25 November.';document.getElementById('fTime').textContent='A 3-hour practice clock. Nothing is locked or marked.';document.getElementById('fLast').textContent='Any time before the practice closes.';document.title='Engineering ML project rehearsal';}
 const sameEmail=(a,b)=>a.value.trim()&&a.value.trim().toLowerCase()===b.value.trim().toLowerCase();
 let onList=true;
 const fullName=document.getElementById('fullName');

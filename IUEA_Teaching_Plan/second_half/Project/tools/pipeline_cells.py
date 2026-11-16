@@ -221,7 +221,7 @@ def _iuea_backup_start(address={base + "/api/backup"!r}, minutes={BACKUP_MINUTES
         return
     attempt = str(globals().get("_IUEA_ALLOCATION", ""))
     if not attempt:
-        print("Backup is off: run the first cell (your details and the countdown) first, then this cell again.")
+        print("Backup is off: this notebook has no attempt code. Open it from the entry page (Open my project in Colab).")
         return
     old = globals().get("_iuea_backup_thread")
     if old is not None and old.is_alive():
@@ -264,36 +264,60 @@ _iuea_backup_start()
 
 
 def countdown_code():
-    """After every cell (IPython post_run_cell), one line: the time left and the deadline in Kampala time; Press Ctrl+S at 30 and 10 minutes."""
+    """The time left, three ways (lecturer, 16 November 2026: the notebook must always show it):
+    a big live clock under the setup cell, a live line after every cell (IPython post_run_cell, Press Ctrl+S at 30 and 10 minutes),
+    and a plain warning if the notebook has no deadline (not opened from the entry page). Only in Colab; the marking computer sees nothing."""
     return '''
 def _iuea_countdown_start():
-    import datetime
+    import datetime, uuid
     try:
         from IPython import get_ipython
+        from IPython.display import display, HTML
         shell = get_ipython()
-        if shell is None or "google.colab" not in type(shell).__module__ or not _IUEA_DEADLINE:
+        if shell is None or "google.colab" not in type(shell).__module__:
             return
     except Exception:
+        return
+    if not _IUEA_DEADLINE:
+        display(HTML('<div style="border:3px solid #b3261e;background:#fff0ee;padding:10px;font:16px Arial;color:#7a1712"><b>No timer: this notebook has no deadline.</b> '
+                     'Open your notebook from the entry page (Open my project in Colab), not a copy.</div>'))
         return
     end = datetime.datetime.fromisoformat(_IUEA_DEADLINE.replace("Z", "+00:00"))
     local = (end + datetime.timedelta(hours=3)).strftime("%H:%M")
     practice = TEST_ID == "ML_REHEARSAL"
-    def line(*_):
+    def text():
         left = (end - datetime.datetime.now(datetime.timezone.utc)).total_seconds()
         if left <= 0:
-            print("\u23f1 time is up (deadline " + local + " Kampala)" + ("" if practice else ": your work is collected"))
-            return
+            return "Time is up (deadline " + local + " Kampala)" + ("." if practice else ". Your work is collected.")
         m = int(left // 60)
-        text = "\u23f1 %d:%02d left (deadline %s Kampala)" % (m // 60, m % 60, local)
+        out = "%d:%02d left. Deadline %s Kampala." % (m // 60, m % 60, local)
         if m < 30:
-            text += "  Press Ctrl+S" + (" now: 10 minutes or less" if m < 10 else "")
-        print(text)
+            out += " Press Ctrl+S" + (" now: 10 minutes or less." if m < 10 else ".")
+        return out
+    def clock(size):
+        # The text is right at once; the script keeps it ticking (it uses this device's clock, the server keeps the real deadline).
+        box = "iuea" + uuid.uuid4().hex[:12]
+        return HTML('<div style="font:bold ' + size + ' Arial;color:#126573;margin:4px 0">\u23f1 <span id="' + box + '">' + text() + '</span></div>'
+                    '<script>(function(){const s=document.getElementById("' + box + '"),end=Date.parse("' + _IUEA_DEADLINE + '");if(!s)return;'
+                    'function t(){const l=end-Date.now();if(l<=0){s.textContent="Time is up (deadline ' + local + ' Kampala).";return;}const m=Math.floor(l/60000);'
+                    's.textContent=Math.floor(m/60)+":"+String(m%60).padStart(2,"0")+" left. Deadline ' + local + ' Kampala."+(m<30?" Press Ctrl+S"+(m<10?" now: 10 minutes or less.":"."):"");}'
+                    't();setInterval(t,20000);})();</script>')
+    first = [True]
+    def line(*_):
+        if first[0]:
+            first[0] = False                          # the setup cell already shows the big clock
+            return
+        try:
+            display(clock("15px"))
+        except Exception:
+            print("\u23f1 " + text())
     old = globals().get("_iuea_countdown")
     if old is not None:
         try:
             shell.events.unregister("post_run_cell", old)
         except Exception:
             pass
+    display(clock("26px"))
     shell.events.register("post_run_cell", line)
     globals()["_iuea_countdown"] = line
 _iuea_countdown_start()

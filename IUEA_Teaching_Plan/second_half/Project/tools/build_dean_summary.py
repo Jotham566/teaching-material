@@ -24,19 +24,19 @@ import project_content as PC  # noqa: E402
 FONT = 'Lato'
 OUT = PC.PROJECT / 'Dean_Summary_ML_Project.docx'
 
-PART_A = [('Clean the two tables: keep the right columns, remove the very large houses, drop the columns that give the answer away', 6),
+PART_A = [('Clean the two tables: remove duplicate rows, rows with no target value and impossible values', 6),
           ('Two labelled charts of the data', 2),
-          ('Split the rows into training, validation and test sets with a fixed random seed (the rule is given)', 2),
+          ('Split each table into training, validation and test sets (60, 20 and 20 percent) with a fixed random seed (the code is given)', 2),
           ('Train a baseline model, linear regression and a decision tree, with missing values filled from training rows', 6),
           ('Measure the error: MAE and RMSE', 3),
           ('No data leakage: anything learned from the data comes from training rows only', 2),
           ('Machine failure warning: logistic regression, with the confusion matrix, precision and recall at a cut-off of 0.5', 3),
-          ('Test set opened once, after the model is chosen, and its result', 2),
+          ('Test set used once, after the model is chosen, and its result', 2),
           ('Results on the data, a fixed random seed, the required results present', 2),
           ('Do the text columns help? One-hot encoding of the house descriptions (shown in the revision class)', 2)]
 PART_B = [('Recommended model', 3), ('Validation error of the three models', 3), ('Test-set error and warning recall', 2),
           ('How much better the recommended model is than the baseline', 1), ('Three true limits of the study, chosen from ten statements', 3),
-          ('Best next step, chosen from five', 1), ('Two short written answers: why this model, and why the test set is opened only once', 2)]
+          ('Best next step, chosen from five', 1), ('Two short written answers: why this model, and why the test set is used only once', 2)]
 
 
 def check_facts():
@@ -159,24 +159,27 @@ def build():
               f'{rehearsal["CML3111"]}. It has exactly the project\'s tasks on the same data, split differently so every number differs. I will work through it with each class in that week\'s revision class, because many students are still finding their feet with the code.', 'Rehearsal.')
 
     heading(d, '2. The data')
-    para(d, 'Every student gets the same two real-world tables, stored inside the notebook and checked when written out, so nothing is downloaded '
-            'during the window.', after=3)
-    bullet(d, '2,930 house sales in Ames, Iowa (2006 to 2010) from the city assessor, published for teaching by Dean De Cock (Journal of '
-              'Statistics Education, 2011). Each sale has about 80 columns: floor areas, rooms, year built, quality ratings, neighbourhood '
-              'and so on. It has real gaps, and a few very large houses that De Cock himself advises removing.', 'House prices.')
-    bullet(d, '10,000 machine readings (temperatures, speed, torque, tool wear) with whether the machine failed, from the UCI Machine '
-              'Learning Repository (Matzka, 2020, CC BY 4.0). This table is synthetic, built to mirror real maintenance data, and the brief '
-              'says so. About 3 percent of readings are failures, which is why precision and recall matter more than accuracy.', 'Machine failure.')
+    para(d, 'Every student gets the same two tables, built from published data and stored inside the notebook, so nothing is downloaded '
+            'during the window. I have organised both before students see them: plain column names, metric units and only the columns '
+            'that matter. A notebook cell explains every column.', after=3)
+    bullet(d, '2,935 rows of house sales in Ames, Iowa (2006 to 2010) from the city assessor, published for teaching by Dean De Cock '
+              '(Journal of Statistics Education, 2011), with 18 columns such as neighbourhood, quality rating, year built, living area '
+              'in square metres and the sale price in US dollars.', 'House prices.')
+    bullet(d, '10,012 runs of a metal-cutting machine (temperatures, speed, torque, tool wear) with whether it failed, from the UCI Machine '
+              'Learning Repository (Matzka, 2020, CC BY 4.0). This table is synthetic, built to mirror real machine records, and the '
+              'notebook says so. About 3 percent of runs are failures, which is why precision and recall matter more than accuracy.', 'Machine failure.')
+    bullet(d, 'To give students real cleaning to do, I added a few duplicate rows, rows with no target value and impossible values '
+              '(for example a negative area) to both tables. The notebook tells students these were added for the exercise. Some real '
+              'values are also missing.', 'Cleaning.')
 
     heading(d, '3. The questions')
     bullet(d, 'What will a house sell for? Students compare a simple baseline that predicts the average price, linear regression and a '
               'decision tree, and report the errors in US dollars. A short extra task asks whether the text columns, such as neighbourhood, '
               'improve the prediction when they are encoded as numbers.', 'Question 1.')
     bullet(d, 'Which machine readings should raise a failure warning? Students estimate a probability with logistic regression and, at a '
-              'cut-off of 0.5, report how many failures they catch, miss and raise wrongly. They must also notice and drop the five columns '
-              'that name the failure type, because those columns give the answer away.', 'Question 2.')
-    para(d, 'Each table is split with a fixed random seed into training, validation and test rows. The test rows may be opened only once, '
-            'after the model is chosen. Students finish with a short decision memo. The error limit (25,000 US dollars) and response-time '
+              'cut-off of 0.5, report how many failures they catch, miss and raise wrongly.', 'Question 2.')
+    para(d, 'After cleaning, students split each table themselves into training, validation and test sets (60, 20 and 20 percent) with '
+            'the code given and a fixed random seed. The test set may be used only once, after the model is chosen. Students finish with a short decision memo. The error limit (25,000 US dollars) and response-time '
             'limit (50 ms) a client would set are my teaching numbers and are stated as such; the rule for choosing the model is given in '
             'the notebook.', before=3)
 
