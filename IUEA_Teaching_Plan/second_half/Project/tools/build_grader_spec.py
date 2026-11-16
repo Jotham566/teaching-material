@@ -77,23 +77,28 @@ def main():
         f'QUESTION_ORDER={list(questions)!r}\nQUESTIONS={questions!r}\n')
     (G / 'hidden/spec_ML_PROJECT_hidden.py').write_text(
         'import sys\nfrom pathlib import Path\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n' + K.hidden_spec_source())
-    desc = dict(clean='The Task 1 cells re-run on hidden raw tables with the same kinds of added problems (duplicates, missing targets, impossible values; machines also missing tool wear). Checks: each whole result, no duplicates, no missing target, no impossible value, other gaps kept, product_type mapped, raw tables left unchanged.',
+    desc = dict(clean_h='Task 1 cells re-run on two hidden raw house tables with added duplicates, missing prices and impossible values: the whole result, no duplicates, no missing price, no impossible value with valid rows kept, other gaps kept, raw table unchanged.',
+                split_h='Task 2 cells re-run on hidden clean houses (and the same rows reversed): the three sets of the stated rule.',
+                regression='Task 3 cells re-run on hidden train and valid houses: linear regression and decision tree (max_depth 4, random_state 17) predictions, each with median imputation.',
+                errors='MAE and RMSE of the student\'s own Task 3 predictions on the hidden valid houses; printed values count.',
+                leakage='Task 3 re-run with extreme rows added to valid: the other predictions must not change (imputation learned from the training rows only).',
                 charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): a title, named axes, the unit, the right data.',
-                split='The Task 2 cells re-run on hidden clean tables (and the same rows reversed): test is sample(frac=0.2, random_state=17), validation is sample(frac=0.25, random_state=17) of the rest, training is what remains, for houses and machines.',
-                regression='The Task 3 cells re-run on hidden train and valid tables: baseline, linear regression and decision tree (max_depth 4, random_state 17) predictions, each with median imputation.',
-                errors='MAE and RMSE of the student\'s own Task 3 predictions on the hidden valid table (a model mistake is not counted twice); printed values count.',
-                leakage='The Task 3 cells re-run twice more: extreme rows added to valid must not change the other predictions, and the baseline must be the mean of the (shifted) train targets.',
-                warning='The Task 4 cells re-run on hidden train and valid: the probabilities (1 mark); the counts, precision and recall at 0.5 from the student\'s own probabilities (2 marks).',
-                test='The Task 6 cells re-run on hidden train, valid and test rows: test MAE and recall after refitting on train and valid; the test rows read only after the choice; no test row in train or valid.',
-                results='A third each: validation MAE of the three models and the chosen model on the real file; the same predictions twice, random_state=17, no unseeded randomness; every result and the MEMO form present (Task 3b excluded).',
-                encoded='Task 3b (its cells sit under Task 3): re-run on the Task 3 hidden sets, each with real categories the training rows never show. encoded_pred equals the one-hot reference (handle_unknown="ignore" needed), encoded_mae from the student\'s own predictions, and extra validation rows leave the other predictions unchanged.')
+                encoded='Task 3b (under Task 3): re-run on the Task 3 hidden sets, each with categories the training rows never show; encoded_pred equals the one-hot reference, encoded_mae from the own predictions, extra validation rows change nothing else.',
+                test_h='Task 4 re-run on hidden train, valid and test houses with validation numbers that make the rule choose each model once: the choice and the test MAE; the test rows read only after chosen_house_model; no test house in train or valid.',
+                clean_m='Task 5 cells re-run on two hidden raw machine tables with added problems: the whole result, no duplicates, no impossible value, product_type mapped, raw table unchanged.',
+                split_m='Task 6 cells re-run on hidden clean machines (and reversed): the three sets of the stated rule.',
+                classify='Task 7 re-run on hidden train and valid machines: logistic probabilities (solver tolerance), logistic warnings at 0.5 from the own probabilities, tree warnings equal to DecisionTreeClassifier(max_depth=3, random_state=17).',
+                scores='Task 7: for each model, the counts (tn, fp, fn, tp), precision, recall and F1 from the student\'s own warnings.',
+                test_m='Task 8 re-run on hidden train, valid and test machines with F1 values that make the rule choose each model once: the choice and the test F1; the test rows read only after chosen_warning_model; no test machine in train or valid.',
+                results='A third each: validation MAE (houses) and F1 (machines) of both models on the real tables, calculated, and both rule choices; the same predictions twice, random_state=17 on both trees, no unseeded randomness; every result and the MEMO form present (Task 3b excluded).')
     partA = [dict(id=f'q{i:02d}', title=K.TITLES[t], maximum=m, description=desc.get(t, 'Hidden rows built from the real file. Partial credit by the share of checks passed.')) for i, (t, m) in enumerate(K.PARTS, 1)]
     off = len(K.PARTS)
     partB = [dict(id=f'q{off + i:02d}', title=K.PART_B_TITLES[t], maximum=m, description=d) for i, ((t, m), d) in enumerate(zip(K.PARTB, [
-        'Recommended model was trained, equals the student\'s own rule choice, and the notebook reports a calculated test result for it.',
-        'Validation MAE of the three models agrees with the student\'s own values within 0.011.',
-        'Test MAE and test recall agree with the grader\'s value on the same predictions within 0.011.',
-        'Validation MAE of the baseline minus that of the recommended model, from the student\'s own values, within 0.011 (USD).',
+        'The recommended house model was trained and equals the student\'s own rule choice.',
+        'Validation MAE of linear regression and the decision tree agree with the student\'s own values within 0.011 (USD).',
+        'The recommended warning model was trained and equals the student\'s own rule choice (the higher validation F1).',
+        'Validation F1 of logistic regression and the decision tree agree with the student\'s own values within 0.011.',
+        'Test MAE (houses) and test F1 (machines) agree with the notebook\'s own values within 0.011.',
         'Three different statements chosen from ten, one mark for each true limit.',
         'One statement chosen from five.',
         'Two short answers, one mark each: length 8 to 80 words and keyword groups (several wordings accepted).']), 1)]

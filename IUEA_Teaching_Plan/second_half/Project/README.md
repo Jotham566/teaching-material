@@ -2,24 +2,30 @@
 
 Decisions of 13 November 2026 (they replace those of 4 November; see `CHANGE_BRIEF_2026-11-13.md`). The project is **individual**, **timed** (3 hours from Start test, in Colab) and **fully auto-graded** like Practical Test 1. It is taken **online, from anywhere**, in one window for all three courses: **opens Monday 23 November 2026, 00:00 and closes Wednesday 25 November 2026, 23:59 Kampala time** (confirmed). It follows the lecturer's blueprint **"Weeks 1-8 core" (14 November 2026)**: no cross-validation, no cost table, no threshold choice; a light warning question at the fixed threshold 0.5; the model-choice rule is a supplied cell. It counts 40 percent of the course (Part A 30 + Part B 15 = 45 marks, scaled to 40).
 
+Two separate questions, no baseline model (lecturer, 16 November 2026). Question 1 uses only the houses, Question 2 only the machines.
+
 | Part A item | Marks |
 |---|---|
-| A1 Clean the two tables (remove duplicate rows, rows with no target and impossible values; `product_type` as a number; other gaps kept; inputs unchanged) | 6 |
-| A2 Two labelled charts | 2 |
-| A3 Split into training, validation and test sets, 60/20/20 (four given lines per table, `random_state=17`) | 2 |
-| A4 Baseline, linear regression, decision tree (max_depth 4, random_state 17), each with median imputation | 6 |
-| A5 MAE and RMSE | 3 |
-| A6 No leakage (imputation and the baseline mean from training rows only) | 2 |
-| A7 Warning question: probabilities 1; confusion counts, precision and recall at 0.5: 2 | 3 |
-| A8 Test set used once, after the choice (read only in later cells; no test row in train or valid), and its result | 2 |
-| A9 Results on the file, reproducible, results and MEMO present (a third each; Task 3b excluded) | 2 |
-| A10 Task 3b, do the text columns help? One-hot encoding with a given recipe, fitted on the training rows only, `handle_unknown="ignore"`; a comparison, never part of `choose_model` | 2 |
+| Q1 Task 1: clean the houses (duplicates, missing prices, impossible values; other gaps kept; raw table unchanged) | 3 |
+| Q1 Task 2: split the houses 60/20/20 (four given lines, `random_state=17`) | 1 |
+| Q1 Task 3: linear regression and a decision tree (max_depth 4, random_state 17), each with median imputation | 4 |
+| Q1 MAE and RMSE | 3 |
+| Q1 no leakage (imputation learned from the training rows only) | 2 |
+| Q1 two labelled charts | 2 |
+| Q1 Task 3b: do the text columns help? One-hot recipe, a comparison only | 2 |
+| Q1 Task 4: `choose_model` (MAE limit), then the test set once (`test_mae`) | 1 |
+| Q2 Task 5: clean the machines (and `product_type` as a number) | 3 |
+| Q2 Task 6: split the machines 60/20/20 | 1 |
+| Q2 Task 7: logistic regression and a decision tree classifier (max_depth 3, random_state 17) | 3 |
+| Q2 counts, precision, recall and F1 for both | 2 |
+| Q2 Task 8: `choose_warning_model` (higher F1), then the test set once (`test_f1`) | 1 |
+| Results on the tables, reproducible, results and MEMO present | 2 |
 
-Part B (15): recommended_model 3, validation_mae 3, test_mae and test_recall 2, improvement_over_baseline 1, limits 3, next_step 1, two written answers 2. No mark is entered by hand. Marks are final by Wednesday 2 December 2026.
+Part B (15): house_model 2, house_validation_mae 2, warning_model 2, warning_validation_f1 1, test_mae and test_f1 2, limits 3, next_step 1, two written answers 2. No mark is entered by hand. Marks are final by Wednesday 2 December 2026.
 
 **Data** (tidy tables, lecturer's decision of 16 November 2026). Two tables for every student, stored inside the supplied setup cell (bzip2 and base64, one SHA-256 check), so nothing is downloaded during the window. Both are built from published files and organised before students see them: plain column names, metric units, the columns that matter. Houses: Ames, Iowa sales 2006 to 2010 (De Cock 2011, `data_source/ames_decock/AmesHousing.txt`, SHA-256 `6cfe6cb5...`), 18 columns, the 5 sales above 4000 sq ft left out as De Cock advises. Machines: AI4I 2020 (Matzka 2020, UCI 601, CC BY 4.0, synthetic), 8 columns, the failure-type columns left out. A fixed set of problems is ADDED on purpose and the notebook says so: houses 10 duplicates, 6 missing prices, 6 impossible values; machines 12 duplicates, 8 missing failures, 8 impossible values, 15 missing tool wear. Given 2,935 houses and 10,012 machines; cleaned 2,913 and 9,984; split 1,748 / 582 / 583 and 5,990 / 1,997 / 1,997. A notebook cell "The data" explains every column.
 
-**Rehearsal** (unmarked; lecturer, 14 November 2026): exactly the project's tasks 1 to 7 including 3b, files, result names and memo, with one change: the split uses `random_state=29`, so every number differs (validation MAE baseline 58,789, linear 22,005, tree 27,785 USD). Run by the lecturer in the revision class (CML3112 Tuesday 17 November; CML3113 and CML3111 Friday 20 November); only the demo numbers 26/DEMO/001/LECTURER and 26/SMOKE/001/TEST open it. It has short self-study notes before the tasks that need them (the fixed seeded split and why the test rows stay apart; fitting on the training rows only; one-hot encoding for Task 3b; logistic regression, the confusion matrix, precision and recall; opening the test set once and refitting), each pointing to the Class 2 or Class 3 slide by title.
+**Rehearsal** (unmarked; lecturer, 14 November 2026): exactly the project's tasks 1 to 7 including 3b, files, result names and memo, with one change: the split uses `random_state=29`, so every number differs (validation MAE linear 22,005, tree 27,785 USD; F1 logistic 0.238, tree 0.244). Run by the lecturer in the revision class (CML3112 Tuesday 17 November; CML3113 and CML3111 Friday 20 November); only the demo numbers 26/DEMO/001/LECTURER and 26/SMOKE/001/TEST open it. It has short self-study notes before the tasks that need them (the fixed seeded split and why the test rows stay apart; fitting on the training rows only; one-hot encoding for Task 3b; logistic regression, the confusion matrix, precision and recall; opening the test set once and refitting), each pointing to the Class 2 or Class 3 slide by title.
 
 **Collection and instant checks** (collection design of 14 November 2026, no Submit step): the student picks the course and types the registration number, which must match the usual pattern (for example 26/BCE/001/PS). On the class list the page shows the name to confirm (This is me). Not on the list: the student types a full name, starts normally and is graded; the result carries the flag NOT_ON_LIST (spot-check list and Collection sheet, information only). One attempt per registration and per email. Start copies the issued notebook into the lecturer's Drive, shares it with the student's Google email as an editor and opens it in Colab, which saves to it. The setup cell sends a silent backup every 5 minutes and warns a student who is in another file. At the deadline a time trigger makes the file read only and collects the newer of the last Drive save before the deadline and the last on-time backup; GitHub Actions marks it in the Colab-matching sandbox. Students use Check my work and I have finished on the entry page; marks are shown only after the release switch. The rehearsal runs the same flow without locking or marking. Set-up: `deploy/setup_pipeline.sh` and `deploy/SETUP_GITHUB_ACTIONS.md`.
 

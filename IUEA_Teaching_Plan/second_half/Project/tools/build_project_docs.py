@@ -25,19 +25,24 @@ from docx_kit import *  # noqa: E402,F401,F403
 OUT = PC.PROJECT
 W = CONTENT_CM
 FONTS = PC.PLAN / 'second_half/Build/brand/fonts'
-WEEKS = dict(clean='Weeks 3 to 7', charts='Weeks 3 to 8', split='Week 10', regression='Weeks 8 and 9', errors='Week 8', leakage='Weeks 8 to 10',
-             warning='Week 9', test='Week 10', results='Weeks 8 to 10', encoded='Revision class (recipe given)')
+WEEKS = dict(clean_h='Weeks 3 to 7', split_h='Week 10', regression='Weeks 8 and 9', errors='Week 8', leakage='Weeks 8 to 10', charts='Weeks 3 to 8',
+             encoded='Revision class (recipe given)', test_h='Week 10', clean_m='Weeks 3 to 7', split_m='Week 10', classify='Week 9', scores='Week 9',
+             test_m='Week 10', results='Weeks 8 to 10')
 CHECKED = dict(       # the marking guide's wording: the same checks as the rubric descriptions (build_grader_spec.py)
-    clean='Task 1 cells re-run on two hidden raw tables built like the given ones (resampled rows with added duplicates, missing targets and impossible values; machines also missing tool wear). Shares: each whole result, no duplicates, no missing target, no impossible value with valid rows kept, other gaps kept, product_type mapped, both raw tables unchanged.',
-    charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): title, named axes, unit, right data.',
-    split='Task 2 cells re-run on hidden clean tables, also reversed: the six sets of the stated rule (test sample(frac=0.2, random_state=17), validation sample(frac=0.25, random_state=17) of the rest, training the remainder), for houses and machines.',
-    regression='Task 3 cells re-run on hidden train and valid: baseline, linear regression and decision tree predictions (median imputation, max_depth 4, random_state 17).',
+    clean_h='Task 1 cells re-run on two hidden raw house tables with added duplicates, missing prices and impossible values. Shares: the whole result, no duplicates, no missing price, no impossible value (valid rows kept), other gaps kept, raw table unchanged.',
+    split_h='Task 2 cells re-run on hidden clean houses, also reversed: the three sets of the stated rule.',
+    regression='Task 3 cells re-run on hidden train and valid houses: linear regression and decision tree predictions (median imputation, max_depth 4, random_state 17).',
     errors='MAE and RMSE of the student\'s own Task 3 predictions (a model mistake is not counted twice); printed values count.',
-    leakage='Task 3 re-run twice more: extreme rows added to valid leave the other predictions unchanged; the baseline is the mean of the (shifted) train targets.',
-    warning='Task 4 re-run: probabilities (1 mark); counts, precision and recall at 0.5 from the student\'s own probabilities (2 marks).',
-    test='Task 6 re-run on hidden train, valid and test rows (MAE and recall after refitting); the test rows read only in cells after the choice; no test row in train or valid.',
-    results='A third each: validation MAE of the three models and the chosen model on the real file; the same predictions twice, random_state=17, no unseeded randomness; every result and MEMO present (Task 3b\'s results excluded).',
-    encoded='Task 3b cells (under Task 3) re-run on the Task 3 hidden sets, each with a real neighbourhood or kitchen_quality value the training rows never show: encoded_pred equals the one-hot reference (needs handle_unknown="ignore"), encoded_mae from the student\'s own predictions, and extra validation rows leave the other predictions unchanged (imputers and encoder fitted on train only). Shares of 5.')
+    leakage='Task 3 re-run with extreme rows added to valid: the other predictions must not change (imputation learned from the training rows only).',
+    charts='Chart 1 and Chart 2 from the run from the top (under any name, or only shown): title, named axes, unit, right data.',
+    encoded='Task 3b cells (under Task 3) re-run on the Task 3 hidden sets, each with a real neighbourhood or kitchen_quality value the training rows never show: encoded_pred equals the one-hot reference (needs handle_unknown="ignore"), encoded_mae from the own predictions, and extra validation rows leave the other predictions unchanged.',
+    test_h='Task 4 re-run on hidden train, valid and test houses, with validation numbers that make the rule pick each model once: the choice and the test MAE; houses_test read only after chosen_house_model; no test house in train or valid.',
+    clean_m='Task 5 cells re-run on two hidden raw machine tables with added problems. Shares: the whole result, no duplicates, no impossible value, product_type mapped, raw table unchanged.',
+    split_m='Task 6 cells re-run on hidden clean machines, also reversed: the three sets of the stated rule.',
+    classify='Task 7 re-run on hidden train and valid machines: logistic probabilities (solver tolerance), logistic warnings at 0.5 from the own probabilities, tree warnings equal to DecisionTreeClassifier(max_depth=3, random_state=17).',
+    scores='Task 7: for each model, the counts (tn, fp, fn, tp), precision, recall and F1 from the student\'s own warnings.',
+    test_m='Task 8 re-run on hidden train, valid and test machines, with F1 values that make the rule pick each model once: the choice and the test F1; machines_test read only after chosen_warning_model; no test run in train or valid.',
+    results='A third each: validation MAE (houses) and F1 (machines) of both models on the real tables, calculated, and both rule choices; the same predictions twice, random_state=17 on both trees, no unseeded randomness; every result and MEMO present (Task 3b excluded).')
 SMALL = 'Written 14 November 2026'
 
 
@@ -125,17 +130,20 @@ def pdf_fonts(pdf):
 
 # ------------------------------------------------------------------------------------------------ the student brief
 CHECKED_BRIEF = dict(
-    clean='Your Task 1 cells re-run on hidden raw tables with the same kinds of problems: duplicates, missing targets and impossible values removed, other gaps kept, product_type mapped, raw tables unchanged. Each rule earns a share.',
-    charts='Chart 1 and Chart 2: title, both axis labels, unit, right data. 1 mark each.',
-    split='Your Task 2 cells re-run on hidden clean tables, also in another order.',
-    regression='Your Task 3 cells re-run on hidden train and valid: the three models\' predictions.',
+    clean_h='Your Task 1 cells re-run on hidden raw houses with the same kinds of problems. Each rule earns a share.',
+    split_h='Your Task 2 cells re-run on hidden clean houses, also in another order.',
+    regression='Your Task 3 cells re-run on hidden train and valid houses: both models\' predictions.',
     errors='The MAE and RMSE of your own predictions on hidden valid rows.',
-    leakage='Extra extreme rows in valid leave the other predictions unchanged; the baseline follows the train targets.',
-    warning='Your Task 4 cells re-run: probabilities (1); counts, precision and recall at 0.5 (2).',
-    test='Your Task 6 cells re-run (test MAE and recall after refitting); the test rows used only after the choice; no test row in train or valid.',
-    results='A third each: results on the real file calculated, not typed; the same answer every time with random_state=17; every result and MEMO present.',
-    encoded='Your Task 3b cells re-run on hidden train and valid, which include a category train never shows: the predictions and their MAE; the encoder learns from train only.')
-
+    leakage='Extra extreme rows in valid leave the other predictions unchanged.',
+    charts='Chart 1 and Chart 2: title, both axis labels, unit, right data. 1 mark each.',
+    encoded='Your Task 3b cells re-run on hidden train and valid, which include a category train never shows: the predictions and their MAE; the encoder learns from train only.',
+    test_h='Your Task 4 cells re-run: the rule\'s choice and the test MAE; the test houses used only after the choice; no test house in train or valid.',
+    clean_m='Your Task 5 cells re-run on hidden raw machines with the same kinds of problems. Each rule earns a share.',
+    split_m='Your Task 6 cells re-run on hidden clean machines, also in another order.',
+    classify='Your Task 7 cells re-run: logistic probabilities and warnings, and the tree\'s warnings.',
+    scores='For each model: counts, precision, recall and F1 from your own warnings.',
+    test_m='Your Task 8 cells re-run: the rule\'s choice and the test F1; the test runs used only after the choice; no test run in train or valid.',
+    results='A third each: results on the real tables calculated, not typed, and both choices; the same answer every time with random_state=17; every result and MEMO present.')
 
 def student_brief(code):
     c = PC.COHORT[code]
@@ -152,11 +160,11 @@ def student_brief(code):
         f'Rehearsal (unmarked): {PC.REHEARSAL_TEXT[code]}. Exactly the project\'s tasks, files and result names; only the split\'s random_state is 29, so the numbers differ.',
         'Part A: the coded notebook (30). Part B: the MEMO form in the notebook (15). All marked automatically.'])
     h2(d, '1. The two questions', 4)
-    grid(d, [['Question 1', f'What will a house sell for (SalePrice, {u})? Compare a baseline, a linear regression and a decision tree (depth 4), each with median imputation, by MAE and RMSE in {u}. '
-                            f'Features: all {len(cfg["h_features"])} number columns (H_FEATURES); some have real gaps, so imputation matters. Task 3b (2 marks) then adds the {len(cfg["h_text"])} text columns (TEXT_FEATURES) with one-hot encoding, using a recipe given in the task, to see whether they help.'],
-             ['Question 2', 'Which machines should get a failure warning (Machine failure is 1, about 3 percent of rows)? Logistic regression with StandardScaler gives each machine a probability; warn when it is 0.5 or more. '
-                            'Report the confusion matrix counts, precision and recall. Features: air and process temperature, rotational speed, torque, tool wear and the product type (L 0, M 1, H 2).'],
-             ['Model choice', f'A supplied rule picks one model: validation MAE at most {cfg["max_mae"]:,} {u} and prediction time at most {P.MAX_MS} ms (both invented teaching numbers).']],
+    grid(d, [['Question 1', f'Houses only (Tasks 1 to 4). What will a house sell for (sale_price_usd, {u})? Clean, split 60/20/20, then compare a linear regression and a decision tree (depth 4), each with median imputation, by MAE and RMSE in {u}. '
+                            f'Features: the {len(cfg["h_features"])} number columns (H_FEATURES). Task 3b (2 marks) adds the {len(cfg["h_text"])} text columns with one-hot encoding, using a recipe given in the task. '
+                            f'A supplied rule picks the model (validation MAE at most {cfg["max_mae"]:,} {u}, prediction time at most {P.MAX_MS} ms, both invented teaching numbers); then the test set once.'],
+             ['Question 2', 'Machines only (Tasks 5 to 8). Will a machine run fail (failure is 1, about 3 percent of runs)? Clean, split 60/20/20, then compare logistic regression (with StandardScaler; warn at 0.5 or more) '
+                            'and a decision tree classifier (depth 3). For each: the confusion matrix counts, precision, recall and F1. A supplied rule picks the higher validation F1; then the test set once.']],
          [3.2, W - 3.2], size=9.5)
     h2(d, '2. The data')
     bullets(d, [('Houses:', f'{n["houses_raw"]:,} rows of house sales in Ames, Iowa, 2006 to 2010, recorded by the city assessor (De Cock 2011, Journal of Statistics Education 19(3)), organised into 18 plain columns in metric units, the target sale_price_usd.'),
@@ -193,11 +201,12 @@ def student_brief(code):
     rows.append(['Total', '', '', str(K.PART_A_MAX)])
     grid(d, rows, [4.2, 8.4, 2.8, 2.0], header=['Item', 'What is checked', 'Taught in', 'Marks'], size=8.5, label_cols=(0,))
     h2(d, '7. Part B: the MEMO form (15 marks)')
-    para(d, f'For {PC.PAYER}. Numbers with at least two decimals, in {u}. The lists of limits and next steps are in the notebook.', 10, after=3)
-    grid(d, [['recommended_model', '"baseline", "linear" or "tree": the model the rule chose and you opened the test set with.', '3'],
-             ['validation_mae', 'The validation MAE of the three models, from your notebook.', '3'],
-             ['test_mae, test_recall', 'From your one test opening.', '2'],
-             ['improvement_over_baseline', f'Baseline validation MAE minus your model\'s, in {u}.', '1'],
+    para(d, f'For {PC.PAYER}. Numbers with at least two decimals (MAE in {u}, F1 from 0 to 1). The lists of limits and next steps are in the notebook.', 10, after=3)
+    grid(d, [['house_model', '"linear" or "tree": the house model the rule chose in Task 4.', '2'],
+             ['house_validation_mae', 'The validation MAE of both house models, from your notebook.', '2'],
+             ['warning_model', '"logistic" or "tree": the warning model the rule chose in Task 8.', '2'],
+             ['warning_validation_f1', 'The validation F1 of both warning models, from your notebook.', '1'],
+             ['test_mae, test_f1', 'From Tasks 4 and 8.', '2'],
              ['limits', 'Three different letters: the true limits of this study. One mark each.', '3'],
              ['next_step', 'One letter: the best next step.', '1'],
              ['answer_choice, answer_test_set', 'Why you recommend your model (give a validation number and what you compared it with), and why the test set is used once. 8 to 80 words each, your own words. One mark each.', '2'],
@@ -242,7 +251,10 @@ def marking_guide():
     h2(d, 'The data')
     para(d, f'Every student has the same two tables, built from two published files. {PC.CITATION} Houses: the Ames sales (SHA-256 {P.HOUSES_SHA256[:16]}...) organised into 18 plain columns in metric units, the 5 sales above 4000 sq ft left out as De Cock advises; lot_frontage_m has {sum(r["lot_frontage_m"] is None for r in P.houses_given())} real gaps. Machines: AI4I 2020 (SHA-256 {P.MACHINES_SHA256[:16]}...), SYNTHETIC (the brief says so), 3.4 percent failures; the failure-type columns that leak the target are left out. Added on purpose and said so in the notebook (fixed, the same for everyone): houses {P.H_PROBLEMS["duplicates"]} duplicates, {P.H_PROBLEMS["missing_target"]} missing prices, {P.H_PROBLEMS["invalid"]} impossible values; machines {P.M_PROBLEMS["duplicates"]} duplicates, {P.M_PROBLEMS["missing_target"]} missing failures, {P.M_PROBLEMS["invalid"]} impossible values and {P.M_PROBLEMS["missing_feature"]} missing tool wear values. Given {p["n"]["houses_raw"]:,} houses and {p["n"]["machines_raw"]:,} machines; cleaned {p["n"]["houses"]:,} and {p["n"]["machines"]:,}. Students split 60/20/20 with the given lines (random_state=17): {p["n"]["houses_train"]:,}, {p["n"]["houses_valid"]:,} and {p["n"]["houses_test"]:,} houses; {p["n"]["machines_train"]:,}, {p["n"]["machines_valid"]:,} and {p["n"]["machines_test"]:,} machines.', 10, after=3)
     vm = p['validation_mae']
-    para(d, f'Reference results (the model solution, real scikit-learn): validation MAE baseline {vm["baseline"]:,.0f}, linear {vm["linear"]:,.0f}, tree {vm["tree"]:,.0f} USD; chosen model {nums["chosen"]} (MAX_MAE {P.EXAM["max_mae"]:,} USD); improvement over the baseline {p["improvement"]:,.0f} USD; validation warnings at 0.5: TP {p["warning_scores"]["tp"]}, FP {p["warning_scores"]["fp"]}, FN {p["warning_scores"]["fn"]}, precision {p["warning_scores"]["precision"]:.3f}, recall {p["warning_scores"]["recall"]:.3f}; test MAE {nums["test"]["mae"]:,.0f} USD and test recall {nums["test"]["warning"]["recall"]:.3f}. Task 3b (text columns one-hot encoded, a comparison only): validation MAE about 17,500 USD (not compared on the real file; marked on hidden rows). The rehearsal is the same project with the split\'s random_state=29: validation MAE baseline {P.pipeline(P.REHEARSAL)["validation_mae"]["baseline"]:,.0f}, linear {P.pipeline(P.REHEARSAL)["validation_mae"]["linear"]:,.0f}, tree {P.pipeline(P.REHEARSAL)["validation_mae"]["tree"]:,.0f} USD.', 10, after=4)
+    pr = P.pipeline(P.REHEARSAL)
+    para(d, f'Reference results (the model solution, real scikit-learn). Question 1: validation MAE linear {vm["linear"]:,.0f}, tree {vm["tree"]:,.0f} USD; chosen {nums["chosen"]} (MAX_MAE {P.EXAM["max_mae"]:,} USD); test MAE {nums["test"]["mae"]:,.0f} USD; Task 3b about 17,500 USD (a comparison only). '
+            f'Question 2: logistic regression F1 {p["warning_scores"]["f1"]:.3f} (TP {p["warning_scores"]["tp"]}, FP {p["warning_scores"]["fp"]}, FN {p["warning_scores"]["fn"]}), tree F1 {p["tree_warning_scores"]["f1"]:.3f} (TP {p["tree_warning_scores"]["tp"]}, FP {p["tree_warning_scores"]["fp"]}, FN {p["tree_warning_scores"]["fn"]}); chosen {p["chosen_warning"]}; test F1 {nums["test"]["warning"]["f1"]:.3f}. '
+            f'The rehearsal (random_state=29): MAE linear {pr["validation_mae"]["linear"]:,.0f}, tree {pr["validation_mae"]["tree"]:,.0f} USD; F1 logistic {pr["warning_scores"]["f1"]:.3f}, tree {pr["tree_warning_scores"]["f1"]:.3f}.', 10, after=4)
     h2(d, '1. How the time limit works (the Test 1 mechanism, reused)')
     bullets(d, [('Server timer.', 'The portal stores the start time when the student presses Start test. The personal deadline is the earlier of start plus the duration_minutes of the Test windows row (180) and the closes_at of that row. It is stored in the Test allocations sheet (columns started_at and personal_deadline), not in the notebook.'),
                 ('In the notebook.', 'A countdown cell shows the deadline (a reminder only). The deadline that counts is kept on the server; a deadline typed into the notebook is ignored.'),
@@ -292,13 +304,14 @@ def marking_guide():
     grid(d, rows, [4.6, 11.0, 1.8], header=['Part A item', 'Automatic check', 'Marks'], size=8.5, label_cols=(0,))
     spacer(d, 4)
     ex = {
-        'b1': 'recommended_model is a model the student trained (1), equals the student\'s own rule choice (1), and is the model the test set was opened with (1).',
-        'b2': 'validation_mae for baseline, linear and tree each within 0.011 of the student\'s own computed value (1 each).',
-        'b3': 'test_mae (1) and test_recall (1) within 0.011 of the student\'s own Task 6 values (or the reference for the model that was opened, when they are missing).',
-        'b4': 'improvement_over_baseline within 0.011 of the student\'s own validation MAE of the baseline minus that of the recommended model.',
-        'b5': 'Three different letters; one mark for each of the four true limits chosen (four true and six false statements, lettered differently for each course).',
-        'b6': 'The one correct next step of five (collect sales from more towns and years, and real machine records, and check the chosen models again on unseen rows).',
-        'b7': '8 to 80 words and the keyword groups: answer_choice needs a measure word (error, MAE, lowest, better...), an evidence word (validation, baseline, compared, September...) and a number; answer_test_set needs a test-set word (test, November, December...) and a reason word (honest, leak, optimistic, unbiased, tune, choose, unseen...).'}
+        'b1': 'house_model is a model the student trained (1) and equals the student\'s own rule choice (1).',
+        'b2': 'house_validation_mae for linear and tree each within 0.011 of the student\'s own computed value (1 each).',
+        'b3': 'warning_model is a model the student trained (1) and equals the student\'s own rule choice, the higher validation F1 (1).',
+        'b4': 'warning_validation_f1 for logistic and tree both within 0.011 of the student\'s own values (1).',
+        'b5': 'test_mae (1) and test_f1 (1) within 0.011 of the student\'s own Task 4 and Task 8 values.',
+        'b6': 'Three different letters; one mark for each of the four true limits chosen (four true and six false statements, lettered differently for each course).',
+        'b7': 'The one correct next step of five (collect sales from more towns and years, and real machine records, and check the chosen models again on unseen rows).',
+        'b8': '8 to 80 words and the keyword groups: answer_choice needs a measure word (error, MAE, F1, lower, better...), an evidence word (validation, compared, than, tree, linear...) and a number; answer_test_set needs "test" and a reason (honest, leak, choose, tune, unseen...).'}
     grid(d, [[f'{k.upper()} {M_t} ({m})', ex[k]] for (k, M_t, m) in M.PARTB], [4.6, W - 4.6], header=['Part B field', 'Automatic check'], size=8.5, label_cols=(0,))
     para(d, 'Keyword rules cannot judge quality. They accept several correct wordings on purpose (the lists are in grader_spec/memo_spec.py and are tested in run_proofs.py with a differently worded pair). A written answer that is a list of keywords earns the mark and appears on the spot-check list as KEYWORD_STUFFING for you to read.', 9.5, italic=True, before=3, after=3)
     h2(d, '7. A worked example')
@@ -311,24 +324,25 @@ def marking_guide():
     rows += [[f'Part B {M_t}', fmt(marks[k]), str(m)] for (k, M_t, m) in M.PARTB]
     rows.append(['Part B total', fmt(b), str(K.PART_B_MAX)])
     grid(d, rows, [11.0, 3.2, 3.2], header=['Item', 'Awarded', 'Out of'], size=8.5, label_cols=(0,))
-    para(d, f'Why: regression_errors fails the RMSE checks, so item A5 loses marks; the test set result is compared on RMSE too, so item A8 loses some. Part B is full because the memo agrees with the student\'s own notebook (the grader compares with the student\'s own values, so a Part A error does not also cost Part B marks). Project total {fmt(a + b)} of {K.PART_A_MAX + K.PART_B_MAX}, which is {100 * (a + b) / (K.PART_A_MAX + K.PART_B_MAX):.0f} percent of the project.', 10, before=3, after=3)
+    para(d, f'Why: the RMSE checks fail, so item A4 (MAE and RMSE) loses a quarter of its marks; nothing else changes, because every other task is checked on its own hidden inputs. Part B is full because the memo agrees with the student\'s own notebook (the grader compares with the student\'s own values, so a Part A error does not also cost Part B marks). Project total {fmt(a + b)} of {K.PART_A_MAX + K.PART_B_MAX}, which is {100 * (a + b) / (K.PART_A_MAX + K.PART_B_MAX):.0f} percent of the project.', 10, before=3, after=3)
     h2(d, '8. Common errors and what they cost')
-    grid(d, [['Duplicate rows kept', 'Item A1 loses the duplicates share and the whole-result share.'],
-             ['Impossible values or rows with no target kept', 'Item A1 loses those shares; the models also learn from wrong rows.'],
-             ['Imputation fitted on all rows', 'Item A4 fails on the linear and tree lists, and item A6 (no leakage) drops.'],
-             ['Baseline model built from other targets', 'The baseline predictions are wrong and item A6 drops. Often pd.concat of train and valid.'],
-             ['Another split rule (other frac or seed)', 'Item A3 scores 0 and the results share of A9 fails, because the validation rows are different.'],
+    grid(d, [['Duplicate rows kept', 'Item A1 (houses) or A9 (machines) loses the duplicates share and the whole-result share.'],
+             ['Impossible values or rows with no target kept', 'Item A1 or A9 loses those shares; the models also learn from wrong rows.'],
+             ['Imputation fitted on all rows', 'Item A3 fails on the linear and tree lists, and item A5 (no leakage) drops.'],
+             ['A choice typed in instead of the rule', 'The hidden run that needs the other model fails, so item A8 or A13 drops.'],
+             ['F1 as the plain mean of precision and recall', 'Item A12 (scores) drops: F1 is 2 x P x R / (P + R).'],
+             ['Another split rule (other frac or seed)', 'Item A2 or A10 scores 0 and the results share of A14 fails, because the validation rows are different.'],
              ['Gaps filled in Task 1 (fillna on all rows)', 'Item A1 loses the gaps share: the imputer must learn the medians from the training rows only.'],
-             ['RMSE without the square root', 'Part of item A5 and of item A8.'],
-             ['Task 3b without handle_unknown="ignore"', 'predict stops on a category the training rows never show, so item A10 earns 0. Nothing else is lost.'],
-             ['Task 3b skipped', 'Item A10 (2 marks) only: its results are not part of "results and MEMO present".'],
-             ['Test rows added to the training or validation rows', 'Part of item A8 is lost.'],
-             ['Test rows read before the choice', 'Part of item A8; flagged TEST_USED_EARLY on the spot-check list.'],
-             ['No random_state=17 on the tree', 'The reproducibility share of item A9 is lost.'],
-             ['Chart without an axis name or unit', 'Part of item A2 is lost.'],
+             ['RMSE without the square root', 'Part of item A4.'],
+             ['Task 3b without handle_unknown="ignore"', 'predict stops on a category the training rows never show, so item A7 earns 0. Nothing else is lost.'],
+             ['Task 3b skipped', 'Item A7 (2 marks) only: its results are not part of "results and MEMO present".'],
+             ['Test rows added to the training or validation rows', 'Part of item A8 or A13 is lost.'],
+             ['Test rows read before the choice', 'Part of item A8 or A13; flagged TEST_USED_EARLY on the spot-check list.'],
+             ['No random_state=17 on a tree', 'The reproducibility share of item A14 is lost.'],
+             ['Chart without an axis name or unit', 'Part of item A6 is lost.'],
              ['Editing the setup cell', 'The original is put back before marking, so it costs nothing; the case is flagged SUPPLIED_CELL_EDITED.'],
-             ['Results typed in', 'The results share of item A9 earns 0 for those numbers; flagged RESULTS_NOT_CALCULATED.'],
-             ['A required result missing or named beyond recognition', 'That result\'s share, and the "results and MEMO present" share of item A9.'],
+             ['Results typed in', 'The results share of item A14 earns 0 for those numbers; flagged RESULTS_NOT_CALCULATED.'],
+             ['A required result missing or named beyond recognition', 'That result\'s share, and the "results and MEMO present" share of item A14.'],
              ['Memo numbers copied wrongly', 'The Part B field loses its mark; flagged MEMO_NUMBERS_DISAGREE. Look for a missing decimal point before overriding.'],
              ['STUDENT_ID blank or someone else\'s', 'IDENTITY_MISMATCH. The allocation and its Drive file say who it was issued to; speak to the student.']],
          [5.4, W - 5.4], header=['Mistake', 'What happens and what to do'], size=9, label_cols=(0,))

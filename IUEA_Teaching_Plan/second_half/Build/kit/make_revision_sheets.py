@@ -46,9 +46,10 @@ def clock(blocks):
 
 
 # ------------------------------------------------------------------ the blocks
-# Rehearsal reference results (tidy tables of 16 November 2026, split random_state=29, real scikit-learn): cleaned 2,913 houses and 9,984 machines;
-# split 1,748 / 582 / 583 houses and 5,990 / 1,997 / 1,997 machines; validation MAE baseline 58,789, linear 22,005, tree 27,785 USD; Task 3b about
-# 17,800 USD; warnings at 0.5: TP 10, FP 6, FN 58, TN 1,923, precision 0.63, recall 0.15; chosen model linear; test MAE 20,135 USD, test recall 0.19.
+# Rehearsal reference results (two questions, no baseline, 16 November 2026; split random_state=29, real scikit-learn). Question 1: 2,935 houses
+# cleaned to 2,913, split 1,748 / 582 / 583; validation MAE linear 22,005, tree 27,785 USD; Task 3b about 17,800 USD; chosen linear; test MAE 20,135.
+# Question 2: 10,012 machines cleaned to 9,984, split 5,990 / 1,997 / 1,997; logistic TP 10, FP 6, FN 58, F1 0.238; tree TP 10, FP 4, FN 58,
+# F1 0.244; chosen tree; test F1 0.278.
 ENTRY = (20,
          'The rehearsal entry page on the projector. I enter the demo number 26/DEMO/001/LECTURER. Class 3 deck, slides 37 to 39 (the project).',
          'I show every step slowly; you will do these yourself on Monday. Choose your course first: the page refuses a number from another course. Type your registration number and check the name is yours, then tick This is me. Type your Google email twice. It must be the account you are signed into in Colab, top right of colab.research.google.com: the notebook is shared with that account only. '
@@ -58,31 +59,37 @@ ENTRY = (20,
 SETUP = (10,
          'The collapsed cell "Setup: run me first. DO NOT EDIT THIS CELL". The line it prints (the size of houses_raw and machines_raw), the big clock under it, the deadline at the top, then the cell "The data" with its two column tables.',
          'Run Setup first, and again after any restart. You do not open it or edit it: the marking always uses the original. The data is inside it, so nothing is uploaded or downloaded. '
-         'Two tables, read with me through "The data": houses_raw, real house sales in Ames, Iowa, 2006 to 2010, one row per sale, the target sale_price_usd; and machines_raw, runs of a metal-cutting machine (synthetic), the target failure. Each column is explained there. A few problems were added on purpose for Task 1. '
+         'Two tables, read with me through "The data": houses_raw, real house sales in Ames, Iowa, 2006 to 2010, one row per sale, the target sale_price_usd; and machines_raw, runs of a metal-cutting machine (synthetic), the target failure. Each column is explained there. A few problems were added on purpose for cleaning. Question 1 (Tasks 1 to 4) uses only the houses; Question 2 (Tasks 5 to 8) uses only the machines, and we start it only when Question 1 is finished. '
          'Your deadline is written at the top of the notebook. Setup shows a big clock, and after every cell a line shows the time left. Under 30 minutes it says Press Ctrl+S. These are the project\'s exact tasks and files; only the split seed is 29 today, so your numbers will not be the project\'s.',
          'Setup: run me first, then read the clock')
 PLAIN = (5,
-         'The Task 1 heading: the Input and Store line, then the empty cell "# Your code here. Store: houses, machines".',
+         'The Task 1 heading: the Input and Store line, then the empty cell "# Your code here. Store: houses".',
          'Each task names its inputs and the results to store. Write plain code under it, in as many cells as you like. No functions needed. Store the result under the exact name, then print it and read it. '
          'Each task is re-run on its own with hidden versions of its inputs, so use only those inputs and the setup names (H_TARGET, H_FEATURES, M_TARGET, M_FEATURES, THRESHOLD). Calculate, never type a number.',
          'How to write an answer')
 BREAK = (10, 'Nothing.', 'Ten minutes. Leave Colab open; your variables stay as long as the session stays connected.', 'Break')
 
-TASK1_SHOW = ('Task 1 and the note "Cleaning". houses_raw.duplicated().sum(), houses_raw[H_TARGET].isna().sum(), houses_raw[houses_raw["living_area_m2"] <= 0], houses_raw[houses_raw["year_built"] > 2010]; the same questions for machines_raw. Class 1 slide 11 (removing rows we cannot trust).')
-TASK1_SAY = ('Start from a copy, so the raw tables never change. Look first: count the duplicates, the missing prices and the impossible values, then remove them in three lines: drop_duplicates(), dropna(subset=[H_TARGET]), then keep the rows that pass the rule (living_area_m2 above 0, year_built 2010 or earlier). '
-             'Machines: the same three steps (torque_nm and rotation_speed_rpm above 0), then product_type as a number, L 0, M 1, H 2. Leave the other gaps, such as lot_frontage_m: the imputer fills them from the training rows only. '
-             'These problems were added on purpose, and the notebook says so. Today: 2,935 houses become 2,913, and 10,012 machines become 9,984. ')
-SPLIT = (10, 'The note "Training, validation and test sets". Class 3 slide 23 (train-test contamination) and slide 14 (the test set stays sealed).',
-         'Four given lines per table: houses_test = houses.sample(frac=0.2, random_state=29), houses_rest = houses.drop(houses_test.index), houses_valid = houses_rest.sample(frac=0.25, random_state=29), houses_train = houses_rest.drop(houses_valid.index); the same for machines. '
-         'That is 60, 20 and 20 percent. The seed makes the random choice repeat, so everyone gets the same rows; the project uses 17. The test set is used once, at the end: if we chose or tuned on it, its score would look better than the truth. Check: 1,748, 582 and 583 houses; 5,990, 1,997 and 1,997 machines.',
-         'Task 2: store the six sets (2 marks)')
-TASK3_SAY = ('Every number learned from data comes from houses_train only: the imputation medians and the baseline mean. make_pipeline(SimpleImputer(strategy="median"), model) learns them in fit and reuses them in predict. '
-             'The marking checks for leakage with extreme rows in valid. RMSE needs the square root. The tree keeps random_state=17. Today: baseline about 58,789, linear 22,005, tree 27,785 USD. ')
-ONEHOT = ('Task 3b is a comparison only, never part of choose_model. A model needs numbers, so one-hot encoding turns a text column into one 0 or 1 column per category: neighbourhood NAmes becomes a 1 in neighbourhood_NAmes. '
+TASK1_SHOW = ('Question 1 heading, then Task 1 and the note "Cleaning". houses_raw.duplicated().sum(), houses_raw[H_TARGET].isna().sum(), houses_raw[houses_raw["living_area_m2"] <= 0], houses_raw[houses_raw["year_built"] > 2010]. Class 1 slide 11 (removing rows we cannot trust).')
+TASK1_SAY = ('Start from a copy, so the raw table never changes. Look first: count the duplicates, the missing prices and the impossible values, then remove them in three lines: drop_duplicates(), dropna(subset=[H_TARGET]), then keep the rows that pass the rule (living_area_m2 above 0, year_built 2010 or earlier). '
+             'Leave the other gaps, such as lot_frontage_m: the imputer fills them from the training rows only. These problems were added on purpose, and the notebook says so. Today: 2,935 houses become 2,913. ')
+SPLIT = (5, 'The note "Training, validation and test sets". Class 3 slide 23 (train-test contamination) and slide 14 (the test set stays sealed).',
+         'Four given lines: houses_test = houses.sample(frac=0.2, random_state=29), houses_rest = houses.drop(houses_test.index), houses_valid = houses_rest.sample(frac=0.25, random_state=29), houses_train = houses_rest.drop(houses_valid.index). '
+         'That is 60, 20 and 20 percent; the seed gives everyone the same rows (the project uses 17). The test rows stay sealed until Task 4. Check: 1,748, 582 and 583.',
+         'Task 2: houses_train, houses_valid, houses_test (1 mark)')
+TASK3_SAY = ('Two models only: linear regression and a decision tree (max_depth=4, random_state=17). Every number learned from data comes from houses_train only: make_pipeline(SimpleImputer(strategy="median"), model) learns the medians in fit and reuses them in predict. '
+             'The marking checks for leakage with extreme rows in valid. RMSE needs the square root. Today: MAE linear 22,005, tree 27,785 USD. ')
+ONEHOT = ('Task 3b is a comparison only, never part of the choice. A model needs numbers, so one-hot encoding turns a text column into one 0 or 1 column per category: neighbourhood NAmes becomes a 1 in neighbourhood_NAmes. '
           'The categories are learned from houses_train only, like the medians. handle_unknown="ignore" gives a category train never saw all zeros instead of an error. Copy the recipe from the task. Today about 17,800 USD against 22,005 for linear: the text columns help.')
-TASK5 = ('chosen_model = choose_model({"baseline": baseline_mae, "linear": linear_mae, "tree": tree_mae}). The rule is in Setup: MAE at most 25,000 USD and time at most 50 ms, then the smallest MAE. Today it picks linear. The test set never helps to choose.')
-TASK6 = ('Only now, after the choice, use the test rows, once. Refit the chosen model on houses_train and houses_valid together and score houses_test (test_mae); refit the warning model on machines_train and machines_valid together and score machines_test at 0.5 (test_recall). '
-         'Reading the test rows before the choice costs marks. Whatever comes out, you report it. Today: test MAE about 20,135 USD, test recall 0.19.')
+TASK4 = ('chosen_house_model = choose_model({"linear": linear_mae, "tree": tree_mae}). The rule is in Setup: MAE at most 25,000 USD and time at most 50 ms, then the smaller MAE. Today it picks linear (the tree is over the limit). '
+         'Only now use the test houses, once: refit the chosen model on houses_train and houses_valid together and score houses_test. Reading the test rows before the choice costs marks. Today: test MAE 20,135 USD. Question 1 is finished.')
+CLEAN_M = (10, 'Question 2 heading, then Tasks 5 and 6.',
+           'A new question and a new table: machines only. The same three cleaning steps (torque_nm and rotation_speed_rpm above 0), then product_type as a number, L 0, M 1, H 2, and the same four split lines. Today: 10,012 runs become 9,984; 5,990, 1,997 and 1,997.',
+           'Tasks 5 and 6: machines, then the three sets (4 marks)')
+TASK7_SAY = ('Model 1, logistic regression: StandardScaler first, then a probability from predict_proba(X)[:, 1]; warn when it is >= 0.5. Model 2, a decision tree classifier (max_depth=3, random_state=17): it answers 0 or 1 with predict and needs no scaling. '
+             'For each: confusion_matrix(..., labels=[0, 1]).ravel() gives tn, fp, fn, tp; precision is TP / (TP + FP), recall TP / (TP + FN), and F1 balances the two. '
+             'Today: logistic TP 10, FP 6, FN 58, F1 0.238; tree TP 10, FP 4, FN 58, F1 0.244. Failures are rare (3 in 100), so both miss most. ')
+TASK8 = ('chosen_warning_model = choose_warning_model({"logistic": logistic_f1, "tree": tree_f1}): the higher validation F1 wins (a tie goes to logistic regression). Today the tree, by a hair: ask whether that gap means much. '
+         'Then refit the chosen model on machines_train and machines_valid together and score machines_test once. Today: test F1 0.278.')
 
 
 def finish(m):
@@ -96,50 +103,48 @@ def finish(m):
 
 def friday_blocks():
     return [ENTRY, SETUP, PLAIN,
-            (25, TASK1_SHOW,
+            (15, TASK1_SHOW,
              TASK1_SAY + 'Write every rule, even if this file would pass without it: the hidden raw tables have problems added. Chart 1: living_area_m2 across, sale price up, a title, both axis names, USD in the y label.',
-             'Task 1: store houses, machines, Chart 1 (6 + 1 marks)'),
+             'Task 1: houses, Chart 1 (3 marks + chart)'),
             SPLIT,
-            (25, 'The note "Fit on the training rows only". Class 3 slides 24 and 25 (the pipeline rule). Class 1 slide 21 (MAE, MSE, RMSE).',
-             TASK3_SAY + 'Chart 2: the three MAE values as bars, with the unit.',
-             'Task 3: the three _pred, _mae and _rmse results, Chart 2 (three models 6, MAE and RMSE 3, no leakage 2, chart 1)'),
+            (20, 'The note "Fit on the training rows only". Class 3 slides 24 and 25 (the pipeline rule). Class 1 slide 21 (MAE, MSE, RMSE).',
+             TASK3_SAY + 'Chart 2: the two MAE values as bars, with the unit.',
+             'Task 3: linear and tree _pred, _mae, _rmse, Chart 2 (models 4, MAE and RMSE 3, no leakage 2)'),
             BREAK,
-            (10, 'The note "One-hot encoding" and the recipe in Task 3b.', ONEHOT, 'Task 3b: store encoded_pred, encoded_mae (2 marks)'),
-            (15, 'The note on logistic regression. Class 2 slides 13, 19, 20 and 21 (logistic regression, confusion matrix, precision, recall).',
-             'You had this in Class 2. A warning is failure 1, about 3 rows in 100. The probability is predict_proba(X)[:, 1]; warn when it is >= 0.5. confusion_matrix(..., labels=[0, 1]).ravel() gives tn, fp, fn, tp in that order. '
-             'Precision: of the warnings raised, how many were right. Recall: of the real failures, how many we caught. A zero count gives 0. Today: TP 10, FP 6, FN 58, precision 0.63, recall 0.15. Most failures are missed at 0.5. The project keeps 0.5; say it in the memo.',
-             'Task 4: store warning_proba, tp, fp, fn, tn, precision, recall (3 marks)'),
-            (5, 'The Task 5 line.', TASK5, 'Task 5: store chosen_model'),
-            (10, 'The note "Use the test set once, then stop". Class 3 slide 14 again, and slide 27 (the checklist).', TASK6,
-             'Task 6: store test_mae, test_recall (2 marks)'),
+            (10, 'The note "One-hot encoding" and the recipe in Task 3b.', ONEHOT, 'Task 3b: encoded_pred, encoded_mae (2 marks)'),
+            (10, 'The Task 4 rule, then the note "Use the test set once, then stop". Class 3 slide 14.', TASK4, 'Task 4: chosen_house_model, test_mae (1 mark)'),
+            CLEAN_M,
+            (20, 'The note on logistic regression and the tree. Class 2 slides 13, 19, 20 and 21, and the decision tree classifier slide.',
+             'You had this in Class 2, so this is a recap. ' + TASK7_SAY,
+             'Task 7: both models, their counts, precision, recall and F1 (5 marks)'),
+            (10, 'The Task 8 rule.', TASK8, 'Task 8: chosen_warning_model, test_f1 (1 mark)'),
             (10, 'The MEMO cell and its table of fields.',
              'Every field is checked by computer. Copy your own numbers with at least two decimals. For limits, pick the three statements that are true limits of this study. Write the two answers in your own words, 8 to 80 words each.',
-             'Task 7: fill in MEMO (15 marks)'),
+             'Task 9: fill in MEMO (15 marks)'),
             finish(25)]
 
 
 def tuesday_blocks():
     return [ENTRY, SETUP, PLAIN,
-            (20, TASK1_SHOW,
+            (15, TASK1_SHOW,
              TASK1_SAY + 'I write all of it on the projector. Chart 1 if time allows.',
-             'Task 1: houses, machines (Chart 1 if time allows)'),
+             'Task 1: houses (Chart 1 if time allows)'),
             SPLIT,
-            (20, 'The note "Fit on the training rows only". Class 3 slides 24 and 25 (the pipeline rule). Class 1 slide 33 (the pipeline).',
+            (15, 'The note "Fit on the training rows only". Class 3 slides 24 and 25 (the pipeline rule). Class 1 slide 33 (the pipeline).',
              TASK3_SAY + 'Chart 2 if time allows.',
-             'Task 3: the three _pred, _mae and _rmse results (Chart 2 if time allows)'),
+             'Task 3: linear and tree _pred, _mae, _rmse (Chart 2 if time allows)'),
             BREAK,
-            (5, 'The note "One-hot encoding" and the recipe in Task 3b.', ONEHOT, 'Task 3b: store encoded_pred, encoded_mae (2 marks)'),
-            (30, 'The note on logistic regression in the rehearsal. Class 2 slides 12 and 13 (sigmoid, score, probability), slide 10 (standard deviation, for StandardScaler), slide 19 (confusion matrix), slides 20 and 21 (precision, recall). The board for the 2 by 2 table.',
-             'You have not had Class 2, so this is the new part. About 8 minutes: logistic regression adds up the weighted features into a score, and the sigmoid turns the score into a probability between 0 and 1; StandardScaler puts the features on one scale first. '
-             'About 10 minutes: the confusion matrix on the board. A warning before a real failure is TP, a false alarm is FP, a missed failure is FN, a quiet machine left quiet is TN. '
-             'About 7 minutes: precision is TP / (TP + FP), recall is TP / (TP + FN). Today: TP 10, FP 6, FN 58 give precision 10 / 16 = 0.63 and recall 10 / 68 = 0.15. Failures are rare (3 in 100), so most are missed at 0.5. '
-             'About 5 minutes: I write Task 4 on the projector, with >= 0.5 and the ravel order tn, fp, fn, tp.',
-             'Task 4: store warning_proba, tp, fp, fn, tn, precision, recall (3 marks)'),
-            (15, 'The Task 5 line, then the note "Use the test set once, then stop" and Class 3 slide 14.', TASK5 + ' ' + TASK6,
-             'Tasks 5 and 6: store chosen_model, then test_mae, test_recall'),
+            (5, 'The note "One-hot encoding" and the recipe in Task 3b.', ONEHOT, 'Task 3b: encoded_pred, encoded_mae (2 marks)'),
+            (10, 'The Task 4 rule, then the note "Use the test set once, then stop". Class 3 slide 14.', TASK4, 'Task 4: chosen_house_model, test_mae (1 mark)'),
+            CLEAN_M,
+            (35, 'The note on logistic regression and the tree. Class 2 slides 12 and 13 (sigmoid, score, probability), slide 10 (standard deviation, for StandardScaler), slide 19 (confusion matrix), slides 20 and 21 (precision, recall), the decision tree classifier slide. The board for the 2 by 2 table.',
+             'You have not had Class 2, so this is the new part. About 8 minutes: logistic regression adds up the weighted features into a score, and the sigmoid turns it into a probability between 0 and 1. About 5 minutes: a decision tree asks yes or no questions down to a leaf that says 0 or 1. '
+             'About 10 minutes: the confusion matrix on the board (TP a warning before a real failure, FP a false alarm, FN a missed failure, TN a quiet run left quiet). About 7 minutes: precision, recall and F1. About 5 minutes: I write Task 7. ' + TASK7_SAY,
+             'Task 7: both models, their counts, precision, recall and F1 (5 marks)'),
+            (5, 'The Task 8 rule.', TASK8, 'Task 8: chosen_warning_model, test_f1 (1 mark)'),
             (10, 'The MEMO cell and its table of fields. I do not fill it in.',
              'Every field is checked by computer. Copy your own numbers with at least two decimals. For limits, pick the three statements that are true limits of this study. I fill in the first fields to show the format.',
-             'Task 7: how MEMO is marked'),
+             'Task 9: how MEMO is marked'),
             finish(25)]
 
 
@@ -147,8 +152,8 @@ HOME_3112 = [
     ['Task 1: the cleaning rules and what a good chart needs', 'Class 1 slide 11 (removing rows we cannot trust), Class 3 slide 26 (target leakage). Your Week 7 chart notes: title, both axis names, the unit.'],
     ['Task 3: MAE and RMSE, and why RMSE punishes big errors', 'Class 1 slides 21 and 23 (MAE, MSE, RMSE).'],
     ['Task 3b: one-hot encoding', 'Your notes from the Task 3b demonstration.'],
-    ['Task 4: logistic regression, the confusion matrix, precision and recall', 'Class 2 slides 12, 13, 19, 20 and 21. Slides 22 to 31 (the cost table, choosing a threshold, ROC) are not in the project: skip them.'],
-    ['Task 7: why the test set is opened once; the MEMO fields', 'Class 3 slides 14 and 27 (the sealed test set, the checklist).'],
+    ['Task 7: logistic regression, the decision tree classifier, the confusion matrix, precision, recall and F1', 'Class 2 slides 12, 13, 19, 20 and 21, and the decision tree classifier slide. Slides 22 to 31 (the cost table, choosing a threshold, ROC) are not in the project: skip them.'],
+    ['Tasks 4, 8 and 9: why the test set is used once, last; the MEMO fields', 'Class 3 slides 14 and 27 (the sealed test set, the checklist).'],
     ['The entry steps and finishing', 'Class 3 slide 38 (enter, work, finish), and your notes from today.'],
 ]
 
@@ -185,10 +190,10 @@ def build(code):
              'Two files: Ames house sales (real, De Cock 2011) for the price question, and AI4I 2020 machine records (synthetic, UCI, CC BY 4.0) for the warning question. '
              'I teach the ideas as they come up: a random split with a seed and why the test set is opened once (Task 2), imputation fitted on the training rows only (Task 3), one-hot encoding (Task 3b, briefly), and target leakage, why the failure-type columns are dropped (Task 1). ')
     if tue:
-        para(d, intro + 'This cohort has had Class 1 but not Class 2, so logistic regression, the confusion matrix, precision and recall are taught inside Task 4, about 30 minutes. Some parts are left for home (list below).', 10, after=4)
+        para(d, intro + 'This cohort has had Class 1 but not Class 2, so logistic regression, the confusion matrix, precision, recall and F1 are taught inside Task 7 (logistic regression and the decision tree classifier), about 35 minutes. Some parts are left for home (list below).', 10, after=4)
     else:
-        para(d, intro + 'This cohort had Class 2, so Task 4 is a short recap.', 10, after=4)
-    para(d, 'The project: online, Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time, 3 hours from Start. Part A 30 (clean 6, charts 2, split 2, three models 6, MAE and RMSE 3, no leakage 2, warning at 0.5 3, test set once 2, results, seed and MEMO present 2, Task 3b text columns 2) and Part B memo 15. Plain code under each task, one supplied cell (Setup: run me first), no Submit: work is collected at the deadline. No cross-validation, no cost table, no threshold choice.', 10, after=4)
+        para(d, intro + 'This cohort had Class 2, so Task 7 (logistic regression and the decision tree classifier) is a short recap.', 10, after=4)
+    para(d, 'The project: online, Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time, 3 hours from Start. Two separate questions, no baseline model. Question 1, houses (regression): clean 3, split 1, linear regression and a decision tree 4, MAE and RMSE 3, no leakage 2, charts 2, Task 3b text columns 2, choose and test once 1. Question 2, machines (classification): clean 3, split 1, logistic regression and a decision tree 3, counts, precision, recall and F1 2, choose by F1 and test once 1. Results, seed and MEMO present 2: Part A 30. Part B memo 15. Plain code under each task, one supplied cell (Setup: run me first), no Submit: work is collected at the deadline. No cross-validation, no cost table, no threshold choice.', 10, after=4)
 
     h2(d, 'Before class')
     bullets(d, ['The rehearsal is open until Sunday 22 November 23:59, for the demo numbers only (26/DEMO/001/LECTURER in class, 26/SMOKE/001/TEST for my own checks). Students cannot open it, so I do not post the rehearsal link.',

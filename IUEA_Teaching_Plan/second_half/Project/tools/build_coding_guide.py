@@ -76,15 +76,15 @@ def code_block(d, code):
         first = False
         tight(p, line=0.92)
         if not line.strip():                      # a blank line between steps: a half-height gap
-            run(p, ' ', 3.5, font=CODE_FONT)
+            run(p, ' ', 2.5, font=CODE_FONT)
             continue
         if '#' in line and not line.lstrip().startswith(('"', "'")) and '"#' not in line:
             i = line.index('#')
             if line[:i].strip():
-                run(p, line[:i], 7.0, color=INK, font=CODE_FONT)
-            run(p, line[i:], 7.0, color=COMMENT, font=CODE_FONT)
+                run(p, line[:i], 6.7, color=INK, font=CODE_FONT)
+            run(p, line[i:], 6.7, color=COMMENT, font=CODE_FONT)
         else:
-            run(p, line, 7.0, color=INK, font=CODE_FONT)
+            run(p, line, 6.7, color=INK, font=CODE_FONT)
     return t
 
 
@@ -97,21 +97,21 @@ def notes(d, say, expect, ask):
         cell_margins(cell, 0.08)
         p = cell.paragraphs[0]
         tight(p, before=1, after=1, line=1.0)
-        run(p, label + ': ', 8, bold=True, color=TEAL)
-        run(p, text, 8)
+        run(p, label + ': ', 7.6, bold=True, color=TEAL)
+        run(p, text, 7.6)
 
 
 def heading(d, text, right):
     p = d.add_paragraph()
-    tight(p, before=5, after=1.5)
-    run(p, text, 10, bold=True, color=TEAL)
+    tight(p, before=3.5, after=1)
+    run(p, text, 9.5, bold=True, color=TEAL)
     run(p, '   ' + right, 8, color=GREY)
 
 
 def main():
     cfg = P.REHEARSAL
     p = P.pipeline(cfg)
-    n, vm, vr, w = p['n'], p['validation_mae'], p['validation_rmse'], p['warning_scores']
+    n, vm, vr, w, wt = p['n'], p['validation_mae'], p['validation_rmse'], p['warning_scores'], p['tree_warning_scores']
     test = P.test_expected(p['chosen_model'], cfg)
     enc = P.errors([r[P.H_TARGET] for r in p['houses_valid']], P.encoded_regression(p['houses_train'], P.strip(p['houses_valid'], P.H_TARGET), cfg))['mae']
     seed = cfg['split_seed']
@@ -131,64 +131,69 @@ def main():
 
     p0 = d.add_paragraph(); tight(p0, after=1)
     run(p0, 'Revision class: the coding guide', 15, bold=True, color=INK)
-    p1 = d.add_paragraph(); tight(p1, after=3)
+    p1 = d.add_paragraph(); tight(p1, after=2)
     run(p1, 'Lecturer copy, do not post. CML3112 Tuesday 17, CML3113 and CML3111 Friday 20 November. ', 8.5, bold=True, color=GREY)
-    run(p1, f'The rehearsal notebook, split random_state={seed} (the project uses 17, so its numbers differ). Type each block under its task, run it, '
-            'and read the printout with the class. Rehearsal_Answers_<course>.ipynb has all of it if you need to catch up (Runtime > Run all). '
-            'Enter with 26/DEMO/001/LECTURER. Run Setup first, then read "The data" together: one row is one sale, or one machine run; '
-            'sale_price_usd and failure are the targets.', 8.5, color=GREY)
+    run(p1, f'Rehearsal, random_state={seed} (project: 17). Enter with 26/DEMO/001/LECTURER, run Setup, read "The data". Type each block, run it, read the '
+            'printout together. Backup: Rehearsal_Answers_<course>.ipynb, Run all. Finish Question 1 before opening Question 2.', 8.5, color=GREY)
 
-    heading(d, 'Task 1. Clean the two tables', '6 marks, about 20 minutes')
-    code_block(d, WA.answer('clean', seed))
-    notes(d, 'Look before you clean. A duplicate counts one sale twice; a row with no price teaches nothing; an area of 0 or a house built in 2108 is a typing slip. '
-             'Other gaps stay: the imputer fills them from the training rows only.',
-          f'10 and 12 duplicates; 6 and 8 rows with no target. {n["houses_raw"]:,} to {n["houses"]:,} houses; {n["machines_raw"]:,} to {n["machines"]:,} machines.',
+    def question(text):
+        pq = d.add_paragraph(); tight(pq, before=5, after=0)
+        run(pq, text, 11.5, bold=True, color=INK)
+
+    question('Question 1: what will a house sell for? (regression, houses only)')
+    heading(d, 'Task 1. Clean the house table', '3 marks + chart, 15 minutes')
+    code_block(d, WA.answer('clean_h', seed))
+    notes(d, 'Look first. A duplicate counts a sale twice; no price teaches nothing; an area of 0 or a 2108 build year is a slip. Other gaps stay for the imputer.',
+          f'10 duplicates, 6 with no price. {n["houses_raw"]:,} to {n["houses"]:,} houses.',
           'Why not drop every row that has any gap?')
-
-    heading(d, 'Task 2. Split into training, validation and test sets', '2 marks, 10 minutes')
-    code_block(d, WA.answer('split', seed))
-    notes(d, 'Test first, then validation from the rest: 60/20/20. The seed gives everyone the same rows. The test rows stay sealed until Task 6.',
-          f'Houses {n["houses_train"]:,}, {n["houses_valid"]:,}, {n["houses_test"]:,}. Machines {n["machines_train"]:,}, {n["machines_valid"]:,}, {n["machines_test"]:,}.',
+    heading(d, 'Task 2. Split the houses', '1 mark, 5 minutes')
+    code_block(d, WA.answer('split_h', seed))
+    notes(d, 'Test first, then validation from the rest: 60/20/20. Same seed, same rows for everyone. Test stays sealed until Task 4.',
+          f'{n["houses_train"]:,}, {n["houses_valid"]:,}, {n["houses_test"]:,}.',
           'What goes wrong if we pick the model on the test rows?')
-
-    heading(d, 'Task 3. Question 1: predict the sale price', '13 marks with the chart, about 25 minutes')
+    heading(d, 'Task 3. Linear regression and a decision tree', '11 marks with Chart 2, 20 minutes')
     code_block(d, WA.answer('regression', seed))
-    notes(d, 'Create, fit on train, predict valid. The pipeline learns the medians from train only, so nothing leaks. The baseline (the training mean) is the bar every model must beat.',
-          f'MAE {f(vm["baseline"])}, {f(vm["linear"])}, {f(vm["tree"])} USD. RMSE {f(vr["baseline"])}, {f(vr["linear"])}, {f(vr["tree"])}.',
+    notes(d, 'Create, fit on train, predict valid. Medians come from train only, so nothing leaks. RMSE punishes big misses.',
+          f'MAE {f(vm["linear"])} and {f(vm["tree"])} USD. RMSE {f(vr["linear"])} and {f(vr["tree"])}.',
           'Why is RMSE always at least as big as MAE?')
-
     heading(d, 'Task 3b. Do the text columns help?', '2 marks, 10 minutes')
     code_block(d, WA.answer('encoded', seed))
-    notes(d, 'One-hot: one 0 or 1 column per category, learned from train. handle_unknown="ignore" gives a category train never saw all zeros instead of an error. A comparison only.',
+    notes(d, 'One 0/1 column per category, learned from train; "ignore" gives an unseen category all zeros. A comparison only.',
           f'{f(enc)} USD against {f(vm["linear"])}: the text columns help.',
-          'A neighbourhood the training rows never saw: what happens without "ignore"?')
-
-    heading(d, 'Task 4. Question 2: warn of a machine failure', '3 marks, 15 to 30 minutes')
-    code_block(d, WA.answer('warning', seed))
-    notes(d, 'Logistic regression gives a probability; warn at 0.5 or more. Failures are rare (3 runs in 100), so at 0.5 most are missed. '
-             'CML3112 has not had Class 2: draw the 2 by 2 table on the board first.',
-          f'TP {w["tp"]}, FP {w["fp"]}, FN {w["fn"]}, TN {w["tn"]:,}. Precision 0.62, recall {w["recall"]:.2f}.',
-          'For the maintenance manager, which costs more: a false alarm or a missed failure?')
-
-    heading(d, 'Tasks 5 and 6. Choose one model, then use the test set once', '2 marks, 15 minutes')
-    code_block(d, WA.answer('choose', seed) + '\n' + WA.answer('test', seed))
-    notes(d, 'The rule chooses on validation numbers only. Then refit on train and valid together (more data) and score the test rows once. Report what comes out.',
-          f'{p["chosen_model"]} (the tree, {f(vm["tree"])}, is over the {cfg["max_mae"]:,} limit). Test MAE {f(test["mae"])} USD, recall {test["warning"]["recall"]:.2f}.',
+          'A neighbourhood train never saw: what happens without "ignore"?')
+    heading(d, 'Task 4. Choose the house model, then use the test set once', '1 mark, 10 minutes')
+    code_block(d, WA.answer('test_h', seed))
+    notes(d, 'Choose on validation numbers only; refit on train + valid; score the test rows once and report what comes out.',
+          f'{p["chosen_model"]} (the tree, {f(vm["tree"])}, is over the {cfg["max_mae"]:,} limit). Test MAE {f(test["mae"])} USD.',
           'The test MAE is lower than validation. Is the model better than we thought?')
 
-    heading(d, 'Task 7. The MEMO form', '15 marks, 10 minutes')
+    question('Question 2: will this machine run fail? (classification, machines only)')
+    heading(d, 'Tasks 5 and 6. Clean and split the machine table', '4 marks, 10 minutes')
+    code_block(d, WA.answer('clean_m', seed) + '\n' + WA.answer('split_m', seed))
+    notes(d, 'The same steps as Question 1, on a new table. product_type becomes a number: a model needs numbers.',
+          f'12 duplicates, 8 with no label. {n["machines_raw"]:,} to {n["machines"]:,}; {n["machines_train"]:,}, {n["machines_valid"]:,}, {n["machines_test"]:,}.',
+          'Which steps were the same as for the houses?')
+    heading(d, 'Task 7. Logistic regression and a decision tree', '5 marks, 25 minutes')
+    code_block(d, WA.answer('classify', seed))
+    notes(d, 'Logistic gives a probability (warn at 0.5 or more); the tree answers 0 or 1. Failures are rare, so both miss most. CML3112: draw the 2 by 2 table first.',
+          f'Logistic TP {w["tp"]}, FP {w["fp"]}, FN {w["fn"]}, F1 {w["f1"]:.3f}. Tree TP {wt["tp"]}, FP {wt["fp"]}, FN {wt["fn"]}, F1 {wt["f1"]:.3f}.',
+          'For the maintenance manager, which costs more: a false alarm or a missed failure?')
+    heading(d, 'Task 8. Choose the warning model, then use the test set once', '1 mark, 10 minutes')
+    code_block(d, WA.answer('test_m', seed))
+    notes(d, 'The higher validation F1 wins; refit on train + valid; score the test runs once.',
+          f'{p["chosen_warning"]} (F1 {wt["f1"]:.3f} against {w["f1"]:.3f}). Test F1 {test["warning"]["f1"]:.3f}.',
+          'The two F1 values are very close. Would you trust this choice?')
 
-    notes(d, 'Fill each number from a variable, for example "test_mae": round(test_mae, 2); never type it. Show how to judge a limit, but do not give the letters: the project uses the same lists.',
+    heading(d, 'Task 9. The MEMO form', '15 marks, 10 minutes')
+    notes(d, 'Each number from a variable, e.g. round(test_mae, 2); never typed. Show how to judge a limit; never give the letters (the project uses the same lists).',
           'True letters (yours only): ' + '; '.join(f'{c[-4:]} limits {", ".join(l)}, next {x}' for c, (l, x) in letters.items()) + '.',
           'Why is the test set used only once, at the end?')
-
     heading(d, 'Finish, and the mistakes to watch for', '10 minutes')
     pm = d.add_paragraph(); tight(pm, after=1)
-    run(pm, 'Runtime > Restart session and run all, Ctrl+S, then Check my work on the entry page (one to three minutes). No Submit button: at the deadline the work is collected. ', 8.5)
+    run(pm, 'Restart and run all, Ctrl+S, Check my work. No Submit button. ', 8.5)
     run(pm, 'Watch for: ', 8.5, bold=True, color=TEAL)
-    run(pm, 'changing houses_raw itself; filling every gap in Task 1 (that is the imputer\'s job); another split seed or order; the imputer or the mean fitted on '
-            'train and valid together; RMSE without the square root; > 0.5 instead of >= 0.5; reading houses_test before Task 6; typed numbers (the marking re-runs '
-            'every task on hidden rows, so only calculated results count); editing Setup (it is put back before marking).', 8.5)
+    run(pm, 'changing a raw table; filling every gap in cleaning; another split seed; the imputer fitted on train and valid; RMSE without the root; '
+            '> 0.5 for >= 0.5; F1 as a plain average; a test table read before its choice; typed numbers or choices (hidden rows catch them).', 8.5)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     d.save(str(OUT))

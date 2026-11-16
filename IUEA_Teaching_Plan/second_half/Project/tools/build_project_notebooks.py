@@ -70,6 +70,8 @@ def build_notebook(code, mode, require_forms=False):
     starters = []
     tasks = PC.tasks(cfg)
     for i, task in enumerate(tasks, 1):
+        if task['question'] != (tasks[i - 2]['question'] if i > 1 else 0):         # a clear break between the two questions
+            cells.append(cell(PC.QUESTION_HEADINGS[task['question']]))
         if mode == 'rehearsal' and task['key'] in PC.REHEARSAL_NOTES:
             cells.append(cell(PC.REHEARSAL_NOTES[task['key']]))
         cells.append(cell(PC.task_markdown(i, task)))

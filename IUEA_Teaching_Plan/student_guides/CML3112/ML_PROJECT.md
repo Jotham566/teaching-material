@@ -19,30 +19,37 @@ Two tables, the same for everyone. Both are inside the notebook, organised with 
 - **Houses (real):** 2,935 rows of house sales in Ames, Iowa, 2006 to 2010, with 18 columns such as `neighbourhood`, `overall_quality`, `year_built`, `living_area_m2` and the target `sale_price_usd`. Source: Dean De Cock (2011), Journal of Statistics Education 19(3), https://doi.org/10.1080/10691898.2011.11889627.
 - **Machines (synthetic):** 10,012 runs of a metal-cutting machine: `product_type`, temperatures, `rotation_speed_rpm`, `torque_nm`, `tool_wear_min` and the target `failure`. The data are generated to behave like a real machine, not measured on one. Source: Stephan Matzka (2020), UCI Machine Learning Repository, https://doi.org/10.24432/C5HS5C, CC BY 4.0.
 
-- **Question 1:** predict a house's `sale_price_usd` from its numeric columns (`H_FEATURES`). Task 3b (2 marks) adds the three text columns (`TEXT_FEATURES`) with one-hot encoding; the recipe is given in the task.
-- **Question 2:** warn when a machine fails (`failure` is 1). Logistic regression probabilities; a warning at 0.5 or more; confusion matrix counts, precision and recall.
-- **Cleaning:** remove duplicate rows, rows with no target, and rows with an impossible value (a living area of 0 or less, a house built after 2010; a torque or speed of 0 or less); change `product_type` to a number. Other missing values stay for the imputer.
-- **Split:** you split each table yourself with the given lines: 20 percent test, then 25 percent of the rest for validation (`random_state=17`), so 60/20/20. The test rows are used once, at the end.
+- **Two separate questions.** Finish Question 1 (houses only) before you start Question 2 (machines only). There is no baseline model.
+- **Question 1 (regression):** predict a house's `sale_price_usd` from its numeric columns (`H_FEATURES`) with linear regression and a decision tree; compare MAE and RMSE. Task 3b (2 marks) adds the three text columns with one-hot encoding (the recipe is given).
+- **Question 2 (classification):** warn when a machine run fails (`failure` is 1) with logistic regression (warn at 0.5 or more) and a decision tree classifier; compare counts, precision, recall and F1.
+- **Cleaning:** remove duplicate rows, rows with no target, and rows with an impossible value (houses: a living area of 0 or less, or built after 2010; machines: a torque or speed of 0 or less); change `product_type` to a number. Other missing values stay for the imputer.
+- **Split:** each table with the given lines: 20 percent test, then 25 percent of the rest for validation (`random_state=17`), so 60/20/20. The test rows are used once, after the choice.
 
 ## Tasks
 
 Each task names its inputs and the results to store. Write plain code in as many cells as you like.
 
-1. Clean `houses_raw` and `machines_raw` into `houses` and `machines`; Chart 1.
-2. Split into `houses_train`, `houses_valid`, `houses_test`, `machines_train`, `machines_valid`, `machines_test`.
-3. Baseline, linear regression and decision tree on `houses_train`, predicting `houses_valid`: `baseline_pred`, `linear_pred`, `tree_pred`, the three `_mae` and three `_rmse`; Chart 2.
-3b. Do the text columns help? The given one-hot recipe on `houses_train`, predicting `houses_valid`: `encoded_pred`, `encoded_mae`. A comparison only, not part of the choice.
-4. Warnings at 0.5 on the machines: `warning_proba`, `tp`, `fp`, `fn`, `tn`, `precision`, `recall`.
-5. `chosen_model = choose_model({...})` with the supplied rule.
-6. Only now use the test rows, once: refit on training and validation rows; `test_mae`, `test_recall`.
-7. Fill in the `MEMO` form.
+**Question 1: houses**
+1. Clean `houses_raw` into `houses`; Chart 1.
+2. Split into `houses_train`, `houses_valid`, `houses_test`.
+3. Linear regression and a decision tree on `houses_train`, predicting `houses_valid`: `linear_pred`, `tree_pred`, `linear_mae`, `tree_mae`, `linear_rmse`, `tree_rmse`; Chart 2.
+3b. Do the text columns help? The given one-hot recipe: `encoded_pred`, `encoded_mae`. A comparison only.
+4. `chosen_house_model = choose_model({...})`, then the test rows once: `test_mae`.
+
+**Question 2: machines**
+5. Clean `machines_raw` into `machines`.
+6. Split into `machines_train`, `machines_valid`, `machines_test`.
+7. Logistic regression and a decision tree: `logistic_proba`, `logistic_warn`, `tree_warn`, the two `_counts`, and each model's precision, recall and F1.
+8. `chosen_warning_model = choose_warning_model({...})` (the higher F1), then the test rows once: `test_f1`.
+
+9. Fill in the `MEMO` form.
 
 The only supplied cell is **Setup: run me first** (do not edit it). Each task's cells are also run on hidden data, so typed numbers fail and a mistake in one task does not cost the next.
 
 ## Marks
 
-- **Part A (30):** A1 cleaning 6; A2 two labelled charts 2; A3 split 2; A4 three models 6; A5 MAE and RMSE 3; A6 no leakage 2; A7 warnings 3; A8 test set used once, after the choice 2; A9 results, reproducible (`random_state=17`), results and MEMO present 2; A10 Task 3b, the text columns 2.
-- **Part B (15):** recommended model 3, validation MAE 3, test MAE and recall 2, improvement over the baseline 1, three limits 3, next step 1, two written answers 2.
+- **Part A (30):** Question 1: cleaning 3, split 1, two models 4, MAE and RMSE 3, no leakage 2, two labelled charts 2, Task 3b 2, choice and test once 1. Question 2: cleaning 3, split 1, two models 3, counts, precision, recall and F1 2, choice and test once 1. Results, reproducible (`random_state=17`), results and MEMO present 2.
+- **Part B (15):** house model 2, house validation MAE 2, warning model 2, warning validation F1 1, test results 2, three limits 3, next step 1, two written answers 2.
 - Final by Wednesday 2 December 2026.
 
 ## Steps

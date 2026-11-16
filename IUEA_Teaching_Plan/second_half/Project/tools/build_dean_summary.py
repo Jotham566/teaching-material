@@ -24,23 +24,27 @@ import project_content as PC  # noqa: E402
 FONT = 'Lato'
 OUT = PC.PROJECT / 'Dean_Summary_ML_Project.docx'
 
-PART_A = [('Clean the two tables: remove duplicate rows, rows with no target value and impossible values', 6),
-          ('Two labelled charts of the data', 2),
-          ('Split each table into training, validation and test sets (60, 20 and 20 percent) with a fixed random seed (the code is given)', 2),
-          ('Train a baseline model, linear regression and a decision tree, with missing values filled from training rows', 6),
-          ('Measure the error: MAE and RMSE', 3),
-          ('No data leakage: anything learned from the data comes from training rows only', 2),
-          ('Machine failure warning: logistic regression, with the confusion matrix, precision and recall at a cut-off of 0.5', 3),
-          ('Test set used once, after the model is chosen, and its result', 2),
-          ('Results on the data, a fixed random seed, the required results present', 2),
-          ('Do the text columns help? One-hot encoding of the house descriptions (shown in the revision class)', 2)]
-PART_B = [('Recommended model', 3), ('Validation error of the three models', 3), ('Test-set error and warning recall', 2),
-          ('How much better the recommended model is than the baseline', 1), ('Three true limits of the study, chosen from ten statements', 3),
+PART_A = [('Question 1 (house prices): clean the table, removing duplicates, rows with no price and impossible values', 3),
+          ('Question 1: split into training, validation and test sets (60, 20 and 20 percent; the code is given)', 1),
+          ('Question 1: train linear regression and a decision tree, with missing values filled from training rows', 4),
+          ('Question 1: measure the error, MAE and RMSE', 3),
+          ('Question 1: no data leakage (anything learned from the data comes from training rows only)', 2),
+          ('Question 1: two labelled charts', 2),
+          ('Question 1: do the text columns help? One-hot encoding (shown in the revision class)', 2),
+          ('Question 1: choose the model with the given rule, then use the test set once', 1),
+          ('Question 2 (machine failure): clean the table', 3),
+          ('Question 2: split into training, validation and test sets', 1),
+          ('Question 2: train logistic regression and a decision tree classifier', 3),
+          ('Question 2: confusion matrix counts, precision, recall and F1 for both', 2),
+          ('Question 2: choose the model with the higher F1, then use the test set once', 1),
+          ('Results on the data, a fixed random seed, all required results present', 2)]
+PART_B = [('Recommended house model', 2), ('Validation error of the two house models', 2), ('Recommended warning model', 2),
+          ('Validation F1 of the two warning models', 1), ('Test results of both questions', 2), ('Three true limits of the study, chosen from ten statements', 3),
           ('Best next step, chosen from five', 1), ('Two short written answers: why this model, and why the test set is used only once', 2)]
 
 
 def check_facts():
-    assert sum(m for _, m in PART_A) == PC.AUTO_MARKS == 30 and len(PART_A) == 10
+    assert sum(m for _, m in PART_A) == PC.AUTO_MARKS == 30 and len(PART_A) == 14
     assert sum(m for _, m in PART_B) == PC.PART_B == 15
     assert PC.WINDOW['opens'] == 'Monday 23 November 2026, 00:00' and PC.WINDOW['closes'] == 'Wednesday 25 November 2026, 23:59'
     assert PC.WINDOW['last_full_start'] == 'Wednesday 25 November 2026, 20:59'
@@ -173,15 +177,16 @@ def build():
               'values are also missing.', 'Cleaning.')
 
     heading(d, '3. The questions')
-    bullet(d, 'What will a house sell for? Students compare a simple baseline that predicts the average price, linear regression and a '
-              'decision tree, and report the errors in US dollars. A short extra task asks whether the text columns, such as neighbourhood, '
-              'improve the prediction when they are encoded as numbers.', 'Question 1.')
-    bullet(d, 'Which machine readings should raise a failure warning? Students estimate a probability with logistic regression and, at a '
-              'cut-off of 0.5, report how many failures they catch, miss and raise wrongly.', 'Question 2.')
-    para(d, 'After cleaning, students split each table themselves into training, validation and test sets (60, 20 and 20 percent) with '
-            'the code given and a fixed random seed. The test set may be used only once, after the model is chosen. Students finish with a short decision memo. The error limit (25,000 US dollars) and response-time '
-            'limit (50 ms) a client would set are my teaching numbers and are stated as such; the rule for choosing the model is given in '
-            'the notebook.', before=3)
+    para(d, 'The project is two separate questions. Students finish the first, on the house table only, before they start the second, '
+            'on the machine table only. Each question runs the same steps: clean, split, compare two models, choose one, then test it once.', after=3)
+    bullet(d, 'What will a house sell for? Students compare linear regression with a decision tree and report the errors in US dollars. '
+              'A short extra task asks whether the text columns, such as neighbourhood, improve the prediction when they are encoded as numbers.', 'Question 1.')
+    bullet(d, 'Will a machine run fail? Students compare logistic regression with a decision tree classifier and report, for each, how many '
+              'failures it catches, misses and raises wrongly, with precision, recall and F1.', 'Question 2.')
+    para(d, 'Students split each table themselves into training, validation and test sets (60, 20 and 20 percent) with the code given and a '
+            'fixed random seed. A rule given in the notebook chooses each model from the validation results: for the houses, the smaller error '
+            'within a client limit (25,000 US dollars and 50 ms, my teaching numbers, stated as such); for the machines, the higher F1. The test '
+            'set may be used only once, after the choice. Students finish with a short decision memo.', before=3)
 
     heading(d, '4. Tasks and marks')
     para(d, 'Part A is the coded notebook, 30 marks. Students write ordinary code under each task and store the results it names; no functions are needed.', after=3)
@@ -189,7 +194,7 @@ def build():
     para(d, 'Part B is the decision memo, 15 marks, written as a short form inside the notebook.', after=3)
     table(d, [[t, m] for t, m in PART_B] + [['Total', 15]], [13.6, 2.6], ['Part B field', 'Marks'])
     para(d, 'The 45 marks are scaled to 40 percent. The project rests on what all three classes have been taught: Python and data handling '
-            '(Weeks 1 to 7) and the regression workflow of Week 8. The warning question uses Week 9, which two classes had as a lecture, '
+            '(Weeks 1 to 7) and the regression workflow of Week 8. Question 2 uses Week 9 (logistic regression and the decision tree classifier), which two classes had as a lecture, '
             'and the text-column task uses one-hot encoding, which no class had; both carry few marks and all three classes work through them '
             'in next week\'s revision class. I have left out cross-validation and the later topics.')
 
