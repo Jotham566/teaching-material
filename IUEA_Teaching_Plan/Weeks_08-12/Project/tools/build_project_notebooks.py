@@ -77,6 +77,10 @@ def build_notebook(code, mode, require_forms=False):
         cells.append(cell(PC.task_markdown(i, task)))
         starters.append(task['starter'])
         cells.append(cell(task['solution'] if mode == 'solution' else task['starter'], True))
+        if task['key'] in PC.SUPPLIED_CELLS:                                       # ready-made "watch it learn" cell, not marked
+            md, src = PC.SUPPLIED_CELLS[task['key']]
+            cells.append(cell(md))
+            cells.append(cell(src, True, ['iuea-supplied']))
     cells.append(cell(PC.memo_markdown(code, cfg, PC.memo_task_no(cfg))))
     memo = PC.memo_solution(code, cfg) if mode == 'solution' else PC.MEMO_STARTER.replace('UNIT', cfg['h_unit'])
     starters.append(PC.MEMO_STARTER.replace('UNIT', cfg['h_unit']))

@@ -112,7 +112,8 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   assert.equal(ident.name, 'Synthetic Learner One', 'the name comes from the class list, not from what was typed');
   assert(setup.includes(packet.data) && !setup.includes('__IUEA_PACKED_DATA__'), 'the data block is put back into the setup cell');
   assert(setup.includes('post_run_cell') && setup.includes('Press Ctrl+S'), 'the countdown line after every cell, with the Ctrl+S reminders');
-  assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-|Do not edit/.test(String(c.source))).length, 1, 'exactly one supplied cell');
+  assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-|Do not edit/.test(String(c.source)) && !/# IUEA-SUPPLIED/.test(String(c.source))).length, 1, 'exactly one supplied setup cell');
+  assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-SUPPLIED/.test(String(c.source))).length, 2, 'the two unmarked gradient descent cells (17 November 2026)');
   assert(!JSON.stringify(nb).includes('_IUEA_TOKEN') && !nb.cells.some(c => (c.metadata.tags || []).includes('iuea-submission')), 'no token, no Submit cell');
   assert.equal(issued.attempt, rows[1][3], 'the entry page receives the allocation code');
   assert.equal(nb.metadata.iuea_allocation_code, rows[1][3]);

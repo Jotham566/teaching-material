@@ -193,6 +193,100 @@ QUESTION_HEADINGS = {
 }
 
 
+# Supplied "watch it learn" cells (lecturer, 17 November 2026): ready to run, not marked. Each sits at the end of its task, after the student's
+# own cells, and uses only the task's inputs (the grader reruns a task's cells on hidden rows). Names start with gd_ / gd2_ so they never look
+# like a result, and nothing printed is a marked number.
+SUPPLIED_MARK = '# IUEA-SUPPLIED'
+SUPPLIED_CELLS = {
+    'regression': ('''### Supplied: watch linear regression learn (just run it, not marked)
+`LinearRegression()` finds its weights in one go. Gradient descent (Class 1) reaches almost the same weights step by step:
+start every weight at 0, then repeat **new w = old w - learning rate x slope of the loss**.''',
+'''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
+if "houses_train" not in globals():
+    print("Do Tasks 1 and 2 first: this cell needs houses_train.")
+else:
+    gd_imputer = SimpleImputer(strategy="median")
+    gd_scaler = StandardScaler()
+    gd_filled = gd_imputer.fit_transform(houses_train[H_FEATURES])   # fill gaps with the training medians
+    gd_X = gd_scaler.fit_transform(gd_filled)                         # put every feature on one scale
+    gd_y = houses_train[H_TARGET].to_numpy() / 1000                   # price in thousand USD
+
+    gd_w = np.zeros(gd_X.shape[1])    # one weight per feature, all 0 at the start
+    gd_b = 0.0                        # the intercept
+    learning_rate = 0.1
+    gd_losses = []
+    for step in range(300):
+        gd_guess = gd_X @ gd_w + gd_b                 # the model's price for every training house
+        gd_gap = gd_guess - gd_y                      # how far off each guess is
+        gd_losses.append(np.mean(gd_gap ** 2))        # the loss: mean squared error (MSE)
+        gd_w = gd_w - learning_rate * 2 * (gd_X.T @ gd_gap) / len(gd_y)   # one small step downhill
+        gd_b = gd_b - learning_rate * 2 * np.mean(gd_gap)
+
+    print("Loss at the start:", round(gd_losses[0]), "| after 300 steps:", round(gd_losses[-1]))
+    plt.figure()
+    plt.plot(gd_losses)
+    plt.title("Gradient descent: the training loss falls step by step")
+    plt.xlabel("Step")
+    plt.ylabel("Loss: MSE (thousand USD, squared)")
+    plt.show()
+
+    # The learned weights: gradient descent next to LinearRegression, on the same scaled features
+    gd_check = LinearRegression().fit(gd_X, gd_y)
+    gd_weights = pd.DataFrame({"feature": H_FEATURES, "gradient descent": gd_w, "LinearRegression": gd_check.coef_})
+    display(gd_weights.round(2))
+    print("Intercept, gradient descent:", round(gd_b, 2), "| LinearRegression:", round(gd_check.intercept_, 2))
+'''),
+    'classify': ('''### Supplied: watch logistic regression learn (just run it, not marked)
+Logistic regression learns by gradient descent (Class 2). Each step it turns every run's score into a chance of failure (the sigmoid),
+measures the log loss, and moves every weight a small step downhill. The second chart shows the training accuracy at each step.''',
+'''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
+if "machines_train" not in globals():
+    print("Do Tasks 5 and 6 first: this cell needs machines_train.")
+else:
+    gd2_imputer = SimpleImputer(strategy="median")
+    gd2_scaler = StandardScaler()
+    gd2_filled = gd2_imputer.fit_transform(machines_train[M_FEATURES])   # fill gaps with the training medians
+    gd2_X = gd2_scaler.fit_transform(gd2_filled)                          # put every feature on one scale
+    gd2_y = (machines_train[M_TARGET] >= M_LIMIT).astype(int).to_numpy()   # 1 = the run failed
+
+    gd2_w = np.zeros(gd2_X.shape[1])    # one weight per feature, all 0 at the start
+    gd2_b = 0.0                         # the intercept
+    learning_rate = 1.0
+    gd2_losses = []
+    gd2_accuracy = []
+    for step in range(1000):
+        gd2_chance = 1 / (1 + np.exp(-(gd2_X @ gd2_w + gd2_b)))   # the sigmoid: a chance of failure from 0 to 1
+        gd2_losses.append(-np.mean(gd2_y * np.log(gd2_chance) + (1 - gd2_y) * np.log(1 - gd2_chance)))   # log loss
+        gd2_accuracy.append(np.mean((gd2_chance >= 0.5) == gd2_y))   # share of training runs called right
+        gd2_w = gd2_w - learning_rate * (gd2_X.T @ (gd2_chance - gd2_y)) / len(gd2_y)   # one small step downhill
+        gd2_b = gd2_b - learning_rate * np.mean(gd2_chance - gd2_y)
+
+    print("Log loss at the start:", round(gd2_losses[0], 3), "| after 1000 steps:", round(gd2_losses[-1], 3))
+    print("Training accuracy at the start:", round(gd2_accuracy[0], 3), "| after 1000 steps:", round(gd2_accuracy[-1], 3))
+    plt.figure()
+    plt.plot(gd2_losses)
+    plt.title("Gradient descent: the training log loss falls step by step")
+    plt.xlabel("Step")
+    plt.ylabel("Log loss")
+    plt.show()
+
+    plt.figure()
+    plt.plot(gd2_accuracy)
+    plt.title("Training accuracy at each step")
+    plt.xlabel("Step")
+    plt.ylabel("Training accuracy")
+    plt.show()
+
+    # The learned weights: gradient descent next to LogisticRegression, on the same scaled features
+    # (LogisticRegression adds a small penalty and runs to the end, so its weights are close, not equal)
+    gd2_check = LogisticRegression(max_iter=1000).fit(gd2_X, gd2_y)
+    gd2_weights = pd.DataFrame({"feature": M_FEATURES, "gradient descent": gd2_w, "LogisticRegression": gd2_check.coef_[0]})
+    display(gd2_weights.round(2))
+    print("Intercept, gradient descent:", round(gd2_b, 2), "| LogisticRegression:", round(gd2_check.intercept_[0], 2))
+'''),
+}
+
+
 # ------------------------------------------------------------------------------------------------ the tasks
 def tasks(cfg=P.EXAM):
     """Each task: key, title, marks (Part A items), text, inputs, results, starter, solution, and 'question' (1 houses, 2 machines).

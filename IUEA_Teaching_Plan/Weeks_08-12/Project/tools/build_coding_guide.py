@@ -73,6 +73,9 @@ def cells_block(d, *keys):
             if n > 1:
                 gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
             code_block(d, part, label=f'Cell {n}')
+        if key in PC.SUPPLIED_CELLS:                                # the ready-made "watch it learn" cell, already in every notebook
+            gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
+            code_block(d, PC.SUPPLIED_CELLS[key][1], label='Supplied cell (already in the students\' notebook; not marked)')
 
 
 def code_block(d, code, label=''):
@@ -96,7 +99,7 @@ def code_block(d, code, label=''):
             continue
         if '#' in line and not line.lstrip().startswith(('"', "'")) and '"#' not in line:
             i = line.index('#')
-            if line[:i].strip():
+            if line[:i]:                                  # code, or just the indent, before the comment
                 run(p, line[:i], 6.7, color=INK, font=CODE_FONT)
             run(p, line[i:], 6.7, color=COMMENT, font=CODE_FONT)
         else:
@@ -170,8 +173,8 @@ def main():
           'What goes wrong if we pick the model on the test rows?')
     heading(d, 'Task 3. Linear regression and a decision tree', '11 marks with Chart 2, 20 minutes')
     cells_block(d, 'regression')
-    notes(d, 'X is the table the model reads, y the price. Imputer, not .fillna(): it learns medians from train only (show learned_medians) and reuses them on valid and test. Create, fit on train, predict valid. RMSE punishes big misses.',
-          f'MAE {f(vm["linear"])} and {f(vm["tree"])} USD. RMSE {f(vr["linear"])} and {f(vr["tree"])}.',
+    notes(d, 'Imputer, not .fillna(): medians from train only, reused on valid and test. Linear regression first, all the way: fit, read b0 and the weights, predict, MAE and RMSE. Then the tree. The supplied cell shows gradient descent walking downhill to the same weights.',
+          f'MAE {f(vm["linear"])} and {f(vm["tree"])} USD. RMSE {f(vr["linear"])} and {f(vr["tree"])}. Loss falls from about 38,500 to 870; the two weight columns agree.',
           'Why is it wrong to fill the gaps before the split?')
     heading(d, 'Task 3b. Do the text columns help?', '2 marks, 10 minutes')
     cells_block(d, 'encoded')
@@ -192,7 +195,7 @@ def main():
           'Which steps were the same as for the houses?')
     heading(d, 'Task 7. Logistic regression and a decision tree', '5 marks, 25 minutes')
     cells_block(d, 'classify')
-    notes(d, 'Logistic gives a probability (warn at 0.5 or more); the tree answers 0 or 1. Failures are rare, so both miss most. CML3112: draw the 2 by 2 table first.',
+    notes(d, 'Logistic regression first: fit, weights, probabilities (warn at 0.5 or more), confusion matrix, scores. Then the tree (0 or 1 directly). Supplied cell: log loss falls; training accuracy starts at 0.03 (warn everyone) and reaches 0.97 by saying "no" to almost every run, which is why we judge on F1.',
           f'Logistic TP {w["tp"]}, FP {w["fp"]}, FN {w["fn"]}, F1 {w["f1"]:.3f}. Tree TP {wt["tp"]}, FP {wt["fp"]}, FN {wt["fn"]}, F1 {wt["f1"]:.3f}.',
           'For the maintenance manager, which costs more: a false alarm or a missed failure?')
     heading(d, 'Task 8. Choose the warning model, then use the test set once', '1 mark, 10 minutes')

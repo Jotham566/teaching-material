@@ -164,9 +164,11 @@ def main():
         check('Start: the notebook is a Drive file shared with the Google email as an editor, recorded against the allocation',
               a_row[9] == fileid['A'] and state['perms'][fileid['A']] == [{'email': 'alpha@example.org', 'role': 'writer'}])
         ident = ''.join(issued['A']['cells'][1]['source'])
-        supplied = [c for c in issued['A']['cells'] if c['cell_type'] == 'code' and ('Do not edit' in ''.join(c['source']) or '# IUEA-' in ''.join(c['source']))]
-        check('ONE supplied cell (Setup: run me first, collapsed) holds the identity: name from the class list, the allocation, the deadline; no token',
-              len(supplied) == 1 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
+        supplied = [c for c in issued['A']['cells'] if c['cell_type'] == 'code' and ('Do not edit' in ''.join(c['source']) or '# IUEA-' in ''.join(c['source']))
+                    and '# IUEA-SUPPLIED' not in ''.join(c['source'])]
+        learning = [c for c in issued['A']['cells'] if c['cell_type'] == 'code' and '# IUEA-SUPPLIED' in ''.join(c['source'])]
+        check('ONE supplied setup cell (Setup: run me first, collapsed) holds the identity: name from the class list, the allocation, the deadline; no token; plus the two unmarked gradient descent cells',
+              len(supplied) == 1 and len(learning) == 2 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
               and '"deadline":"' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A']) and issued['A']['cells'][1]['metadata'].get('cellView') == 'form', ident[:300])
         check('the setup cell shows a live clock, the time left after every cell, Press Ctrl+S in the last 30 and 10 minutes, and a warning when there is no deadline', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and ' left. Deadline ' in ident and 'No timer: this notebook has no deadline' in ident)
         check('the notebook opens with at most 7 short lines, the deadline among them', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 7 and 'deadline:' in ''.join(issued['A']['cells'][0]['source']), ''.join(issued['A']['cells'][0]['source'])[:200])
