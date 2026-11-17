@@ -168,7 +168,7 @@ def main():
                     and '# IUEA-SUPPLIED' not in ''.join(c['source'])]
         learning = [c for c in issued['A']['cells'] if c['cell_type'] == 'code' and '# IUEA-SUPPLIED' in ''.join(c['source'])]
         check('ONE supplied setup cell (Setup: run me first, collapsed) holds the identity: name from the class list, the allocation, the deadline; no token; plus the nine visible supplied cells (data reads, targets, feature lists, gradient descent)',
-              len(supplied) == 1 and len(learning) == 9 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
+              len(supplied) == 1 and len(learning) == 16 and ident.startswith('#@title Setup: run me first') and '"name":"Test Learner Alpha"' in ident and '"allocation":"' + attempt['A'] + '"' in ident
               and '"deadline":"' in ident and '_IUEA_TOKEN' not in json.dumps(issued['A']) and issued['A']['cells'][1]['metadata'].get('cellView') == 'form', ident[:300])
         check('the setup cell shows a live clock, the time left after every cell, Press Ctrl+S in the last 30 and 10 minutes, and a warning when there is no deadline', 'post_run_cell' in ident and 'Press Ctrl+S' in ident and ' left. Deadline ' in ident and 'No timer: this notebook has no deadline' in ident)
         check('the notebook opens with at most 7 short lines, the deadline among them', len(''.join(issued['A']['cells'][0]['source']).strip().splitlines()) <= 7 and 'deadline:' in ''.join(issued['A']['cells'][0]['source']), ''.join(issued['A']['cells'][0]['source'])[:200])
@@ -270,7 +270,7 @@ def main():
         for c in v_nb['cells']:
             text = ''.join(c['source']) if isinstance(c['source'], list) else c['source']
             if '# IUEA-SETUP-CELL' in text:
-                c['source'] = text.replace('MAX_MAE, MAX_MS = ', 'MAX_MAE, MAX_MS = 5 + ')
+                c['source'] = text.replace('_file.write(_data[_name])', '_file.write(_data[_name][:5000])')
         st.call('/admin/save', dict(file=fileid['V'], email='phi@example.org', notebook=json.dumps(v_nb)))
         # minute 160 to 165: C's last save and last backup, then the laptop dies
         st.at(160)

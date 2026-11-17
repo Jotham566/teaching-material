@@ -4,7 +4,8 @@ Part B memo form, the marks and the window rules. The notebooks, the rehearsal, 
 Plain code (lecturer's redesign of 14 November 2026): students write ordinary straight-line code, no function placeholders. Each task
 names its INPUT variables and the RESULT names to store. The grader re-runs each task's cells on hidden inputs (own_cells.py).
 ONE supplied code cell, "Setup: run me first": the two tables as students receive them (organised, with the added problems) packed inside it
-with a SHA-256 check, the constants, choose_model, the silent backup and the clock.
+with a SHA-256 check (saved as houses.csv and machines.csv), the silent backup and the clock. Everything students use (imports, column names,
+model-choosing rules) is in visible supplied cells at the step that first needs it (lecturer, 17 November 2026).
 """
 import base64
 import bz2
@@ -12,6 +13,7 @@ import csv
 import hashlib
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -106,16 +108,6 @@ def setup_cell(cfg=P.EXAM, code='CML3112', test_id='ML_PROJECT'):
 # Any change made here is undone: the marking computer always uses the original of this cell.
 {IDENTITY_LINE[:-2]}{identity}
 import base64, bz2, hashlib, io, json, os
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.pipeline import make_pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import make_column_transformer
-from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
-from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score
 FULL_NAME = _IUEA_IDENTITY.get("name", "")
 STUDENT_ID = _IUEA_IDENTITY.get("registration", "")
 COHORT = _IUEA_IDENTITY.get("course", "")
@@ -135,14 +127,6 @@ _data = json.loads(_bytes)
 for _name in ("houses", "machines"):
     with open(_name + ".csv", "w") as _file:
         _file.write(_data[_name])
-# The supplied model-choosing rules (Tasks 4 and 8) and the client's limits: teaching numbers, not real ones
-MAX_MAE, MAX_MS = {cfg["max_mae"]!r}, {P.MAX_MS}
-LATENCY_MS = {P.LATENCY_MS!r}
-def choose_model(maes):
-    ok = [m for m in maes if maes[m] is not None and maes[m] <= MAX_MAE and LATENCY_MS[m] <= MAX_MS]
-    return min(ok, key=lambda m: (maes[m], LATENCY_MS[m], m)) if ok else None
-def choose_warning_model(f1s):
-    return "tree" if f1s["tree"] > f1s["logistic"] else "logistic"
 print("Data ready: houses.csv and machines.csv")
 """ + PL.backup_code() + PL.countdown_code()
 
@@ -352,12 +336,20 @@ def visible_cells(cfg=P.EXAM):
     """{id: (where, source)}. where: 'data' (after The data), 'question2' (under the Question 2 heading) or a task key (before the student's cell)."""
     head = lambda i: SUPPLIED_HEAD.format(id=i)
     return {
+        'imports-data': ('data', head('imports-data') + '''# The tools for working with data. "as pd" lets us write pd instead of pandas, and so on.
+# numbers and arrays
+import numpy as np
+# tables (DataFrames): read, look at and clean the data
+import pandas as pd
+# charts
+import matplotlib.pyplot as plt
+'''),
         'data-houses': ('data', head('data-houses') + f'''# read the house table from the CSV file that Setup saved: one row per sale
 houses_raw = pd.read_csv("houses.csv")
 # the size of the table: (rows, columns)
 print("houses_raw:", houses_raw.shape)
 '''),
-        'target-houses': ('clean_h', head('target-houses') + f'''# Having looked at the data, decide what we predict: the target (y). Question 1 predicts the sale price, in {cfg["h_unit"]}.
+        'target-houses': ('clean_h:2', head('target-houses') + f'''# Having looked at the data, decide what we predict: the target (y). Question 1 predicts the sale price, in {cfg["h_unit"]}.
 H_TARGET = {cfg["h_target"]!r}
 # check that the column exists, and how many prices are missing (cleaning removes those rows: they cannot teach the model)
 print("target:", H_TARGET, "| missing prices:", houses_raw[H_TARGET].isna().sum())
@@ -367,39 +359,150 @@ machines_raw = pd.read_csv("machines.csv")
 # the size of the table: (rows, columns)
 print("machines_raw:", machines_raw.shape)
 '''),
-        'target-machines': ('clean_m', head('target-machines') + f'''# Having looked at the data, decide what we predict: the target (y). Question 2 predicts whether a run fails.
+        'target-machines': ('clean_m:2', head('target-machines') + f'''# Having looked at the data, decide what we predict: the target (y). Question 2 predicts whether a run fails.
 M_TARGET = {cfg["m_target"]!r}
 # a run counts as a failure when M_TARGET is at or above this limit
 M_LIMIT = {cfg["m_limit"]!r}
 # check that the column exists, and how many labels are missing (cleaning removes those rows)
 print("target:", M_TARGET, "| missing labels:", machines_raw[M_TARGET].isna().sum())
 '''),
+        'imports-houses': ('regression', head('imports-houses') + '''# The scikit-learn tools for the house models, imported now that we are ready to train
+# make_pipeline joins the steps (fill gaps, scale, model) into one model
+from sklearn.pipeline import make_pipeline
+# SimpleImputer fills missing values with a number learned from the training rows (for example the median)
+from sklearn.impute import SimpleImputer
+# StandardScaler puts every feature on the same scale (used by the gradient descent cell below)
+from sklearn.preprocessing import StandardScaler
+# the first model: linear regression
+from sklearn.linear_model import LinearRegression
+# the second model: a decision tree for numbers (regression)
+from sklearn.tree import DecisionTreeRegressor
+# the error measures: MAE (mean absolute error) and MSE (mean squared error)
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+'''),
         'features-houses': ('regression', head('features-houses') + f'''# the number columns the house models read: the features (X). The target H_TARGET is not one of them.
 H_FEATURES = {cfg["h_features"]!r}
 # how many features, and which
 print(len(H_FEATURES), "features:", H_FEATURES)
+'''),
+        'imports-text': ('encoded', head('imports-text') + '''# The tools for text columns
+# OneHotEncoder turns each category (word) into its own 0/1 column
+from sklearn.preprocessing import OneHotEncoder
+# make_column_transformer prepares the number columns and the text columns differently, in one step
+from sklearn.compose import make_column_transformer
 '''),
         'features-text': ('encoded', head('features-text') + f'''# the text columns Task 3b adds to the number columns
 TEXT_FEATURES = {cfg["h_text"]!r}
 # which text columns
 print("text features:", TEXT_FEATURES)
 '''),
+        'imports-machines': ('classify', head('imports-machines') + '''# The scikit-learn tools for the warning models (classification)
+# the first model: logistic regression (it gives the probability of a failure)
+from sklearn.linear_model import LogisticRegression
+# the second model: a decision tree for classes (classification)
+from sklearn.tree import DecisionTreeClassifier
+# the scores for a warning: the confusion matrix, precision, recall and F1
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score
+'''),
         'features-machines': ('classify', head('features-machines') + f'''# the columns the machine models read: the features (X). The target M_TARGET is not one of them.
 M_FEATURES = {cfg["m_features"]!r}
-# warn when the probability of a failure is at or above this threshold
-THRESHOLD = {P.THRESHOLD}
 # how many features, and which
 print(len(M_FEATURES), "features:", M_FEATURES)
+'''),
+        'threshold-machines': ('classify:4', head('threshold-machines') + f'''# Logistic regression gives a probability of a failure (0 to 1). Now decide when a probability becomes a warning.
+# warn (1) when the probability of a failure is at or above this threshold; below it, no warning (0)
+THRESHOLD = {P.THRESHOLD}
+# show the threshold
+print("warn when the probability of a failure is at least", THRESHOLD)
+'''),
+        'rules-houses': ('test_h:1', head('rules-houses') + f'''# The client's requirements for the house model. These are invented teaching numbers, not real ones.
+# the largest validation MAE the client accepts, in {cfg["h_unit"]}
+MAX_MAE = {cfg["max_mae"]!r}
+# the longest time one prediction may take, in milliseconds (ms)
+MAX_MS = {P.MAX_MS}
+# how long one prediction takes with each model, in ms (given to you, not measured)
+LATENCY_MS = {P.LATENCY_MS!r}
+
+
+# The rule that picks the house model, for example choose_model({{"linear": 22000, "tree": 28000}})
+def choose_model(maes):
+    # no model chosen yet
+    best = None
+    # look at each model in turn
+    for name in maes:
+        # this model's validation MAE
+        mae = maes[name]
+        # skip a model with no MAE, an MAE above the limit, or a prediction that is too slow
+        if mae is None or mae > MAX_MAE or LATENCY_MS[name] > MAX_MS:
+            continue
+        # keep this model if it is the first to pass, or its MAE is smaller than the best so far
+        if best is None or mae < maes[best]:
+            best = name
+        # on an exact tie, keep the faster model
+        elif mae == maes[best] and LATENCY_MS[name] < LATENCY_MS[best]:
+            best = name
+    # the chosen model's name, or None when no model meets the requirements
+    return best
+
+
+# show the requirements
+print("MAE at most", MAX_MAE, "{cfg["h_unit"]}; one prediction at most", MAX_MS, "ms; prediction times:", LATENCY_MS)
+'''),
+        'rules-machines': ('test_m:1', head('rules-machines') + '''# The rule that picks the warning model, for example choose_warning_model({"logistic": 0.24, "tree": 0.25})
+def choose_warning_model(f1s):
+    # the decision tree only if its validation F1 is higher
+    if f1s["tree"] > f1s["logistic"]:
+        return "tree"
+    # otherwise (also on a tie) logistic regression, the simpler model
+    return "logistic"
 '''),
     }
 
 
-# Task 1 and Task 5 open with the student's own look at the data, BEFORE the supplied cell that names the target (a real project's order:
-# read, look, decide what to predict, then clean).
-EXPLORE_STARTER = {'clean_h': '# Your code here: look at the data (step 1). Nothing to store.\n',
-                   'clean_m': '# Your code here: look at the data (step 1). Nothing to store.\n'}
+# Task 1 and Task 5 open with the student's own look at the data (step 1), BEFORE the supplied cell that names the target (step 2): a real
+# project's order: read, look, decide what to predict, then clean.
 EXPLORE_SOLUTION = {'clean_h': '# Step 1: look at the data\nhouses_raw.info()\n',
                     'clean_m': '# Step 1: look at the data\nmachines_raw.info()\n'}
+
+
+# One text cell per numbered step, then the student's empty code cell for that step (lecturer, 17 November 2026). A step that only says
+# "Run the supplied cell below" gets the supplied cell and no empty cell. Supplied cells tied to a step have where = 'task_key:step'.
+RUN_ONLY = {('clean_h', 2), ('clean_m', 2), ('regression', 9), ('classify', 8)}
+GD_STEP = {'regression': 9, 'classify': 8}                         # the supplied gradient descent block (SUPPLIED_CELLS) sits under this step
+
+
+def task_steps(task):
+    """(lead text, [step texts]) from the task text: a line starting '1. ', '2. ', ... begins a step; other lines join the step above."""
+    lead, steps = [], []
+    for line in task['text'].split('\n'):
+        m = re.match(r'^(\d+)\. (.*)', line)
+        if m:
+            assert int(m.group(1)) == len(steps) + 1, (task['key'], line)
+            steps.append(m.group(2))
+        elif steps:
+            steps[-1] += '\n' + line
+        else:
+            lead.append(line)
+    return '\n'.join(lead).strip(), [t.strip() for t in steps]
+
+
+def step_starter(k):
+    return f'# Your code here (step {k})\n'
+
+
+def step_markdown(k, text):
+    return f'**Step {k}.** {text}'
+
+
+def solution_parts(task):
+    """{step: model solution code}: where the solution notebook puts its code. Tasks 1 and 5 look first (step 1) and clean after the target
+    cell (step 3); Task 7 splits where THRESHOLD is first needed (step 4); every other task's code sits in its step 1 cell."""
+    if task['key'] in EXPLORE_SOLUTION:
+        return {1: EXPLORE_SOLUTION[task['key']], 3: task['solution']}
+    if task['key'] == 'classify':
+        head, tail = task['solution'].split('logistic_proba = ', 1)
+        return {1: head, 4: 'logistic_proba = ' + tail}
+    return {1: task['solution']}
 
 
 def supplied_sources(cfg=P.EXAM):
@@ -412,8 +515,10 @@ def supplied_sources(cfg=P.EXAM):
 
 def grading_defaults(cfg=P.EXAM):
     """The names the visible cells define, added by the marking computer after Setup, so a deleted supplied cell costs nothing."""
+    imports = ''.join(line for i, (_, src) in visible_cells(cfg).items() if i.startswith('imports-')
+                      for line in src.splitlines(True) if line.startswith(('import ', 'from ')))
     return (f'''# IUEA-GRADER-DEFAULTS (added by the marking computer)
-houses_raw = pd.read_csv("houses.csv")
+{imports}houses_raw = pd.read_csv("houses.csv")
 machines_raw = pd.read_csv("machines.csv")
 H_TARGET = {cfg["h_target"]!r}
 M_TARGET, M_LIMIT = {cfg["m_target"]!r}, {cfg["m_limit"]!r}
@@ -421,6 +526,13 @@ H_FEATURES = {cfg["h_features"]!r}
 TEXT_FEATURES = {cfg["h_text"]!r}
 M_FEATURES = {cfg["m_features"]!r}
 THRESHOLD = {P.THRESHOLD}
+MAX_MAE, MAX_MS = {cfg["max_mae"]!r}, {P.MAX_MS}
+LATENCY_MS = {P.LATENCY_MS!r}
+def choose_model(maes):
+    ok = [m for m in maes if maes[m] is not None and maes[m] <= MAX_MAE and LATENCY_MS[m] <= MAX_MS]
+    return min(ok, key=lambda m: (maes[m], LATENCY_MS[m], m)) if ok else None
+def choose_warning_model(f1s):
+    return "tree" if f1s["tree"] > f1s["logistic"] else "logistic"
 ''')
 
 
@@ -436,15 +548,13 @@ def tasks(cfg=P.EXAM):
     # ------------------------------------------------------------ Question 1: house prices (regression)
     out.append(dict(key='clean_h', question=1, title='Clean the house table', marks=dict(clean_h=marks['clean_h']), inputs=['houses_raw'], results=['houses'],
         text=('Work in the order of a real project: look at the data, decide what to predict, then clean. After each cleaning step, print the shape.\n'
-              '1. In the first cell, look at the data: `houses_raw.head()`, `houses_raw.info()` (column types and missing values) and `houses_raw.describe()` (min and max show impossible values).\n'
-              '2. Run the supplied cell under it: having looked, it names the target `H_TARGET`, the column Question 1 predicts.\n'
-              '3. In the next cell, count the problems: duplicate rows (`.duplicated().sum()`) and rows with no price (`houses_raw[H_TARGET].isna().sum()`).\n'
-              '4. Start from a copy: `houses = houses_raw.copy()`.\n'
-              '5. Remove duplicate rows.\n'
-              '6. Remove the rows with no price (`H_TARGET`).\n'
-              f'7. Remove the rows with an impossible value: `living_area_m2` must be above 0 and `year_built` must be {P.LAST_YEAR} or earlier.\n'
-              '8. Check the result with `houses.isna().sum()` and `houses.describe()`. Leave the other missing values: in Task 3 the imputer fills them from the training rows only.\n'
-              f'9. **Chart 1:** a scatter of `{x}` (across) against `H_TARGET` (up), from `houses`, with a title, axis labels and the unit ({u}).'),
+              '1. Look at the data: `houses_raw.head()`, `houses_raw.info()` (column types and missing values) and `houses_raw.describe()` (min and max show impossible values).\n'
+              '2. Run the supplied cell below: having looked, it names the target `H_TARGET`, the column Question 1 predicts.\n'
+              '3. Count the problems: duplicate rows (`.duplicated().sum()`) and rows with no price (`houses_raw[H_TARGET].isna().sum()`).\n'
+              '4. Start from a copy (`houses = houses_raw.copy()`), then remove duplicate rows.\n'
+              f'5. Keep only the rows that have a price (`H_TARGET`) and possible values: `living_area_m2` above 0 and `year_built` {P.LAST_YEAR} or earlier.\n'
+              '6. Check the result with `houses.isna().sum()` and `houses.describe()`. Leave the other missing values: in Task 3 the imputer fills them from the training rows only.\n'
+              f'7. **Chart 1:** a scatter of `{x}` (across) against `H_TARGET` (up), from `houses`, with a title, axis labels and the unit ({u}).'),
         solution=f'''houses = houses_raw.copy()
 houses = houses.drop_duplicates()
 houses = houses.dropna(subset=[H_TARGET])
@@ -464,9 +574,9 @@ plt.show()
               f'`houses_test = houses.sample(frac=0.2, random_state={s})`  \n'
               '`houses_rest = houses.drop(houses_test.index)`  \n'
               f'`houses_valid = houses_rest.sample(frac=0.25, random_state={s})`  \n'
-              '`houses_train = houses_rest.drop(houses_valid.index)`\n'
-              '2. In the same cell, print the number of rows in each set.\n'
-              '3. Look at the first training rows with `houses_train.head()`. Do not use `houses_test` anywhere else until Task 4.'),
+              '`houses_train = houses_rest.drop(houses_valid.index)`  \n'
+              'In the same cell, print the number of rows in each set.\n'
+              '2. Look at the first training rows with `houses_train.head()`. Do not use `houses_test` anywhere else until Task 4.'),
         solution=f'''houses_test = houses.sample(frac=0.2, random_state={s})
 houses_rest = houses.drop(houses_test.index)
 houses_valid = houses_rest.sample(frac=0.25, random_state={s})
@@ -475,17 +585,17 @@ print(len(houses_train), len(houses_valid), len(houses_test))
 '''))
     out.append(dict(key='regression', question=1, title='Linear regression and a decision tree', marks=dict(regression=marks['regression'], errors=marks['errors'], leakage=marks['leakage'], charts=marks['charts']),
         inputs=['houses_train', 'houses_valid'], results=['linear_pred', 'tree_pred', 'linear_mae', 'tree_mae', 'linear_rmse', 'tree_rmse'],
-        text=('Train linear regression first, all the way, then the decision tree. Use the columns `H_FEATURES` (named in the supplied cell below) and the target `H_TARGET`; '
-              'import `mean_absolute_error` and `mean_squared_error` from `sklearn.metrics`.\n'
+        text=('Train linear regression first, all the way, then the decision tree. Run the supplied cells below first: they import the scikit-learn tools and name the columns `H_FEATURES`. Use those columns and the target `H_TARGET`.\n'
               '1. Make the features and the target: `X_train` and `y_train` from `houses_train`, `X_valid` and `y_valid` from `houses_valid`. Print their shapes and the missing values in `X_train`.\n'
               '2. Linear regression: create `make_pipeline(SimpleImputer(strategy="median"), LinearRegression())` and fit it on the training rows.\n'
               '3. Read what it learned: the intercept and one weight per feature (`.named_steps["linearregression"]`, then `.intercept_` and `.coef_`).\n'
               '4. Predict the validation rows and store them as `linear_pred`. Compare a few predictions with the real prices.\n'
               f'5. Compute `linear_mae` and `linear_rmse` (the square root of the mean squared error), in {u}.\n'
-              '6. Decision tree: `make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=4, random_state=17))`. Fit it, predict the validation rows '
-              '(`tree_pred`), then compute `tree_mae` and `tree_rmse`.\n'
-              f'7. **Chart 2:** a bar chart of the two MAE values, with a title, axis labels and the unit ({u}).\n'
-              '8. Then run the supplied cell under your work: it shows gradient descent learning the same weights.'),
+              '6. Decision tree: `make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=4, random_state=17))`. Fit it and predict the validation rows '
+              '(`tree_pred`).\n'
+              f'7. Compute `tree_mae` and `tree_rmse`, in {u}.\n'
+              f'8. **Chart 2:** a bar chart of the two MAE values, with a title, axis labels and the unit ({u}).\n'
+              '9. Run the supplied cell below: it shows gradient descent learning the same weights.'),
         solution='''X_train, y_train = houses_train[H_FEATURES], houses_train[H_TARGET]
 X_valid, y_valid = houses_valid[H_FEATURES], houses_valid[H_TARGET]
 linear = make_pipeline(SimpleImputer(strategy="median"), LinearRegression()).fit(X_train, y_train)
@@ -506,7 +616,7 @@ plt.show()
 '''.replace('UNIT', u)))
     out.append(dict(key='encoded', question=1, label='3b', title='Do the text columns help?', marks=dict(encoded=marks['encoded']), inputs=['houses_train', 'houses_valid'],
         results=['encoded_pred', 'encoded_mae'],
-        text=('A comparison only: not one of the models in Task 4. Use the columns `H_FEATURES + TEXT_FEATURES` (`TEXT_FEATURES` is named in the supplied cell below).\n'
+        text=('A comparison only: not one of the models in Task 4. Use the columns `H_FEATURES + TEXT_FEATURES` (the supplied cells below import the text tools and name `TEXT_FEATURES`).\n'
               '1. Look at the text columns with `houses_train[TEXT_FEATURES].head()`: a model cannot use words directly.\n'
               '2. Build this pipeline. Number columns: fill gaps with the median. Text columns: fill gaps with the most frequent value, then one 0/1 column per category:\n'
               '`make_pipeline(make_column_transformer((SimpleImputer(strategy="median"), H_FEATURES), (make_pipeline(SimpleImputer(strategy="most_frequent"), '
@@ -521,7 +631,7 @@ print(encoded_mae, linear_mae)
 '''))
     out.append(dict(key='test_h', question=1, title='Choose the house model, then use the test set once', marks=dict(test_h=marks['test_h']),
         inputs=['houses_train', 'houses_valid', 'houses_test', 'linear_mae', 'tree_mae'], results=['chosen_house_model', 'test_mae'],
-        text=('1. Choose on validation numbers only: `chosen_house_model = choose_model({"linear": linear_mae, "tree": tree_mae})`. '
+        text=('1. Run the supplied cell below: it states the client\'s limits and defines `choose_model`. Then choose on validation numbers only: `chosen_house_model = choose_model({"linear": linear_mae, "tree": tree_mae})`. '
               f'The rule keeps models with MAE at most `MAX_MAE` ({cfg["max_mae"]:,} {u}) and time at most `MAX_MS`, then takes the smaller MAE.\n'
               '2. Only now: refit the chosen model (the same pipeline as in Task 3) on `houses_train` and `houses_valid` together (`pd.concat`).\n'
               f'3. Use the test rows once: predict `houses_test` and store its MAE as `test_mae`, in {u}.'),
@@ -535,15 +645,12 @@ print(chosen_house_model, test_mae)
     # ------------------------------------------------------------ Question 2: machine failure (classification)
     out.append(dict(key='clean_m', question=2, title='Clean the machine table', marks=dict(clean_m=marks['clean_m']), inputs=['machines_raw'], results=['machines'],
         text=('The same order as Task 1, for the machines. After each cleaning step, print the shape.\n'
-              '1. In the first cell, look at the data: `machines_raw.head()`, `machines_raw.info()` and `machines_raw.describe()`.\n'
-              '2. Run the supplied cell under it: it names the target `M_TARGET` and the failure limit `M_LIMIT`.\n'
-              '3. In the next cell, count duplicate rows and rows with no label (`M_TARGET`).\n'
-              '4. Start from a copy: `machines = machines_raw.copy()`.\n'
-              '5. Remove duplicate rows.\n'
-              '6. Remove the rows with no label.\n'
-              '7. Remove the rows with an impossible value: `torque_nm` and `rotation_speed_rpm` must be above 0.\n'
-              '8. Change `product_type` to a number (L = 0, M = 1, H = 2) and check with `machines.head()`.\n\n'
-              'Leave the other missing values for the imputer.'),
+              '1. Look at the data: `machines_raw.head()`, `machines_raw.info()` and `machines_raw.describe()`.\n'
+              '2. Run the supplied cell below: having looked, it names the target `M_TARGET` and the failure limit `M_LIMIT`.\n'
+              '3. Count duplicate rows and rows with no label (`M_TARGET`).\n'
+              '4. Start from a copy (`machines = machines_raw.copy()`), then remove duplicate rows.\n'
+              '5. Keep only the rows that have a label and possible values: `torque_nm` and `rotation_speed_rpm` above 0. Leave the other missing values for the imputer.\n'
+              '6. Change `product_type` to a number (L = 0, M = 1, H = 2) and check with `machines.head()`.'),
         solution='''machines = machines_raw.copy()
 machines = machines.drop_duplicates()
 machines = machines.dropna(subset=[M_TARGET])
@@ -553,9 +660,9 @@ print(machines_raw.shape, machines.shape)
 '''))
     out.append(dict(key='split_m', question=2, title='Split the machines into training, validation and test sets', marks=dict(split_m=marks['split_m']), inputs=['machines'],
         results=['machines_train', 'machines_valid', 'machines_test'],
-        text=(f'1. The same four lines as Task 2, for `machines` (`random_state={s}`): `machines_test`, `machines_rest`, `machines_valid`, `machines_train`.\n'
-              '2. In the same cell, print the number of rows in each set.\n'
-              '3. Look at the first training rows with `machines_train.head()`. Do not use `machines_test` anywhere else until Task 8.'),
+        text=(f'1. The same four lines as Task 2, for `machines` (`random_state={s}`): `machines_test`, `machines_rest`, `machines_valid`, `machines_train`. '
+              'In the same cell, print the number of rows in each set.\n'
+              '2. Look at the first training rows with `machines_train.head()`. Do not use `machines_test` anywhere else until Task 8.'),
         solution=f'''machines_test = machines.sample(frac=0.2, random_state={s})
 machines_rest = machines.drop(machines_test.index)
 machines_valid = machines_rest.sample(frac=0.25, random_state={s})
@@ -566,17 +673,18 @@ print(len(machines_train), len(machines_valid), len(machines_test))
         inputs=['machines_train', 'machines_valid'],
         results=['logistic_proba', 'logistic_warn', 'tree_warn', 'logistic_counts', 'tree_counts', 'logistic_precision', 'logistic_recall', 'logistic_f1',
                  'tree_precision', 'tree_recall', 'tree_f1'],
-        text=('Train logistic regression first, all the way, then the decision tree. Use the columns `M_FEATURES` (named in the supplied cell below, with `THRESHOLD`). A warning means a failure: `M_TARGET >= M_LIMIT`.\n'
+        text=('Train logistic regression first, all the way, then the decision tree. Run the supplied cells below first: they import the classification tools and name the columns `M_FEATURES`. Use those columns. A warning means a failure: `M_TARGET >= M_LIMIT`.\n'
               '1. Make `X_train` and `X_valid`, and the targets: 1 for a failure, 0 otherwise (`(... >= M_LIMIT).astype(int)`). Print how many failures each set has.\n'
               '2. Logistic regression: create `make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))` and fit it on the training rows.\n'
               '3. Read its intercept and weights (`.named_steps["logisticregression"]`).\n'
-              '4. Store the probability of a failure for each `machines_valid` row as `logistic_proba` (`predict_proba(...)[:, 1]`), and the warnings at `THRESHOLD` '
+              '4. Run the supplied cell below: it sets `THRESHOLD`. Then store the probability of a failure for each `machines_valid` row as `logistic_proba` (`predict_proba(...)[:, 1]`), and the warnings at `THRESHOLD` '
               '(0.5 or more) as `logistic_warn`.\n'
               '5. Its confusion matrix: `confusion_matrix(actual, warned, labels=[0, 1])`; store `.ravel()` (tn, fp, fn, tp) as `logistic_counts`. Then compute '
               '`logistic_precision`, `logistic_recall` and `logistic_f1` (use `zero_division=0`).\n'
-              '6. Decision tree: `make_pipeline(SimpleImputer(strategy="median"), DecisionTreeClassifier(max_depth=3, random_state=17))`. Fit it, store its predictions '
-              'as `tree_warn`, then compute `tree_counts`, `tree_precision`, `tree_recall` and `tree_f1`.\n'
-              '7. Then run the supplied cell under your work: it shows gradient descent and the training accuracy.'),
+              '6. Decision tree: `make_pipeline(SimpleImputer(strategy="median"), DecisionTreeClassifier(max_depth=3, random_state=17))`. Fit it and store its predictions '
+              'as `tree_warn`.\n'
+              '7. Compute `tree_counts`, `tree_precision`, `tree_recall` and `tree_f1`.\n'
+              '8. Run the supplied cell below: it shows gradient descent and the training accuracy.'),
         solution='''y_train_warn = (machines_train[M_TARGET] >= M_LIMIT).astype(int)
 y_valid_warn = (machines_valid[M_TARGET] >= M_LIMIT).astype(int)
 logistic = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000)).fit(machines_train[M_FEATURES], y_train_warn)
@@ -596,7 +704,7 @@ print(logistic_counts, logistic_f1, tree_counts, tree_f1)
 '''))
     out.append(dict(key='test_m', question=2, title='Choose the warning model, then use the test set once', marks=dict(test_m=marks['test_m']),
         inputs=['machines_train', 'machines_valid', 'machines_test', 'logistic_f1', 'tree_f1'], results=['chosen_warning_model', 'test_f1'],
-        text=('1. Choose on validation numbers only: `chosen_warning_model = choose_warning_model({"logistic": logistic_f1, "tree": tree_f1})`. The rule takes the higher '
+        text=('1. Run the supplied cell below: it defines `choose_warning_model`. Then choose on validation numbers only: `chosen_warning_model = choose_warning_model({"logistic": logistic_f1, "tree": tree_f1})`. The rule takes the higher '
               'validation F1 (a tie goes to logistic regression, the simpler model).\n'
               '2. Only now: refit the chosen model (the same pipeline as in Task 7) on `machines_train` and `machines_valid` together.\n'
               '3. Use the test rows once: predict `machines_test` and store its F1 as `test_f1`.'),
@@ -625,9 +733,20 @@ def memo_task_no(cfg=P.EXAM):
     return sum(1 for t in tasks(cfg) if t['label'].isdigit()) + 1
 
 
+def task_heading(i, task):
+    """The task's own text cell: heading, the lead line, the input and the results to store. Each step follows in its own cell."""
+    marks = sum(task['marks'].values())
+    head = f'## Task {task.get("label", i)}: {task["title"]}' + (f' ({marks} mark{"s" if marks != 1 else ""})' if marks else '')
+    lead, _ = task_steps(task)
+    return f"""{head}
+{lead}
+
+**Input:** {', '.join('`' + n + '`' for n in task['inputs'])}. **Store:** {', '.join('`' + n + '`' for n in task['results'])}.""".replace('\n\n\n', '\n\n')
+
+
 def task_markdown(i, task):
     marks = sum(task['marks'].values())
-    head = f'## Task {task.get("label", i)}: {task["title"]}' + (f' ({marks} marks)' if marks else '')
+    head = f'## Task {task.get("label", i)}: {task["title"]}' + (f' ({marks} mark{"s" if marks != 1 else ""})' if marks else '')
     data = ''
     return f"""{head}
 {task['text']}{data}

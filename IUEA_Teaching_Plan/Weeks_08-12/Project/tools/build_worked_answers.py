@@ -65,19 +65,15 @@ def answered(code, mode):
         m = re.match(r'^## Task (\w+):', text)
         if cell['cell_type'] == 'markdown' and m:
             current = labels.get(m.group(1))
-        if cell['cell_type'] == 'code' and text.startswith('# Your code here: look at the data'):   # Tasks 1 and 5: the look comes first
-            for part in W.answer_cells({'clean_h': 'explore_h', 'clean_m': 'explore_m'}[current], cfg['split_seed']):
+        step = re.match(r'^# Your code here \(step (\d+)\)', text) if cell['cell_type'] == 'code' else None
+        if step:                                                            # the answer cells for this step, one logical step per cell
+            k = int(step.group(1))
+            for part in W.step_cells(current, k, cfg['split_seed']):
                 one = copy.deepcopy(cell)
                 one['source'] = part.splitlines(True)
                 cells.append(one)
-            continue
-        if cell['cell_type'] == 'code' and text.startswith('# Your code here.'):
-            for part in W.answer_cells(current, cfg['split_seed']):       # one logical step per cell
-                one = copy.deepcopy(cell)
-                one['source'] = part.splitlines(True)
-                cells.append(one)
-            if practice and current == 'encoded':                          # revision-only demo: both models with the text columns
-                cells.append(BN.cell(W.DEMO_TEXT_INTRO))
+            if practice and current == 'encoded' and k == len(PC.task_steps(PC.tasks(cfg)[[t['key'] for t in PC.tasks(cfg)].index('encoded')])[1]):
+                cells.append(BN.cell(W.DEMO_TEXT_INTRO))                    # revision-only demo: both models with the text columns
                 for part in W.demo_cells():
                     one = copy.deepcopy(cell)
                     one['source'] = part.splitlines(True)

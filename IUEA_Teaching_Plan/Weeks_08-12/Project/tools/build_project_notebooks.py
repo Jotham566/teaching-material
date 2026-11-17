@@ -79,18 +79,22 @@ def build_notebook(code, mode, require_forms=False):
                 put('question2')
         if mode == 'rehearsal' and task['key'] in PC.REHEARSAL_NOTES:
             cells.append(cell(PC.REHEARSAL_NOTES[task['key']]))
-        cells.append(cell(PC.task_markdown(i, task)))
-        if task['key'] in PC.EXPLORE_STARTER:                                       # Tasks 1 and 5: the student looks first ...
-            starters.append(PC.EXPLORE_STARTER[task['key']])
-            cells.append(cell(PC.EXPLORE_SOLUTION[task['key']] if mode == 'solution' else PC.EXPLORE_STARTER[task['key']], True))
-        put(task['key'])                                                             # ... then the target (Tasks 1, 5) or the feature names
-        starters.append(task['starter'])
-        cells.append(cell(task['solution'] if mode == 'solution' else task['starter'], True))
-        if task['key'] in PC.SUPPLIED_CELLS:                                       # ready-made "watch it learn" cell, not marked
-            md, src, after = PC.SUPPLIED_CELLS[task['key']]
-            cells.append(cell(md))
-            cells.append(cell(src, True, ['iuea-supplied']))
-            cells.append(cell(after))                                              # how to read the charts and the weights
+        cells.append(cell(PC.task_heading(i, task)))
+        put(task['key'])                                                             # the task's supplied cells: imports and column names
+        _, steps = PC.task_steps(task)
+        solution = PC.solution_parts(task)
+        starters.append(task['starter'])                                             # the old one-cell starter still counts as untouched
+        for k, text in enumerate(steps, 1):                                          # one text cell per step, then its code cell
+            cells.append(cell(PC.step_markdown(k, text)))
+            if PC.GD_STEP.get(task['key']) == k:                                     # ready-made "watch it learn" cell, not marked
+                md, src, after = PC.SUPPLIED_CELLS[task['key']]
+                cells.append(cell(md))
+                cells.append(cell(src, True, ['iuea-supplied']))
+                cells.append(cell(after))                                            # how to read the charts and the weights
+            put(f"{task['key']}:{k}")                                                # a supplied cell this step names (target, THRESHOLD, rule)
+            if (task['key'], k) not in PC.RUN_ONLY:
+                starters.append(PC.step_starter(k))
+                cells.append(cell(solution.get(k, PC.step_starter(k)) if mode == 'solution' else PC.step_starter(k), True))
     cells.append(cell(PC.memo_markdown(code, cfg, PC.memo_task_no(cfg))))
     memo = PC.memo_solution(code, cfg) if mode == 'solution' else PC.MEMO_STARTER.replace('UNIT', cfg['h_unit'])
     starters.append(PC.MEMO_STARTER.replace('UNIT', cfg['h_unit']))

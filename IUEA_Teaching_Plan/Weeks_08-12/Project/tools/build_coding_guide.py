@@ -65,27 +65,39 @@ def tight(p, before=0, after=0, line=1.0):
 
 
 def cells_block(d, *keys):
-    """One shaded box per notebook cell, numbered within the task as in the notebook, with a small gap between boxes."""
-    n = 0
-    where = {'explore_h': ('data',), 'explore_m': ('question2',)}
-    for key in keys:
-        for w, src in PC.visible_cells(P.REHEARSAL).values():          # the visible supplied cells that come before the student's work
-            if w == key or w in where.get(key, ()):
-                if n:
-                    gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
-                n = n or 0
-                code_block(d, src, label='Supplied cell (already in the students\' notebook; not marked)')
-        for part in WA.answer_cells(key, P.REHEARSAL['split_seed']):
-            n += 1
+    """One shaded box per notebook cell, in the notebook's order: the supplied cells, then each step's answer cells labelled with the step."""
+    supplied = 'Supplied cell (already in the students\' notebook; not marked)'
+    first = [True]
+
+    def box(code, label):
+        if not first[0]:
             gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
-            code_block(d, part, label=f'Cell {n}')
+        first[0] = False
+        code_block(d, code, label=label)
+
+    visible = PC.visible_cells(P.REHEARSAL)
+    tasks = {t['key']: t for t in PC.tasks(P.REHEARSAL)}
+    for key in keys:
+        if key in ('explore_h', 'explore_m'):                       # the cells before the task: reading the table (and the imports)
+            for w, src in visible.values():
+                if w == {'explore_h': 'data', 'explore_m': 'question2'}[key]:
+                    box(src, supplied)
+            continue
+        for w, src in visible.values():                             # the task's own supplied cells: imports, column names
+            if w == key:
+                box(src, supplied)
+        _, steps = PC.task_steps(tasks[key])
+        for k in range(1, len(steps) + 1):
+            if PC.GD_STEP.get(key) == k:                            # the ready-made "watch it learn" cell
+                box(PC.SUPPLIED_CELLS[key][1], supplied)
+            for w, src in visible.values():                         # a supplied cell this step names (target, THRESHOLD, rule)
+                if w == f'{key}:{k}':
+                    box(src, f'Step {k}: ' + supplied)
+            for part in WA.step_cells(key, k, P.REHEARSAL['split_seed']):
+                box(part, f'Step {k}')
         if key == 'encoded':                                         # the revision-only demo (not in the project)
             for part in WA.demo_cells():
-                gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
-                code_block(d, part, label='Revision demo (in the revision notebooks only, not in the project)')
-        if key in PC.SUPPLIED_CELLS:                                # the ready-made "watch it learn" cell, already in every notebook
-            gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
-            code_block(d, PC.SUPPLIED_CELLS[key][1], label='Supplied cell (already in the students\' notebook; not marked)')
+                box(part, 'Revision demo (in the revision notebooks only, not in the project)')
 
 
 def code_block(d, code, label=''):
@@ -193,7 +205,8 @@ def main():
           'A neighbourhood train never saw: what happens without "ignore"?')
     heading(d, 'Task 4. Choose the house model, then use the test set once', '1 mark, 10 minutes')
     cells_block(d, 'test_h')
-    notes(d, 'Choose on validation numbers only; refit on train + valid; score the test rows once and report what comes out.',
+    notes(d, f'The supplied cell states the client\'s limits (invented): MAE at most {cfg["max_mae"]:,} USD, sitting between the two models, so the rule has a real choice; '
+             f'{P.MAX_MS} ms, which both models meet ({P.LATENCY_MS["linear"]} and {P.LATENCY_MS["tree"]} ms), so speed only breaks a tie. Choose on validation numbers only; refit on train + valid; score the test rows once.',
           f'{p["chosen_model"]} (the tree, {f(vm["tree"])}, is over the {cfg["max_mae"]:,} limit). Test MAE {f(test["mae"])} USD.',
           'The test MAE is lower than validation. Is the model better than we thought?')
 
