@@ -1,7 +1,7 @@
 """Prevent conflicting student-facing submission and quiz instructions returning."""
 import unittest,zipfile,xml.etree.ElementTree as E
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];DECKS=ROOT/'IUEA_Teaching_Plan/decks';A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
+ROOT=Path(__file__).resolve().parents[1];DECKS=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks';A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
 def slide(path,number):
  with zipfile.ZipFile(path) as z:
   root=E.fromstring(z.read(f'ppt/slides/slide{number}.xml'))

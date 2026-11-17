@@ -94,13 +94,13 @@ def main():
     done = []
     for cohort in ("CML3111", "CML3112", "CML3113"):
         for week in ("W08", "W09", "W10", "W11", "W12"):
-            p = BASE / "guided_practice" / cohort / week / "guided_practice.ipynb"
+            p = BASE / "Weeks_01-07/guided_practice" / cohort / week / "guided_practice.ipynb"
             raw = p.read_text(encoding="utf-8")
             new, ch = patched(raw, cohort, week)
             if ch:
                 backup(p); p.write_text(new, encoding="utf-8"); done.append(str(p.relative_to(ROOT)))
             # the same notebook inside the assignment ZIP
-            z = BASE / "student_packages" / f"{cohort}_{week}_student.zip"
+            z = BASE / "Weeks_01-07/student_packages" / f"{cohort}_{week}_student.zip"
             zin = zipfile.ZipFile(z)
             inner = zin.read("guided_practice.ipynb").decode("utf-8")
             newz, chz = patched(inner, cohort, week)
@@ -115,8 +115,8 @@ def main():
                         dst.writestr(info, data, compress_type=info.compress_type)
                 tmp.replace(z); done.append(str(z.relative_to(ROOT)))
     # unzipped working copy of CML3113 W08 (it still carried the 30 October block text in both notebooks)
-    folder = BASE / "student_packages/CML3113_W08_student"
-    z = zipfile.ZipFile(BASE / "student_packages/CML3113_W08_student.zip")
+    folder = BASE / "Weeks_01-07/student_packages/CML3113_W08_student"
+    z = zipfile.ZipFile(BASE / "Weeks_01-07/student_packages/CML3113_W08_student.zip")
     for name in ("W08_student.ipynb", "guided_practice.ipynb", "START_HERE.md"):
         data = z.read(name)
         tgt = folder / name

@@ -1,7 +1,7 @@
 """Run the slide-taught functions against the real hidden checks in Docker."""
 import ast,json,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 from batch_grade import grade_one
 from colab_exam_contracts import decision_keys
 class AlignmentTests(unittest.TestCase):

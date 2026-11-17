@@ -1,6 +1,6 @@
 import sys,unittest
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from da_gradebook import combine
 class IndependentGradebookTests(unittest.TestCase):
  def setUp(self):self.roster=[dict(student_id='S10001',name='Synthetic learner',cohort='DA')]

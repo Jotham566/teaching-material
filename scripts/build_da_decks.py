@@ -34,8 +34,8 @@ import da_deck_w3 as W3
 import da_deck_w4 as W4
 import da_deck_w5 as W5
 
-OUT = os.path.join(_ROOT, "DataAnalysis_Track", "decks")
-FIGS = os.path.join(_ROOT, "DataAnalysis_Track", "figs")
+OUT = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course", "decks")
+FIGS = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course", "figs")
 
 DECKS = {}
 FMT = dict(DK.FMT_BASE)

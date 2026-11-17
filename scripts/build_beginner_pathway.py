@@ -6,8 +6,8 @@ cells, so Run all checks worked examples without filling in student exercises.
 """
 from pathlib import Path
 import json,sys,subprocess
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';OUT=BASE/'guided_practice'
-REVIEW=ROOT/'review/2026-09-15/ppt-revision'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';OUT=BASE/'Weeks_01-07/guided_practice'
+REVIEW=ROOT/'_archive/review/2026-09-15/ppt-revision'
 decks=json.loads((ROOT/'data/iuea_deck_content.json').read_text());checks=[];count=0
 for deck in decks:
  week=deck['week'];cohort=deck['cohort']
@@ -63,8 +63,8 @@ for deck in decks:
   if week in (4,5):args+=['--mount',f'type=bind,src={BASE}/practicals/W{week:02}/{cohort},dst=/data,readonly','--workdir','/data']
   if week>=6:
    source_week={7:6,14:12}.get(week,week)
-   data_folder=BASE/f'assessment_banks/W{source_week:02}/{cohort}/A'
-   if not data_folder.exists():data_folder=BASE/f'assessment_banks/TEST1/{cohort}/A'
+   data_folder=BASE/f'Assessments/assessment_banks/W{source_week:02}/{cohort}/A'
+   if not data_folder.exists():data_folder=BASE/f'Assessments/assessment_banks/TEST1/{cohort}/A'
    args+=['--mount',f'type=bind,src={data_folder},dst=/data,readonly','--workdir','/data','-e','MPLBACKEND=Agg']
   r=subprocess.run(args+['iuea-notebooks:2026.09','python','-c',program],capture_output=True,text=True)
   if r.returncode:raise RuntimeError(f'{cohort} W{week}: {r.stderr}')

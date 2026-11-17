@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const ctx={console};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/create_quiz_forms.gs','utf8'),ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/create_quiz_forms.gs','utf8'),ctx);
 const writes=[];
 ctx.QUIZ_DATA={CML3111:{weeks:[{week:2,questions:[{},{},{},{n:4,title:'Git status',fbCorrect:'Stage first',fbWrong:'Stage first; no unstaged commit'}]}]}};
 ctx.loadLinks_=()=>({'CML3111|2':{formId:'existing-form'}});

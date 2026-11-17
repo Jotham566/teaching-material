@@ -1,6 +1,6 @@
 import copy,json,sys,tempfile,unittest
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from calibration_record import validate_current_cases,authored_cases
 
 class CurrentCaseChecks(unittest.TestCase):

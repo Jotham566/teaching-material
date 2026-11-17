@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from backup_20261103 import backup
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "IUEA_Teaching_Plan" / "grader" / "continuous_assessment.py"
+PATH = ROOT / "IUEA_Teaching_Plan" / "Assessments/grader" / "continuous_assessment.py"
 MARK = "SEMESTER_TOTALS_20261103"
 
 

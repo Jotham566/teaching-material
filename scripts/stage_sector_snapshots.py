@@ -2,7 +2,7 @@
 from pathlib import Path
 import urllib.request,json,zipfile,io,csv,hashlib,datetime
 ROOT=Path(__file__).resolve().parents[1]
-out=ROOT/'DataAnalysis_Track/data/sector_snapshots';out.mkdir(exist_ok=True)
+out=ROOT/'Professional_Training/Data_Analysis_Course/data/sector_snapshots';out.mkdir(exist_ok=True)
 manifest=[]
 def fetch(url):
  with urllib.request.urlopen(url,timeout=60) as response:data=response.read(20_000_001)

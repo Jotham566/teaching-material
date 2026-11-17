@@ -12,7 +12,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'IUEA_Teaching_Plan'
-sys.path.insert(0, str(BASE / 'grader'))
+sys.path.insert(0, str(BASE / 'Assessments/grader'))
 import iuea_grader as ig
 
 
@@ -21,7 +21,7 @@ class NoStudentGraders(unittest.TestCase):
         for cohort in ('CML3111', 'CML3112', 'CML3113'):
             for aid in ('W03', 'W05'):
                 with self.subTest(cohort=cohort, assignment=aid):
-                    with zipfile.ZipFile(BASE / 'student_packages' / f'{cohort}_{aid}_student.zip') as z:
+                    with zipfile.ZipFile(BASE / 'Weeks_01-07/student_packages' / f'{cohort}_{aid}_student.zip') as z:
                         nb = json.loads(z.read(f'{aid}_student.ipynb'))
                         csv = z.read('campus_energy.csv') if aid == 'W05' else None
                     variant = {
@@ -57,8 +57,8 @@ class NoStudentGraders(unittest.TestCase):
                                 self.assertNotRegex(source, r'iuea_grader|spec_W\d+|g\.check\(')
                                 exec(compile(source, '<trusted fixture>', 'exec'), ns)
                             self.assertIsNone(next(answer_iter, None))
-                            spec = ig.load_spec(aid, str(BASE / 'grader/specs' / f'spec_{aid}.py'),
-                                include_hidden=True, hidden_path=str(BASE / 'grader/specs/hidden' / f'spec_{aid}_hidden.py'))
+                            spec = ig.load_spec(aid, str(BASE / 'Assessments/grader/specs' / f'spec_{aid}.py'),
+                                include_hidden=True, hidden_path=str(BASE / 'Assessments/grader/specs/hidden' / f'spec_{aid}_hidden.py'))
                             results = [ig.run_check(qid, q, ns) for qid, q in ig.resolve_questions(spec, cohort)]
                             self.assertEqual(sum(r.awarded for r in results), 20, [r.message for r in results])
                         finally:

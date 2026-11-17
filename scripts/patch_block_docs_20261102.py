@@ -92,11 +92,11 @@ def main():
 
     for code in COHORTS:
         for b in POL["blocks"]:
-            p = BASE / "student_guides" / code / f"{b['id']}.md"; backup(p); p.write_text(block_guide(code, b))
-        patch_retired_notice(BASE / "student_guides" / code / "TEST2.md", code)
-        patch_deadline(BASE / "student_guides" / code / "DEMO.md", code)
-        patch_deadline(BASE / "student_guides" / code / "ML_PROJECT.md", code)
-    idx = BASE / "Assignment_Instructions_Index.md"; backup(idx); t = idx.read_text()
+            p = BASE / "Assessments/student_guides" / code / f"{b['id']}.md"; backup(p); p.write_text(block_guide(code, b))
+        patch_retired_notice(BASE / "Assessments/student_guides" / code / "TEST2.md", code)
+        patch_deadline(BASE / "Assessments/student_guides" / code / "DEMO.md", code)
+        patch_deadline(BASE / "Assessments/student_guides" / code / "ML_PROJECT.md", code)
+    idx = BASE / "Assessments/Assignment_Instructions_Index.md"; backup(idx); t = idx.read_text()
     m = re.search(r"(?s)<!-- BLOCK_ASSESSMENT_20261030 -->\n## Block arrangement from Week 8\n.*?(?=\n## |\Z)", t)
     add = (f"<!-- {MARK} -->\n## Block arrangement from Week 8 (updated 2 November 2026)\n\nTwo blocks of two classes: one assignment pack and one quiz sitting per block. "
            f"The semester ends at Week 12 and there is no Practical Test 2. Read [{NOTE}]({NOTE}). Student block guides: "
@@ -107,7 +107,7 @@ def main():
         assert m, "old block section not found in the index"
         t = t[:m.start()] + add + t[m.end():]
     idx.write_text(t.rstrip() + "\n")
-    rd = BASE / "grader" / "README.md"; backup(rd); t = rd.read_text()
+    rd = BASE / "Assessments/grader" / "README.md"; backup(rd); t = rd.read_text()
     addr = (f"<!-- {MARK} -->\n## Block arrangement from Week 8 (updated 2 November 2026)\n\nThe best-of rules above apply to Weeks 1 to 5 only (best 3 of 5; Week 6 is waived). "
             "From Week 8 the A7 to A11 submissions and the Q7 to Q10 quizzes are combined per block and are never dropped: Block 1 = A7 + A8 (40 marks) and Q7 + Q8 (10); "
             "Block 2 = A9 + A10 + A11 (60 marks) and Q9 + Q10 (10). Q11 and Q12 are retired. Quizzes are out of 35 and assignments out of 160, 15 percent of the course each; "

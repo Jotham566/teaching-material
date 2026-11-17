@@ -1,13 +1,13 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const ctx={console};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs','utf8'),ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs','utf8'),ctx);
 assert.deepStrictEqual(Array.from(ctx.CHALLENGE_IDS),['W01','W02','W03','W04','W05','W06','W08','W09','W10','W11','W12']);
 assert.deepStrictEqual(Array.from(ctx.CHALLENGE_IDS).slice(0,ctx.CHALLENGE_COUNTED),['W01','W02','W03','W04','W05']);
 for(const v of [-1,500,Infinity,'bad',true])assert.throws(()=>ctx.equalItemsComponent_([v],5,5,20));
 assert.equal(ctx.equalItemsComponent_([5,5,5,5,5,5,5,5,5,5,5,5],5,5,20).weighted,20);
 assert.equal(ctx.equalItemsComponent_([0,'',null],5,5,20).submitted,1);
 const forms={console};vm.createContext(forms);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs','utf8'),forms);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/submission_forms.gs','utf8'),forms);
 assert.equal(forms.submissionStatus_('2026-09-22T11:00:00+03:00','2026-09-15T11:00:00+03:00','2026-09-22T11:00:00+03:00'),'ON_TIME');
 assert.equal(forms.submissionStatus_('2026-09-22T11:00:01+03:00','2026-09-15T11:00:00+03:00','2026-09-22T11:00:00+03:00'),'LATE');
 assert.equal(forms.submissionStatus_('2026-09-22T11:00:00+03:00',null,null),'UNSCHEDULED');

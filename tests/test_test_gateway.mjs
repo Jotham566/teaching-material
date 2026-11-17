@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import {handle} from '../IUEA_Teaching_Plan/test_portal/gateway/worker.mjs';
+import {handle} from '../IUEA_Teaching_Plan/Assessments/test_portal/gateway/worker.mjs';
 // The displayed windows must match the stored schedule helper.
-const pageSource=fs.readFileSync('IUEA_Teaching_Plan/test_portal/Index.html','utf8');
-const scheduleSource=fs.readFileSync('IUEA_Teaching_Plan/grader/take_home_test1_oct23.gs','utf8');
+const pageSource=fs.readFileSync('IUEA_Teaching_Plan/Assessments/test_portal/Index.html','utf8');
+const scheduleSource=fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/take_home_test1_oct23.gs','utf8');
 const displayDate=value=>new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Kampala',day:'numeric',month:'long',year:'numeric'}).format(new Date(value))+', '+new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Kampala',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(value));
 for(const match of scheduleSource.matchAll(/'(CML311[123]\|TEST1)':\['([^']+)','([^']+)'\]/g)){
  const label=displayDate(match[2])+' – '+displayDate(match[3]);
@@ -18,7 +18,7 @@ const ctx={Date,Math,JSON,Error,PropertiesService:{getScriptProperties:()=>({get
  LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock:()=>{}})},Utilities:{getUuid:()=>`synthetic-${++counter}`,formatDate:d=>d.toISOString()},
  ContentService:{MimeType:{JSON:'application/json'},createTextOutput:text=>({text,setMimeType(){return this}})}};
 vm.createContext(ctx);
-for(const file of ['Portal.gs','Packets.gs','Gateway.gs'])vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/'+file,'utf8'),ctx);
+for(const file of ['Portal.gs','Packets.gs','Gateway.gs'])vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/test_portal/'+file,'utf8'),ctx);
 const env={PORTAL_GATEWAY_KEY:secret,APPS_SCRIPT_URL:'https://script.google.com/macros/s/TEST_DEPLOYMENT/exec'};
 let calls=0;
 const upstream=async(url,options)=>{

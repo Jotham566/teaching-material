@@ -3,7 +3,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 const require=createRequire('/Users/jothamwambi/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/package.json');
 const {Presentation,PresentationFile,FileBlob}=require('@oai/artifact-tool');
-const base=path.resolve('review/2026-09-29/slide-specific-notes');
+const base=path.resolve('_archive/review/2026-09-29/slide-specific-notes');
 const plans=JSON.parse(await fs.readFile(`${base}/notes-plan.json`,'utf8'));
 await fs.mkdir(`${base}/authored`,{recursive:true});
 // Notes carriers author native notes without reflowing the original artwork.

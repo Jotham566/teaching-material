@@ -22,7 +22,7 @@ PAT = re.compile(rf"\b({WORDS})\s+(lines?|steps?|questions?|charts?|"
 bad = 0
 checked = 0
 for f in sorted(glob.glob(_ROOT + "/"
-                          "IUEA_Teaching_Plan/decks/CML*.pptx")):
+                          "IUEA_Teaching_Plan/Weeks_01-07/decks/CML*.pptx")):
     code = f.split("/")[-1].split("_")[0]
     wk = int(re.search(r"Week(\d+)", f).group(1))
     prs = Presentation(f)

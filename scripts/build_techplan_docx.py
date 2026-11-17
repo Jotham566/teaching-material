@@ -25,12 +25,12 @@ PAGES=[
  ('Before Week 2','Use the cohort student ZIP, concise setup guide and lecturer runsheet. Rehearse Colab CSV upload, GitHub save, README upload and the prepared lab fallback. Test Forms from a non-owner student account, including two attachments, a replacement response and expiry. The operational checklist is in grader/README.md.'),
  ('Before later assessments','Finalize each practical exam task and its deterministic checks before release. A generic rubric is not an exam answer key. Match every published task, dataset, named output and mark to its checker. Require accessible report exports and narration notes where the local text grader needs them.'),
  ('Failure handling','Never turn a failed extraction, timeout or infrastructure error into an invented zero. Resolve format/access problems through documented resubmission or an explicit deadline extension. Retain the original server timestamp and record the decision. Substantive model disagreement needs calibration or an objective assessment redesign.'),
- ('Measure the actual workload','Earlier fixed claims about hours saved were estimates. Measure batch duration, exception rates, resubmission handling and model calibration on representative work. The aim is automated routine assessment with targeted exception handling. See review/2026-09-14 for test evidence and the current deployment status.')]),
+ ('Measure the actual workload','Earlier fixed claims about hours saved were estimates. Measure batch duration, exception rates, resubmission handling and model calibration on representative work. The aim is automated routine assessment with targeted exception handling. See _archive/review/2026-09-14 for test evidence and the current deployment status.')]),
 ]
 for index,(title,sections) in enumerate(PAGES):
  if index:d.add_page_break()
  d.add_paragraph(title,'Heading 1')
  for heading,text in sections:
   d.add_paragraph(heading,'Heading 2');d.add_paragraph(text)
-out=ROOT/'IUEA_Teaching_Plan/IUEA_ML_Assessment_Technology_Build_Plan.docx'
+out=ROOT/'IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Assessment_Technology_Build_Plan.docx'
 d.save(out);print('saved',out)

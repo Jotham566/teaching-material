@@ -17,7 +17,7 @@ from plan_content import (CALENDAR, COHORT_META, SHARED, COHORTS, ASSESSMENT,
                           QUIZZES, TECH_STACK, MARKING_LOAD,
                           MARKING_TOTAL_BEFORE, MARKING_TOTAL_AFTER, AUTHORING_ONE_OFF)
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"
 
 FONT = "Arial"
 NAVY = "1F3864"

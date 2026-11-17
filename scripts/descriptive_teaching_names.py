@@ -206,7 +206,7 @@ def revise():
    manifest.append({'cohort':d['cohort'],'week':d['week'],'title':title,'operations':required,'variables':assigned})
   for i,s in enumerate(new,1):s['sequence_number']=i
   d['slides']=new;d['descriptive_names_revision']='2026-10-20-v2'
-  (ROOT/'IUEA_Teaching_Plan/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('# '+d['cohort']+' Week '+str(d['week'])+'\n\n'+'\n\n'.join(f"## Slide {i}: {s['title']}\n\n{s.get('notes','')}" for i,s in enumerate(new,1)))
+  (ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('# '+d['cohort']+' Week '+str(d['week'])+'\n\n'+'\n\n'.join(f"## Slide {i}: {s['title']}\n\n{s.get('notes','')}" for i,s in enumerate(new,1)))
  p.write_text(json.dumps(decks,ensure_ascii=False,indent=2)+'\n')
  (ROOT/'data/descriptive_names_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 if __name__=='__main__':revise()

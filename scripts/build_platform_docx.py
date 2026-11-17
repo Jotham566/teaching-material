@@ -6,7 +6,7 @@ d=new_doc(margin_cm=2.2)
 header_footer(d,'IUEA · Assessment architecture · Lecturer only · September 2026')
 h1(d,'Assessment architecture')
 para(d,'Collection, automatic assessment and private grade import',size=15,colour=MID)
-para(d,'This describes the implemented system. Current passing calibrations and remaining release requirements are recorded in review/2026-09-14/REWORK_STATUS.md. A form existing, or a model being installed, does not make an assessment ready.')
+para(d,'This describes the implemented system. Current passing calibrations and remaining release requirements are recorded in _archive/review/2026-09-14/REWORK_STATUS.md. A form existing, or a model being installed, does not make an assessment ready.')
 h2(d,'1. The complete submission path')
 table(d,['Stage','What happens'],[
  ['Student work','Students use the issued Colab notebook or documented offline setup. Visible practice checks give feedback. Students submit the actual notebook and required report or slides.'],
@@ -43,4 +43,4 @@ para(d,'Google Forms attachments are stored in the lecturer’s Google Drive bef
 h2(d,'7. Recovery and final rehearsal')
 para(d,'Retain original uploads and the response audit. Correct an input or configuration problem and rerun the affected packet; never alter a student answer to make it grade. An outage extension must be explicit and recorded, with an equivalent opportunity for affected students. A non-owner student-account rehearsal, production roster, actual DA dates and Faculty policy remain operational inputs.')
 para(d,'Generated from scripts/build_platform_docx.py. See REWORK_STATUS.md for dated evidence and unresolved work.',size=9,italic=True)
-d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Platform_Architecture_Note.docx')
+d.save(ROOT/'IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Platform_Architecture_Note.docx')

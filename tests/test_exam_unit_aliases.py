@@ -1,7 +1,7 @@
 """Equivalent unit spellings must pass; wrong dimensions and plots must fail."""
 import json,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 from engineering_contracts import unit_matches,measurement_same
 from colab_exam_contracts import decision_keys
 from batch_grade import grade_one

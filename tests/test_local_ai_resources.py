@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import local_ai_resources as resources
 
 

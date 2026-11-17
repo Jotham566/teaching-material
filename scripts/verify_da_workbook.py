@@ -25,7 +25,7 @@ from openpyxl.utils import get_column_letter
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-WB = os.path.join(_ROOT, "DataAnalysis_Track",
+WB = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course",
                   "DataAnalysis_Track_Workbook.xlsx")
 
 # Functions that need no prefix and that LibreOffice also evaluates. Anything

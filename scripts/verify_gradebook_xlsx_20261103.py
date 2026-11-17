@@ -19,12 +19,12 @@ from pathlib import Path
 import openpyxl
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "IUEA_Teaching_Plan" / "grader"))
+sys.path.insert(0, str(ROOT / "IUEA_Teaching_Plan" / "Assessments/grader"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from continuous_assessment import semester_totals  # noqa: E402
 import build_gradebook_xlsx_20261103 as B  # noqa: E402
 
-PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "IUEA_Teaching_Plan" / "IUEA_ML_Gradebook_Semester1.xlsx"
+PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "IUEA_Teaching_Plan" / "Assessments/IUEA_ML_Gradebook_Semester1.xlsx"
 FAILS = []
 PASSES = 0
 

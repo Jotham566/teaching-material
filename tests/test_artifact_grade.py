@@ -1,6 +1,6 @@
 import sys,unittest
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from artifact_grade import validate_grade,validate_rubric,group_manifest,extract,validate_calibration
 class RubricChecks(unittest.TestCase):
  def setUp(self):self.r={'id':'UNIT-r1','maximum':10,'criteria':[{'id':'a','maximum':10,'description':'Evidence'}]}
@@ -15,7 +15,7 @@ class RubricChecks(unittest.TestCase):
   self.assertEqual(validate_grade({'criteria':[{'id':'a','awarded':10,'evidence':'supported','feedback':'clear'}],'concerns':[]},self.r,'supported result'),10)
  def test_all_rubrics(self):
   import json
-  for p in (Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/rubrics').glob('*.json'):validate_rubric(json.loads(p.read_text()))
+  for p in (Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader/rubrics').glob('*.json'):validate_rubric(json.loads(p.read_text()))
  def test_packet_preserves_one_response(self):
   rows=[dict(student_id='S12345',file=f,response_id='response-a') for f in ['report.docx','slides.pptx']]
   self.assertEqual(len(group_manifest(rows)['S12345']),2)

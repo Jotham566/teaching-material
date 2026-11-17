@@ -6,7 +6,7 @@ ZIP entries, including media, masters, themes, relationships and code, are check
 from pathlib import Path
 import copy, hashlib, json, re, zipfile, xml.etree.ElementTree as E
 from presentation_teaching_support import correct, title
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'review/2026-09-21/presentation-notes'
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'_archive/review/2026-09-21/presentation-notes'
 A='{http://schemas.openxmlformats.org/drawingml/2006/main}';P='{http://schemas.openxmlformats.org/presentationml/2006/main}'
 E.register_namespace('', 'http://schemas.openxmlformats.org/package/2006/content-types');E.register_namespace('a',A[1:-1]);E.register_namespace('p',P[1:-1]);E.register_namespace('r','http://schemas.openxmlformats.org/officeDocument/2006/relationships')
 def body(root):

@@ -606,7 +606,7 @@ def patch_master_docx(path):
     c = nrows["7"].cells
     set_cell(c[1], "Lesson plans, slides, notebooks and lecturer guides for Classes 1 to 4 (Weeks 8–11 content)")
     set_cell(c[2], "Before each class")
-    set_cell(c[3], "Built; see IUEA_Teaching_Plan/second_half/. Run each notebook once in real Colab before the class.")
+    set_cell(c[3], "Built; see IUEA_Teaching_Plan/Weeks_08-12/. Run each notebook once in real Colab before the class.")
     c = nrows["8"].cells
     set_cell(c[2], "Class 4 (Week 11 content)")
     set_cell(c[3], f"The project brief is given in Class 4. Milestones and due dates: {TBC}.")
@@ -1122,9 +1122,9 @@ def main():
     for f in ("IUEA_ML_Syllabus_CohortA_Design_and_Infrastructure.docx", "IUEA_ML_Syllabus_CohortB_Mining_and_Petroleum.docx",
               "IUEA_ML_Syllabus_CohortC_Engineering.docx"):
         patch_syllabus(B / f)
-    patch_master_docx(B / "IUEA_ML_Semester1_Master_Teaching_Plan.docx")
-    patch_quizops(B / "IUEA_ML_Weekly_Quiz_Operations_Guide.docx")
-    patch_workbook(B / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx")
+    patch_master_docx(B / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx")
+    patch_quizops(B / "Lecturer_Guides/IUEA_ML_Weekly_Quiz_Operations_Guide.docx")
+    patch_workbook(B / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx")
     if DRY:
         print("dry run: nothing saved")
 

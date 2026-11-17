@@ -1,7 +1,7 @@
 import sys,unittest,tempfile,json,csv,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GRADER=ROOT/'IUEA_Teaching_Plan/grader'
+GRADER=ROOT/'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0,str(GRADER))
 from registration import valid,filename_id
 from batch_grade import student_id_from_name

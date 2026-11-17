@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import continuous_assessment as ca
 import refresh_ca as refresh
 from test_registration_reconciliation import row

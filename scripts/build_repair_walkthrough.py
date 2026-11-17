@@ -48,4 +48,4 @@ p('Expected: 17. Rerunning this WHOLE cell still prints 17 because the first lin
 h('Return to the main notebook')
 p('In proof_of_life.ipynb, initialization and increment are in SEPARATE cells. Run initialization once, then the increment three times: 17, 22, 27. Restart clears stored state; Run All initializes once and adds five once, giving 17.')
 p('Ask students to explain that difference in their own words. Finish the main notebook and own README. Upload only those two files together, plus enter the repository URL. Keep 01–04 as practice copies.')
-d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Week2_Repair_Walkthrough.docx')
+d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Week2_Repair_Walkthrough.docx')

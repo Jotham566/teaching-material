@@ -14,7 +14,7 @@ assert len(M)==39
 slide_count=0
 for row in M:
  d=next(d for d in D if d['filename']==row['filename'])
- p=BASE/'decks'/row['filename']
+ p=BASE/'Weeks_01-07/decks'/row['filename']
  assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'],p
  with zipfile.ZipFile(p) as z:
   assert z.testzip() is None
@@ -29,19 +29,19 @@ for row in M:
    for value in [s.get('code',''),s.get('caption','')]+s.get('body','').split('\n\n'):
     if value:assert norm(value) in norm(actual),(p,i,value)
    slide_count+=1
- companion=(BASE/'decks/lecturer_notes'/Path(row['filename']).with_suffix('.md')).read_text()
+ companion=(BASE/'Weeks_01-07/decks/lecturer_notes'/Path(row['filename']).with_suffix('.md')).read_text()
  assert len(re.findall(r'^## Slide ',companion,re.M))==len(d['slides'])
  for i,s in enumerate(d['slides'],1):assert f'## Slide {i} — '+s['title'] in companion
 packages=0
 for cohort in ('CML3111','CML3112','CML3113'):
  for week in (3,4,5,6,8,9,10,11,12):
-  with zipfile.ZipFile(BASE/'student_packages'/f'{cohort}_W{week:02}_student.zip') as z:
+  with zipfile.ZipFile(BASE/'Weeks_01-07/student_packages'/f'{cohort}_W{week:02}_student.zip') as z:
    names=z.namelist();assert len(names)==len(set(names))
    assert '00_START_HERE.txt' in names and 'SUBMIT_HERE.txt' in names
    assert all(not any(x in n.lower() for x in ('hidden','solution','lecturer','calibration','gradebook','lesson.html')) for n in names)
-   nb=BASE/'guided_practice'/cohort/f'W{week:02}'/'guided_practice.ipynb'
+   nb=BASE/'Weeks_01-07/guided_practice'/cohort/f'W{week:02}'/'guided_practice.ipynb'
    assert z.read('guided_practice.ipynb')==nb.read_bytes()
-   source=BASE/'practicals'/f'W{week:02}'/cohort if week<=5 else BASE/'assessment_banks'/f'W{week:02}'/cohort/'A'
+   source=BASE/'Weeks_01-07/practicals'/f'W{week:02}'/cohort if week<=5 else BASE/'Assessments/assessment_banks'/f'W{week:02}'/cohort/'A'
    for f in source.iterdir():
     if f.suffix in ('.ipynb','.csv','.md','.py'):assert z.read(f.name)==f.read_bytes(),f
   packages+=1

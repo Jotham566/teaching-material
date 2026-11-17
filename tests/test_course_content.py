@@ -9,7 +9,7 @@ class ContentTests(unittest.TestCase):
   for code in ('CML3111','CML3112','CML3113'):
    self.assertEqual([r['week'] for r in records() if r['cohort']==code and r['component']=='challenges'],CHALLENGE_WEEKS)
  def test_sources_parse(self):
-  for p in list((ROOT/'scripts').glob('*.py'))+list((ROOT/'IUEA_Teaching_Plan/grader').glob('*.py')):ast.parse(p.read_text())
+  for p in list((ROOT/'scripts').glob('*.py'))+list((ROOT/'IUEA_Teaching_Plan/Assessments/grader').glob('*.py')):ast.parse(p.read_text())
  def test_quiz_corrections(self):
   from quiz_bank_weeks import BANKS
   text=repr(BANKS[2][3])
@@ -19,7 +19,7 @@ class ContentTests(unittest.TestCase):
  def test_week2_kit_executes(self):
   import os
   for code in ('CML3111','CML3112','CML3113'):
-   folder=ROOT/'IUEA_Teaching_Plan/setup'/code
+   folder=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/setup'/code
    nb=json.loads((folder/'proof_of_life.ipynb').read_text());ns={};cwd=Path.cwd()
    try:
     os.chdir(folder)
@@ -31,7 +31,7 @@ class ContentTests(unittest.TestCase):
   from plan_content import RUBRICS
   names={'ML_PROJECT':'Engineering ML Project (25%) - as specified by the lecturer','DA_PROJECT':'Data Analysis Project (10%)','TEST1':'Practical Test 1 - Data Investigation (15%)','TEST2':'Practical Test 2 - End-to-End Engineering ML (20%)','DEMO':'Demo, viva & individual reflection (10%)'}
   for aid,name in names.items():
-   actual=json.loads((ROOT/'IUEA_Teaching_Plan/grader/rubrics'/f'{aid}.json').read_text())
+   actual=json.loads((ROOT/'IUEA_Teaching_Plan/Assessments/grader/rubrics'/f'{aid}.json').read_text())
    if aid in ('TEST1','TEST2'):  # the plan keeps short descriptions; the task wording lives in the notebooks
     self.assertEqual([(c['title'],c['maximum']) for c in actual['criteria']],[(t,m) for t,m,_ in RUBRICS[name]])
    else:self.assertEqual([(c['title'],c['maximum'],c['description']) for c in actual['criteria']],RUBRICS[name])

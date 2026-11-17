@@ -1,12 +1,12 @@
 import json,sqlite3,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 import dashboard_numbers as dn
 class DashboardNumbers(unittest.TestCase):
  def text(self,expected):return '\n'.join(f'S15CHECK {k} revenue={v["revenue"]:.2f} orders={v["orders"]} aov={v["aov"]:.2f}' for k,v in expected.items())
  def test_independent_sql_reconciliation(self):
   values=dn.load_reference()
-  with sqlite3.connect(ROOT/'DataAnalysis_Track/data/riverside.db') as db:
+  with sqlite3.connect(ROOT/'Professional_Training/Data_Analysis_Course/data/riverside.db') as db:
    for key,(year,region) in dn.CONTEXTS.items():
     args=[];where="o.status='Delivered'"
     if year:where+=' AND substr(o.order_date,1,4)=?';args.append(year)

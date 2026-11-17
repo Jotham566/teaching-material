@@ -32,7 +32,7 @@ from pptx.enum.shapes import MSO_SHAPE
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "IUEA_Teaching_Plan"
-DECKS = BASE / "decks"
+DECKS = BASE / "Weeks_01-07/decks"
 FIGS = ROOT / "figs" / "week8_20261030"
 INK, ORANGE, TEAL, MUTED = "1C3144", "E4572E", "2E7D6F", "6B7A8A"
 PALE1, PALE2, CODEFG, KEYWORD = "EEF3F6", "E5F1EE", "F4F7FA", "FFB080"
@@ -110,7 +110,7 @@ def fig_holdback(path):
 
 
 def clean_groups(code):
-    raw = pd.read_csv(BASE / "assessment_banks" / "W08" / code / "A" / "engineering_data.csv")
+    raw = pd.read_csv(BASE / "Assessments/assessment_banks" / "W08" / code / "A" / "engineering_data.csv")
     d = raw.drop_duplicates("record_id").copy()
     d = d[d.target.notna() & d.load_pct.between(0, 100)].copy()
     tr = d[d.equipment_id.isin(["E1", "E2", "E3", "E4"])]
@@ -169,7 +169,7 @@ def fig_loss(path):
 
 
 def fig_shape(path, code, short):
-    raw = pd.read_csv(BASE / "assessment_banks" / "W08" / code / "A" / "engineering_data.csv").head(3)
+    raw = pd.read_csv(BASE / "Assessments/assessment_banks" / "W08" / code / "A" / "engineering_data.csv").head(3)
     fig, ax = plt.subplots(figsize=(12.5, 5.0)); ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
     ax.text(0.25, 0.93, "The pandas table", ha="center", fontsize=19, fontweight="bold")
     ax.text(0.78, 0.93, "What scikit-learn receives", ha="center", fontsize=19, fontweight="bold")
@@ -349,7 +349,7 @@ def build_content(code, c, figdir):
     fig_map(figdir / "kinds_of_ml.png"); fig_holdback(figdir / "hold_back.png"); fig_loss(figdir / "loss_walk.png")
     sc = fig_scatter(figdir / f"scatter_{code}.png", code, unit, short)
     fig_shape(figdir / f"shape_{code}.png", code, short)
-    raw = pd.read_csv(BASE / "assessment_banks" / "W08" / code / "A" / "engineering_data.csv").head(3)
+    raw = pd.read_csv(BASE / "Assessments/assessment_banks" / "W08" / code / "A" / "engineering_data.csv").head(3)
     y3 = [f"{v:g}" for v in raw.target]; x3 = [[f"{a:g}", f"{b:g}"] for a, b in zip(raw.load_pct, raw.ambient_c)]
     xcode = "X = np.array([[%s, %s],\n              [%s, %s],\n              [%s, %s]])" % tuple(v for r in x3 for v in r)
     shape_code = "import numpy as np\n" + xcode + "\ny = np.array([%s])\nprint(X.shape)\nprint(y.shape)\nprint(round(y.mean(), 3))" % ", ".join(y3)

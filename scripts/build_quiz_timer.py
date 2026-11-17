@@ -29,7 +29,7 @@ _HERE = _os.path.dirname(_os.path.abspath(__file__))
 _ROOT = _os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/quiz_timer.html"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Lecturer_Guides/quiz_timer.html"
 
 # The five minutes students are given, and what this clock counts. The form
 # then stays open for WINDOW_HOURS (24) so a failed network does not cost a

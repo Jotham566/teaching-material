@@ -55,7 +55,7 @@ p["engineering_ml_project"] = {
          "marking": "Rubric."}],
     "submission_key": "ML_PROJECT",
     "submission_formats": ["ipynb", "pdf", "docx"],
-    "hand_in": "to be confirmed by the lecturer: one notebook with the memo written inside it, handed in like Practical Test 1, or a notebook plus a separate memo file (PDF or DOCX). The draft project in IUEA_Teaching_Plan/second_half/Project builds the first of these.",
+    "hand_in": "to be confirmed by the lecturer: one notebook with the memo written inside it, handed in like Practical Test 1, or a notebook plus a separate memo file (PDF or DOCX). The draft project in IUEA_Teaching_Plan/Weeks_08-12/Project builds the first of these.",
     "submission_note": "ML_PROJECT stays the single project submission in data/assessments.json, with two parts. No form window is opened by this decision: opens_at and closes_at stay null until the lecturer sets them.",
     "released": {
         "rule": "After Class 4 (Week 11 content)",

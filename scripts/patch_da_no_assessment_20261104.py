@@ -17,7 +17,7 @@ import sys
 from pptx import Presentation
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DECKS = os.path.join(ROOT, "DataAnalysis_Track", "decks")
+DECKS = os.path.join(ROOT, "Professional_Training/Data_Analysis_Course", "decks")
 
 PAIRS = [  # (regex or literal, replacement); applied in order
     ("CHECKPOINT 1 · 15% OF THE MARK", "PROJECT 1 · THE SQL REVENUE REPORT"),

@@ -2,7 +2,7 @@ import json,sys,tempfile,hashlib
 from pathlib import Path
 import unittest
 from unittest.mock import patch
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from identity_text import names,registrations,prepare
 from recover_student_names import collect,compatible_name_keys
 from test_registration_reconciliation import RegistrationTests,row

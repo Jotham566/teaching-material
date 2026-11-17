@@ -17,7 +17,7 @@ _ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__fi
 REF = re.compile(r"segments?\s+(\d+)(?:\s*(?:and|to|,)\s*(\d+))?", re.I)
 
 for f in sorted(glob.glob(_ROOT + "/"
-                          "IUEA_Teaching_Plan/decks/CML3112_*.pptx")):
+                          "IUEA_Teaching_Plan/Weeks_01-07/decks/CML3112_*.pptx")):
     wk = int(re.search(r"Week(\d+)", f).group(1))
     prs = Presentation(f)
 

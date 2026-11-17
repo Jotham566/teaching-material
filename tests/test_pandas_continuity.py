@@ -1,7 +1,7 @@
 """Independent checks that pandas solutions satisfy the existing grading contracts."""
 import copy,json,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader'
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0,str(G))
 import engineering_pandas_reference as pdref
 import engineering_reference as original
@@ -40,6 +40,6 @@ class PandasContinuity(unittest.TestCase):
     path.write_text(json.dumps({'cells':[dict(cell_type='code',source='STUDENT_ID="99/TEST/000/DEMO-X"\nCOHORT='+repr(cohort)+'\n'+source)]}))
     for aid in ('W06','W08','W09','W10','W11','W12','TEST1','TEST2','DA_PROJECT','ML_PROJECT'):
      result=grade_one(str(path),str(G/'specs'/f'spec_{aid}.py'),str(G/'specs/hidden'/f'spec_{aid}_hidden.py'),aid,cohort,None,15,60,None)
-     self.assertEqual(sum(q['awarded'] for q in result['questions'].values()),json.loads((ROOT/'IUEA_Teaching_Plan/assessment_banks/assessment_components.json').read_text())[aid]['deterministic_maximum'],(cohort,aid,result))
+     self.assertEqual(sum(q['awarded'] for q in result['questions'].values()),json.loads((ROOT/'IUEA_Teaching_Plan/Assessments/assessment_banks/assessment_components.json').read_text())[aid]['deterministic_maximum'],(cohort,aid,result))
 
 if __name__=='__main__':unittest.main()

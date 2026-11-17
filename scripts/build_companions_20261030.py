@@ -72,13 +72,13 @@ def notebook(code, week):
 
 
 def main():
-    zbackup = BASE / "student_packages" / "_backup_2026-10-30"; zbackup.mkdir(exist_ok=True)
+    zbackup = BASE / "Weeks_01-07/student_packages" / "_backup_2026-10-30"; zbackup.mkdir(exist_ok=True)
     for code in R.COHORT:
         for week in range(1, 16): write_md(code, week)
         for week in range(8, 14):
-            nb = notebook(code, week); d = BASE / "guided_practice" / code / f"W{week:02d}"; d.mkdir(parents=True, exist_ok=True)
+            nb = notebook(code, week); d = BASE / "Weeks_01-07/guided_practice" / code / f"W{week:02d}"; d.mkdir(parents=True, exist_ok=True)
             (d / "guided_practice.ipynb").write_text(json.dumps(nb, indent=1, ensure_ascii=False))
-            z = BASE / "student_packages" / f"{code}_W{week:02d}_student.zip"
+            z = BASE / "Weeks_01-07/student_packages" / f"{code}_W{week:02d}_student.zip"
             if z.exists():
                 if not (zbackup / z.name).exists(): shutil.copy2(z, zbackup / z.name)
                 src = z; tmp = z.with_suffix(".tmp")

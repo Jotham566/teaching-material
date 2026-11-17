@@ -2,7 +2,7 @@
 // Run from the repository root: node tests/test_block_sittings_20261102.cjs
 const fs = require('fs'), vm = require('vm'), assert = require('node:assert/strict');
 const pol = JSON.parse(fs.readFileSync('data/assessment_blocks_20261103.json', 'utf8'));
-const GR = 'IUEA_Teaching_Plan/grader/';
+const GR = 'IUEA_Teaching_Plan/Assessments/grader/';
 const COHORTS = ['CML3111', 'CML3112', 'CML3113'];
 const props = {}, forms = {}, logs = [], triggers = [];
 const MC = 'MULTIPLE_CHOICE';

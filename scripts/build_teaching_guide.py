@@ -14,7 +14,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH as AL
 from docxkit import *      # noqa
 from docxkit import _border
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx"
 
 # Collect every extracted lecturer note, keep one copy per week (the three
 # cohorts share the same guidance except where a note is explicitly branched).

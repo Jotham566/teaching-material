@@ -282,7 +282,7 @@ def replace_once(text, old, new, label):
 
 
 def patch_arrangement():
-    path = BASE / "Block_Assessment_Arrangement_2026-11-03.md"
+    path = BASE / "_archive/Block_Assessment_Arrangement_2026-11-03.md"
     t = path.read_text()
     if MARK in t:
         print(f"already patched: {path.name}")
@@ -411,7 +411,7 @@ Preparation only until the lecturer opens the sitting. This guide does not open 
 
 def patch_guides():
     for code in SIT:
-        path = BASE / "student_guides" / code / "ML_PROJECT.md"
+        path = BASE / "Assessments/student_guides" / code / "ML_PROJECT.md"
         t = path.read_text()
         if MARK in t:
             print(f"already patched: {path.parent.name}/{path.name}")
@@ -439,8 +439,8 @@ def main():
     patch_guides()
     for name, code in SYLLABUS.items():
         patch_docx(BASE / name, syllabus_rules(code), EXPECT.get(name))
-    patch_docx(BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.docx", MASTER_RULES, EXPECT.get("IUEA_ML_Semester1_Master_Teaching_Plan.docx"))
-    patch_xlsx(BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx", MASTER_RULES, EXPECT.get("IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"))
+    patch_docx(BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx", MASTER_RULES, EXPECT.get("IUEA_ML_Semester1_Master_Teaching_Plan.docx"))
+    patch_xlsx(BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx", MASTER_RULES, EXPECT.get("IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"))
     if LEARN:
         out = {}
         for name, rid, n in report:

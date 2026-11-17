@@ -3,7 +3,7 @@
 // provisional line (x of 60) and the same final total (out of 100) once the project parts are marked.
 // 300 seeded random students are scored by gradebook.gs, by a plain-arithmetic oracle written from the policy file, and by Python. Run from the repository root.
 const fs = require('fs'), vm = require('vm'), assert = require('node:assert/strict'), cp = require('child_process');
-const c = {}; vm.createContext(c); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs', 'utf8'), c);
+const c = {}; vm.createContext(c); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs', 'utf8'), c);
 const J2 = x => JSON.parse(JSON.stringify(x));
 const pol = JSON.parse(fs.readFileSync('data/assessment_policy_20261110.json', 'utf8'));
 const J = x => JSON.parse(JSON.stringify(x));
@@ -48,7 +48,7 @@ students.forEach((s, n) => { const g = c.computeFinal_(Object.assign({}, s)), O 
 console.log('gradebook.gs matches the 10 November policy oracle for 300 seeded students');
 const py = `
 import json,sys
-sys.path.insert(0,'IUEA_Teaching_Plan/grader')
+sys.path.insert(0,'IUEA_Teaching_Plan/Assessments/grader')
 from continuous_assessment import coursework_totals,semester_totals
 data=json.load(sys.stdin);cur=[]
 for d in data:

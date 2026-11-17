@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Patch stale statements in markdown/text files after the 3-4 November 2026
-assessment decision (see IUEA_Teaching_Plan/Block_Assessment_Arrangement_2026-11-03.md
-and IUEA_Teaching_Plan/second_half/Plan_Weeks_8-12.pdf).
+assessment decision (see IUEA_Teaching_Plan/_archive/Block_Assessment_Arrangement_2026-11-03.md
+and IUEA_Teaching_Plan/Weeks_08-12/Plan_Weeks_8-12.pdf).
 
 Current truth: the semester ends at Week 12 (12 study weeks, 36 contact hours).
 Weeks 8 to 11 are four classes in second_half/. Week 12 is the individual,
@@ -238,7 +238,7 @@ d.save()
 
 d = Doc("../README.md", base=TP)
 d.sub("**Teaching materials:** use the updated PowerPoints",
-      "**Weeks 8 to 12 (4 November 2026):** the semester ends at Week 12. Weeks 8 to 11 are four classes in [IUEA_Teaching_Plan/second_half/](IUEA_Teaching_Plan/second_half/) (slides, lab notebooks, lecturer guides, student packages, the plan PDF). Week 12 is the individual, timed, auto-graded ML project. There is no Practical Test 2, demo or Weeks 13 to 15. See [teaching progress](IUEA_Teaching_Plan/Teaching_Progress.md).\n\n**Teaching materials:** use the updated PowerPoints")
+      "**Weeks 8 to 12 (4 November 2026):** the semester ends at Week 12. Weeks 8 to 11 are four classes in [IUEA_Teaching_Plan/Weeks_08-12/](IUEA_Teaching_Plan/Weeks_08-12/) (slides, lab notebooks, lecturer guides, student packages, the plan PDF). Week 12 is the individual, timed, auto-graded ML project. There is no Practical Test 2, demo or Weeks 13 to 15. See [teaching progress](IUEA_Teaching_Plan/Teaching_Progress.md).\n\n**Teaching materials:** use the updated PowerPoints")
 d.sub("15 weeks, 3 cohorts, 45 contact hours each", "12 study weeks, 3 cohorts, 36 contact hours each")
 d.sub("45 (15 weeks x 3 cohorts), 1,569 slides", "21 in `decks/` (Weeks 1 to 7) and 12 class decks in `second_half/Slides/` (Weeks 8 to 11)")
 d.sub("decks/                       45 .pptx, one per week per cohort",

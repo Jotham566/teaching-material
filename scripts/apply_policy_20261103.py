@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from backup_20261103 import backup
 
-ROOT = Path(__file__).resolve().parents[1]; BASE = ROOT / "IUEA_Teaching_Plan"; GRADER = BASE / "grader"
+ROOT = Path(__file__).resolve().parents[1]; BASE = ROOT / "IUEA_Teaching_Plan"; GRADER = BASE / "Assessments/grader"
 POL = json.loads((ROOT / "data" / "assessment_blocks_20261103.json").read_text())
 COHORTS = ("CML3111", "CML3112", "CML3113")
 MARK = "BLOCK_ASSESSMENT_20261103"
@@ -85,7 +85,7 @@ def block_paragraph(code):
 
 def patch_guides():
     for code in COHORTS:
-        g = BASE / "student_guides" / code
+        g = BASE / "Assessments/student_guides" / code
         for bid in ("B1", "B2"):
             p = g / f"{bid}.md"; t = p.read_text()
             if MARK in t: continue
@@ -120,7 +120,7 @@ def patch_guides():
 
 # ------------------------------------------------------------------------------------------------ markdown docs
 def patch_links_md():
-    p = BASE / "Assignment_Submission_Links.md"; t = p.read_text()
+    p = BASE / "Assessments/Assignment_Submission_Links.md"; t = p.read_text()
     if MARK in t: return
     backup(p)
     t = rep(t, "Major projects, practical tests and DEMO remain held pending complete grading validation.",
@@ -138,7 +138,7 @@ def patch_links_md():
 
 
 def patch_index_md():
-    p = BASE / "Assignment_Instructions_Index.md"; t = p.read_text()
+    p = BASE / "Assessments/Assignment_Instructions_Index.md"; t = p.read_text()
     if MARK in t: return
     backup(p)
     t, n = re.subn(r"(?m)^(- \[CML31\d\d\|DEMO\]\(student_guides/CML31\d\d/DEMO\.md\))$", r"\1 (retired 3 November 2026)", t)
@@ -168,7 +168,7 @@ def patch_readme():
 - Gradebook columns: `ML Project Part A`, `ML Project Part B`, then `Semester 1 provisional` and `Project` (written by the script), then `Final %`, `Band`. Run `prepareGradesColumns()` once on the live sheet to add any that are missing; it never deletes anything. The old `ML Project` and `Demo` columns are ignored.
 - Provisional mode: a blank project column means the project is not marked yet. The sheet shows `Semester 1 provisional: x of 55 marks, y percent` (quizzes, assignments, data analysis project and Test 1) and `Project: PENDING`. Final % and Band stay blank. Once both columns hold a number the sheet shows the full total out of 100. Type 0 and 0 for a student who submitted no project.
 - A missing quiz or assignment part still scores zero. A blank data analysis project or Practical Test 1 also scores zero and is listed under Missing.
-- CA ledger and totals: `python3 IUEA_Teaching_Plan/grader/continuous_assessment.py --source SOURCE_DIR --out LEDGER.json --totals-out TOTALS.csv` (add `--results RESULTS.json`, `--timing TIMING.json` and `--test-ledger LEDGER.json` as before). Project marks go in `results.json` as `part_scores` (`{{"A": 24.5}}` while only Part A is marked, status `PART_MARKED`; both parts and status `GRADED` when finished).
+- CA ledger and totals: `python3 IUEA_Teaching_Plan/Assessments/grader/continuous_assessment.py --source SOURCE_DIR --out LEDGER.json --totals-out TOTALS.csv` (add `--results RESULTS.json`, `--timing TIMING.json` and `--test-ledger LEDGER.json` as before). Project marks go in `results.json` as `part_scores` (`{{"A": 24.5}}` while only Part A is marked, status `PART_MARKED`; both parts and status `GRADED` when finished).
 - Source of truth: `../../data/assessment_blocks_20261103.json`. Note: `{NOTE}`. By-hand steps: `Grading_Update_By_Hand_2026-11-03.md`.
 - Submission project: `retire_demo_forms_20261103.gs` closes and retires the three DEMO forms (run `retireDemoForms()` once, then `showDemoRetirement()`). It opens no form window.
 """

@@ -99,14 +99,14 @@ def main():
     for code in COHORTS:
         # Week 8-12 guides, banks, notebooks and ZIPs are built by build_block_packages_20261030.py
         for b in POL["blocks"]:
-            (BASE / "student_guides" / code / f"{b['id']}.md").write_text(block_guide(code, b))
-    idx = BASE / "Assignment_Instructions_Index.md"; t = idx.read_text()
+            (BASE / "Assessments/student_guides" / code / f"{b['id']}.md").write_text(block_guide(code, b))
+    idx = BASE / "Assessments/Assignment_Instructions_Index.md"; t = idx.read_text()
     if MARK not in t:
         add = (f"\n<!-- {MARK} -->\n## Block arrangement from Week 8\n\nFrom Week 8 there is one assignment pack and one quiz sitting after every three classes. "
                "Read [Block_Assessment_Arrangement_2026-10-30.md](Block_Assessment_Arrangement_2026-10-30.md). Student block guides: "
                + "; ".join(f"{c} [B1]({'student_guides/'+c+'/B1.md'}), [B2]({'student_guides/'+c+'/B2.md'})" for c in COHORTS) + ".\n")
         idx.write_text(t.rstrip() + "\n" + add)
-    rd = ROOT / "IUEA_Teaching_Plan" / "grader" / "README.md"; t = rd.read_text()
+    rd = ROOT / "IUEA_Teaching_Plan" / "Assessments/grader" / "README.md"; t = rd.read_text()
     if MARK not in t:
         rd.write_text(t.rstrip() + f"\n\n<!-- {MARK} -->\n## Block arrangement from Week 8\n\nThe best-7-of-10 and best-9-of-11 rules above apply to Weeks 1 to 6 only. From Week 8 the A7 to A11 submissions and the Q7 to Q12 quizzes are combined per block (Block 1 = Weeks 8 to 10, Block 2 = Weeks 11 to 13) and are never dropped. Each part is still graded by the same grader and form. See `../Block_Assessment_Arrangement_2026-10-30.md` and `../../data/assessment_blocks_20261030.json`.\n")
     print("done")

@@ -1,6 +1,6 @@
 import json,sys,tempfile,unittest,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 from batch_grade import grade_one
 from colab_exam_contracts import PARTS,decision_keys,assess
 from engineering_contracts import DOMAINS

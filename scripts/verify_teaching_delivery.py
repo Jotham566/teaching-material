@@ -26,7 +26,7 @@ def verify():
     for code in ('CML3111', 'CML3112', 'CML3113'):
         for week in (6, 8, 9, 10, 11, 12):
             aid = f'W{week:02}'
-            path = next((ROOT / 'IUEA_Teaching_Plan/decks').glob(f'{code}_Week{week:02}_*.pptx'))
+            path = next((ROOT / 'IUEA_Teaching_Plan/Weeks_01-07/decks').glob(f'{code}_Week{week:02}_*.pptx'))
             slide = Presentation(path).slides[-1]
             text = '\n'.join(s.text for s in slide.shapes if s.has_text_frame)
             assert f'{aid}: your graded weekly submission' in text, path

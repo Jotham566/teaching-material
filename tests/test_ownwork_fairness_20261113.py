@@ -17,14 +17,14 @@ from pathlib import Path
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
-G = ROOT / 'IUEA_Teaching_Plan/grader'
+G = ROOT / 'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0, str(G))
 import grader_fairness as gf  # noqa: E402
 import ownwork_fairness as ow  # noqa: E402
 from test1_coding_reference import NOTEBOOK_ANSWERS, complete_notebook  # noqa: E402
 
 BANK = G.parent / 'assessment_banks/TEST1/CML3111/A'
-W04_DATA = G.parent / 'practicals/W04/CML3111'
+W04_DATA = G.parent.parent / 'Weeks_01-07/practicals/W04/CML3111'
 ON = {'IUEA_OWNWORK_FAIRNESS': '1'}
 OFF = {'IUEA_OWNWORK_FAIRNESS': '0'}
 

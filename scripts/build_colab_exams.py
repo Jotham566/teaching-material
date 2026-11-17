@@ -1,8 +1,8 @@
-# NOTE (4 November 2026): Builds the Practical Test 1 and the retired Practical Test 2 notebooks. Practical Test 2 is retired (2 November 2026). The project sitting is built by IUEA_Teaching_Plan/second_half/Project/tools/.
+# NOTE (4 November 2026): Builds the Practical Test 1 and the retired Practical Test 2 notebooks. Practical Test 2 is retired (2 November 2026). The project sitting is built by IUEA_Teaching_Plan/Weeks_08-12/Project/tools/.
 """Build the approved fully automatic Colab tests; no answer keys in student files."""
 import csv,json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'grader'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'Assessments/grader'
 sys.path.insert(0,str(G))
 from engineering_contracts import DOMAINS,TASKS,dataset
 from colab_exam_contracts import PARTS,VERSION
@@ -56,8 +56,8 @@ def brief(cohort,exam,url=''):
 def build(only=None):
     config=json.loads((ROOT/'data/colab_test_submission_config.json').read_text())
     links=config['forms']
-    helper=(BASE/'test_operations/colab_submit_cell.py').read_text()
-    components=json.loads((BASE/'assessment_banks/assessment_components.json').read_text())
+    helper=(BASE/'Assessments/test_operations/colab_submit_cell.py').read_text()
+    components=json.loads((BASE/'Assessments/assessment_banks/assessment_components.json').read_text())
     for exam,parts in PARTS.items():
         if exam == 'TEST1' or (only and exam not in only):
             continue  # Coding-only Test 1 is generated independently below.
@@ -74,9 +74,9 @@ def build(only=None):
         for cohort,(domain,unit,*_) in DOMAINS.items():
             url=links.get(cohort+'|'+exam,{}).get('url','')
             guide=brief(cohort,exam,url)
-            (BASE/'student_guides'/cohort/(exam+'.md')).write_text(guide)
+            (BASE/'Assessments/student_guides'/cohort/(exam+'.md')).write_text(guide)
             for variant,seed in [('A',17),('B',29),('C',43)]:
-                folder=BASE/'assessment_banks'/exam/cohort/variant;folder.mkdir(parents=True,exist_ok=True)
+                folder=BASE/'Assessments/assessment_banks'/exam/cohort/variant;folder.mkdir(parents=True,exist_ok=True)
                 rows=dataset(cohort,seed,dirty=True)
                 with (folder/'engineering_data.csv').open('w') as f:
                     w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
@@ -107,10 +107,10 @@ def build(only=None):
                 (folder/(exam+'_student.ipynb')).write_text(json.dumps(nb,indent=1,ensure_ascii=False)+'\n')
                 for name in ['TASKS.md','ASSIGNMENT_INSTRUCTIONS.md','ASSIGNMENT_INSTRUCTIONS.txt','STUDENT_HOW_TO.md']:(folder/name).write_text(guide)
                 # These are invigilator-issued, variant-specific packets; no grader or solutions.
-                package=BASE/'assessment_banks'/exam/f'{cohort}_{exam}_{variant}_student.zip'
+                package=BASE/'Assessments/assessment_banks'/exam/f'{cohort}_{exam}_{variant}_student.zip'
                 with zipfile.ZipFile(package,'w',zipfile.ZIP_DEFLATED) as z:
                     for name in [exam+'_student.ipynb','engineering_data.csv','ASSIGNMENT_INSTRUCTIONS.txt']:z.write(folder/name,name)
-    (BASE/'assessment_banks/assessment_components.json').write_text(json.dumps(components,indent=2)+'\n')
+    (BASE/'Assessments/assessment_banks/assessment_components.json').write_text(json.dumps(components,indent=2)+'\n')
     path=ROOT/'data/assessments.json';rows=json.loads(path.read_text())
     for r in rows:
         if r['id'] == 'TEST2' and r['cohort'] in DOMAINS:r.update(grading='notebook',formats=['ipynb'],assessment_version=VERSION)

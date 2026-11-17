@@ -7,14 +7,14 @@ class BeginnerFiltering(unittest.TestCase):
   for cohort in ('CML3111','CML3112','CML3113'):
    with self.subTest(cohort=cohort):self.check_cohort(cohort)
  def check_cohort(self,cohort):
-  path=BASE/f'guided_practice/{cohort}/W06/guided_practice.ipynb';nb=json.loads(path.read_text())
+  path=BASE/f'Weeks_01-07/guided_practice/{cohort}/W06/guided_practice.ipynb';nb=json.loads(path.read_text())
   if cohort!='CML3111':self.assertIn('A6 and Quiz 6 are not assigned',''.join(nb['cells'][0]['source']))
   else:self.assertNotIn('waived',''.join(nb['cells'][0]['source']))
   d=next(d for d in json.loads((ROOT/'data/iuea_deck_content.json').read_text()) if d['cohort']==cohort and d['week']==6)
   self.assertEqual([''.join(c['source']).strip() for c in nb['cells'] if c['cell_type']=='code'],[s['practice_code'] for s in d['slides'] if s.get('practice_code')])
   original=Path.cwd()
   with tempfile.TemporaryDirectory() as tmp:
-   shutil.copy(BASE/f'assessment_banks/W06/{cohort}/A/engineering_data.csv',tmp);os.chdir(tmp);ns={}
+   shutil.copy(BASE/f'Assessments/assessment_banks/W06/{cohort}/A/engineering_data.csv',tmp);os.chdir(tmp);ns={}
    try:
     for c in nb['cells']:
      if c['cell_type']=='code':
@@ -32,7 +32,7 @@ class BeginnerFiltering(unittest.TestCase):
     self.assertEqual(ns['raw_data']['target'].isna().sum(),1)
     self.assertEqual(ns['cleaned_data'].isna().sum().sum(),0)
    finally:os.chdir(original)
-  with zipfile.ZipFile(BASE/f'student_packages/{cohort}_W06_student.zip') as z:
+  with zipfile.ZipFile(BASE/f'Weeks_01-07/student_packages/{cohort}_W06_student.zip') as z:
    self.assertEqual(z.read('guided_practice.ipynb'),path.read_bytes())
    self.assertFalse(any('grader' in n.lower() for n in z.namelist()))
 if __name__=='__main__':unittest.main()

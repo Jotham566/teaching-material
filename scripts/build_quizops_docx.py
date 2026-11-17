@@ -49,5 +49,5 @@ para(d,'Gradebook (policy of 10 November 2026): all five of Q1 to Q5 count equal
 h2(d,'What has and has not been rehearsed')
 para(d,'The owner-account rehearsal displayed 5/5, imported by registration number and verified email, and preserved control and Week 1 marks. All 36 quiz settings were audited. The separate student-account rehearsal also passed: upload, replacement, timed closure, immediate quiz score and local assignment grading. The actual production roster is still required; this does not prove every institutional account can access the form.')
 para(d,'Keep response exports, score diagnostics and the gradebook private. Feedback shown to a student should concern their own work. Do not publish a class-wide response sheet or share lecturer answer keys with the student deck.')
-para(d,'Generated from scripts/build_quizops_docx.py. Operational source: grader/create_quiz_forms.gs and grader/gradebook.gs. Dated evidence: review/2026-09-14/REWORK_STATUS.md.',size=9,italic=True)
-d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Weekly_Quiz_Operations_Guide.docx')
+para(d,'Generated from scripts/build_quizops_docx.py. Operational source: grader/create_quiz_forms.gs and grader/gradebook.gs. Dated evidence: _archive/review/2026-09-14/REWORK_STATUS.md.',size=9,italic=True)
+d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Weekly_Quiz_Operations_Guide.docx')

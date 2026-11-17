@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
-const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/create_quiz_forms.gs','utf8'),ctx);
+const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/create_quiz_forms.gs','utf8'),ctx);
 const start=Date.parse('2026-09-15T11:00:00+03:00');ctx.Date=class extends Date{constructor(...args){super(...(args.length?args:[start]));}};
 assert.equal(ctx.WINDOW_HOURS,24);
 let saved,pending,opened=false;

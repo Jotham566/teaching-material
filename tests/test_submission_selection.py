@@ -1,6 +1,6 @@
 import sys,unittest
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from prepare_submissions import select,cohort_roster
 from expand_team_grades import expand
 class SelectionTests(unittest.TestCase):

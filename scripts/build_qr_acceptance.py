@@ -22,7 +22,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import qrgen
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/QR_encoder_acceptance_test.png"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Lecturer_Guides/QR_encoder_acceptance_test.png"
 
 CASES = [
     ("https://example.com", "Plain short URL"),

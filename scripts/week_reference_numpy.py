@@ -25,7 +25,7 @@ COHORT = {
 
 
 def load(code):
-    raw = pd.read_csv(BASE / "assessment_banks" / "W08" / code / "A" / "engineering_data.csv")
+    raw = pd.read_csv(BASE / "Assessments/assessment_banks" / "W08" / code / "A" / "engineering_data.csv")
     d = raw.drop_duplicates("record_id").copy()
     d = d[d.target.notna() & d.load_pct.between(0, 100)].copy()
     tr = d[d.equipment_id.isin(["E1", "E2", "E3", "E4"])].copy()

@@ -1,7 +1,7 @@
 import csv,json,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 import artifact_grade as grader
 class ArtifactCacheChecks(unittest.TestCase):
  def test_runtime_and_staging_path_do_not_regrade_but_marks_do(self):

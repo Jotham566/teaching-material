@@ -1,10 +1,10 @@
 import sqlite3,sys,unittest,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/Assessments/grader'))
 from da_sql_grade import query,score_rows,REFERENCE,grade_manifest
 class SQLChecks(unittest.TestCase):
- def setUp(self):self.db=ROOT/'DataAnalysis_Track/data/riverside.db'
+ def setUp(self):self.db=ROOT/'Professional_Training/Data_Analysis_Course/data/riverside.db'
  def test_correct_and_wrong_values(self):
   rows=query(self.db,REFERENCE)
   self.assertEqual(score_rows(rows,rows)['score'],100)
@@ -41,7 +41,7 @@ class SQLPacketChecks(unittest.TestCase):
   with tempfile.TemporaryDirectory() as folder:
    p=Path(folder);good=p/'report.sql';good.write_text(REFERENCE)
    rows=[dict(student_id='S10001',file=str(good)),dict(student_id='S10002',file=str(p/'wrong.pdf'))]
-   result=grade_manifest(rows,ROOT/'DataAnalysis_Track/data/riverside.db')
+   result=grade_manifest(rows,ROOT/'Professional_Training/Data_Analysis_Course/data/riverside.db')
    self.assertEqual(result[0]['score'],100)
    self.assertEqual(result[1]['status'],'EXCEPTION');self.assertIsNone(result[1]['score'])
  def test_missing_and_ambiguous_files_remain_pending(self):
@@ -50,5 +50,5 @@ class SQLPacketChecks(unittest.TestCase):
    rows=[dict(student_id='S10001',file=str(p/'missing.sql')),
          dict(student_id='S10002',file=str(p/'one.sql'),response_id='same'),
          dict(student_id='S10002',file=str(p/'two.sql'),response_id='same')]
-   result=grade_manifest(rows,ROOT/'DataAnalysis_Track/data/riverside.db')
+   result=grade_manifest(rows,ROOT/'Professional_Training/Data_Analysis_Course/data/riverside.db')
    self.assertTrue(all(r['status']=='EXCEPTION' and r['score'] is None for r in result))

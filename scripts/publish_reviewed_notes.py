@@ -1,7 +1,7 @@
 """Publish the validated notes edition, reusing only byte-identical slide artwork."""
 from pathlib import Path
 import hashlib,json,shutil,zipfile
-ROOT=Path(__file__).resolve().parents[1];R=ROOT/'review/2026-09-15/ppt-revision';N=ROOT/'review/2026-09-21/presentation-notes'
+ROOT=Path(__file__).resolve().parents[1];R=ROOT/'_archive/review/2026-09-15/ppt-revision';N=ROOT/'_archive/review/2026-09-21/presentation-notes'
 def main():
  installation=json.loads((N/'installation.json').read_text());checks=json.loads((N/'validation-progress.json').read_text())
  assert len(checks)==len(installation)==60

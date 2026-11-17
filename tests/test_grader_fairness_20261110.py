@@ -14,13 +14,13 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HERE = ROOT / 'IUEA_Teaching_Plan/grader'
+HERE = ROOT / 'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0, str(HERE))
 import colab_shim  # noqa: E402
 import grader_fairness as gf  # noqa: E402
 
-W05_DATA = ROOT / 'IUEA_Teaching_Plan/practicals/W05/CML3111'
-W04_DATA = ROOT / 'IUEA_Teaching_Plan/practicals/W04/CML3111'
+W05_DATA = ROOT / 'IUEA_Teaching_Plan/Weeks_01-07/practicals/W05/CML3111'
+W04_DATA = ROOT / 'IUEA_Teaching_Plan/Weeks_01-07/practicals/W04/CML3111'
 W05_ANSWERS = '''n_meters = df["meter_id"].nunique()
 df["cost_per_kwh"] = df["cost_ugx"] / df["kwh"]
 high_use = df[df["kwh"] > 5000]

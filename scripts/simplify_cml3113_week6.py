@@ -27,7 +27,7 @@ def apply():
  # Run all examples against the issued data and attach actual outputs to the matching notes.
  previous=Path.cwd()
  with tempfile.TemporaryDirectory() as tmp:
-  shutil.copy(ROOT/'IUEA_Teaching_Plan/assessment_banks/W06/CML3113/A/engineering_data.csv',tmp);os.chdir(tmp);ns={}
+  shutil.copy(ROOT/'IUEA_Teaching_Plan/Assessments/assessment_banks/W06/CML3113/A/engineering_data.csv',tmp);os.chdir(tmp);ns={}
   try:
    for i,s in enumerate(new,1):
     s['sequence_number']=i
@@ -40,7 +40,7 @@ def apply():
    assert abs(ns['median_ambient_c']-26.07)<1e-9
    assert ns['raw_data']['target'].isna().sum()==1
   finally:os.chdir(previous)
- notes=ROOT/'IUEA_Teaching_Plan/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
+ notes=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
  notes.write_text('# CML3113 Week 6 — ungraded practical\n\n'+'\n\n'.join(f"## Slide {i}: {s['title']}\n\n{s['notes']}" for i,s in enumerate(new,1)))
  p.write_text(json.dumps(decks,ensure_ascii=False,indent=2)+'\n');print('Updated',len(new),'slides; verified cleaning 91 → 88 and median 26.07.')
 if __name__=='__main__':apply()

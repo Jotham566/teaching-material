@@ -604,9 +604,9 @@ def main():
     for f in ("IUEA_ML_Syllabus_CohortA_Design_and_Infrastructure.docx", "IUEA_ML_Syllabus_CohortB_Mining_and_Petroleum.docx",
               "IUEA_ML_Syllabus_CohortC_Engineering.docx"):
         patch_syllabus(B / f)
-    patch_master_docx(B / "IUEA_ML_Semester1_Master_Teaching_Plan.docx")
-    patch_quizops(B / "IUEA_ML_Weekly_Quiz_Operations_Guide.docx")
-    patch_workbook(B / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx")
+    patch_master_docx(B / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx")
+    patch_quizops(B / "Lecturer_Guides/IUEA_ML_Weekly_Quiz_Operations_Guide.docx")
+    patch_workbook(B / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx")
     if DRY:
         print("dry run: nothing saved")
 

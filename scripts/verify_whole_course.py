@@ -6,7 +6,7 @@ def run():
  p=ROOT/'data/iuea_deck_content.json';D=json.loads(p.read_text());report=[]
  for d in D:
   week=d['week'];cohort=d['cohort'];base=ROOT/'IUEA_Teaching_Plan'
-  folder=base/'setup'/cohort if week==2 else base/'practicals'/f'W{week:02}'/cohort if week in (3,4,5) else base/'test_revision'/cohort/f'Test{1 if week==7 else 2}' if week in (7,14) else base/'assessment_banks'/f'W{week:02}'/cohort/'A'
+  folder=base/'Weeks_01-07/setup'/cohort if week==2 else base/'Weeks_01-07/practicals'/f'W{week:02}'/cohort if week in (3,4,5) else base/'Assessments/test_revision'/cohort/f'Test{1 if week==7 else 2}' if week in (7,14) else base/'Assessments/assessment_banks'/f'W{week:02}'/cohort/'A'
   results=[];previous=Path.cwd()
   with tempfile.TemporaryDirectory() as tmp:
    for f in folder.glob('*.csv'):shutil.copy(f,tmp)
@@ -35,11 +35,11 @@ def run():
     import matplotlib.pyplot as plt
     plt.close('all')
    finally:os.chdir(previous)
-  notes=base/'decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
+  notes=base/'Weeks_01-07/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
   notes.write_text('# '+cohort+' Week '+str(week)+'\n\n'+'\n\n'.join(f"## Slide {i}: {s['title']}\n\n{s.get('notes','')}" for i,s in enumerate(d['slides'],1)))
   report.append(dict(cohort=cohort,week=week,examples=results,csv_files=[f.name for f in folder.glob('*.csv')]))
  p.write_text(json.dumps(D,ensure_ascii=False,indent=2)+'\n')
- outdir=ROOT/'review/2026-10-20/full-course-review';outdir.mkdir(parents=True,exist_ok=True)
+ outdir=ROOT/'_archive/review/2026-10-20/full-course-review';outdir.mkdir(parents=True,exist_ok=True)
  (outdir/'verified-examples.json').write_text(json.dumps(report,indent=2)+'\n')
  print('Passed',sum(len(d['examples']) for d in report),'examples in',len(report),'source decks, with correct weekly CSV files and separate model groups.')
 if __name__=='__main__':run()

@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zipfile
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import refresh_ca as runner
 import continuous_assessment as ca
 

@@ -2,7 +2,7 @@
 Uses real scikit-learn when it is installed, otherwise the NumPy stand-in from verify_week_slides_20261030."""
 import contextlib, io, json, sys, unittest
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]; G = ROOT / 'IUEA_Teaching_Plan/grader'
+ROOT = Path(__file__).resolve().parents[1]; G = ROOT / 'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0, str(G)); sys.path.insert(0, str(ROOT / 'scripts'))
 try:
     import sklearn  # noqa: F401
@@ -67,7 +67,7 @@ class Test2Weeks8To13(unittest.TestCase):
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf): exec(compile(code, k, 'exec'), {})
             printed[k] = buf.getvalue().strip()
-        deck = Presentation(str(next((G.parent / 'decks').glob('CML3111_Week14_*.pptx'))))
+        deck = Presentation(str(next((G.parent.parent / 'Weeks_01-07/decks').glob('CML3111_Week14_*.pptx'))))
         slide_text = '\n'.join(sh.text_frame.text for s in deck.slides for sh in s.shapes if sh.has_text_frame)
         for k, out in printed.items():
             for line in out.splitlines(): self.assertIn(line, slide_text, (k, line))

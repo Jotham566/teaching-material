@@ -17,7 +17,7 @@ def add_weekly_submission(prs,aid,code):
         slide=s_points(prs,"Practical revision — no submission",[("A6 and Quiz 6 are not assigned and do not count","Save your practice notebook in Drive. Use the Test 1 revision slides and matching practice CSV before the test.")],kicker="UNGRADED PRACTICE",numbered=True)
         notes(slide,"No A6 or Quiz 6 is assigned. Existing submissions are retained and excluded from coursework totals.")
         return slide
-    rubric=json.loads((ROOT/'IUEA_Teaching_Plan/grader/rubrics/hybrid'/f'{aid}.json').read_text())
+    rubric=json.loads((ROOT/'IUEA_Teaching_Plan/Assessments/grader/rubrics/hybrid'/f'{aid}.json').read_text())
     link=json.loads((ROOT/'data/submission_links.json').read_text())[code+'|'+aid]
     close=datetime.fromisoformat(link['closeAt']).astimezone(timezone(timedelta(hours=3))).strftime('%a %d %b, %H:%M Kampala')
     label=f'Open the {code} {aid} submission form'

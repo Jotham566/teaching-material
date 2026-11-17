@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
-const html=fs.readFileSync('IUEA_Teaching_Plan/test_portal/Index.html','utf8');
+const html=fs.readFileSync('IUEA_Teaching_Plan/Assessments/test_portal/Index.html','utf8');
 for(const mode of ['COPY','DIRECT'])for(const course of ['CML3111','CML3112','CML3113']){
  const nodes={};let submit,success;
  for(const [,id] of html.matchAll(/id="([^"]+)"/g))nodes[id]={value:'synthetic',hidden:false,scrollIntoView(){},addEventListener(_,fn){submit=fn;},set textContent(v){this.text=v;if(id==='openStep')delete nodes.notebookLabel;},get textContent(){return this.text;}};

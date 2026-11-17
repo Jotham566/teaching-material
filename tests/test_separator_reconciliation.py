@@ -2,7 +2,7 @@ import copy
 import sys
 from pathlib import Path
 import unittest
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import continuous_assessment as ca
 from reconcile_registrations import reconcile
 from test_registration_reconciliation import row

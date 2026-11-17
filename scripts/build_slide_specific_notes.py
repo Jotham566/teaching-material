@@ -3,7 +3,7 @@ from pathlib import Path
 import ast,copy,hashlib,json,re
 from slide_note_explanations import explanation
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'review/2026-09-29/slide-specific-notes'
+OUT=ROOT/'_archive/review/2026-09-29/slide-specific-notes'
 INVENTORY=json.loads((OUT/'inventory.json').read_text())
 SOURCES={d['filename']:d for d in json.loads((ROOT/'data/iuea_deck_content.json').read_text())}
 LINKS=json.loads((ROOT/'data/submission_links.json').read_text())

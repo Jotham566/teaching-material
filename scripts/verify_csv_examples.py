@@ -11,10 +11,10 @@ decks=json.loads(Path("/repo/data/iuea_deck_content.json").read_text());results=
 for d in decks:
  if not d.get("csv_examples_revision"):continue
  w=d["week"];c=d["cohort"]
- if w<=5:folder=Path(f"/repo/IUEA_Teaching_Plan/practicals/W{w:02}/{c}")
+ if w<=5:folder=Path(f"/repo/IUEA_Teaching_Plan/Weeks_01-07/practicals/W{w:02}/{c}")
  else:
   source={7:6,14:12}.get(w,w)
-  folder=Path(f"/repo/IUEA_Teaching_Plan/assessment_banks/W{source:02}/{c}/A")
+  folder=Path(f"/repo/IUEA_Teaching_Plan/Assessments/assessment_banks/W{source:02}/{c}/A")
  os.chdir(folder);env={}
  for s in d["slides"]:
   if s["kind"]!="code" or not s.get("practice_code"):continue
@@ -26,7 +26,7 @@ print(json.dumps(results))
 '''
 r=subprocess.run(['docker','run','--rm','--network=none','--mount',f'type=bind,src={ROOT},dst=/repo,readonly','iuea-notebooks:2026.09','python','-c',runner],capture_output=True,text=True,timeout=240)
 if r.returncode:raise RuntimeError(r.stderr)
-results=json.loads(r.stdout);out=ROOT/'review/2026-10-15/csv-examples';(out/'executed-results.json').write_text(json.dumps(results,indent=2)+'\n')
+results=json.loads(r.stdout);out=ROOT/'_archive/review/2026-10-15/csv-examples';(out/'executed-results.json').write_text(json.dumps(results,indent=2)+'\n')
 p=ROOT/'data/iuea_deck_content.json';decks=json.loads(p.read_text())
 for d in decks:
  last_result=None

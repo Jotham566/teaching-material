@@ -9,9 +9,9 @@ plain note IUEA_Teaching_Plan/Grading_Policy_2026-11-10.md.
   Retired: best-3-of-5, best ten of twelve, the Week 6 waiver, the block rule, the 65 percent individual share.
 
 What it patches (idempotent: a replacement already applied is skipped):
-  1. IUEA_Teaching_Plan/decks/CML311x_Week0[1-7]_*.pptx : slide text (incl. tables/groups) and speaker notes, runs edited in place;
+  1. IUEA_Teaching_Plan/Weeks_01-07/decks/CML311x_Week0[1-7]_*.pptx : slide text (incl. tables/groups) and speaker notes, runs edited in place;
      the weights chart picture on Week 1 slide 8 is replaced by figs/assessment_20261110.png (made by scripts/make_figures.py).
-  2. IUEA_Teaching_Plan/decks/lecturer_notes/*Week0[1-7]*.md  (text dumps of the decks).
+  2. IUEA_Teaching_Plan/Weeks_01-07/decks/lecturer_notes/*Week0[1-7]*.md  (text dumps of the decks).
   3. Week 6 student files (assessment_banks/W06, guided_practice/*/W06) that said "waived".
   4. The sources that regenerate the decks, so a rebuild does not undo the patch: data/*.json and scripts/build_*.py text.
      NB the Week 1 slide 9 text was created by scripts/patch_blocks_20261030.py (a later layer than build_week1.py); this
@@ -192,7 +192,7 @@ def patch_pptx(path):
 def check_pptx():
     from pptx import Presentation
     left = []
-    for f in sorted(glob.glob(str(BASE / "decks" / "CML311*_Week0[1-7]_*.pptx"))):
+    for f in sorted(glob.glob(str(BASE / "Weeks_01-07/decks" / "CML311*_Week0[1-7]_*.pptx"))):
         prs = Presentation(f)
         for i, sl in enumerate(prs.slides, 1):
             texts = [p.text for p in paragraphs(sl.shapes)]
@@ -229,15 +229,15 @@ def patch_zip(path):
 
 def main():
     # 1. decks (Weeks 1 to 7 of the three cohorts); skip lock files
-    for f in sorted(glob.glob(str(BASE / "decks" / "CML311*_Week0[1-7]_*.pptx"))):
+    for f in sorted(glob.glob(str(BASE / "Weeks_01-07/decks" / "CML311*_Week0[1-7]_*.pptx"))):
         patch_pptx(f)
     # 2. lecturer notes md
-    for f in sorted(glob.glob(str(BASE / "decks" / "lecturer_notes" / "*Week0[1-7]*.md"))): patch_textfile(f)
+    for f in sorted(glob.glob(str(BASE / "Weeks_01-07/decks" / "lecturer_notes" / "*Week0[1-7]*.md"))): patch_textfile(f)
     # 3. Week 6 student/lecturer files
     for pat in ("assessment_banks/W06/*/A/*", "guided_practice/*/W06/*"):
         for f in sorted(glob.glob(str(BASE / pat))):
             if Path(f).suffix in (".md", ".txt", ".ipynb"): patch_textfile(f)
-    for f in sorted(glob.glob(str(BASE / "student_packages" / "CML311*_W0[1-7]_student.zip"))): patch_zip(f)
+    for f in sorted(glob.glob(str(BASE / "Weeks_01-07/student_packages" / "CML311*_W0[1-7]_student.zip"))): patch_zip(f)
     # 4. sources that regenerate the decks
     for rel in ("data/spoken_notes_w1_7_13_15_20261030.json", "data/iuea_deck_content.json", "data/iuea_plain_language_edits.json",
                 "data/slide_specific_lecturer_notes.json", "data/reviewed_presentation_notes.json", "data/lecturer_notes_build_w1115.json",

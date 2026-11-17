@@ -2,7 +2,7 @@
 import csv,json,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-BASE=ROOT/'IUEA_Teaching_Plan/test_revision'
+BASE=ROOT/'IUEA_Teaching_Plan/Assessments/test_revision'
 def build_data():
  for cohort in ('CML3111','CML3112','CML3113'):
   for exam in (1,2):

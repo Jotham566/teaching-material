@@ -21,7 +21,7 @@ _ROOT = os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 import da_content as C                                   # noqa: E402
 
-TRACK = os.path.join(_ROOT, "DataAnalysis_Track")
+TRACK = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course")
 OUT = os.path.join(TRACK, "DataAnalysis_Track_Workbook.xlsx")
 with open(os.path.join(TRACK, "data", "answer_key.json"),
           encoding="utf-8") as fh:
@@ -262,7 +262,7 @@ for what, val, where in rows:
     r += 1
 r += 1
 ws.cell(r, 1, "Region and month breakdowns are in "
-              "DataAnalysis_Track/data/answer_key.json, which is the "
+              "Professional_Training/Data_Analysis_Course/data/answer_key.json, which is the "
               "machine-readable version of this sheet.").font = S_FONT
 ws.freeze_panes = "A5"
 

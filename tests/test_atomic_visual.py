@@ -1,7 +1,7 @@
 import io,json,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import Mock,patch
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import atomic_visual_grade as grader
 
 class AtomicVisualChecks(unittest.TestCase):

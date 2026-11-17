@@ -8,7 +8,7 @@ sys.path.insert(0, _HERE)
 from pptxkit import *   # noqa
 
 FIG = _ROOT + "/figs"
-OUTDIR = _ROOT + "/IUEA_Teaching_Plan/decks"
+OUTDIR = _ROOT + "/IUEA_Teaching_Plan/Weeks_01-07/decks"
 os.makedirs(OUTDIR, exist_ok=True)
 FOOT = "IUEA Faculty of Engineering · Semester 1, 2026/27"
 NSEG = 11

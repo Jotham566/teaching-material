@@ -39,7 +39,7 @@ for d in decks:
    if slide['title'] in cues:slide['notes']=cues[slide['title']]+'\n'+NOTICE
  for i,slide in enumerate(d['slides'],1):slide['sequence_number']=i
  d['practical_revision_waiver']='2026-10-19'
- notes=BASE/'decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
+ notes=BASE/'Weeks_01-07/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')
  notes.write_text('# '+code+' Week '+str(d['week'])+' lecturer notes\n\n'+NOTICE+'\n\n'+'\n\n'.join(f"## Slide {i}: {s['title']}\n\n{s.get('notes','')}" for i,s in enumerate(d['slides'],1)))
 p.write_text(json.dumps(decks,ensure_ascii=False,indent=2)+'\n')
 for code in ('CML3112','CML3113'):
@@ -58,17 +58,17 @@ The actual test uses different files released through the timed test portal. Wai
 
 Coursework: best 9 of 11 assigned quizzes (10%); best 7 of 10 assigned weekly assignments (10%). A6 and Quiz 6 are excluded, including any previously recorded marks. Other assessments keep their weights.
 '''
- (BASE/'student_guides'/code/'W06.md').write_text(guide)
- folder=BASE/'assessment_banks/W06'/code/'A'
+ (BASE/'Assessments/student_guides'/code/'W06.md').write_text(guide)
+ folder=BASE/'Assessments/assessment_banks/W06'/code/'A'
  for name in ['ASSIGNMENT_INSTRUCTIONS.md','ASSIGNMENT_INSTRUCTIONS.txt']:(folder/name).write_text(guide)
  p=folder/'TASKS.md';s=p.read_text();s=s if s.startswith('# NOT ASSIGNED') else '# NOT ASSIGNED — optional practice only\n\n'+NOTICE+'\n\n'+s;p.write_text(s)
  p=folder/'W06_student.ipynb';nb=json.loads(p.read_text())
  if not nb['cells'][0].get('metadata',{}).get('waiver_notice'):nb['cells'].insert(0,{'cell_type':'markdown','metadata':{'waiver_notice':True},'source':['# Optional practice — no submission\n',NOTICE]})
  p.write_text(json.dumps(nb,ensure_ascii=False,indent=1)+'\n')
  # Simple practice-only handout avoids assignment instructions and grading helpers.
- out=BASE/'student_packages'/f'{code}_W06_student.zip'
+ out=BASE/'Weeks_01-07/student_packages'/f'{code}_W06_student.zip'
  with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
   z.writestr('00_START_HERE.txt',guide)
-  z.write(BASE/'guided_practice'/code/'W06/guided_practice.ipynb','guided_practice.ipynb')
+  z.write(BASE/'Weeks_01-07/guided_practice'/code/'W06/guided_practice.ipynb','guided_practice.ipynb')
   z.write(folder/'engineering_data.csv','engineering_data.csv')
-  z.write(BASE/'setup/STUDENT_HOW_TO.md','STUDENT_HOW_TO.md')
+  z.write(BASE/'Weeks_01-07/setup/STUDENT_HOW_TO.md','STUDENT_HOW_TO.md')

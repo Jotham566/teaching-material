@@ -1,8 +1,8 @@
-# NOTE (4 November 2026): Publishes the OLD Weeks 8 to 15 decks. Superseded by IUEA_Teaching_Plan/second_half/ (see IUEA_Teaching_Plan/decks/SUPERSEDED_README.md). Do not run it for Weeks 8 to 15.
+# NOTE (4 November 2026): Publishes the OLD Weeks 8 to 15 decks. Superseded by IUEA_Teaching_Plan/Weeks_08-12/ (see IUEA_Teaching_Plan/Weeks_01-07/decks/SUPERSEDED_README.md). Do not run it for Weeks 8 to 15.
 """Install only validated, rendered PPTX files whose slide content matches the source."""
 from pathlib import Path
 import json,zipfile,re,hashlib,shutil,xml.etree.ElementTree as ET
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';R=ROOT/'review/2026-09-15/ppt-revision'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';R=ROOT/'_archive/review/2026-09-15/ppt-revision'
 D=json.loads((R/'deck-content.json').read_text());A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
 norm=lambda s:re.sub(r'\s+',' ',s).strip()
 def xml_text(xml):
@@ -49,15 +49,15 @@ for d in D:
  selected.append((d,match,build))
 backup=R/'original-decks';backup.mkdir(exist_ok=True)
 original={}
-for p in (BASE/'decks').glob('*.pptx'):
+for p in (BASE/'Weeks_01-07/decks').glob('*.pptx'):
  original[p.name]=sha(p)
  if not(backup/p.name).exists():shutil.copy2(p,backup/p.name)
 manifest=[]
 for d,p,build in selected:
- shutil.copy2(p,BASE/'decks'/d['filename'])
+ shutil.copy2(p,BASE/'Weeks_01-07/decks'/d['filename'])
  manifest.append({'cohort':d['cohort'],'week':d['week'],'filename':d['filename'],'slides':len(d['slides']),'sha256':sha(p),'edition':p.parent.name,'render':str((build/'render').relative_to(ROOT)),'assessments':d['assessment_ids'],'quiz':d['quiz_url']})
 for name,checksum in original.items():
- if not any(d['filename']==name for d in D):assert sha(BASE/'decks'/name)==checksum
+ if not any(d['filename']==name for d in D):assert sha(BASE/'Weeks_01-07/decks'/name)==checksum
 (R/'published-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 text=['# PowerPoint teaching decks','','Teach directly from the PowerPoints below. Open Presenter View for the teaching prompts and practice explanations. All decks include reviewed lecturer notes; completed lessons retain their existing visual design.','','Use the matching student ZIP for practice and the issued assignment. The final slides contain the cohort quiz and submission links. Quizzes remain available for 24 hours from activation. Assignment windows use their separately published dates.','','| Week | CML3111 | CML3112 | CML3113 |','|---|---|---|---|']
 for w in range(2,16):
@@ -67,6 +67,6 @@ for w in range(2,16):
   cells.append(f'[Week {w}]({d["filename"]})' if d else 'Completed teaching')
  text.append('| '+' | '.join(cells)+' |')
 text+=['','[All presentations and lecturer notes](LECTURER_NOTES_INDEX.md)','','[Curriculum benchmark and teaching map](../Curriculum_Benchmark_and_Teaching_Map.md)','','[Lecturer quick guide](../IUEA_ML_Beginner_Teaching_Quick_Guide.docx) · [Detailed guidance](../Beginner_Lecturer_Guide.md)','','Video links open externally and need internet. Preview the selected short excerpt before class. Major assessments retain their separate grading-release checks.']
-(BASE/'decks/README.md').write_text('\n'.join(text)+'\n')
-(BASE/'decks/READ_BEFORE_TEACHING.md').write_text('# Teaching materials\n\nUse the updated PowerPoints in this folder. See [the deck index](README.md). Speaker notes provide the worked explanations. The HTML lesson route is retired.\n')
+(BASE/'Weeks_01-07/decks/README.md').write_text('\n'.join(text)+'\n')
+(BASE/'Weeks_01-07/decks/READ_BEFORE_TEACHING.md').write_text('# Teaching materials\n\nUse the updated PowerPoints in this folder. See [the deck index](README.md). Speaker notes provide the worked explanations. The HTML lesson route is retired.\n')
 print(f'Installed {len(manifest)} matching validated decks with {sum(x["slides"] for x in manifest)} rendered slides. Original decks retained in private review archive.')

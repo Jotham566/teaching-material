@@ -17,9 +17,9 @@ const ss = { getSheetByName: n => (n === 'Grades' ? sheet : null), toast: m => t
 const ctx = { SpreadsheetApp: { getActive: () => ss, getUi: () => ({ createMenu: () => ({ addItem() { return this; }, addSeparator() { return this; }, addToUi() {} }), alert() {} }) },
   DriveApp: { getFileById: id => ({ getBlob: () => ({ getDataAsString: () => csvById[id] }) }) },
   Utilities: { parseCsv: s => s.trim().split('\n').map(l => l.split(',')) }, console, Math, Number, String, JSON, Array, Object, Error, isFinite, isNaN, parseInt };
-vm.createContext(ctx); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs', 'utf8'), ctx);
+vm.createContext(ctx); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs', 'utf8'), ctx);
 
-const template = fs.readFileSync('IUEA_Teaching_Plan/grader/Grades_template.csv', 'utf8').split(/\r?\n/)[0].split(',');
+const template = fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/Grades_template.csv', 'utf8').split(/\r?\n/)[0].split(',');
 // 1. the shipped template has the new columns and not the old ones
 ['ML Project Part A', 'ML Project Part B', 'Semester 1 provisional', 'Project', 'Final %', 'Band', 'Missing'].forEach(h => assert.ok(template.includes(h), h));
 ['ML Project', 'Demo', 'Practical Test 2', 'Data Analysis Project'].forEach(h => assert.ok(!template.includes(h), h));
@@ -83,5 +83,5 @@ assert.throws(() => ctx.importMarkedResults('A', 'Practical Test 2'), /Unknown a
 // S1 now has Part A 24 and Part B 12: 36 * 40 / 45 = 32 on top of 60
 ctx.recomputeAll(); assert.equal(cell(1, 'Final %'), 92); assert.equal(cell(1, 'Project'), 'Project: marked');
 // 9. pure ASCII
-assert.ok(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs').every(b => b < 128));
+assert.ok(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs').every(b => b < 128));
 console.log('PASS gradebook sheet: prepareGradesColumns, provisional mode, Part A only, full total, zero-marked project, bad marks, project imports; 10 November 2026 weights.');

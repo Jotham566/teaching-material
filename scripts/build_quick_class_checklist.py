@@ -55,4 +55,4 @@ for cohort in ('CML3113','CML3111'):
  for label,url in [('A1 upload — Week 1',L[cohort+'|W01']['url']),('A2 upload — Week 2',L[cohort+'|W02']['url']),('Quiz 1 — Week 1',Q[cohort+'|1']),('Quiz 2 — Week 2',Q[cohort+'|2'])]:link(label,url)
 p('Completed CML3112 class: its A1/A2 upload deadline remains 22 September at 11:00. Its earlier Quiz 1 window has ended; do not reopen it inadvertently. Existing Week 1 marks remain protected; new written grading awaits validation.')
 footer=sec.footer.paragraphs[0];footer.text='IUEA • Lecturer use • ';fld=OxmlElement('w:fldSimple');fld.set(qn('w:instr'),'PAGE');footer._p.append(fld)
-d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Quick_Class_Checklist.docx')
+d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Quick_Class_Checklist.docx')

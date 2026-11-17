@@ -9,7 +9,7 @@ from beginner_quiz_bridges import BRIDGES
 from beginner_visual_curriculum import enrich
 from beginner_experiential import transform
 from beginner_sequence import sequence, AUDIT
-ROOT=Path(__file__).resolve().parents[1]; BASE=ROOT/'IUEA_Teaching_Plan'; REVIEW=ROOT/'review/2026-09-15/ppt-revision'
+ROOT=Path(__file__).resolve().parents[1]; BASE=ROOT/'IUEA_Teaching_Plan'; REVIEW=ROOT/'_archive/review/2026-09-15/ppt-revision'
 REVIEW.mkdir(parents=True,exist_ok=True)
 from beginner_practice_examples import EXTRAS as extras
 LINKS=json.loads((ROOT/'data/submission_links.json').read_text()); QUIZZES=json.loads((ROOT/'data/quiz_links.json').read_text())
@@ -62,7 +62,7 @@ def student_text(t):
 
 def sentences(t):return [part.strip() for part in re.split(r'\n\s*\n|(?<=[.!?])\s+(?=[A-Z0-9])',t) if part.strip()]
 def stamp(t):return datetime.fromisoformat(t.replace('Z','+00:00')).astimezone(timezone(timedelta(hours=3))).strftime('%d %b %Y, %H:%M Kampala')
-def pack_path(code,w):return BASE/'student_packages'/f'{code}_W{w:02}_student.zip'
+def pack_path(code,w):return BASE/'Weeks_01-07/student_packages'/f'{code}_W{w:02}_student.zip'
 def make_deck(code,w):
  c=COHORTS[code]; x=WEEKS[w]; slides=[]
  def add(title,body='',**kw):
@@ -127,10 +127,10 @@ def make_deck(code,w):
  # Public assignment contracts, never private grading keys.
  weekly=[a for a in REG if a['cohort']==code and a['track']=='IUEA' and a['week']==w]
  for a in weekly:
-  aid=a['id'];task=BASE/'assessment_banks'/aid/code/'A/TASKS.md'
+  aid=a['id'];task=BASE/'Assessments/assessment_banks'/aid/code/'A/TASKS.md'
   if aid.startswith('W'):
    if w==2:
-    add('Week 2 assignment',['Complete proof_of_life.ipynb and write your own README.md.','The README states your programme, file list and run instructions.','Include the repository URL in the form.','Upload the renamed notebook and README, not the ZIP or 01–04 repair notebooks.'],notes=(BASE/'setup/A2_assignment_brief.md').read_text())
+    add('Week 2 assignment',['Complete proof_of_life.ipynb and write your own README.md.','The README states your programme, file list and run instructions.','Include the repository URL in the form.','Upload the renamed notebook and README, not the ZIP or 01–04 repair notebooks.'],notes=(BASE/'Weeks_01-07/setup/A2_assignment_brief.md').read_text())
    elif task.exists():
     text=task.read_text();domain=text.split('\n\n')[1]
     if w==9:domain=text.split('## Engineering questions')[1].split('## Required interfaces')[0].strip()
@@ -140,7 +140,7 @@ def make_deck(code,w):
      signature,_,desc=item.partition(' — ');prose(signature, re.sub(r'^\d+ marks within c\d+\. ','',desc),notes='Public task contract. Explain input and output types before independent work. Source: '+str(task.relative_to(ROOT)))
     add('Written evidence',['Use the cell headed “My written evidence”.','Explain the supplied scenario in your own words.','State target units, reasons and limitations.','Submit one complete notebook containing code and written evidence.'],notes='Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.')
    else:
-    nb=next((BASE/'practicals'/f'W{w:02}'/code).glob('*.ipynb'));n=json.loads(nb.read_text());prompts='\n'.join(''.join(z['source']) for z in n['cells'] if z['cell_type']=='markdown')
+    nb=next((BASE/'Weeks_01-07/practicals'/f'W{w:02}'/code).glob('*.ipynb'));n=json.loads(nb.read_text());prompts='\n'.join(''.join(z['source']) for z in n['cells'] if z['cell_type']=='markdown')
     add('Your issued assignment',[f'Open {nb.name}.','Read every task and its input units before coding.','Keep the required function names and returned outputs.','Run the supplied visible checks, then restart and run all.'],notes=prompts)
     # Surface actual task headings in the deck.
     for cell in n['cells']:
@@ -153,9 +153,9 @@ def make_deck(code,w):
     text=task.read_text();section=text.split('## Full investigation and evidence')[-1].split('## Submission')[0]
     prose(a['title'],section,notes=text)
    else:
-    rubric=json.loads((BASE/'grader/rubrics'/f'{aid}.json').read_text())
+    rubric=json.loads((BASE/'Assessments/grader/rubrics'/f'{aid}.json').read_text())
     for criterion in rubric['criteria']:
-     prose(criterion['title']+f" ({criterion['maximum']:g} marks)",criterion['description'],notes='Published '+aid+' criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: '+str(BASE/'grader/rubrics'/f'{aid}.json'))
+     prose(criterion['title']+f" ({criterion['maximum']:g} marks)",criterion['description'],notes='Published '+aid+' criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: '+str(BASE/'Assessments/grader/rubrics'/f'{aid}.json'))
   entry=LINKS.get(a['key']);
   if entry:
    add(a['title']+' submission',[f'Opens: {stamp(entry["openAt"])}',f'Deadline: {stamp(entry["closeAt"])}','Use your full Student Registration Number in the form.','Keep the submitted files and confirmation.'],kind='link',url=entry['url'],label='Open '+aid+' assignment form',notes='The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json')
@@ -215,5 +215,5 @@ decks=json.loads((ROOT/'data/iuea_deck_content.json').read_text())
 (REVIEW/'deck-content.json').write_text(json.dumps(decks,indent=2)+'\n')
 print(f'Prepared {len(decks)} decks, {sum(len(d["slides"]) for d in decks)} slides')
 
-(ROOT/'review/2026-09-16/sequential').mkdir(parents=True,exist_ok=True)
-(ROOT/'review/2026-09-16/sequential/sequence-audit.json').write_text(json.dumps(AUDIT,indent=2)+'\n')
+(ROOT/'_archive/review/2026-09-16/sequential').mkdir(parents=True,exist_ok=True)
+(ROOT/'_archive/review/2026-09-16/sequential/sequence-audit.json').write_text(json.dumps(AUDIT,indent=2)+'\n')

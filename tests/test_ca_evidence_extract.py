@@ -1,6 +1,6 @@
 import sys,tempfile,unittest,zipfile
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import evidence_extract as e
 import attachment_expand as ax
 import continuous_assessment as ca

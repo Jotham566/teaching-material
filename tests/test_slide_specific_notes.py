@@ -15,7 +15,7 @@ class SpecificNotes(unittest.TestCase):
   rows=json.loads((ROOT/'data/iuea_lecturer_notes_manifest.json').read_text())
   self.assertEqual(len(rows),45)
   for row in rows:
-   p=ROOT/'IUEA_Teaching_Plan/decks'/row['filename'];self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),row['sha256'])
+   p=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks'/row['filename'];self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),row['sha256'])
    with zipfile.ZipFile(p) as z:
     notes=[n for n in z.namelist() if re.fullmatch(r'ppt/notesSlides/notesSlide\d+.xml',n)]
     self.assertEqual(len(notes),row['slides'])

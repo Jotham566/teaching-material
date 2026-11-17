@@ -1,6 +1,6 @@
 import json,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 import sector_findings as sf
 class NS:
  def __init__(self,sector,findings):self.values={'SECTOR':sector,'FINDINGS':findings}

@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from backup_20261103 import backup
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "IUEA_Teaching_Plan" / "grader" / "gradebook.gs"
+PATH = ROOT / "IUEA_Teaching_Plan" / "Assessments/grader" / "gradebook.gs"
 MARK = "GRADEBOOK_PATCH_20261103"
 
 

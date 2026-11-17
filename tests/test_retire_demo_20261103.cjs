@@ -25,9 +25,9 @@ const ctx = {
   FormApp: { openById: id => { assert.ok(forms[id], 'unknown form ' + id); return forms[id]; } },
 };
 vm.createContext(ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs', 'utf8'), ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/retire_demo_forms_20261103.gs', 'utf8'), ctx);
-assert.ok(fs.readFileSync('IUEA_Teaching_Plan/grader/retire_demo_forms_20261103.gs').every(b => b < 128), 'generated .gs must be pure ASCII');
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/submission_forms.gs', 'utf8'), ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/retire_demo_forms_20261103.gs', 'utf8'), ctx);
+assert.ok(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/retire_demo_forms_20261103.gs').every(b => b < 128), 'generated .gs must be pure ASCII');
 assert.deepEqual(JSON.parse(JSON.stringify(ctx.DEMO_FORM_KEYS)), ['CML3111|DEMO', 'CML3112|DEMO', 'CML3113|DEMO']);
 
 // before: the DEMO forms are not retired

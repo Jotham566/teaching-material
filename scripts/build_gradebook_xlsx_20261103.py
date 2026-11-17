@@ -1,4 +1,4 @@
-"""Build IUEA_Teaching_Plan/IUEA_ML_Gradebook_Semester1.xlsx: an Excel version of the gradebook.gs logic, with formulas.
+"""Build IUEA_Teaching_Plan/Assessments/IUEA_ML_Gradebook_Semester1.xlsx: an Excel version of the gradebook.gs logic, with formulas.
 
 Policy of 10 November 2026 (data/assessment_policy_20261110.json): assignments A1 to A5 20 (each /20, all five count equally), quizzes Q1 to Q5 20
 (each /5, all five count equally), Practical Test 1 20 (/100 scaled to 20), Engineering ML project 40 (Part A /30 + Part B /15 = 45 raw, scaled to 40).
@@ -19,7 +19,7 @@ from openpyxl.utils import get_column_letter as L
 from openpyxl.worksheet.datavalidation import DataValidation
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "IUEA_Teaching_Plan" / "IUEA_ML_Gradebook_Semester1.xlsx"
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "IUEA_Teaching_Plan" / "Assessments/IUEA_ML_Gradebook_Semester1.xlsx"
 FIRST_ROW, LAST_ROW = 6, 255          # Grades: 250 student rows
 
 FONT = "Arial"

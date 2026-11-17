@@ -36,7 +36,7 @@ fs_hist = Counter()
 # The Data Analysis decks are taken from their MANIFEST rather than from a
 # glob, because a renamed session leaves the old file on disk and scanning
 # it would report overflows in a deck nobody is going to teach.
-_da_dir = _ROOT + "/DataAnalysis_Track/decks"
+_da_dir = _ROOT + "/Professional_Training/Data_Analysis_Course/decks"
 _manifest = _os.path.join(_da_dir, "MANIFEST.txt")
 if _os.path.exists(_manifest):
     with open(_manifest, encoding="utf-8") as _fh:
@@ -45,7 +45,7 @@ if _os.path.exists(_manifest):
 else:
     _da = sorted(glob.glob(_da_dir + "/DA_*.pptx"))
 
-FILES = (sorted(glob.glob(_ROOT + "/IUEA_Teaching_Plan/decks/CML*.pptx"))
+FILES = (sorted(glob.glob(_ROOT + "/IUEA_Teaching_Plan/Weeks_01-07/decks/CML*.pptx"))
          + _da)
 
 for f in FILES:

@@ -10,7 +10,7 @@ import os
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-KEY = os.path.join(_ROOT, "DataAnalysis_Track", "data", "answer_key.json")
+KEY = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course", "data", "answer_key.json")
 
 with open(KEY, encoding="utf-8") as fh:
     K = json.load(fh)

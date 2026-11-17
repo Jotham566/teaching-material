@@ -4,7 +4,7 @@ from pathlib import Path
 from assessment_registry import records
 from plan_content import RUBRICS
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'IUEA_Teaching_Plan/grader/rubrics';OUT.mkdir(exist_ok=True)
+OUT=ROOT/'IUEA_Teaching_Plan/Assessments/grader/rubrics';OUT.mkdir(exist_ok=True)
 DESCRIPTIONS={
  'W01': [('Problem framing',30,'Three specific engineering problems, each with a clear quantity/category and reason ML is or is not suitable.'),('Data and feasibility',40,'For each problem, plausible features, a target where appropriate, data source and a stated limitation.'),('Judgement',30,'A defensible choice of one dataset/problem and explanation of why the evidence could support the question.')],
  'W02': [('Execution order',50,'Explains that each increment uses the current readings value, so successive runs after initialization give 17, 22, 27; restarting clears state and Run All initializes before incrementing.'),('Repository evidence',50,'README supplies the program context, notebook and CSV file list, upload/run instructions and a meaningful save/version instruction.')],

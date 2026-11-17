@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import sys
 import unittest
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from check_written_setup import differences
 
 class WrittenSetupTests(unittest.TestCase):

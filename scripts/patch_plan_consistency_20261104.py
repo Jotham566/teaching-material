@@ -261,7 +261,7 @@ GRADEBOOK_X = [
 def main():
     report = []
     # item numbering in the build list: rows 10 and 11 were removed earlier, so row 12 becomes 10
-    p = BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.docx"
+    p = BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx"
     d = docx.Document(str(p))
     changed_docx = patch_docx(p, PLAN_DOCX, report)
     d = docx.Document(str(p))
@@ -281,8 +281,8 @@ def main():
         report.append((p.name, "build-list item number", "already"))
     for n in SYLLABI:
         patch_docx(BASE / n, SYL_RULES, report)
-    patch_xlsx(BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx", PLAN_X, report)
-    patch_xlsx(BASE / "IUEA_ML_Gradebook_Semester1.xlsx", GRADEBOOK_X, report)
+    patch_xlsx(BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx", PLAN_X, report)
+    patch_xlsx(BASE / "Assessments/IUEA_ML_Gradebook_Semester1.xlsx", GRADEBOOK_X, report)
     for r in report:
         print(*r, sep=" | ")
     print("dry run, nothing written" if DRY else "done")

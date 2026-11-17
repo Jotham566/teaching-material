@@ -1,7 +1,7 @@
 import copy, hashlib, json, sys, tempfile, unittest
 from pathlib import Path
 from unittest.mock import patch
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/grader'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/Assessments/grader'))
 import exam_intake as intake
 class IntakeTests(unittest.TestCase):
  def setUp(self):

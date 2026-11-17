@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-portal=ROOT/'IUEA_Teaching_Plan/test_portal'
+portal=ROOT/'IUEA_Teaching_Plan/Assessments/test_portal'
 page=(portal/'Index.html').read_text()
 page=page.replace('<base target="_top">','')
 page=page.replace('<?!= JSON.stringify(testKey) ?>','__TEST_KEY_JSON__')

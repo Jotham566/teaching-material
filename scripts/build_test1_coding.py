@@ -1,7 +1,7 @@
 """Build only the coding-only Test 1; preserve Test 2 and collection settings."""
 import csv,json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'grader'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'Assessments/grader'
 sys.path.insert(0,str(G))
 from engineering_contracts import DOMAINS,dataset
 from test1_coding_contracts import VERSION,PARTS
@@ -198,14 +198,14 @@ The timer includes setup, interruptions and submission. A sleeping or disconnect
 """+GUIDE_EXTRA
 
 def build_test1():
- config=json.loads((ROOT/'data/colab_test_submission_config.json').read_text());helper=(BASE/'test_operations/colab_submit_cell.py').read_text()
+ config=json.loads((ROOT/'data/colab_test_submission_config.json').read_text());helper=(BASE/'Assessments/test_operations/colab_submit_cell.py').read_text()
 
  titles={task:entry[0] for (task,_),entry in zip(PARTS,TASKS)}
  for course,(domain,unit,*_) in DOMAINS.items():
   guide=student_guide(course)
-  (BASE/'student_guides'/course/'TEST1.md').write_text(guide)
+  (BASE/'Assessments/student_guides'/course/'TEST1.md').write_text(guide)
   for variant,seed in [('A',17),('B',29),('C',43)]:
-   folder=BASE/'assessment_banks/TEST1'/course/variant
+   folder=BASE/'Assessments/assessment_banks/TEST1'/course/variant
    rows=dataset(course,seed,dirty=True)
    with (folder/'engineering_data.csv').open('w') as f:
     w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n");w.writeheader();w.writerows(rows)
@@ -278,7 +278,7 @@ Fix the first error before later cells. Do not delete or edit supplied support c
  rubric=dict(id='TEST1-'+VERSION,title='Coding-only Test 1',maximum=100,grading='deterministic',criteria=[dict(id=f'q{i}',title=titles[t],maximum=m,description=TASKS[i-1][2]) for i,(t,m) in enumerate(PARTS,1)])
  (G/'rubrics/TEST1.json').write_text(json.dumps(rubric,indent=2)+'\n')
  p=G/'rubrics/hybrid/TEST1.json';hybrid=json.loads(p.read_text());hybrid['id']='TEST1-'+VERSION;p.write_text(json.dumps(hybrid,indent=2)+'\n')
- p=BASE/'assessment_banks/assessment_components.json';components=json.loads(p.read_text());components['TEST1']=dict(maximum=100,deterministic_maximum=100,reasoning_maximum=0,version=VERSION,parts=PARTS);p.write_text(json.dumps(components,indent=2)+'\n')
+ p=BASE/'Assessments/assessment_banks/assessment_components.json';components=json.loads(p.read_text());components['TEST1']=dict(maximum=100,deterministic_maximum=100,reasoning_maximum=0,version=VERSION,parts=PARTS);p.write_text(json.dumps(components,indent=2)+'\n')
  p=ROOT/'data/assessments.json';items=json.loads(p.read_text())
  for item in items:
   if item['id']=='TEST1' and item['cohort'] in DOMAINS:item.update(grading='notebook',formats=['ipynb'],assessment_version=VERSION)

@@ -17,10 +17,10 @@ class ClearAssignments(unittest.TestCase):
    if key.endswith(('W03','W04','W05')):self.assertIn('No separate report',row['brief'])
  def test_every_written_mark_has_a_student_prompt(self):
   for aid,items in WRITTEN.items():
-   rubric=json.loads((B/'grader/rubrics/hybrid'/f'{aid}.json').read_text())
+   rubric=json.loads((B/'Assessments/grader/rubrics/hybrid'/f'{aid}.json').read_text())
    self.assertEqual({k for k,_ in items},{c['id'] for c in rubric['criteria']},aid)
    for cohort in ['CML3111','CML3112','CML3113']:
-    nb=json.loads((B/'assessment_banks'/aid/cohort/'A'/f'{aid}_student.ipynb').read_text())
+    nb=json.loads((B/'Assessments/assessment_banks'/aid/cohort/'A'/f'{aid}_student.ipynb').read_text())
     text='\n'.join(''.join(c['source']) for c in nb['cells'] if c['cell_type']=='markdown')
     self.assertEqual(text.count('<!-- assignment-workflow -->'),1)
     for _,prompt in items:self.assertIn(prompt,text)
@@ -30,8 +30,8 @@ class ClearAssignments(unittest.TestCase):
   for cohort in ['CML3111','CML3112','CML3113']:
    for week in [2,3,4,5,6,8,9,10,11,12]:
     if week==6:continue  # A6 is waived for every cohort
-    with zipfile.ZipFile(B/'student_packages'/f'{cohort}_W{week:02}_student.zip') as z:
-     guide=(B/'student_guides'/cohort/f'W{week:02}.md').read_text()
+    with zipfile.ZipFile(B/'Weeks_01-07/student_packages'/f'{cohort}_W{week:02}_student.zip') as z:
+     guide=(B/'Assessments/student_guides'/cohort/f'W{week:02}.md').read_text()
      if week>=8:
       self.assertEqual(z.read('START_HERE.md').decode(),guide)
       self.assertEqual(set(z.namelist())&{'ASSIGNMENT_INSTRUCTIONS.txt','ASSIGNMENT_INSTRUCTIONS.md','TASKS.md','STUDENT_HOW_TO.md','00_START_HERE.txt','SUBMIT_HERE.txt'},set())
@@ -54,9 +54,9 @@ class ClearAssignments(unittest.TestCase):
   self.assertIn('All Week 3 content completed',p)
   self.assertEqual(p.count('Week 3 not yet taught'),2)
   for code in ['CML3111','CML3112','CML3113']:
-   nb=json.loads((B/'practicals/W03'/code/'W03_student.ipynb').read_text())
+   nb=json.loads((B/'Weeks_01-07/practicals/W03'/code/'W03_student.ipynb').read_text())
    prompts=[''.join(c['source']) for c in nb['cells'] if c['cell_type']=='markdown']
    self.assertEqual(sum(bool(re.match(r'## q[1-5]:',s)) for s in prompts),5)
    self.assertIn('A loop is not required.','\n'.join(prompts))
-  self.assertIn('30 September 2026, 11:27',(B/'student_guides/CML3112/W03.md').read_text())
+  self.assertIn('30 September 2026, 11:27',(B/'Assessments/student_guides/CML3112/W03.md').read_text())
 if __name__=='__main__':unittest.main()

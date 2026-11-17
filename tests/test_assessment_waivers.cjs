@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs','utf8'),c);
+const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs','utf8'),c);
 for(const cohort of ['CML3111','CML3112','CML3113']){
  const row={cohort,quizzes:Array(12).fill(5),challenges:Array(11).fill(20),dataProject:100,test1:100,mlProjectA:30,mlProjectB:15,mlProject:100,demo:100};
  row.quizzes[5]='';row.challenges[5]='';const before=JSON.stringify(row);const r=c.computeFinal_(row);assert.equal(r.final,100);assert.equal(r.missing.length,0);assert.equal(JSON.stringify(row),before);
@@ -10,9 +10,9 @@ for(const cohort of ['CML3111','CML3112','CML3113']){
 }
 assert.equal(c.computeFinal_({cohort:'CML3111',quizzes:['','','','','',5],challenges:['','','','','',20]}).provisional.marks,0);
 console.log('PASS: Week 6 marks add nothing, full marks reachable, raw records immutable, all three programmes covered');
-const q={};vm.createContext(q);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/create_quiz_forms.gs','utf8'),q);
+const q={};vm.createContext(q);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/create_quiz_forms.gs','utf8'),q);
 for(const cohort of ['CML3111','CML3112','CML3113'])assert.throws(()=>q.openQuizFor(6,cohort),/waived/);
-const a={};vm.createContext(a);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs','utf8'),a);
+const a={};vm.createContext(a);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/submission_forms.gs','utf8'),a);
 for(const cohort of ['CML3111','CML3112','CML3113']){
  assert.throws(()=>a.setSubmissionWindow(cohort+'|W06','2026-10-20T08:00:00+03:00','2026-10-27T08:00:00+03:00'),/waived/);
  assert.equal(a.submissionAssessmentReleased_(cohort+'|W06',{assessmentReleased:true,releaseEvidence:'Previously validated assessment release.'}),false);

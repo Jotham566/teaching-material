@@ -32,8 +32,8 @@ _ROOT = _os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 import da_keys  # noqa: E402  (needs _HERE on the path first)
 
-OUT = _ROOT + "/DataAnalysis_Track/figs"
-DATA = _ROOT + "/DataAnalysis_Track/data"
+OUT = _ROOT + "/Professional_Training/Data_Analysis_Course/figs"
+DATA = _ROOT + "/Professional_Training/Data_Analysis_Course/data"
 os.makedirs(OUT, exist_ok=True)
 
 INK = "#1C3144"; ORANGE = "#E4572E"; TEAL = "#2E7D6F"

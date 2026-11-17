@@ -1,67 +1,52 @@
 # Teaching material
 
-Two courses and the build engine that generates them. The course builders in `scripts/` generate the teaching artifacts. Numerical examples have executable checks; fictional datasets and teaching assumptions are labelled.
+Everything I teach, in three programmes, plus the build engine that generates the slides, notebooks and documents.
 
-Additional programmes: the [Holiday Data and AI Camp](Schools_ML_Track/camp_2026/README.md) for S.4 to S.6 students (Machine Learning and Python for Data Analysis; its marketing is in [camp_2026/marketing](Schools_ML_Track/camp_2026/marketing/README.md)) and [professional AI training](Professional_AI_Training/README.md).
+## Start here
 
-Current readiness and remaining deployment work: [rework status](review/2026-09-14/REWORK_STATUS.md).
-
-**Weeks 8 to 12 (4 November 2026):** the semester ends at Week 12. Weeks 8 to 11 are four classes in [IUEA_Teaching_Plan/second_half/](IUEA_Teaching_Plan/second_half/) (slides, lab notebooks, lecturer guides, student packages, the plan PDF). Week 12 is the individual, timed, auto-graded ML project. There is no Practical Test 2, demo or Weeks 13 to 15. See [teaching progress](IUEA_Teaching_Plan/Teaching_Progress.md).
-
-**Teaching materials:** use the updated PowerPoints in [decks](IUEA_Teaching_Plan/decks/README.md). CML3111/CML3113 are revised from Week 2 and CML3112 from Week 3. Open Presenter View for the worked explanations and teaching prompts. Use the [lecturer guide](IUEA_Teaching_Plan/Beginner_Lecturer_Guide.md) and matching student ZIP. Practice notebooks are separate from graded submissions. The HTML lesson route has been retired. Rebuild with `scripts/build_decks.py`; build practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with `scripts/build_student_packages.py --beginner-update`.
-
-| | **IUEA machine learning** | **Data Analysis track** |
-|---|---|---|
-| Who | Year 3 engineering undergraduates, IUEA | Adults in work, confident in a spreadsheet, no code |
-| Shape | 12 study weeks, 3 cohorts, 36 contact hours each | 5 weeks, 15 sessions, 45 hours |
-| Decks | 21 in `decks/` (Weeks 1 to 7) and 12 class decks in `second_half/Slides/` (Weeks 8 to 11) | 15, 356 slides |
-| Codes | CML3111, CML3112, CML3113 | — |
-| Where | `IUEA_Teaching_Plan/` | `DataAnalysis_Track/` |
-
-They share `scripts/pptxkit.py` and `scripts/docxkit.py`, so a change to
-either affects both and both validation harnesses should be run.
+| I want to... | Go to |
+|---|---|
+| Teach IUEA Machine Learning (CML3111, CML3112, CML3113) | [IUEA_Teaching_Plan/](IUEA_Teaching_Plan/README.md) |
+| See where the IUEA course is now | [Teaching progress](IUEA_Teaching_Plan/Teaching_Progress.md) |
+| Run the final ML project (23 to 25 November 2026) | [IUEA_Teaching_Plan/Weeks_08-12/Project/](IUEA_Teaching_Plan/Weeks_08-12/Project/README.md) |
+| Teach the high school holiday camp (S.4 to S.6) | [High_School_Camp/](High_School_Camp/README.md) |
+| Teach professional and corporate classes | [Professional_Training/](Professional_Training/README.md) |
+| Rebuild or verify anything | [scripts/](scripts/) and the sections below |
 
 ## Layout
 
 ```
-IUEA_Teaching_Plan/          the IUEA deliverables — teach from these
-  decks/                       45 .pptx, one per week per cohort (Weeks 8 to 15 superseded by second_half/)
-  grader/                      notebook autograder, gradebook.gs,
-                               create_quiz_forms.gs (36 Google Forms)
-  *.docx *.xlsx                master plan, three syllabi, teaching guide,
-                               setup guide, runsheet, quiz operations guide,
-                               tech build plan, roadmap benchmark, preflight
-  quiz_timer.html              the projected countdown for the weekly quiz
-  QR_encoder_acceptance_test.png   scan this to prove the QR encoder works
-
-DataAnalysis_Track/          the professional course — its own README
-  decks/                       15 .pptx plus MANIFEST.txt
-  labs/                        SQL, Python and Power BI lab handouts
-  data/                        the generated teaching dataset + answer key
-  figs/                        12 explainer figures
-  *.docx *.xlsx                plan, lecturer guide, glossary, workbook
-
-scripts/                     the build engine
-  pptxkit.py docxkit.py        slide and document primitives, shared
-  plan_content.py              the IUEA curriculum: what each week teaches
-  da_content.py                the Data Analysis curriculum, and its glossary
-  da_keys.py                   every number the DA slides quote, from the
-                               generated answer key
-  build_*.py                   one builder per deliverable
-  make_figures.py              the IUEA figure library -> figs/
-  make_da_figures.py           the 12 DA explainer figures
-  qrgen.py qrgen_selftest.py   from-scratch QR encoder, and the self-test
-                               that checks it against OpenCV
-  attach_qr.py                 stamps live QR codes into the 36 quiz decks
-  quiz_banks.py                the 12 weekly quiz banks, 60 questions
-  verify_*.py                  the verifiers; see below
-  validation/                  overflow_scan, claim_check, segref_check
-
-figs/                        the IUEA figure library (input to those decks)
-data/                        IUEA lecturer notes (json) and quiz_links.json
-qr/                          the 36 quiz QR codes
-review/2026-09-14/           an independent review of the whole pack
+README.md                      this map
+IUEA_Teaching_Plan/            University: IUEA Machine Learning for Engineers (Year 3)
+  README.md                      index of the course folder
+  Teaching_Progress.md           where each class is now
+  Plans_and_Syllabi/             master plan, the three syllabi, roadmap, curriculum maps
+  Lecturer_Guides/               teaching guides, checklists, runsheets, the quiz timer
+  Weeks_01-07/                   decks, guided practice, practicals, setup, student packages
+  Weeks_08-12/                   the second half: slides, labs, lecturer guides, and Project/ (the final ML project)
+  Assessments/                   assignments, quizzes, tests, the grader, the test portal, marks policy
+  _archive/                      dated logs, old notebooks and backups
+High_School_Camp/              the KLAi Holiday Data and AI Camp for S.4 to S.6 students (camp_2026/)
+Professional_Training/         professional and corporate classes
+  Business_AI/                   AI courses for professionals and executives
+  BIK_Capital/                   client programme
+  Data_Analysis_Course/          the 5-week data analysis course for adults in work
+  KLAi Logo/                     brand files
+scripts/  tests/               the shared build engine and its tests
+figs/  data/  qr/              figures, notes data and quiz QR codes used by the builds
+_archive/                      old backups and the September to October reviews
 ```
+
+The IUEA course and the data analysis course share `scripts/pptxkit.py` and `scripts/docxkit.py`, so a change to either affects both
+and both validation harnesses should be run.
+
+**Weeks 1 to 7:** use the PowerPoints in [Weeks_01-07/decks](IUEA_Teaching_Plan/Weeks_01-07/decks/README.md) with Presenter View, the
+[lecturer guide](IUEA_Teaching_Plan/Lecturer_Guides/Beginner_Lecturer_Guide.md) and the matching student ZIP. Rebuild with
+`scripts/build_decks.py`; practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with
+`scripts/build_student_packages.py --beginner-update`.
+
+**Weeks 8 to 12:** four classes in [Weeks_08-12/](IUEA_Teaching_Plan/Weeks_08-12/README.md) (slides, lab notebooks, lecturer guides,
+student packages, the plan PDF), then the individual, timed, automatically marked ML project.
 
 ## Setting up
 
@@ -86,7 +71,7 @@ python -m pip install -r requirements.txt
 LibreOffice and Poppler render documents and decks for visual review. Instructor
 notebook grading requires Docker and the pinned grading image. Local report/slide
 grading uses Ollama with cloud access disabled. See
-[assessment operations](IUEA_Teaching_Plan/grader/README.md) for timed submission
+[assessment operations](IUEA_Teaching_Plan/Assessments/grader/README.md) for timed submission
 forms, complete-cohort grading and gradebook imports.
 
 ## Rebuilding
@@ -102,7 +87,7 @@ python3 scripts/build_beginner_lecturer_docx.py
 
 Use the bundled Python runtime for Word generation. `build_decks.py` locates the bundled Artifact Tool runtime and preserves the four completed teaching decks. It creates QR images and hyperlinks within the revised decks using the existing link registry, so do not run the legacy QR insertion or legacy weekly deck builders afterwards. The older `pptxkit` builders and their notes belong to the previous teaching edition.
 
-**Data Analysis track**: see `DataAnalysis_Track/README.md`, which has its
+**Data Analysis track**: see `Professional_Training/Data_Analysis_Course/README.md`, which has its
 own ordered list. Start with `data/build_teaching_data.py`, because
 everything downstream reads the answer key it writes.
 
@@ -146,13 +131,13 @@ HMAC tokens in the grader.
 
 ## Review
 
-`review/2026-09-14/REVIEW.md` is an independent review of both courses. Two
+`_archive/review/2026-09-14/REVIEW.md` is an independent review of both courses. Two
 of its findings have been fixed: a documented build command that overwrote
 twelve live decks with an older implementation, and a Power BI average that
 divided delivered revenue by all orders and read 19% low in silence. Both now
 have a verifier check so they cannot return.
 
-The follow-up [rework status](review/2026-09-14/REWORK_STATUS.md) records the
+The follow-up [rework status](_archive/review/2026-09-14/REWORK_STATUS.md) records the
 current fixes and remaining work. Challenge-week aggregation, isolated
 notebook execution and Week 2 delivery instructions have been corrected.
 Week 2 has a calibrated local grader; later assessments require their own
@@ -161,7 +146,7 @@ validation before release. The original review describes the pre-change state.
 The review's evidence folder is not committed. It is 18 MB of extracted deck
 text and tool output, all of it regenerable from this repository.
 
-For weekly delivery, use [Before each class](IUEA_Teaching_Plan/Before_Each_Class_Checklist.md). [Today’s CML3112 student links](IUEA_Teaching_Plan/Week2_CML3112_Student_Links.md) include the authorized Week 1 catch-up window.
+For weekly delivery, use [Before each class](IUEA_Teaching_Plan/Lecturer_Guides/Before_Each_Class_Checklist.md). [Today’s CML3112 student links](IUEA_Teaching_Plan/_archive/Week2_CML3112_Student_Links.md) include the authorized Week 1 catch-up window.
 
 ## Repository size and generated files
 

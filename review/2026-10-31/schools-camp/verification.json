@@ -1,0 +1,21 @@
+{
+  "passed": 100,
+  "failed": 13,
+  "skipped_need_scikit_learn": [],
+  "scikit_learn_installed": true,
+  "failures": [
+    "ML11: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "ML11: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "ML20: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "ML20: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA14: block 1 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA14: block 1 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA14: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA14: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA14: make reference: ModuleNotFoundError: No module named 'seaborn'",
+    "DA15: block 1 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA15: block 1 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA15: block 2 code: ModuleNotFoundError: No module named 'seaborn'",
+    "DA15: block 2 code: ModuleNotFoundError: No module named 'seaborn'"
+  ]
+}

@@ -12,7 +12,7 @@ from deckkit_20261030 import *
 from test2_deck_examples_20261030 import EXAMPLES as X
 import patch_week8_20261030 as p8
 
-DECKS = p8.ROOT / "IUEA_Teaching_Plan" / "decks"
+DECKS = p8.ROOT / "IUEA_Teaching_Plan" / "Weeks_01-07/decks"
 FIRST = "The test now reaches back to Week 13"
 ANCHOR = "Test 2 revision checklist"
 INSERTED = [FIRST, "Words for the later weeks", "Counting warnings and their cost", "Cross-validation by equipment group", "Does an extra input help?",

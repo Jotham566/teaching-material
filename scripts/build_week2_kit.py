@@ -5,7 +5,7 @@ from pathlib import Path
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'IUEA_Teaching_Plan/setup'
+OUT=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/setup'
 
 
 def notebook(cells):
@@ -41,7 +41,7 @@ def main():
         (dest/'README.md').write_text(f'# {code} Week 2\n\nUpload proof_of_life.ipynb and {filename} into Colab. The four numbered notebooks deliberately fail. Diagnose and repair them; do not submit the broken originals. The dataset is a fictional four-row practice fixture, not an engineering benchmark.\n')
         with zipfile.ZipFile(OUT/(code+'_Week02.zip'),'w',zipfile.ZIP_DEFLATED) as z:
             for p in sorted(dest.iterdir()):z.write(p,code+'/'+p.name)
-    private=ROOT/'IUEA_Teaching_Plan/grader/week2_solution_key.md'
-    private.write_text((ROOT/'IUEA_Teaching_Plan/grader/Week2_Repair_Walkthrough.md').read_text())
+    private=ROOT/'IUEA_Teaching_Plan/Assessments/grader/week2_solution_key.md'
+    private.write_text((ROOT/'IUEA_Teaching_Plan/Assessments/grader/Week2_Repair_Walkthrough.md').read_text())
 
 if __name__=='__main__':main()

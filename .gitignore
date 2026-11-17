@@ -47,25 +47,25 @@ _quarantine/
 # folder is 18 MB of extracted deck text, render dumps, tool output and a
 # copy of the grader, all of it regenerable from the sources in this repo,
 # so only the review itself is tracked.
-review/*/evidence/
+_archive/review/*/evidence/
 
 # ---------------------------------------------------------------- not ignored
 # Deliberately tracked, and worth saying so because they are binaries:
-#   IUEA_Teaching_Plan/decks/*.pptx      45 decks, the thing you teach from
-#   DataAnalysis_Track/decks/*.pptx      15 decks
+#   IUEA_Teaching_Plan/Weeks_01-07/decks/*.pptx      45 decks, the thing you teach from
+#   Professional_Training/Data_Analysis_Course/decks/*.pptx      15 decks
 #   *.docx, *.xlsx                       guides, plans, workbooks, handouts
-#   figs/*.png, DataAnalysis_Track/figs  every figure on every slide
-#   DataAnalysis_Track/data/riverside.db the teaching database
+#   figs/*.png, Professional_Training/Data_Analysis_Course/figs  every figure on every slide
+#   Professional_Training/Data_Analysis_Course/data/riverside.db the teaching database
 #   qr/*.png                             the quiz QR codes
 # They are all regenerable from scripts/, but they are also the product, and
 # somebody cloning this repo should be able to walk into a room and teach.
 
 # Local repository backup, render evidence and temporary artifact builds
 .git.old/
-review/**
-!review/2026-09-14/
-!review/2026-09-14/REVIEW.md
-!review/2026-09-14/CODEBASE_MAP.md
+_archive/review/**
+!_archive/review/2026-09-14/
+!_archive/review/2026-09-14/REVIEW.md
+!_archive/review/2026-09-14/CODEBASE_MAP.md
 **/.build/
 node_modules/
 *.inspect.ndjson
@@ -74,15 +74,15 @@ node_modules/
 !.env.example
 
 # Lecturer-only hidden assessment checks are kept locally, not on public GitHub
-IUEA_Teaching_Plan/grader/specs/hidden/
+IUEA_Teaching_Plan/Assessments/grader/specs/hidden/
 
 # Local document previews and downloaded build dependencies
-Professional_AI_Training/**/.qa/
-Professional_AI_Training/**/.local/
-Professional_AI_Training/**/.deps/
+Professional_Training/**/.qa/
+Professional_Training/**/.local/
+Professional_Training/**/.deps/
 
 # Private test marks, identity ledger and student submission snapshots
-IUEA_Teaching_Plan/test_operations/grading_output/
+IUEA_Teaching_Plan/Assessments/test_operations/grading_output/
 
 # Local gateway credentials and development cache
 .dev.vars
@@ -90,22 +90,22 @@ IUEA_Teaching_Plan/test_operations/grading_output/
 .wrangler/
 
 # Local older lecture copy; guided_practice.ipynb is the maintained version.
-IUEA_Teaching_Plan/guided_practice/CML3111/W06/CML3111-Week6-guided_practice.ipynb
+IUEA_Teaching_Plan/Weeks_01-07/guided_practice/CML3111/W06/CML3111-Week6-guided_practice.ipynb
 
 # Private continuous-assessment source exports and student marks.
-IUEA_Teaching_Plan/assessment_operations/private/
-IUEA_Teaching_Plan/IUEA_ML_Gradebook_Semester1.xlsx
-IUEA_Teaching_Plan/Grading_Update_By_Hand_2026-11-03.md
+IUEA_Teaching_Plan/Assessments/assessment_operations/private/
+IUEA_Teaching_Plan/Assessments/IUEA_ML_Gradebook_Semester1.xlsx
+IUEA_Teaching_Plan/Assessments/Grading_Update_By_Hand_2026-11-03.md
 **/_backup_2026-11-02/
 **/_backup_2026-11-03/
 **/_backup_2026-11-04/
 
 # Private test deployment backups and rehearsal evidence
-IUEA_Teaching_Plan/test_operations/private/
+IUEA_Teaching_Plan/Assessments/test_operations/private/
 
 # Keep explicit answer keys and hidden assessment data out of the public repository.
-IUEA_Teaching_Plan/second_half/Project/grader_spec/
-IUEA_Teaching_Plan/second_half/Project/Lecturer_Marking_Guide.*
+IUEA_Teaching_Plan/Weeks_08-12/Project/grader_spec/
+IUEA_Teaching_Plan/Weeks_08-12/Project/Lecturer_Marking_Guide.*
 **/Facilitator Materials/
 **/04 Facilitator Materials/
 **/Build/autocheck/
@@ -116,10 +116,10 @@ IUEA_Teaching_Plan/second_half/Project/Lecturer_Marking_Guide.*
 **/Rehearsal Audio/*.aiff
 
 # Keep the small written release status linked by README; render evidence stays local.
-!review/2026-09-14/REWORK_STATUS.md
-Schools_ML_Track/camp_2026/figures/
-Schools_ML_Track/camp_2026/build/slides/_specs/
+!_archive/review/2026-09-14/REWORK_STATUS.md
+High_School_Camp/camp_2026/figures/
+High_School_Camp/camp_2026/build/slides/_specs/
 
 # Lecturer-only answers (16 November 2026): the repository is public and the project uses the same memo lists
-IUEA_Teaching_Plan/second_half/Lecturer Guides/Rehearsal_Answers_*.ipynb
-IUEA_Teaching_Plan/second_half/Lecturer Guides/Revision_Coding_Guide.*
+IUEA_Teaching_Plan/Weeks_08-12/Lecturer Guides/Rehearsal_Answers_*.ipynb
+IUEA_Teaching_Plan/Weeks_08-12/Lecturer Guides/Revision_Coding_Guide.*

@@ -12,7 +12,7 @@ const skillRoot='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/
 const skillVersion=(await fs.readdir(skillRoot)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).at(-1);
 const skill=path.join(skillRoot,skillVersion,'skills/presentations');
 const {finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
-const review=path.join(root,'review/2026-09-15/ppt-revision');
+const review=path.join(root,'_archive/review/2026-09-15/ppt-revision');
 const decks=JSON.parse(await fs.readFile(path.join(root,'data/iuea_deck_content.json'),'utf8'));
 const selected=process.argv.slice(2);const edition=process.env.PPT_EDITION||('build-'+Date.now());
 const ink='#1C3144',orange='#E4572E',muted='#6B7A8A',teal='#2E7D6F';

@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const source=fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs','utf8');
+const source=fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/gradebook.gs','utf8');
 function run({email='learner@example.test',rosterEmail='learner@example.test',existing='',week=2,score=1,late=false,identityScore=null,questions=5}={}){
  const writes=[];const ctx={console};vm.createContext(ctx);vm.runInContext(source,ctx);
  const mc=()=>({getType:()=> 'MULTIPLE_CHOICE',asMultipleChoiceItem:()=>({getPoints:()=>1})});

@@ -114,10 +114,10 @@ def living_markdown():
                     "- Details: `Grading_Policy_2026-11-10.md` (the current weights), `second_half/Plan_Weeks_8-12.pdf`, `Block_Assessment_Arrangement_2026-11-10.md`, `Block_Assessment_Arrangement_2026-11-03.md`")], required=False)
 
     edit_text(tp, [("Week 7 was Practical Test 1. Week 6 was waived.", "Week 7 was Practical Test 1. Week 6 was practical revision (A6 and Quiz 6 not assigned; they do not count).")], required=False)
-    edit_text(BASE / "assessment_operations/README.md", [("A6 and Quiz 6 are waived for all three programmes; their original marks remain recorded but excluded from totals.",
+    edit_text(BASE / "Assessments/assessment_operations/README.md", [("A6 and Quiz 6 are waived for all three programmes; their original marks remain recorded but excluded from totals.",
               "A6 and Quiz 6 are not assigned for any programme and do not count; their original marks remain recorded but are excluded from totals. From 10 November 2026 only A1 to A5 and Q1 to Q5 count (Grading_Policy_2026-11-10.md).")], required=False)
 
-    bc = BASE / "Before_Each_Class_Checklist.md"
+    bc = BASE / "Lecturer_Guides/Before_Each_Class_Checklist.md"
     edit_text(bc, [
         ("## Current exception: all three programmes — A6 and Quiz 6 waived", "## Current exception: all three programmes — A6 and Quiz 6 not assigned (they do not count)"),
         ("remain on record but are excluded from coursework totals.", "remain on record but do not count toward the final mark (only A1 to A5 and Q1 to Q5 count; see [Grading_Policy_2026-11-10.md](Grading_Policy_2026-11-10.md))."),
@@ -126,7 +126,7 @@ def living_markdown():
         ("The Block 2 quiz (Q9 + Q10, 10 marks) is sat in the last 20 minutes.", "The Block 2 quiz (Q9 + Q10, 10 marks) is sat in the last 20 minutes (practice; it does not count toward the final mark)."),
     ], required=False)
 
-    sl = BASE / "Assignment_Submission_Links.md"
+    sl = BASE / "Assessments/Assignment_Submission_Links.md"
     edit_text(sl, [("A7 and A8 form Block 1 and close together; A9, A10 and A11 form Block 2 and close together.",
                     "A7 and A8 form Block 1 and close together; A9, A10 and A11 form Block 2 and close together. **Update of 10 November 2026:** only A1 to A5 count toward the final mark; "
                     "A6 onward, including the Week 8 to 11 block assignments (A7 to A11), are practice that is still collected and given feedback but adds nothing to the final mark "
@@ -134,7 +134,7 @@ def living_markdown():
     edit_text(sl, [("ML_PROJECT: Engineering ML project (individual, timed 3-hour sitting; Part A /30, Part B /15)",
                     "ML_PROJECT: Engineering ML project (individual, timed 3-hour sitting; Part A /30, Part B /15, scaled to 40 percent of the course)")], required=False)
 
-    gr = BASE / "assessment_operations/reference/GRADING.md"
+    gr = BASE / "Assessments/assessment_operations/reference/GRADING.md"
     t = gr.read_text(encoding="utf-8")
     new = ("> Policy since 10 November 2026 (`data/assessment_policy_20261110.json`, plain note `Grading_Policy_2026-11-10.md`): final mark /100 = assignments 20 + quizzes 20 + Practical Test 1 20 + "
            "Engineering ML project 40. The live gradebook is the Google Sheet driven by `grader/gradebook.gs`. The private workbook described below was last built on 21 October and still uses "
@@ -153,16 +153,16 @@ def living_markdown():
         note_changed(gr)
 
     # second_half
-    edit_text(BASE / "second_half/README.md", [("The Engineering ML project (45 percent of the course)", "The Engineering ML project (40 percent of the course)")])
-    pr = BASE / "second_half/Project/README.md"
+    edit_text(BASE / "Weeks_08-12/README.md", [("The Engineering ML project (45 percent of the course)", "The Engineering ML project (40 percent of the course)")])
+    pr = BASE / "Weeks_08-12/Project/README.md"
     edit_text(pr, [("It counts 45 percent of the course:", "It counts 40 percent of the course (Part A 30 + Part B 15 = 45 marks, scaled to 40):")])
-    edit_text(BASE / "second_half/Build/AUTHORING_GUIDE.md", [("and counts 45 percent of the course)", "and counts 40 percent of the course; the Week 8 to 11 assignments and quizzes are practice that does not count)")], required=False)
+    edit_text(BASE / "Weeks_08-12/Build/AUTHORING_GUIDE.md", [("and counts 45 percent of the course)", "and counts 40 percent of the course; the Week 8 to 11 assignments and quizzes are practice that does not count)")], required=False)
 
 
 # ------------------------------------------------------------------------------------------------ 3. student guides and assignment banks
 def student_guides():
     for c in COHORTS:
-        g = BASE / "student_guides" / c
+        g = BASE / "Assessments/student_guides" / c
         for n in ("B1.md", "B2.md"):
             p = g / n
             line_replace(p, "Weeks 1 to 5 stay weekly, and Week 6 is waived.", COUNT_STU)
@@ -184,16 +184,16 @@ def student_guides():
             line_replace(w6, "Coursework: best 9 of 11", W6_NEW, required=False)
     for c in COHORTS:
         for w in ("W08", "W09", "W10", "W11", "W12"):
-            d = BASE / "assessment_banks" / w / c / "A"
+            d = BASE / "Assessments/assessment_banks" / w / c / "A"
             practice_line_md(d / "ASSIGNMENT_INSTRUCTIONS.md"); practice_line_txt(d / "ASSIGNMENT_INSTRUCTIONS.txt"); practice_line_nb(d / f"{w}_student.ipynb")
-        d = BASE / "assessment_banks/W06" / c / "A"
+        d = BASE / "Assessments/assessment_banks/W06" / c / "A"
         for n in ("ASSIGNMENT_INSTRUCTIONS.md", "ASSIGNMENT_INSTRUCTIONS.txt", "TASKS.md"):
             if (d / n).exists(): line_replace(d / n, "Coursework: best 9 of 11", W6_NEW, required=False)
         nb = d / "W06_student.ipynb"
         if nb.exists():
             edit_text(nb, [("Coursework: best 9 of 11 assigned quizzes (10%); best 7 of 10 assigned weekly assignments (10%). A6 and Quiz 6 are excluded, including any previously recorded marks. Other assessments keep their weights.",
                             W6_NEW)], required=False)
-        ml = BASE / "assessment_banks/ML_PROJECT" / c / "A"
+        ml = BASE / "Assessments/assessment_banks/ML_PROJECT" / c / "A"
         for n in ("ASSIGNMENT_INSTRUCTIONS.md", "ASSIGNMENT_INSTRUCTIONS.txt", "TASKS.md"):
             edit_text(ml / n, [("worth 45: Part A coded notebook 30 and Part B decision memo 15", "worth 40 (Part A coded notebook 30 and Part B decision memo 15, 45 marks scaled to 40)")], required=False)
 
@@ -256,14 +256,14 @@ PROJECT_RULES = [
 
 def project_text():
     files = []
-    sh = BASE / "second_half"
+    sh = BASE / "Weeks_08-12"
     skip = ("_backup_", "/Slides/", "/Student Packages/")
     for ext in ("*.py", "*.json", "*.ipynb", "*.gs", "*.md", "*.txt"):
         for f in sh.rglob(ext):
             s = str(f)
             if any(k in s for k in skip) or "__pycache__" in s: continue
             files.append(f)
-    files += [BASE / "grader/submission_forms.gs", ROOT / "data/iuea_assignment_form_briefs.json", BASE / "test_portal/Packets.gs"]
+    files += [BASE / "Assessments/grader/submission_forms.gs", ROOT / "data/iuea_assignment_form_briefs.json", BASE / "Assessments/test_portal/Packets.gs"]
     for f in files:
         if not f.exists(): continue
         t = f.read_text(encoding="utf-8", errors="ignore")
@@ -296,7 +296,7 @@ def builders():
          'ok(f"{_code}: Weeks 1 to 5 intros say all five count and 20%",\n       all(("all five count" in _by[w]["intro"] and "20%" in _by[w]["intro"]) for w in (1, 2, 3, 4, 5)))'),
     ], required=False)
     edit_text(SCR / "build_quiz_timer.py", [("'Five questions. One attempt. Your best ten of ' +\n        'twelve quizzes count.'", "'Five questions. One attempt. ' +\n        'Read each question once.'")], required=False)
-    edit_text(BASE / "quiz_timer.html", [("'Five questions. One attempt. Your best ten of ' +\n        'twelve quizzes count.'", "'Five questions. One attempt. ' +\n        'Read each question once.'")], required=False)
+    edit_text(BASE / "Lecturer_Guides/quiz_timer.html", [("'Five questions. One attempt. Your best ten of ' +\n        'twelve quizzes count.'", "'Five questions. One attempt. ' +\n        'Read each question once.'")], required=False)
     edit_text(SCR / "pptxkit.py", [("Twelve this semester, best ten count. No resits.", "Q1 to Q5 all count. No resits.")], required=False)
     # quiz operations guide source
     qo = SCR / "build_quizops_docx.py"
@@ -502,7 +502,7 @@ MASTER_RULES = [
 
 
 def master_docx():
-    p = BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.docx"
+    p = BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx"
     docx_edit(p, MASTER_RULES, required=False)
     from docx import Document
     d = Document(str(p)); ch = False; before = [x.text for x in iter_pars(d)]
@@ -543,8 +543,8 @@ def master_docx():
 
 
 def other_docx():
-    docx_edit(BASE / "IUEA_ML_Weekly_Quiz_Operations_Guide.docx", QUIZOPS_RULES, required=False)
-    docx_edit(BASE / "IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx", [
+    docx_edit(BASE / "Lecturer_Guides/IUEA_ML_Weekly_Quiz_Operations_Guide.docx", QUIZOPS_RULES, required=False)
+    docx_edit(BASE / "Lecturer_Guides/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx", [
         ("Week 7 was Practical Test 1 and Week 6 was waived.", "Week 7 was Practical Test 1 and Week 6 was not assigned."),
         ("Assessment. Weeks 1 to 5 stay weekly (best 3 of 5). Block 1 is A7 (Regression and baseline) plus A8 (Classification and cost) with Q7 and Q8, sat together in the last 20 minutes of Class 2. Block 2 is A9, A10 and A11 with Q9 and Q10, sat in the last 20 minutes of Class 4. Weights: quizzes 15, assignments 15, Data Analysis Project 10 (still a team project, teams of 4 to 5 formed in Week 1), Practical Test 1 15, Engineering ML project 45. Semester 1 results can be published provisionally out of 55 with the project pending. Detail: Block_Assessment_Arrangement_2026-11-03.md.",
          "Assessment. From 10 November 2026 the final mark is assignments 20 (A1 to A5, all five count) + quizzes 20 (Q1 to Q5, all five count) + Practical Test 1 20 + Engineering ML project 40. Block 1 is A7 (Regression and baseline) plus A8 (Classification and cost) with Q7 and Q8, sat together in the last 20 minutes of Class 2. Block 2 is A9, A10 and A11 with Q9 and Q10, sat in the last 20 minutes of Class 4. The blocks are practice: still done and given feedback, but not counted. The Data Analysis Project (teams of 4 to 5 formed in Week 1) is also practice and no longer counts. Semester 1 results can be published provisionally out of 60 with the project pending. Detail: Grading_Policy_2026-11-10.md."),
@@ -590,7 +590,7 @@ XLSX_REGEX = [
 
 def master_xlsx():
     import openpyxl
-    p = BASE / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"
+    p = BASE / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"
     wb = openpyxl.load_workbook(str(p)); n = 0
     for ws in wb:
         for row in ws.iter_rows():
@@ -640,13 +640,13 @@ def master_xlsx():
 def submission_forms_gs():
     """Re-embed the ML_PROJECT student guide as the form brief (the only brief that is a verbatim copy of its guide). Same logic as build_submission_forms.py
     but touches only the briefs, so it does not re-embed the registry (which another session is changing)."""
-    p = BASE / "grader/submission_forms.gs"; s = p.read_text(encoding="utf-8")
+    p = BASE / "Assessments/grader/submission_forms.gs"; s = p.read_text(encoding="utf-8")
     a = s.index("var ASSESSMENTS = ") + len("var ASSESSMENTS = "); b = s.index("\n", a)
     line = s[a:b]; assert line.endswith(";"), "unexpected ASSESSMENTS line"
     rows = json.loads(line[:-1]); n = 0
     for r in rows:
         if r.get("track") != "IUEA" or r.get("id") not in ("ML_PROJECT", "DA_PROJECT"): continue
-        g = BASE / "student_guides" / r["cohort"] / (r["id"] + ".md")
+        g = BASE / "Assessments/student_guides" / r["cohort"] / (r["id"] + ".md")
         if g.exists() and r.get("brief") != g.read_text(encoding="utf-8"):
             r["brief"] = g.read_text(encoding="utf-8"); n += 1
     if n:
@@ -668,7 +668,7 @@ SH_PPTX_RULES = PROJECT_RULES + SH_RULES
 
 
 def second_half_sources():
-    sh = BASE / "second_half/Build"
+    sh = BASE / "Weeks_08-12/Build"
     for f in list((sh / "content").glob("c[1-4].py")) + list((sh / "_specs").glob("*.json")):
         edit_text(f, SH_RULES, required=False)
 
@@ -701,7 +701,7 @@ def pptx_patch(path, rules):
 
 
 def second_half_decks():
-    for f in sorted((BASE / "second_half/Slides").rglob("*.pptx")):
+    for f in sorted((BASE / "Weeks_08-12/Slides").rglob("*.pptx")):
         if f.name.startswith("~$"): continue
         pptx_patch(f, SH_PPTX_RULES)
 
@@ -733,16 +733,16 @@ def student_package_zips():
     """student_packages/<cohort>_W0x_student.zip are what students download: START_HERE.md is the student guide and W0x_student.ipynb is the bank notebook."""
     for c in COHORTS:
         for w in ("W08", "W09", "W10", "W11", "W12"):
-            rewrite_zip(BASE / "student_packages" / f"{c}_{w}_student.zip", {
-                "START_HERE.md": (BASE / "student_guides" / c / f"{w}.md").read_bytes(),
-                f"{w}_student.ipynb": (BASE / "assessment_banks" / w / c / "A" / f"{w}_student.ipynb").read_bytes()})
+            rewrite_zip(BASE / "Weeks_01-07/student_packages" / f"{c}_{w}_student.zip", {
+                "START_HERE.md": (BASE / "Assessments/student_guides" / c / f"{w}.md").read_bytes(),
+                f"{w}_student.ipynb": (BASE / "Assessments/assessment_banks" / w / c / "A" / f"{w}_student.ipynb").read_bytes()})
         if c != "CML3111":
-            rewrite_zip(BASE / "student_packages" / f"{c}_W06_student.zip", {"00_START_HERE.txt": (BASE / "student_guides" / c / "W06.md").read_bytes()})
+            rewrite_zip(BASE / "Weeks_01-07/student_packages" / f"{c}_W06_student.zip", {"00_START_HERE.txt": (BASE / "Assessments/student_guides" / c / "W06.md").read_bytes()})
 
 
 def working_copy():
-    d = BASE / "student_packages/CML3113_W08_student"
-    for src, name in ((BASE / "student_guides/CML3113/W08.md", "START_HERE.md"), (BASE / "assessment_banks/W08/CML3113/A/W08_student.ipynb", "W08_student.ipynb")):
+    d = BASE / "Weeks_01-07/student_packages/CML3113_W08_student"
+    for src, name in ((BASE / "Assessments/student_guides/CML3113/W08.md", "START_HERE.md"), (BASE / "Assessments/assessment_banks/W08/CML3113/A/W08_student.ipynb", "W08_student.ipynb")):
         f = d / name
         if f.exists() and f.read_bytes() != src.read_bytes():
             if not DRY: f.write_bytes(src.read_bytes())

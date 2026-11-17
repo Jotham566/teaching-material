@@ -1,7 +1,7 @@
 """Stage native notes only; preserve every non-note ZIP part byte for byte."""
 from pathlib import Path
 import copy,hashlib,json,shutil,zipfile,xml.etree.ElementTree as E
-ROOT=Path(__file__).resolve().parents[1];R=ROOT/'review/2026-09-29/slide-specific-notes'
+ROOT=Path(__file__).resolve().parents[1];R=ROOT/'_archive/review/2026-09-29/slide-specific-notes'
 P='{http://schemas.openxmlformats.org/presentationml/2006/main}';A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
 E.register_namespace('a',A[1:-1]);E.register_namespace('p',P[1:-1])
 def body(root):

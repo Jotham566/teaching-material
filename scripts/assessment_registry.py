@@ -96,5 +96,5 @@ if __name__ == '__main__':
     from pathlib import Path
     root=Path(__file__).resolve().parents[1]
     (root/'data/assessments.json').write_text(json.dumps(records(),indent=2)+'\n')
-    with (root/'IUEA_Teaching_Plan/grader/Grades_template.csv').open('w') as f:
+    with (root/'IUEA_Teaching_Plan/Assessments/grader/Grades_template.csv').open('w') as f:
         csv.writer(f).writerow(grade_headers())

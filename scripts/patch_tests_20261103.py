@@ -122,7 +122,7 @@ class CommandLineTotalsTests(unittest.TestCase):
    led=Path(d)/'ledger.json'
    led.write_text(json.dumps(dict(students=[dict(cohort='CML3111',student_id='S1'),dict(cohort='CML3111',student_id='NOBODY')],attempts=[],
      current=full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100)])))
-   cmd=[sys.executable,'-I','-B',str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/continuous_assessment.py'),'--from-ledger',str(led),'--totals-out',str(Path(d)/'t.csv')]
+   cmd=[sys.executable,'-I','-B',str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader/continuous_assessment.py'),'--from-ledger',str(led),'--totals-out',str(Path(d)/'t.csv')]
    r=subprocess.run(cmd,capture_output=True,text=True);self.assertEqual(r.returncode,0,r.stderr)
    out={o['student_id']:o for o in _csv.DictReader((Path(d)/'t.csv').open())}
    self.assertEqual(out['S1']['provisional_marks'],'55.0');self.assertEqual(out['S1']['final_percent'],'');self.assertEqual(out['S1']['project_status'],'Project: PENDING')
@@ -207,8 +207,8 @@ def patch_agreement():
     t.rep("  quizzes: Array.from({ length: 12 }, () => pick(5)), challenges: Array.from({ length: 11 }, () => pick(20)) });",
           "  quizzes: Array.from({ length: 12 }, () => pick(5)), challenges: Array.from({ length: 11 }, () => pick(20)),\n"
           "  dataProject: pick(100), test1: pick(100), mlProjectA: pick(30), mlProjectB: pick(15) });")
-    t.rep("const py = `\nimport json,sys\nsys.path.insert(0,'IUEA_Teaching_Plan/grader')\nfrom continuous_assessment import coursework_totals\ndata=json.load(sys.stdin);cur=[]\nfor d in data:\n  for a,v in d['marks'].items(): cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment=a,score=v,status='GRADED'))\nout={(r['cohort'],r['student_id']):r for r in coursework_totals(cur)}\nprint(json.dumps([out.get((d['cohort'],d['sid'])) for d in data]))`;",
-          "const py = `\nimport json,sys\nsys.path.insert(0,'IUEA_Teaching_Plan/grader')\nfrom continuous_assessment import coursework_totals,semester_totals\ndata=json.load(sys.stdin);cur=[]\nfor d in data:\n  for a,v in d['marks'].items(): cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment=a,score=v,status='GRADED'))\n"
+    t.rep("const py = `\nimport json,sys\nsys.path.insert(0,'IUEA_Teaching_Plan/Assessments/grader')\nfrom continuous_assessment import coursework_totals\ndata=json.load(sys.stdin);cur=[]\nfor d in data:\n  for a,v in d['marks'].items(): cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment=a,score=v,status='GRADED'))\nout={(r['cohort'],r['student_id']):r for r in coursework_totals(cur)}\nprint(json.dumps([out.get((d['cohort'],d['sid'])) for d in data]))`;",
+          "const py = `\nimport json,sys\nsys.path.insert(0,'IUEA_Teaching_Plan/Assessments/grader')\nfrom continuous_assessment import coursework_totals,semester_totals\ndata=json.load(sys.stdin);cur=[]\nfor d in data:\n  for a,v in d['marks'].items(): cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment=a,score=v,status='GRADED'))\n"
           "  for a,k in (('DA_PROJECT','da'),('TEST1','t1')):\n    if d[k] is not None: cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment=a,score=d[k],status='GRADED'))\n"
           "  pa,pb=d['pa'],d['pb']\n  if pa is not None or pb is not None:\n    full=pa is not None and pb is not None\n    cur.append(dict(cohort=d['cohort'],student_id=d['sid'],assessment='ML_PROJECT',score=(pa+pb) if full else None,status='GRADED' if full else 'PART_MARKED',part_scores=dict(A=pa,B=pb)))\n"
           "out={(r['cohort'],r['student_id']):r for r in coursework_totals(cur)}\n"

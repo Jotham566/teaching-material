@@ -32,7 +32,7 @@ print(case.head())
 def revise():
  count=0
  for aid in ('W06','W08','W09','W10','W11','W12','DA_PROJECT','ML_PROJECT'):
-  for folder in (BASE/'assessment_banks'/aid).glob('CML*/*'):
+  for folder in (BASE/'Assessments/assessment_banks'/aid).glob('CML*/*'):
    if not folder.is_dir():continue
    for path in folder.glob('*_student.ipynb'):
     nb=json.loads(path.read_text());nb['cells']=[c for c in nb['cells'] if c.get('metadata',{}).get('pandas_support')!=MARK]

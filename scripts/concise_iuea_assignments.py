@@ -4,9 +4,9 @@ from datetime import datetime, timezone, timedelta
 import json, re, sys
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'IUEA_Teaching_Plan'
-sys.path.insert(0,str(BASE/'grader'))
+sys.path.insert(0,str(BASE/'Assessments/grader'))
 from engineering_contracts import TASKS, DOMAINS
-COMPONENTS=json.loads((BASE/'assessment_banks/assessment_components.json').read_text())
+COMPONENTS=json.loads((BASE/'Assessments/assessment_banks/assessment_components.json').read_text())
 MARKER='<!-- assignment-workflow -->'
 DETAIL='<!-- student-task-detail -->'
 WRITTEN={
@@ -128,7 +128,7 @@ def instructions(row,folder,links):
     return '\n\n'.join(lines)+'\n'
 
 def written_questions(aid):
-    rubric=json.loads((BASE/'grader/rubrics/hybrid'/f'{aid}.json').read_text())
+    rubric=json.loads((BASE/'Assessments/grader/rubrics/hybrid'/f'{aid}.json').read_text())
     if aid in WRITTEN:
         lookup={c['id']:c for c in rubric['criteria']}
         prompts=[f'{i}. **{lookup[key]["maximum"]:g} '+('mark' if lookup[key]['maximum']==1 else 'marks')+f':** {q}' for i,(key,q) in enumerate(WRITTEN[aid],1)]
@@ -204,7 +204,7 @@ def apply_to_folder(row,folder,guide):
     if aid in ('TEST1','TEST2'):return  # Owned by build_colab_exams.py
     if not folder.exists():return
     for name in ('ASSIGNMENT_INSTRUCTIONS.md','ASSIGNMENT_INSTRUCTIONS.txt'):(folder/name).write_text(guide)
-    (folder/'STUDENT_HOW_TO.md').write_text((BASE/'setup/STUDENT_HOW_TO.md').read_text())
+    (folder/'STUDENT_HOW_TO.md').write_text((BASE/'Weeks_01-07/setup/STUDENT_HOW_TO.md').read_text())
     notebooks=[folder/notebook_name(row)]
     for path in notebooks:
         if not path.exists():continue

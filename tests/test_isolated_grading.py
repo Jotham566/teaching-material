@@ -1,6 +1,6 @@
 import json,os,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];HERE=ROOT/'IUEA_Teaching_Plan/grader'
+ROOT=Path(__file__).resolve().parents[1];HERE=ROOT/'IUEA_Teaching_Plan/Assessments/grader'
 sys.path.insert(0,str(HERE))
 from batch_grade import grade_one
 from isolated_grading import preflight
@@ -34,7 +34,7 @@ worst_error=11.4''')
  def test_week2_fixture_scores_fourteen(self):
   with tempfile.TemporaryDirectory() as tmp:
    p=Path(tmp)/'99_TEST_000_DEMO-X_W02.ipynb'
-   folder=ROOT/'IUEA_Teaching_Plan/setup/CML3112'
+   folder=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/setup/CML3112'
    p.write_text((folder/'proof_of_life.ipynb').read_text().replace('YOUR_ID','99/TEST/000/DEMO-X'))
    r=grade_one(str(p),str(HERE/'specs/spec_W02.py'),str(HERE/'specs/hidden/spec_W02_hidden.py'),'W02','CML3112',str(folder),2,10,None)
    self.assertEqual(sum(q['awarded'] for q in r['questions'].values()),14,r)
@@ -45,7 +45,7 @@ worst_error=11.4''')
   sid='99/0000/DEMO-X'
   with tempfile.TemporaryDirectory() as tmp:
    p=Path(tmp)/(filename_id(sid)+'_W02.ipynb')
-   folder=ROOT/'IUEA_Teaching_Plan/setup/CML3112'
+   folder=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/setup/CML3112'
    p.write_text((folder/'proof_of_life.ipynb').read_text().replace('YOUR_ID',sid))
    r=grade_one(str(p),str(HERE/'specs/spec_W02.py'),str(HERE/'specs/hidden/spec_W02_hidden.py'),'W02','CML3112',str(folder),2,10,None)
    self.assertEqual(sum(q['awarded'] for q in r['questions'].values()),14,r)
@@ -65,7 +65,7 @@ above_limit=sum(float(r['winding_temp_c'])>130 for r in valid)
 group_means={g:sum(float(r['winding_temp_c']) for r in valid if r['motor_id']==g)/sum(r['motor_id']==g for r in valid) for g in {r['motor_id'] for r in valid}}
 '''
    p.write_text(json.dumps({'cells':[{'cell_type':'code','metadata':{},'source':source}]}))
-   r=grade_one(str(p),str(HERE/'specs/spec_W04.py'),str(HERE/'specs/hidden/spec_W04_hidden.py'),'W04','CML3111',str(ROOT/'IUEA_Teaching_Plan/practicals/W04/CML3111'),2,10,None)
+   r=grade_one(str(p),str(HERE/'specs/spec_W04.py'),str(HERE/'specs/hidden/spec_W04_hidden.py'),'W04','CML3111',str(ROOT/'IUEA_Teaching_Plan/Weeks_01-07/practicals/W04/CML3111'),2,10,None)
    self.assertEqual(sum(q['awarded'] for q in r['questions'].values()),20,r)
  def test_colab_absolute_paths_share_the_isolated_working_directory(self):
   r=self.run_notebook('''from pathlib import Path
@@ -87,7 +87,7 @@ assert uploaded["campus_energy.csv"]==open("/content/campus_energy.csv","rb").re
 weight_n=40*9.81
 '''}]}))
    r=grade_one(str(p),str(HERE/'specs/spec_W03.py'),str(HERE/'specs/hidden/spec_W03_hidden.py'),
-               'W03','CML3111',str(ROOT/'IUEA_Teaching_Plan/practicals/W05/CML3111'),2,10,None)
+               'W03','CML3111',str(ROOT/'IUEA_Teaching_Plan/Weeks_01-07/practicals/W05/CML3111'),2,10,None)
    self.assertFalse(r['cell_errors'],r)
    self.assertEqual(r['questions']['q1']['awarded'],r['questions']['q1']['marks'])
 if __name__=='__main__':unittest.main()

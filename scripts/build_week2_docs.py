@@ -35,7 +35,7 @@ def student():
     from docx.oxml.ns import qn
     from docx.opc.constants import RELATIONSHIP_TYPE as RT
     d=document('Student setup and assignment guide')
-    source=(ROOT/'IUEA_Teaching_Plan/setup/STUDENT_HOW_TO.md').read_text()
+    source=(ROOT/'IUEA_Teaching_Plan/Weeks_01-07/setup/STUDENT_HOW_TO.md').read_text()
     for i,line in enumerate(source.splitlines()):
         if i==0:continue
         if not line.strip():continue
@@ -55,7 +55,7 @@ def student():
                 r=OxmlElement('w:r');pr=OxmlElement('w:rPr');color=OxmlElement('w:color');color.set(qn('w:val'),'0563C1');pr.append(color);r.append(pr)
                 t=OxmlElement('w:t');t.text=url;r.append(t);h.append(r);p._p.append(h)
                 if fragment!=url:p.add_run(fragment[len(url):])
-    d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Student_Setup_Guide.docx')
+    d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Student_Setup_Guide.docx')
     return
 
 
@@ -80,6 +80,6 @@ def lecturer():
     d.add_paragraph('Allow sign-in before the five-minute question period. This is a low-stakes quiz with the existing 24-hour response window. The classroom countdown does not enforce a per-student timer. Check automatic closure after the window; failed closures must remain queued for retry.')
     d.add_paragraph('Fallback and exit check','Heading 1')
     d.add_paragraph('If Colab fails, move students to prepared lab computers with the same ZIP. Record an outage rather than silently penalizing delayed uploads. Before leaving, each student shows a fresh-run notebook and keeps a downloaded copy. A2 closes at the start of that cohort’s Week 3 lecture.')
-    d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Week2_Lecturer_Runsheet.docx')
+    d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Week2_Lecturer_Runsheet.docx')
 
 if __name__=='__main__':student();lecturer()

@@ -6,14 +6,14 @@ first, then a lab) and Week 12 is an individual, timed, auto-graded Engineering
 ML project sitting. Practical Test 2, Demo Day, viva, reflection, Weeks 13 to 15
 and the team ML project are gone. This script edits only the stale statements in:
 
-  IUEA_Teaching_Plan/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx   (Weeks 8-15 replaced)
-  IUEA_Teaching_Plan/IUEA_ML_Beginner_Teaching_Quick_Guide.docx
-  IUEA_Teaching_Plan/IUEA_ML_Roadmap_Benchmark.docx
-  IUEA_Teaching_Plan/IUEA_ML_Week1_PreFlight_Checklist.docx
-  IUEA_Teaching_Plan/IUEA_ML_Student_Setup_Guide.docx
-  IUEA_Teaching_Plan/IUEA_ML_Assessment_Technology_Build_Plan.docx
-  IUEA_Teaching_Plan/test_operations/Student_Colab_Test_Guide.docx
-  IUEA_Teaching_Plan/test_operations/Test_Grading_Checklist.docx
+  IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx   (Weeks 8-15 replaced)
+  IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Beginner_Teaching_Quick_Guide.docx
+  IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Roadmap_Benchmark.docx
+  IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Week1_PreFlight_Checklist.docx
+  IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Student_Setup_Guide.docx
+  IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Assessment_Technology_Build_Plan.docx
+  IUEA_Teaching_Plan/Assessments/test_operations/Student_Colab_Test_Guide.docx
+  IUEA_Teaching_Plan/Assessments/test_operations/Test_Grading_Checklist.docx
 
 Not changed (nothing stale): IUEA_ML_Quick_Class_Checklist.docx,
 IUEA_ML_Platform_Architecture_Note.docx.
@@ -504,14 +504,14 @@ def patch_grading_checklist(d):
 
 
 FILES = [
-    ("IUEA_Teaching_Plan/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx", patch_lecturer_guide),
-    ("IUEA_Teaching_Plan/IUEA_ML_Beginner_Teaching_Quick_Guide.docx", patch_quick_guide),
-    ("IUEA_Teaching_Plan/IUEA_ML_Roadmap_Benchmark.docx", patch_roadmap),
-    ("IUEA_Teaching_Plan/IUEA_ML_Week1_PreFlight_Checklist.docx", patch_preflight),
-    ("IUEA_Teaching_Plan/IUEA_ML_Student_Setup_Guide.docx", patch_setup_guide),
-    ("IUEA_Teaching_Plan/IUEA_ML_Assessment_Technology_Build_Plan.docx", patch_build_plan),
-    ("IUEA_Teaching_Plan/test_operations/Student_Colab_Test_Guide.docx", patch_colab_guide),
-    ("IUEA_Teaching_Plan/test_operations/Test_Grading_Checklist.docx", patch_grading_checklist),
+    ("IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx", patch_lecturer_guide),
+    ("IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Beginner_Teaching_Quick_Guide.docx", patch_quick_guide),
+    ("IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Roadmap_Benchmark.docx", patch_roadmap),
+    ("IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Week1_PreFlight_Checklist.docx", patch_preflight),
+    ("IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Student_Setup_Guide.docx", patch_setup_guide),
+    ("IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Assessment_Technology_Build_Plan.docx", patch_build_plan),
+    ("IUEA_Teaching_Plan/Assessments/test_operations/Student_Colab_Test_Guide.docx", patch_colab_guide),
+    ("IUEA_Teaching_Plan/Assessments/test_operations/Test_Grading_Checklist.docx", patch_grading_checklist),
 ]
 
 

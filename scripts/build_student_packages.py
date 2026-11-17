@@ -1,11 +1,11 @@
-# NOTE (4 November 2026): For Weeks 8 to 12 this writes the OLD ASSIGNMENT_INSTRUCTIONS.txt, not the START_HERE.md of the block packs. Use scripts/build_block_packages_20261102.py for W08 to W12 (see IUEA_Teaching_Plan/student_packages/SUPERSEDED_README.md).
+# NOTE (4 November 2026): For Weeks 8 to 12 this writes the OLD ASSIGNMENT_INSTRUCTIONS.txt, not the START_HERE.md of the block packs. Use scripts/build_block_packages_20261102.py for W08 to W12 (see IUEA_Teaching_Plan/Weeks_01-07/student_packages/SUPERSEDED_README.md).
 """Package ready practicals using an explicit allowlist; no lecturer keys."""
 from pathlib import Path
 import zipfile,json,sys
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'IUEA_Teaching_Plan'
 LINKS=json.loads((ROOT/'data/submission_links.json').read_text()) if (ROOT/'data/submission_links.json').exists() else {}
-OUT=BASE/'student_packages';OUT.mkdir(exist_ok=True)
+OUT=BASE/'Weeks_01-07/student_packages';OUT.mkdir(exist_ok=True)
 beginner_update='--beginner-update' in sys.argv
 count=0
 for code in ('CML3111','CML3112','CML3113'):
@@ -16,24 +16,24 @@ for code in ('CML3111','CML3112','CML3113'):
         if '--later-only' in sys.argv and week<6:continue
         if '--csv-only' in sys.argv and week<4:continue
         if beginner_update and week==2 and code=='CML3112':continue
-        source=BASE/'setup'/code if week==2 else BASE/'practicals'/f'W{week:02}'/code if week<=5 else BASE/'assessment_banks'/f'W{week:02}'/code/'A'
+        source=BASE/'Weeks_01-07/setup'/code if week==2 else BASE/'Weeks_01-07/practicals'/f'W{week:02}'/code if week<=5 else BASE/'Assessments/assessment_banks'/f'W{week:02}'/code/'A'
         if not source.exists():raise FileNotFoundError(source)
         # Only these Python files belong in a student handout. Never sweep up
         # lecturer scripts simply because they share the .py extension.
         student_scripts = {'hello_engineering.py'} if week==2 else set()
         files=[p for p in source.iterdir() if p.suffix in ('.ipynb','.csv','.md') or p.name in student_scripts]
         files += [source/'ASSIGNMENT_INSTRUCTIONS.txt']
-        if not any(p.name=='STUDENT_HOW_TO.md' for p in files):files += [BASE/'setup/STUDENT_HOW_TO.md']
-        if week==2:files += [BASE/'setup/A2_assignment_brief.md',BASE/'setup/A1_assignment_brief.md',BASE/'IUEA_ML_Student_Setup_Guide.docx']
+        if not any(p.name=='STUDENT_HOW_TO.md' for p in files):files += [BASE/'Weeks_01-07/setup/STUDENT_HOW_TO.md']
+        if week==2:files += [BASE/'Weeks_01-07/setup/A2_assignment_brief.md',BASE/'Weeks_01-07/setup/A1_assignment_brief.md',BASE/'Lecturer_Guides/IUEA_ML_Student_Setup_Guide.docx']
         with zipfile.ZipFile(OUT/f'{code}_W{week:02}_student.zip','w',zipfile.ZIP_DEFLATED) as z:
-            lesson=BASE/'guided_practice'/code/f'W{week:02}'
+            lesson=BASE/'Weeks_01-07/guided_practice'/code/f'W{week:02}'
             if lesson.exists():
                 if (lesson/'guided_practice.ipynb').exists():z.write(lesson/'guided_practice.ipynb','guided_practice.ipynb')
                 if week!=2:
                     notebooks=[p.name for p in files if p.suffix=='.ipynb']
                     z.writestr('00_START_HERE.txt',f'{code} WEEK {week}\n\n1. Extract this ZIP. Keep the files together.\n2. For the ASSIGNMENT, open '+', '.join(notebooks)+' and follow its opening instructions and task cells.\n3. For LESSON PRACTICE, open guided_practice.ipynb. It is not submitted.\n4. Submit the completed assignment notebook using SUBMIT_HERE.txt.\n\nASSIGNMENT_INSTRUCTIONS.txt is a separate copy of the notebook instructions, not extra work. TASKS.md, when present, repeats the notebook questions for reference. STUDENT_HOW_TO.md is help only when needed.\n')
             if week==2:
-                start=(BASE/'setup/W02_START_HERE.txt').read_text().replace('YOUR_COHORT',code)
+                start=(BASE/'Weeks_01-07/setup/W02_START_HERE.txt').read_text().replace('YOUR_COHORT',code)
                 start+='\nIN CLASS\nFollow the lecturer’s PowerPoint. Start with proof_of_life.ipynb and open the four repairs only when directed.\nAlso read WEEK1_CATCHUP.txt: A1 and Quiz 1 are required alongside A2 and Quiz 2.\n'
                 z.writestr('00_START_HERE.txt',start)
                 a1=LINKS[code+'|W01'];q=json.loads((ROOT/'data/quiz_links.json').read_text())
@@ -59,7 +59,7 @@ subprocess.run([sys.executable,str(ROOT/'scripts/apply_practical_revision_waiver
 print(f'Built {count} student-only practical packages')
 if beginner_update or '--iuea-only' in sys.argv:sys.exit(0)
 # Independent checkpoint: include only the issued dataset and blank notebook.
-da=ROOT/'DataAnalysis_Track';daout=da/'student_packages';daout.mkdir(exist_ok=True)
+da=ROOT/'Professional_Training/Data_Analysis_Course';daout=da/'student_packages';daout.mkdir(exist_ok=True)
 s09files=['TASKS.md','ASSIGNMENT_INSTRUCTIONS.md','ASSIGNMENT_INSTRUCTIONS.txt','S09_student.ipynb','customers.csv','customers_raw.csv','orders.csv','orders_raw.csv','order_items.csv','order_items_raw.csv','products.csv','reps.csv','returns.csv','riverside.db']
 entry=LINKS['DA|S09']
 with zipfile.ZipFile(daout/'DA_S09_student.zip','w',zipfile.ZIP_DEFLATED) as z:

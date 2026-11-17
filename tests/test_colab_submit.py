@@ -43,7 +43,7 @@ class SubmitTests(unittest.TestCase):
   ns=dict(EMAIL='synthetic@example.com',FULL_NAME='' if missing else 'Synthetic',STUDENT_ID='DEMO / & example',COHORT='CML3111',TEST_ID='TEST1',VARIANT='A')
   if deadline is not None:ns['_IUEA_DEADLINE']=deadline
   with patch.dict(sys.modules,modules),patch('time.time',side_effect=lambda:clock[0]),patch('threading.Timer',Timer):
-   exec((ROOT/'IUEA_Teaching_Plan/test_operations/colab_submit_cell.py').read_text().replace('__EXAM_CONFIG__',repr(config)),ns)
+   exec((ROOT/'IUEA_Teaching_Plan/Assessments/test_operations/colab_submit_cell.py').read_text().replace('__EXAM_CONFIG__',repr(config)),ns)
    ns['_button'].callback(None)
   return ns,captured,shown
  def test_snapshot_and_prefill(self):

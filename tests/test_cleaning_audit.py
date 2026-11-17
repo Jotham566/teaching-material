@@ -1,6 +1,6 @@
 import json,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 from engineering_reference import audit_cleaning
 from engineering_contracts import check
 class CleaningAudit(unittest.TestCase):

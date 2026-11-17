@@ -8,7 +8,7 @@ from docx.oxml.ns import qn
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from PIL import Image, ImageDraw, ImageFont
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'IUEA_Teaching_Plan/test_operations'
+OUT=ROOT/'IUEA_Teaching_Plan/Assessments/test_operations'
 ASSETS=OUT/'student_guide_images'; ASSETS.mkdir(exist_ok=True)
 fontpath='/System/Library/Fonts/Supplemental/Arial.ttf'
 def diagram(name, labels, sublabels):

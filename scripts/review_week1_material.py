@@ -1,7 +1,7 @@
 """Slide-specific Week 1 notes and narrow corrections, retaining original artwork."""
 import json,zipfile,xml.etree.ElementTree as E,copy
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'review/2026-10-20/full-course-review';A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'_archive/review/2026-10-20/full-course-review';A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
 NOTES={
 1:'Begin with a decision engineers make: estimate a quantity or identify a condition from observations. Today introduces the ideas using the embedded tables and illustrations; no CSV download or Python is needed. A prediction is an estimate, not proof that an action is safe.',
 2:'Introduce the tutor’s applied data work briefly. The formal status is incoming PhD student in Applied Informatics at Osaka Metropolitan University, Japan, for April 2027; enrolment has not started. The examples illustrate different applications, not identical model architectures.',
@@ -83,7 +83,7 @@ REPLACE={
 'In Week 15, each student answers two unseen questions about the team’s work. The answers contribute to individual assessment.':'The Engineering ML Project is an individual timed sitting in Week 12, according to the published brief.'}
 def main():
  plans=[]
- for path in sorted((ROOT/'IUEA_Teaching_Plan/decks').glob('*Week01*.pptx')):
+ for path in sorted((ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks').glob('*Week01*.pptx')):
   cohort=path.name[:7];original=OUT/'originals'/path.name;original.parent.mkdir(exist_ok=True)
   if not original.exists():original.write_bytes(path.read_bytes())
   slides=[];changes={}

@@ -8,7 +8,7 @@ process.env.RUNTIME_NODE_MODULES=runtime;
 const {PresentationFile,FileBlob}=createRequire(`${runtime}/package.json`)('@oai/artifact-tool');
 const skill='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations/26.927.11222/skills/presentations';
 const {finalizePresentation}=await import(pathToFileURL(`${skill}/container_tools/artifact_tool_utils.mjs`));
-const base=path.resolve('review/2026-09-29/slide-specific-notes');
+const base=path.resolve('_archive/review/2026-09-29/slide-specific-notes');
 const rows=JSON.parse(await fs.readFile(`${base}/staged.json`,'utf8'));
 await fs.mkdir(`${base}/validated`,{recursive:true});
 for(const row of rows){

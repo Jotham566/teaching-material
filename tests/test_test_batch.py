@@ -1,7 +1,7 @@
 import hashlib,json,sys,tempfile,unittest,zipfile
 from pathlib import Path
 from unittest.mock import patch
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/grader'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan/Assessments/grader'))
 import grade_test_batch as batch
 class BatchTests(unittest.TestCase):
  def run_batch(self,jobs,files):

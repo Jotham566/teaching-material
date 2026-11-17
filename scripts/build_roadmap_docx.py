@@ -11,7 +11,7 @@ from docx.shared import Inches
 from docxkit import *      # noqa
 from docxkit import _border
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/IUEA_ML_Roadmap_Benchmark.docx"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Roadmap_Benchmark.docx"
 FIG = _ROOT + "/figs/"
 
 S1 = "SEMESTER 1"

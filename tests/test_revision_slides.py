@@ -16,7 +16,7 @@ class RevisionSlides(unittest.TestCase):
     try:
      exam=1 if d['week']==7 else 2
      filename=f"{d['cohort']}_Test{exam}_practice.csv"
-     shutil.copy(ROOT/'IUEA_Teaching_Plan/test_revision'/d['cohort']/f'Test{exam}'/filename,tmp)
+     shutil.copy(ROOT/'IUEA_Teaching_Plan/Assessments/test_revision'/d['cohort']/f'Test{exam}'/filename,tmp)
      ns={}
      for s in d['slides']:
       if s.get('revision_example'):

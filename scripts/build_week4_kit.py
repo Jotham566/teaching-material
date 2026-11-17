@@ -4,7 +4,7 @@ All thresholds are teaching assumptions, not professional acceptance rules.
 import csv,json,random
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'IUEA_Teaching_Plan/practicals/W04'
+OUT=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/practicals/W04'
 from build_week2_kit import notebook
 
 def task_explanations(column, group, threshold):
@@ -46,6 +46,6 @@ def main():
   cells=[('markdown',f'# Week 4 reading report\nRead README.md. Keep units in your explanation.\n'),('code',f'STUDENT_ID="YOUR_ID"\nCOHORT="{code}"\nimport csv\nwith open("{filename}",newline="") as f:\n    rows=list(csv.DictReader(f))\n')]
   for var in expected:cells += [('markdown',f'## {var} (5 marks)\n{task_explanations(column,group,threshold)[var]}\n'),('code','# Your calculation here\n')]
   (dest/'W04_student.ipynb').write_text(json.dumps(notebook(cells),indent=2))
-  (ROOT/'IUEA_Teaching_Plan/grader/specs/hidden'/f'W04_{code}_expected.json').write_text(json.dumps(expected,indent=2))
+  (ROOT/'IUEA_Teaching_Plan/Assessments/grader/specs/hidden'/f'W04_{code}_expected.json').write_text(json.dumps(expected,indent=2))
 
 if __name__=='__main__':main()

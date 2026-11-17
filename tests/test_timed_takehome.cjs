@@ -8,7 +8,7 @@ const windowRows=()=>[['key','open','close','enabled','duration'],[windowKey,'20
 let portalReceipts=[['headers']];
 const book={getSheetByName:n=>n==='Collection'?{getDataRange:()=>({getValues:()=>portalReceipts})}:n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
 let driveCalls=[];let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:(url,options)=>{driveCalls.push({url,options});return {getResponseCode:()=>200}}},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
-vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Packets.gs','utf8'),ctx);
+vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/test_portal/Packets.gs','utf8'),ctx);
 const input={test:'CML3111|TEST1',registration:'DEMO / Timed',email:'synthetic@example.com',name:'Synthetic learner'};
 let result=ctx.requestTestFiles(input);assert.equal(result.personalDeadline,'2026-10-23T19:00:00.000Z');assert.equal(rows[1][6],input.name);assert(result.colabUrl.includes('/drive/file-1'));let nb=JSON.parse(result.notebook);assert(nb.cells[3].source.includes('_csv_file.write'));assert(nb.cells[0].source.includes('Take-home'));assert.equal(fileCount,1);if(process.env.IUEA_TEST_PACKET_OUT)fs.writeFileSync(process.env.IUEA_TEST_PACKET_OUT,JSON.stringify(nb));
 assert(!result.colabUrl.includes('authuser='));assert.equal(result.workingMode,'DIRECT');assert.equal(result.resumed,false);assert(driveCalls.some(c=>JSON.parse(c.options.payload).role==='writer'));assert(driveCalls.some(c=>JSON.parse(c.options.payload).writersCanShare===false));assert(nb.cells[1].source.includes('Test countdown'));assert(nb.cells[1].source.includes(result.personalDeadline));
@@ -19,7 +19,7 @@ rows=[['headers']];now=end-60000;result=ctx.requestTestFiles(input);assert.equal
 now=end+1;assert.throws(()=>ctx.requestTestFiles(input),/closed/);
 // Historical allocation created during rehearsal gets a new saved timer only on first timed start.
 rows=[['headers'],['CML3111|TEST1','DEMO / TIMED','synthetic@example.com','T-old','A','2026-10-19T00:00:00Z']];now=Date.parse('2026-10-23T16:00:00Z');result=ctx.requestTestFiles(input);assert.equal(result.startedAt,new Date(now).toISOString());assert.equal(rows[1][3],'T-old');
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/exam_collection.gs','utf8'),ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/exam_collection.gs','utf8'),ctx);
 let collected=[];const collection={getLastRow:()=>1,appendRow:r=>collected.push(r)};
 const originalGet=book.getSheetByName;book.getSheetByName=n=>n==='Collection'?collection:originalGet(n);
 const vals={'Full name':'Synthetic learner','Student Registration Number':'DEMO / TIMED','Test allocation code':'T-old'};

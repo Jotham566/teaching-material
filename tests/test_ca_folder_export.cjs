@@ -1,7 +1,7 @@
 const fs = require('fs'), vm = require('vm'), assert = require('assert'), crypto = require('crypto');
 const c = {};
 vm.createContext(c);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/assessment_operations/export_continuous_assessment.gs', 'utf8'), c);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/assessment_operations/export_continuous_assessment.gs', 'utf8'), c);
 const stored = new Map(), props = {CA_EXPORT_CUTOFF: '1794049321960'};
 function add(name, value) { stored.set(name, {name, bytes: Buffer.from(value)}); }
 function iterator(items) { let i = 0; return {hasNext: () => i < items.length, next: () => items[i++]}; }

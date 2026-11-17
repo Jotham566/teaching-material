@@ -13,7 +13,7 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 
-TRACK = os.path.join(_ROOT, "DataAnalysis_Track")
+TRACK = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course")
 DATA = os.path.join(TRACK, "data")
 LABS = os.path.join(TRACK, "labs")
 

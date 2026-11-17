@@ -2,7 +2,7 @@ import sys,unittest
 from pathlib import Path
 from unittest.mock import Mock
 from urllib.error import URLError
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from transient_retry import run
 
 class TransportRetryChecks(unittest.TestCase):

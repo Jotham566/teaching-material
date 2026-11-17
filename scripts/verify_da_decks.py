@@ -34,7 +34,7 @@ import da_content as DC                                  # noqa: E402
 import da_keys as DK                                     # noqa: E402
 import build_da_decks as B                               # noqa: E402
 
-TRACK = os.path.join(_ROOT, "DataAnalysis_Track")
+TRACK = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course")
 DATA = os.path.join(TRACK, "data")
 DECKS_DIR = os.path.join(TRACK, "decks")
 DB = os.path.join(DATA, "riverside.db")

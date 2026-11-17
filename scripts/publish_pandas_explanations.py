@@ -1,7 +1,7 @@
 """Publish validated CSV example decks and matching lecturer notes."""
 from pathlib import Path
 import json,hashlib,shutil,zipfile,re,xml.etree.ElementTree as ET
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';R=ROOT/'review/2026-09-15/ppt-revision'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';R=ROOT/'_archive/review/2026-09-15/ppt-revision'
 D=json.loads((ROOT/'data/iuea_deck_content.json').read_text());A='{http://schemas.openxmlformats.org/drawingml/2006/main}'
 def norm(t):return re.sub(r'\s+',' ',t).strip()
 def text(xml):return '\n'.join(''.join(t.text or '' for t in p.iter(A+'t')) for p in ET.fromstring(xml).iter(A+'p'))
@@ -21,10 +21,10 @@ for d in D:
    assert norm(s['notes']) in norm(text(z.read(f'ppt/notesSlides/notesSlide{i}.xml')))
    for value in [s.get('code',''),s.get('caption','')]+s.get('body','').split('\n\n'):
     if value:assert norm(value) in norm(actual),(d['filename'],i,value)
- shutil.copy2(final,BASE/'decks'/d['filename'])
+ shutil.copy2(final,BASE/'Weeks_01-07/decks'/d['filename'])
  notes=['# '+d['filename'].replace('_',' ').replace('.pptx',''),'','Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.','']
  for i,s in enumerate(d['slides'],1):notes+=['## Slide '+str(i)+' — '+s['title'],'',s['notes'],'']
- (BASE/'decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('\n'.join(notes).rstrip()+'\n')
+ (BASE/'Weeks_01-07/decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('\n'.join(notes).rstrip()+'\n')
  manifest.append({'cohort':d['cohort'],'week':d['week'],'filename':d['filename'],'slides':len(d['slides']),'sha256':receipt['finalSha256'],'edition':edition,'render':str((build/'render').relative_to(ROOT))})
 (ROOT/'data/iuea_pandas_explanations_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('Published',len(manifest),'validated decks and lecturer companions')

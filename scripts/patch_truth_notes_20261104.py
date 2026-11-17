@@ -1,6 +1,6 @@
 """Add dated correction notes (additive only) to three lecturer notes whose text contradicts the decision of 4 November 2026.
 
-Files: IUEA_Teaching_Plan/Grading_Update_By_Hand_2026-11-03.md, Block_Assessment_Arrangement_2026-11-03.md,
+Files: IUEA_Teaching_Plan/Assessments/Grading_Update_By_Hand_2026-11-03.md, Block_Assessment_Arrangement_2026-11-03.md,
 Block_Assessment_By_Hand_Checklist_2026-11-02.md. Nothing already written is changed; each file gets one marked block.
 Originals go to a sibling _backup_2026-11-04 (as <name>.pre_audit if the name is taken). Idempotent."""
 import shutil

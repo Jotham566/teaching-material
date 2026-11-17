@@ -25,7 +25,7 @@ class CsvLessonTests(unittest.TestCase):
   base=ROOT/'IUEA_Teaching_Plan'
   for cohort in ('CML3111','CML3112','CML3113'):
    for week in (4,5,6,8,9,10,11,12):
-    with zipfile.ZipFile(base/f'student_packages/{cohort}_W{week:02}_student.zip') as z:
-     self.assertEqual(z.read('guided_practice.ipynb'),(base/f'guided_practice/{cohort}/W{week:02}/guided_practice.ipynb').read_bytes())
+    with zipfile.ZipFile(base/f'Weeks_01-07/student_packages/{cohort}_W{week:02}_student.zip') as z:
+     self.assertEqual(z.read('guided_practice.ipynb'),(base/f'Weeks_01-07/guided_practice/{cohort}/W{week:02}/guided_practice.ipynb').read_bytes())
      self.assertFalse(any('grader' in n.lower() or n.endswith('.py') for n in z.namelist()))
 if __name__=='__main__':unittest.main()

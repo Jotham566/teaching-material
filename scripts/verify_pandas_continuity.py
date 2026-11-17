@@ -1,15 +1,15 @@
 """Execute every revised guided notebook in the pinned offline grading image."""
 from pathlib import Path
 import json,subprocess,re,zipfile
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';out=ROOT/'review/2026-10-15/pandas-continuity'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';out=ROOT/'_archive/review/2026-10-15/pandas-continuity'
 results=[]
 for cohort in ('CML3111','CML3112','CML3113'):
  for week in (6,7,8,9,10,11,12,13,14):
-  nb=json.loads((BASE/f'guided_practice/{cohort}/W{week:02}/guided_practice.ipynb').read_text())
+  nb=json.loads((BASE/f'Weeks_01-07/guided_practice/{cohort}/W{week:02}/guided_practice.ipynb').read_text())
   code='\n'.join(''.join(c['source']) for c in nb['cells'] if c['cell_type']=='code')
   assert not re.search(r'import csv|csv\.DictReader|csv\.reader',code)
-  folder=BASE/f'assessment_banks/W{week:02}/{cohort}/A'
-  if not folder.exists():folder=BASE/f'assessment_banks/TEST1/{cohort}/A'
+  folder=BASE/f'Assessments/assessment_banks/W{week:02}/{cohort}/A'
+  if not folder.exists():folder=BASE/f'Assessments/assessment_banks/TEST1/{cohort}/A'
   args=['docker','run','--rm','--network=none','--mount',f'type=bind,src={folder},dst=/data,readonly','--workdir','/data','-e','MPLBACKEND=Agg','iuea-notebooks:2026.09','python','-c',code]
   r=subprocess.run(args,capture_output=True,text=True,timeout=60)
   if r.returncode:raise RuntimeError(f'{cohort} W{week}: {r.stderr}')

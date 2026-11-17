@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/assessment_operations/export_continuous_assessment.gs','utf8'),c);
+const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/assessment_operations/export_continuous_assessment.gs','utf8'),c);
 const cutoff=Date.parse('2026-10-21T10:00:00Z');
 const values=[['Timestamp','Email Address','Score','Student Registration Number'],[new Date(cutoff-1000),' Demo@example.test ',0,'SYNTHETIC'],[new Date(cutoff+1000),'late@example.test',5,'LATER']];
 const result=c.caRecordedRows_(values,cutoff),key=Math.floor((cutoff-1000)/1000)+'|demo@example.test';

@@ -20,7 +20,7 @@ from docx.oxml.ns import qn
 from docxkit import *              # noqa
 import da_content as C             # noqa: E402
 
-OUT = os.path.join(_ROOT, "DataAnalysis_Track",
+OUT = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course",
                    "DataAnalysis_Glossary.docx")
 
 

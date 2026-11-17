@@ -2,7 +2,7 @@
 from PIL import Image,ImageDraw,ImageFont
 from pathlib import Path
 import json
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'IUEA_Teaching_Plan/grader/calibration_cases/visual';OUT.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'IUEA_Teaching_Plan/Assessments/grader/calibration_cases/visual';OUT.mkdir(parents=True,exist_ok=True)
 FONT='/System/Library/Fonts/Supplemental/Arial.ttf'
 def make(name,units=True,truncated=False,overlap=False,blank=False,injection=False):
  im=Image.new('RGB',(1000,700),'white');d=ImageDraw.Draw(im);font=ImageFont.truetype(FONT,26);title=ImageFont.truetype(FONT,34)

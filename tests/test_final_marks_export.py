@@ -2,7 +2,7 @@
 import json,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan'/'grader'))
+sys.path.insert(0,str(ROOT/'IUEA_Teaching_Plan'/'Assessments/grader'))
 import final_marks_export as fx
 
 def rec(cohort,sid,assessment,score,status='GRADED',name=''):

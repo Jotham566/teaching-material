@@ -1,6 +1,6 @@
 import sys,unittest,json,tempfile
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import continuous_assessment as ca
 from continuous_assessment import choose_current,identity_conflicts,quiz_mark,build,field,norm,recover_quiz_ids,resolve_supported_typos,coursework_totals,COURSE_WEIGHTS,round2,semester_totals,write_totals_csv,PROJECT_PARTS,PROJECT_MAX,PROVISIONAL_OUT_OF,PROVISIONAL_KEYS,policy_check,QUIZ_IDS,ASSIGNMENT_IDS,COUNTED_IDS,TOTALS_COLUMNS
 ROOT=Path(__file__).resolve().parents[1]
@@ -108,7 +108,7 @@ class ScheduleTests(unittest.TestCase):
    self.assertEqual(m['grading'],'automatic');self.assertEqual(m['formats'],['ipynb']);self.assertNotIn('take-home',m['delivery_note'].lower().replace('no take-home',''))
    self.assertEqual(m['rehearsal_released_after_class_3'],{'CML3112':'2026-11-17','CML3113':'2026-11-20','CML3111':'2026-11-20'}[code])
  def test_grades_template_has_no_practical_test_2_column(self):
-  head=(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/Grades_template.csv').read_text().splitlines()[0].split(',')
+  head=(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader/Grades_template.csv').read_text().splitlines()[0].split(',')
   self.assertNotIn('Practical Test 2',head);self.assertIn('Practical Test 1',head)
 class SemesterTotalsTests(unittest.TestCase):
  """Policy of 10 November 2026: 20 + 20 + 20 + 40; project = Part A /30 + Part B /15 scaled to 40; provisional x of 60 until both parts are marked."""
@@ -216,7 +216,7 @@ class CommandLineTotalsTests(unittest.TestCase):
    led=Path(d)/'ledger.json'
    led.write_text(json.dumps(dict(students=[dict(cohort='CML3111',student_id='S1'),dict(cohort='CML3111',student_id='NOBODY')],attempts=[],
      current=full('S1'))))
-   cmd=[sys.executable,'-I','-B',str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/continuous_assessment.py'),'--from-ledger',str(led),'--totals-out',str(Path(d)/'t.csv')]
+   cmd=[sys.executable,'-I','-B',str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader/continuous_assessment.py'),'--from-ledger',str(led),'--totals-out',str(Path(d)/'t.csv')]
    r=subprocess.run(cmd,capture_output=True,text=True);self.assertEqual(r.returncode,0,r.stderr)
    out={o['student_id']:o for o in _csv.DictReader(open(Path(d)/'t.csv'))}
    self.assertEqual(out['S1']['provisional_marks'],'60.0');self.assertEqual(out['S1']['final_percent'],'');self.assertEqual(out['S1']['project_status'],'Project: PENDING')

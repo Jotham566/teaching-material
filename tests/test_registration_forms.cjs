@@ -1,8 +1,8 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const ctx={console,Logger:{log:()=>{}},LockService:{getScriptLock:()=>({waitLock:()=>{},releaseLock:()=>{}})}};
 vm.createContext(ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs','utf8'),ctx);
-vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/registration_freeform_migration.gs','utf8'),ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/submission_forms.gs','utf8'),ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/registration_freeform_migration.gs','utf8'),ctx);
 const state={
  'CML3112|W02':{formId:'one',openAt:'2026-09-15',closeAt:'2026-09-22',assessmentReleased:true},
  'CML3113|W03':{formId:'two',openAt:null,closeAt:null,assessmentReleased:false},
@@ -33,4 +33,4 @@ console.log('IUEA migration removes the pattern, keeps required identity items, 
 
 assert.equal(ctx.sheetText_('=DEMO'), "'=DEMO");
 assert.equal(ctx.sheetText_('99/0000/DEMO-X'), '99/0000/DEMO-X');
-assert.ok(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs','utf8').includes('key,sheetText_(sid),r.getRespondentEmail()'));
+assert.ok(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/submission_forms.gs','utf8').includes('key,sheetText_(sid),r.getRespondentEmail()'));

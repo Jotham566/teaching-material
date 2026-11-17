@@ -6,8 +6,8 @@ from pathlib import Path
 import json, shutil, hashlib
 from presentation_teaching_support import make_notes, correct
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'review/2026-09-21/presentation-notes'
-SOURCE=ROOT/'review/2026-09-15/ppt-revision/deck-content.json'
+OUT=ROOT/'_archive/review/2026-09-21/presentation-notes'
+SOURCE=ROOT/'_archive/review/2026-09-15/ppt-revision/deck-content.json'
 def main():
  decks=json.loads((OUT/'inventory.json').read_text()); sources=json.loads(SOURCE.read_text());lookup={d['filename']:d for d in sources}
  records=[]

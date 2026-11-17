@@ -1,7 +1,7 @@
 import sys,tempfile,unittest,json,csv
 from pathlib import Path
 from datetime import datetime,timezone
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 from collect_offline import collect
 class OfflineTests(unittest.TestCase):
  def test_receipt_uses_collection_clock_not_file_time(self):

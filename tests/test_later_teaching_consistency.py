@@ -24,12 +24,12 @@ class LaterTeaching(unittest.TestCase):
      if s.get('code'):
       self.assertLessEqual(len(s['code'].splitlines()),8)
     if d['week']<=14:
-     nbpath=ROOT/'IUEA_Teaching_Plan/guided_practice'/d['cohort']/f"W{d['week']:02}"/'guided_practice.ipynb'
+     nbpath=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/guided_practice'/d['cohort']/f"W{d['week']:02}"/'guided_practice.ipynb'
      nb=json.loads(nbpath.read_text())
      actual=[''.join(c['source']).strip() for c in nb['cells'] if c['cell_type']=='code']
      self.assertEqual(actual,expected)
      if d['week']<=12:
-      with zipfile.ZipFile(ROOT/'IUEA_Teaching_Plan/student_packages'/f"{d['cohort']}_W{d['week']:02}_student.zip") as z:
+      with zipfile.ZipFile(ROOT/'IUEA_Teaching_Plan/Weeks_01-07/student_packages'/f"{d['cohort']}_W{d['week']:02}_student.zip") as z:
        self.assertEqual(z.read('guided_practice.ipynb'),nbpath.read_bytes())
        self.assertFalse(any('grader' in n.lower() for n in z.namelist()))
 if __name__=='__main__':unittest.main()

@@ -6,7 +6,7 @@ never written a line of code. FIVE weeks, three sessions a week, three hours
 a session. Python-heavy, with SQL to get the data and Power BI to ship the
 result.
 
-Every document, lab and deck in DataAnalysis_Track/ is generated from this
+Every document, lab and deck in Professional_Training/Data_Analysis_Course/ is generated from this
 file, so a change here reaches all of them.
 
 WHY FIFTEEN SESSIONS AND NOT TWELVE
@@ -69,7 +69,7 @@ assert sum(m for m, _, _ in BLOCK) == HOURS_PER_SESSION * 60
 DATASETS = [
     {"key": "core",
      "name": "Riverside Distributors (course dataset)",
-     "url": "built by DataAnalysis_Track/data/build_teaching_data.py",
+     "url": "built by Professional_Training/Data_Analysis_Course/data/build_teaching_data.py",
      "licence": "Course-owned. Generated, so it can be redistributed freely, "
                 "including on a commercial course.",
      "shape": "6 tables, about 6,000 orders and 20,000 order lines over two "

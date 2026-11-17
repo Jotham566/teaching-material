@@ -2,7 +2,7 @@ import csv,json,sys,tempfile,unittest
 from types import SimpleNamespace
 from pathlib import Path
 from unittest.mock import patch,Mock
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/Assessments/grader'))
 import grade_assessment as grading
 class WrapperTests(unittest.TestCase):
  def test_manifest_limits_execution_without_blocking_incomplete_packet(self):

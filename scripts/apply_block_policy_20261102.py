@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from backup_20261102 import backup
 
-ROOT = Path(__file__).resolve().parents[1]; BASE = ROOT / "IUEA_Teaching_Plan"; GRADER = BASE / "grader"
+ROOT = Path(__file__).resolve().parents[1]; BASE = ROOT / "IUEA_Teaching_Plan"; GRADER = BASE / "Assessments/grader"
 POL = json.loads((ROOT / "data" / "assessment_blocks_20261102.json").read_text())
 COHORTS = ("CML3111", "CML3112", "CML3113")
 STUB = ("/** SUPERSEDED on 2 November 2026 by {new}. This file is intentionally empty so that pasting both files into one\n"
@@ -263,7 +263,7 @@ function retireQ11AndQ12Forms() {
 
 
 def rewrite_links(links):
-    md = BASE / "Assignment_Submission_Links.md"; backup(md); text = md.read_text(); total = 0
+    md = BASE / "Assessments/Assignment_Submission_Links.md"; backup(md); text = md.read_text(); total = 0
     for (code, label), (opens, close) in links.items():
         pat = re.compile(rf"(?m)^(\| {label}: [^|]*\| )([^|]*)( \| )([^|]*)( \| \[Submit\]\([^)]*\) \|)$")
         sec = text.index(f"## {code}"); nxt = text.find("\n## ", sec + 1); nxt = len(text) if nxt < 0 else nxt

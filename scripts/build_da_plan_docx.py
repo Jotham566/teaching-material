@@ -18,7 +18,7 @@ from docx.oxml.ns import qn
 from docxkit import *          # noqa
 import da_content as C         # noqa: E402
 
-TRACK = _os.path.join(_ROOT, "DataAnalysis_Track")
+TRACK = _os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course")
 OUT = _os.path.join(TRACK, "DataAnalysis_Track_Plan.docx")
 with open(_os.path.join(TRACK, "data", "answer_key.json"),
           encoding="utf-8") as fh:

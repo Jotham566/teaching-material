@@ -11,7 +11,7 @@ from docx.shared import Pt
 from docxkit import *   # noqa
 from docxkit import _border
 
-OUT = _ROOT + "/IUEA_Teaching_Plan/IUEA_ML_Semester1_Master_Teaching_Plan.docx"
+OUT = _ROOT + "/IUEA_Teaching_Plan/Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.docx"
 
 d = new_doc()
 header_footer(d, "IUEA Faculty of Engineering · Machine Learning for Engineers · Semester 1 Master Teaching Plan")

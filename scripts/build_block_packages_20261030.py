@@ -64,23 +64,23 @@ def patch_notebook(nb, text):
 def main():
     for code in COHORTS:
         for week in WEEKS:
-            b, p = PART[week]; d = BASE / "assessment_banks" / f"W{week:02}" / code / "A"
+            b, p = PART[week]; d = BASE / "Assessments/assessment_banks" / f"W{week:02}" / code / "A"
             csvs = sorted(x.name for x in d.glob("*.csv"))
             key = f"{code}|W{week:02}"; LINKS[key]["closeAt"] = b["assignment_closes"][code]
             text = guide(code, week, csvs, LINKS[key]["url"])
-            (BASE / "student_guides" / code / f"W{week:02}.md").write_text(text)
+            (BASE / "Assessments/student_guides" / code / f"W{week:02}.md").write_text(text)
             for ext in ("md", "txt"): (d / f"ASSIGNMENT_INSTRUCTIONS.{ext}").write_text(text)
             nbp = d / f"W{week:02}_student.ipynb"; nb = patch_notebook(json.loads(nbp.read_text()), text)
             nbp.write_text(json.dumps(nb, ensure_ascii=False, indent=1) + "\n")
             clean = json.loads(json.dumps(nb))
             for c in clean["cells"]:
                 if c["cell_type"] == "code": c["outputs"] = []; c["execution_count"] = None
-            zp = BASE / "student_packages" / f"{code}_W{week:02}_student.zip"
+            zp = BASE / "Weeks_01-07/student_packages" / f"{code}_W{week:02}_student.zip"
             with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
                 z.writestr("START_HERE.md", text)
                 z.writestr(nbp.name, json.dumps(clean, ensure_ascii=False, indent=1) + "\n")
                 for c in csvs: z.write(d / c, c)
-                gp = BASE / "guided_practice" / code / f"W{week:02}" / "guided_practice.ipynb"
+                gp = BASE / "Weeks_01-07/guided_practice" / code / f"W{week:02}" / "guided_practice.ipynb"
                 z.write(gp, "guided_practice.ipynb")
     LINKS_PATH.write_text(json.dumps(LINKS, indent=2) + "\n")
     print("built", len(COHORTS) * len(WEEKS), "packages")

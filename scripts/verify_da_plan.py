@@ -4,7 +4,7 @@ import re
 from docx import Document
 ROOT=Path(__file__).resolve().parents[1]
 def verify():
- doc=Document(ROOT/'DataAnalysis_Track/DataAnalysis_Track_Plan.docx')
+ doc=Document(ROOT/'Professional_Training/Data_Analysis_Course/DataAnalysis_Track_Plan.docx')
  paragraphs=[p.text for p in doc.paragraphs]
  tables=[c.text for t in doc.tables for r in t.rows for c in r.cells]
  text='\n'.join(paragraphs+tables)

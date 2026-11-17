@@ -24,7 +24,7 @@ Share the refreshed student ZIP for the cohort and week. Students already workin
 
 ## Current CML3112 availability
 
-See [the 29 September student links](CML3112_Sept29_Student_Links.md). That separate, earlier reopening superseded the original A3 deadline. This instruction revision makes no further availability change.
+See [the 29 September student links](_archive/CML3112_Sept29_Student_Links.md). That separate, earlier reopening superseded the original A3 deadline. This instruction revision makes no further availability change.
 
 ## Approved A3 extension for Friday cohorts
 

@@ -3,7 +3,7 @@ import csv,hashlib,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def verify(folder=None):
- folder=Path(folder or ROOT/'DataAnalysis_Track/data/sector_snapshots')
+ folder=Path(folder or ROOT/'Professional_Training/Data_Analysis_Course/data/sector_snapshots')
  manifest=json.loads((folder/'manifest.json').read_text())
  for row in manifest['files']:
   if Path(row['file']).name!=row['file']:raise ValueError('Invalid snapshot filename')

@@ -30,7 +30,7 @@ d.add_paragraph('Teaching complete beginners','Title')
 p('Lecturer quick guide | Revised 15 October 2026')
 p('From Week 6 onward, continue using pandas for table work. The current slides and matching notebooks explain the new operations before examples. Check Teaching_Progress.md for cohort pacing.')
 h('Open one place before class')
-p('In IUEA_Teaching_Plan/decks, open the PowerPoint for your cohort and week. Use Slide Show for teaching and Presenter View for the explanation prompts in the speaker notes. The filenames are unchanged.')
+p('In IUEA_Teaching_Plan/Weeks_01-07/decks, open the PowerPoint for your cohort and week. Use Slide Show for teaching and Presenter View for the explanation prompts in the speaker notes. The filenames are unchanged.')
 p('Teach from the updated PowerPoint. Explain its pictures, annotated code and worked answers directly. Students repeat the examples individually after class. No live partner activity is required. Read the live assignment form for the current deadline; the separately authorised A3 reopening supersedes the older date printed in its slides.')
 h('What to share')
 p('Share the current cohort student ZIP. From Week 3 where relevant, it includes guided_practice.ipynb for the examples shown in the PowerPoint. It follows the revised slide order, with matching slide numbers. The issued Wxx_student.ipynb is the assignment notebook. Its opening checklist and task prompts contain the required work; separate instruction files are reference copies. For Week 2, proof_of_life.ipynb remains the main notebook and the four repairs stay practice.')
@@ -77,4 +77,4 @@ for paragraph in d.paragraphs:
   fonts=run._r.get_or_add_rPr().rFonts
   for attr in list(fonts.attrib):
    if attr.endswith(('asciiTheme','hAnsiTheme','eastAsiaTheme','cstheme','csTheme')):del fonts.attrib[attr]
-d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Beginner_Teaching_Quick_Guide.docx')
+d.save(ROOT/'IUEA_Teaching_Plan/Lecturer_Guides/IUEA_ML_Beginner_Teaching_Quick_Guide.docx')

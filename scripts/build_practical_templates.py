@@ -2,7 +2,7 @@
 import json,shutil,sys
 from pathlib import Path
 from build_week2_kit import notebook
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';GRADER=BASE/'grader'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';GRADER=BASE/'Assessments/grader'
 sys.path.insert(0,str(GRADER))
 import iuea_grader as ig
 
@@ -10,7 +10,7 @@ for week in (3,5):
  aid=f'W{week:02}';specfile=GRADER/'specs'/f'spec_{aid}.py'
  spec=ig.load_spec(aid,str(specfile),include_hidden=False)
  for code in ('CML3111','CML3112','CML3113'):
-  dest=BASE/'practicals'/aid/code;dest.mkdir(parents=True,exist_ok=True)
+  dest=BASE/'Weeks_01-07/practicals'/aid/code;dest.mkdir(parents=True,exist_ok=True)
   if week==5:shutil.copy2(GRADER/'data/campus_energy.csv',dest/'campus_energy.csv')
   cells=[('markdown',f'# {aid}: {spec.TITLE}\n{code}. Complete each named output. Save as STUDENT_ID_{aid}.ipynb.'),
          ('code',f'STUDENT_ID="YOUR_ID"\nCOHORT="{code}"\n')]

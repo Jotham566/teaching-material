@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,shutil,zipfile
 from reviewed_notes_overlay import signature
-ROOT=Path(__file__).resolve().parents[1];R=ROOT/'review/2026-09-29/slide-specific-notes'
+ROOT=Path(__file__).resolve().parents[1];R=ROOT/'_archive/review/2026-09-29/slide-specific-notes'
 plans=json.loads((R/'notes-plan.json').read_text());staged=json.loads((R/'staged.json').read_text())
 source_path=ROOT/'data/iuea_deck_content.json';sources=json.loads(source_path.read_text());lookup={d['filename']:d for d in sources};overlay={};report=[]
 for d in plans:
@@ -30,7 +30,7 @@ manifest_path=ROOT/'data/iuea_foundations_manifest.json';manifest=json.loads(man
 for row in manifest:row['sha256']=hashes[row['filename']]
 manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')
 (ROOT/'data/iuea_lecturer_notes_manifest.json').write_text(json.dumps(report,indent=2)+'\n')
-index=ROOT/'IUEA_Teaching_Plan/decks/LECTURER_NOTES_INDEX.md'
+index=ROOT/'IUEA_Teaching_Plan/Weeks_01-07/decks/LECTURER_NOTES_INDEX.md'
 lines=['# Lecture slides and speaker notes','','Each slide has its own explanation, teaching illustration and misconception guidance. Code slides include a line-by-line explanation. The `.md` companion contains the same notes for preparation away from PowerPoint.','','Close and reopen an already open presentation to load the updated notes. Use **View → Notes** while preparing or **Slide Show → Presenter View** when teaching. Speaker notes are for the lecturer; the audience display shows the slide.','','## Current next lessons','','CML3112: Week 4. CML3111 and CML3113: Week 3, from slide 1.','','## All weeks','']
 for row in report:
  name=row['filename'];lines.append(f'- [{name}](./{name}) · [Readable notes](./lecturer_notes/{Path(name).stem}.md)')

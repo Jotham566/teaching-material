@@ -134,7 +134,7 @@ def plan_content():
 
 
 def xlsx():
-    f = B / "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"; wb = openpyxl.load_workbook(f)
+    f = B / "Plans_and_Syllabi/IUEA_ML_Semester1_Master_Teaching_Plan.xlsx"; wb = openpyxl.load_workbook(f)
     ws = wb["Rubrics"]
     r_da = next(r for r in range(1, ws.max_row + 1) if ws.cell(r, 1).value == "Data Analysis Project (10%)")
     want_da = 31 + len(T2); shift = want_da - r_da

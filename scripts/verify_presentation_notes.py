@@ -5,7 +5,7 @@ This historical audit deliberately retains its original hash assertions.
 """
 import hashlib,json,posixpath,zipfile,xml.etree.ElementTree as E
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];R=ROOT/'review/2026-09-21/presentation-notes'
+ROOT=Path(__file__).resolve().parents[1];R=ROOT/'_archive/review/2026-09-21/presentation-notes'
 NS={'p':'http://schemas.openxmlformats.org/presentationml/2006/main','a':'http://schemas.openxmlformats.org/drawingml/2006/main'}
 def main():
  plan=json.loads((R/'notes-plan.json').read_text());installed=json.loads((R/'installation.json').read_text());checks=json.loads((R/'validation-progress.json').read_text());total=0

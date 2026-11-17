@@ -1,7 +1,7 @@
 """Regression checks for the beginner notebook workflow and legacy marking."""
 import copy,json,os,re,subprocess,sys,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/grader';sys.path.insert(0,str(G))
+ROOT=Path(__file__).resolve().parents[1];G=ROOT/'IUEA_Teaching_Plan/Assessments/grader';sys.path.insert(0,str(G))
 from batch_grade import grade_one
 from test1_coding_reference import complete_notebook,NOTEBOOK_ANSWERS
 from test1_coding_contracts import PARTS
@@ -49,7 +49,7 @@ class CodingTests(unittest.TestCase):
   self.replace(nb,'loops',"load_band_counts = {'low':int((cleaned_data.load_pct<40).sum()),'medium':int(cleaned_data.load_pct.between(40,75).sum()),'high':int((cleaned_data.load_pct>75).sum())}\n")
   r=self.grade(nb);self.assertEqual(self.score(r),96,r)
  def test_old_issued_v3_notebook_still_scores_100(self):
-  rel='IUEA_Teaching_Plan/assessment_banks/TEST1/CML3111/A/TEST1_student.ipynb'
+  rel='IUEA_Teaching_Plan/assessment_banks/TEST1/CML3111/A/TEST1_student.ipynb'   # the path as it was in commit 26f271ea (before the 16 November reorganisation)
   nb=json.loads(subprocess.check_output(['git','show','26f271ea:'+rel],cwd=ROOT))
   source=(G/'test1_coding_reference.py').read_text().split('# Lecturer-only answers')[0]
   for c in nb['cells']:

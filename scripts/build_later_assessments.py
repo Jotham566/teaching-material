@@ -1,7 +1,7 @@
 """Create reviewable later-assessment banks and criterion-preserving hybrid maps."""
 import json,csv,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'grader'
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'Assessments/grader'
 sys.path.insert(0,str(G))
 from engineering_contracts import DOMAINS,TASKS,dataset
 from later_reasoning import ATOMS,SCENARIOS,cases,W08_CHOICE
@@ -18,7 +18,7 @@ MAP={
  'DA_PROJECT':[('clean',10,'c2'),('summary',10,'c3'),('charts4',12,'c3'),('findings',10,'c4')],
  'ML_PROJECT':[('regression',10,'c3'),('split',5,'c5'),('errors',5,'c5')],
 }
-OUT=BASE/'assessment_banks';OUT.mkdir(exist_ok=True)
+OUT=BASE/'Assessments/assessment_banks';OUT.mkdir(exist_ok=True)
 HYBRID=G/'rubrics/hybrid';HYBRID.mkdir(exist_ok=True)
 manifest={}
 for aid,parts in MAP.items():

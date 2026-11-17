@@ -151,8 +151,8 @@ def close(a, b, tol):
 def run_deck(path, code, week, tol):
     prs = Presentation(str(path)); ns = {"__name__": "__main__"}; problems = []; checked = 0; ran = 0; buf = []
     tmp = Path(tempfile.mkdtemp()); old = os.getcwd(); os.chdir(tmp)
-    shutil.copy(DECKS.parent / "assessment_banks" / "W08" / code / "A" / "engineering_data.csv", "engineering_data.csv")
-    shutil.copy(DECKS.parent / "assessment_banks" / "W09" / code / "A" / "classification_case.csv", "classification_case.csv")
+    shutil.copy(DECKS.parent.parent / "Assessments/assessment_banks" / "W08" / code / "A" / "engineering_data.csv", "engineering_data.csv")
+    shutil.copy(DECKS.parent.parent / "Assessments/assessment_banks" / "W09" / code / "A" / "classification_case.csv", "classification_case.csv")
     try:
         for i, s in enumerate(prs.slides, 1):
             blocks = courier_blocks(s)

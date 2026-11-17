@@ -33,7 +33,7 @@ sys.path.insert(0, _HERE)
 
 import da_content as C                                   # noqa: E402
 
-TRACK = os.path.join(_ROOT, "DataAnalysis_Track")
+TRACK = os.path.join(_ROOT, "Professional_Training/Data_Analysis_Course")
 DATA = os.path.join(TRACK, "data")
 LABS = os.path.join(TRACK, "labs")
 DB = os.path.join(DATA, "riverside.db")

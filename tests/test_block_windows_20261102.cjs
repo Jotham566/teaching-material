@@ -6,7 +6,7 @@ const logs = [], calls = [];
 const state = {};
 reg.filter(r => /^CML31\d\d\|W(0[89]|1[0-2])$/.test(r.key)).forEach(r => { state[r.key] = { openAt: r.opens_at, closeAt: '2026-12-10T23:59:00+03:00' }; });  // old, wrong closes
 const c = { Logger: { log: m => logs.push(m) }, submissionState_: () => state, setSubmissionWindow: (k, o, cl) => { calls.push([k, o, cl]); state[k].openAt = o; state[k].closeAt = cl; } };
-vm.createContext(c); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/apply_block_windows_20261102.gs', 'utf8'), c);
+vm.createContext(c); vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/Assessments/grader/apply_block_windows_20261102.gs', 'utf8'), c);
 assert.equal(JSON.parse(JSON.stringify(c.BLOCK_WINDOW_CALLS)).length, 15);
 c.showBlockWindows(); assert.match(logs.pop(), /0 OK, 15 need attention/); logs.length = 0;
 c.applyBlockWindows(); assert.equal(calls.length, 15); assert.match(logs.pop(), /15 set, 0 already correct, 0 left/);
