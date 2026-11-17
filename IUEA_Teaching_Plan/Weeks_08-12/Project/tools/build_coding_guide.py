@@ -73,6 +73,10 @@ def cells_block(d, *keys):
             if n > 1:
                 gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
             code_block(d, part, label=f'Cell {n}')
+        if key == 'encoded':                                         # the revision-only demo (not in the project)
+            for part in WA.demo_cells():
+                gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
+                code_block(d, part, label='Revision demo (in the revision notebooks only, not in the project)')
         if key in PC.SUPPLIED_CELLS:                                # the ready-made "watch it learn" cell, already in every notebook
             gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
             code_block(d, PC.SUPPLIED_CELLS[key][1], label='Supplied cell (already in the students\' notebook; not marked)')
@@ -178,8 +182,8 @@ def main():
           'Why is it wrong to fill the gaps before the split?')
     heading(d, 'Task 3b. Do the text columns help?', '2 marks, 10 minutes')
     cells_block(d, 'encoded')
-    notes(d, 'One 0/1 column per category, learned from train; "ignore" gives an unseen category all zeros. A comparison only.',
-          f'{f(enc)} USD against {f(vm["linear"])}: the text columns help.',
+    notes(d, 'One 0/1 column per category, learned from train; "ignore" gives an unseen category all zeros. A comparison only in the project. Demo: in real work, retrain both models with the text columns; one change at a time in the project.',
+          f'{f(enc)} USD against {f(vm["linear"])}: the text columns help linear regression. The tree stays at {f(vm["tree"])}: it never uses a text column (share 0).',
           'A neighbourhood train never saw: what happens without "ignore"?')
     heading(d, 'Task 4. Choose the house model, then use the test set once', '1 mark, 10 minutes')
     cells_block(d, 'test_h')

@@ -70,6 +70,13 @@ def answered(code, mode):
                 one = copy.deepcopy(cell)
                 one['source'] = part.splitlines(True)
                 cells.append(one)
+            if practice and current == 'encoded':                          # revision-only demo: both models with the text columns
+                cells.append(BN.cell(W.DEMO_TEXT_INTRO))
+                for part in W.demo_cells():
+                    one = copy.deepcopy(cell)
+                    one['source'] = part.splitlines(True)
+                    cells.append(one)
+                cells.append(BN.cell(W.DEMO_TEXT_READ))
             continue
         if cell['cell_type'] == 'code' and text.startswith('# Fill in every field'):
             cell['source'] = (PRACTICE_MEMO if mode == 'students' else PC.memo_solution(code, cfg)).splitlines(True)
