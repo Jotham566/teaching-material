@@ -1,9 +1,12 @@
-"""The lecturer's run-all answer notebooks (16 November 2026). python3 tools/build_worked_answers.py [--proof-dir DIR]
+"""The run-all revision notebooks (16 and 17 November 2026). python3 tools/build_worked_answers.py [--proof-dir DIR]
 
 Writes Lecturer Guides/Rehearsal_Answers_<course>.ipynb: the rehearsal notebook (random_state=29) with every task answered by the code of
 tools/worked_answers.py and the MEMO filled in, so Runtime > Run all gives every result. In this copy the clock and the automatic backup are
 switched off (it is not an attempt from the entry page). FOR THE LECTURER ONLY: never post it.
 tools/worked_answers.py holds the answer code and stays on this computer only (git-ignored, 17 November 2026).
+Also writes Lecturer Guides/Rehearsal_Answers_<course>_for_students.ipynb: the same worked code, commented for self-study, to share with
+students after the revision class. Its MEMO fills in only the numbers (from the variables); the Limits and Next step letters and the two
+written answers are left for the student, because the project uses the same lists and identical sentences would trip the copy check.
 With --proof-dir, also writes the same answers on the project's split (random_state=17) as a submission to grade, to prove full marks.
 """
 import argparse
@@ -24,6 +27,25 @@ OUT = PC.PLAN / 'Weeks_08-12/Lecturer Guides'
 TITLE = '''# {code} Engineering ML project: REHEARSAL ANSWERS (lecturer only, do not post)
 Every task is answered, one step per cell. Choose **Runtime > Run all**, then talk through one cell at a time. The split uses random_state=29, as in the rehearsal; the project uses 17.
 The clock and the automatic backup are off in this copy.'''
+STUDENT_TITLE = '''# {code} Engineering ML project: worked revision notebook (practice)
+Every task of the rehearsal is worked, one step per cell, with comments. Choose **Runtime > Run all**, then read each cell and its output.
+The split uses random_state=29; the project uses 17, so your project numbers will differ. Nothing here is marked.
+Part B is yours: choose the Limits and Next step letters and write the two answers in the MEMO cell yourself.'''
+PRACTICE_MEMO = '''# The numbers come from your variables (never type them). The letters and the two answers are yours to fill in.
+MEMO = {
+    "house_model": chosen_house_model,
+    "house_validation_mae": {"linear": round(float(linear_mae), 3), "tree": round(float(tree_mae), 3)},
+    "warning_model": chosen_warning_model,
+    "warning_validation_f1": {"logistic": round(float(logistic_f1), 3), "tree": round(float(tree_f1), 3)},
+    "test_mae": round(float(test_mae), 3),
+    "test_f1": round(float(test_f1), 3),
+    "limits": ["", "", ""],      # three different letters from the Limits list above
+    "next_step": "",             # one letter from the Next step list above
+    "answer_choice": "",         # one or two sentences: which house model, and why (use your numbers)
+    "answer_test_set": "",       # one or two sentences: why the test set is used only once, at the end
+}
+print(MEMO)
+'''
 
 
 def src(cell):
@@ -31,9 +53,10 @@ def src(cell):
 
 
 def answered(code, mode):
-    """mode 'rehearsal' (the lecturer copy) or 'project' (the proof submission)."""
-    nb, _, _ = BN.build_notebook(code, 'rehearsal' if mode == 'rehearsal' else 'student')
-    cfg = P.REHEARSAL if mode == 'rehearsal' else P.EXAM
+    """mode 'rehearsal' (the lecturer copy), 'students' (the practice copy to share) or 'project' (the proof submission)."""
+    practice = mode in ('rehearsal', 'students')
+    nb, _, _ = BN.build_notebook(code, 'rehearsal' if practice else 'student')
+    cfg = P.REHEARSAL if practice else P.EXAM
     labels = {t['label']: t['key'] for t in PC.tasks(cfg)}
     current = None
     cells = []
@@ -49,16 +72,16 @@ def answered(code, mode):
                 cells.append(one)
             continue
         if cell['cell_type'] == 'code' and text.startswith('# Fill in every field'):
-            cell['source'] = PC.memo_solution(code, cfg).splitlines(True)
+            cell['source'] = (PRACTICE_MEMO if mode == 'students' else PC.memo_solution(code, cfg)).splitlines(True)
         cells.append(cell)
     nb['cells'] = cells
-    if mode == 'rehearsal':
-        nb['cells'][0]['source'] = TITLE.format(code=code).splitlines(True)
+    if practice:
+        nb['cells'][0]['source'] = (STUDENT_TITLE if mode == 'students' else TITLE).format(code=code).splitlines(True)
         setup = nb['cells'][1]
         s = src(setup)
         for call in ('_iuea_backup_start()\n', '_iuea_countdown_start()\n'):
             assert s.count('\n' + call) == 1, call
-            s = s.replace('\n' + call, '\n# ' + call.strip() + '  (switched off in the lecturer copy)\n')
+            s = s.replace('\n' + call, '\n# ' + call.strip() + '  (switched off in this copy)\n')
         setup['source'] = s.splitlines(True)
     return nb
 
@@ -70,6 +93,9 @@ def main():
     for code in PC.CODES:
         path = OUT / f'Rehearsal_Answers_{code}.ipynb'
         BN.write_nb(path, answered(code, 'rehearsal'))
+        print('wrote', path.name)
+        path = OUT / f'Rehearsal_Answers_{code}_for_students.ipynb'
+        BN.write_nb(path, answered(code, 'students'))
         print('wrote', path.name)
         if a.proof_dir:
             nb = answered(code, 'project')

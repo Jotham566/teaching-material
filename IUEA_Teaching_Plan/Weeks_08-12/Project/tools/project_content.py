@@ -199,8 +199,10 @@ QUESTION_HEADINGS = {
 SUPPLIED_MARK = '# IUEA-SUPPLIED'
 SUPPLIED_CELLS = {
     'regression': ('''### Supplied: watch linear regression learn (just run it, not marked)
-`LinearRegression()` finds its weights in one go. Gradient descent (Class 1) reaches almost the same weights step by step:
-start every weight at 0, then repeat **new w = old w - learning rate x slope of the loss**.''',
+`LinearRegression()` computes its weights directly, in one go: it has no epochs. Gradient descent (Class 1) reaches the same weights step by step:
+start every weight at 0, then repeat **new w = old w - learning rate x slope of the loss**.
+- **Epochs** are set in the line `epochs = 300`. One epoch is one pass over all the training houses; here every step uses all of them, so one step is one epoch.
+- **Learning rate** is set in the line `learning_rate = 0.1`: the size of each step.''',
 '''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
 if "houses_train" not in globals():
     print("Do Tasks 1 and 2 first: this cell needs houses_train.")
@@ -208,37 +210,58 @@ else:
     gd_imputer = SimpleImputer(strategy="median")
     gd_scaler = StandardScaler()
     gd_filled = gd_imputer.fit_transform(houses_train[H_FEATURES])   # fill gaps with the training medians
-    gd_X = gd_scaler.fit_transform(gd_filled)                         # put every feature on one scale
+    gd_X = gd_scaler.fit_transform(gd_filled)                         # standardise: every feature has mean 0 and standard deviation 1
     gd_y = houses_train[H_TARGET].to_numpy() / 1000                   # price in thousand USD
 
+    epochs = 300                      # how many passes over the training houses
+    learning_rate = 0.1               # the size of each step downhill
     gd_w = np.zeros(gd_X.shape[1])    # one weight per feature, all 0 at the start
-    gd_b = 0.0                        # the intercept
-    learning_rate = 0.1
-    gd_losses = []
-    for step in range(300):
-        gd_guess = gd_X @ gd_w + gd_b                 # the model's price for every training house
+    gd_b = 0.0                        # the intercept, 0 at the start
+    gd_losses = []                    # the loss (MSE) after each epoch
+    gd_errors = []                    # the training MAE after each epoch
+    for epoch in range(epochs):
+        gd_guess = gd_X @ gd_w + gd_b                 # the model's price for every training house: b + w1 x1 + w2 x2 + ...
         gd_gap = gd_guess - gd_y                      # how far off each guess is
         gd_losses.append(np.mean(gd_gap ** 2))        # the loss: mean squared error (MSE)
-        gd_w = gd_w - learning_rate * 2 * (gd_X.T @ gd_gap) / len(gd_y)   # one small step downhill
+        gd_errors.append(np.mean(np.abs(gd_gap)))     # the training MAE, in thousand USD
+        gd_w = gd_w - learning_rate * 2 * (gd_X.T @ gd_gap) / len(gd_y)   # new w = old w - learning rate x slope of the loss
         gd_b = gd_b - learning_rate * 2 * np.mean(gd_gap)
 
-    print("Loss at the start:", round(gd_losses[0]), "| after 300 steps:", round(gd_losses[-1]))
+    print("Loss (MSE) at the start:", round(gd_losses[0]), "| after", epochs, "epochs:", round(gd_losses[-1]))
+    print("Training MAE at the start:", round(gd_errors[0], 1), "thousand USD | after", epochs, "epochs:", round(gd_errors[-1], 1))
+
     plt.figure()
     plt.plot(gd_losses)
-    plt.title("Gradient descent: the training loss falls step by step")
-    plt.xlabel("Step")
+    plt.title("Gradient descent: the training loss falls epoch by epoch")
+    plt.xlabel("Epoch")
     plt.ylabel("Loss: MSE (thousand USD, squared)")
     plt.show()
 
-    # The learned weights: gradient descent next to LinearRegression, on the same scaled features
+    # Regression has no accuracy (a price is never exactly right or wrong): its training curve is the error at each epoch
+    plt.figure()
+    plt.plot(gd_errors)
+    plt.title("Training error at each epoch (lower is better)")
+    plt.xlabel("Epoch")
+    plt.ylabel("Training MAE (thousand USD)")
+    plt.show()
+
+    # The learned weights: gradient descent next to LinearRegression, on the same standardised features
     gd_check = LinearRegression().fit(gd_X, gd_y)
     gd_weights = pd.DataFrame({"feature": H_FEATURES, "gradient descent": gd_w, "LinearRegression": gd_check.coef_})
     display(gd_weights.round(2))
     print("Intercept, gradient descent:", round(gd_b, 2), "| LinearRegression:", round(gd_check.intercept_, 2))
-'''),
+''', '''**How to read the weights table**
+- Each row is one feature. A weight is the change in price, **in thousand USD**, when that feature rises by **one standard deviation** (the others held fixed). Example: a living_area_m2 weight of 34 means a house about one standard deviation bigger sells for about 34,000 USD more.
+- A positive weight raises the price; a negative one lowers it. Because every feature is on the same scale, a bigger weight (ignoring the sign) means a feature matters more.
+- The two columns agree: gradient descent, walking downhill, ends where `LinearRegression()` lands directly.
+- The intercept is the price of a house that is average in every feature: the mean training price, in thousand USD.
+- These are not the weights printed in Task 3: there the features kept their own units (per m2, per year), so those weights cannot be compared with each other.'''),
     'classify': ('''### Supplied: watch logistic regression learn (just run it, not marked)
-Logistic regression learns by gradient descent (Class 2). Each step it turns every run's score into a chance of failure (the sigmoid),
-measures the log loss, and moves every weight a small step downhill. The second chart shows the training accuracy at each step.''',
+Logistic regression learns by gradient descent (Class 2). Each epoch it turns every run's score into a chance of failure (the sigmoid),
+measures the log loss, and moves every weight a small step downhill.
+- **Epochs** are set in the line `epochs = 1000`: one epoch is one pass over all the training runs.
+- **Learning rate** is set in the line `learning_rate = 1.0`.
+- The second chart is the **training accuracy** at each epoch: the share of training runs the model calls right.''',
 '''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
 if "machines_train" not in globals():
     print("Do Tasks 5 and 6 first: this cell needs machines_train.")
@@ -246,44 +269,49 @@ else:
     gd2_imputer = SimpleImputer(strategy="median")
     gd2_scaler = StandardScaler()
     gd2_filled = gd2_imputer.fit_transform(machines_train[M_FEATURES])   # fill gaps with the training medians
-    gd2_X = gd2_scaler.fit_transform(gd2_filled)                          # put every feature on one scale
-    gd2_y = (machines_train[M_TARGET] >= M_LIMIT).astype(int).to_numpy()   # 1 = the run failed
+    gd2_X = gd2_scaler.fit_transform(gd2_filled)                          # standardise: mean 0, standard deviation 1
+    gd2_y = (machines_train[M_TARGET] >= M_LIMIT).astype(int).to_numpy()   # 1 = the run failed, 0 = it did not
 
+    epochs = 1000                       # how many passes over the training runs
+    learning_rate = 1.0                 # the size of each step downhill
     gd2_w = np.zeros(gd2_X.shape[1])    # one weight per feature, all 0 at the start
-    gd2_b = 0.0                         # the intercept
-    learning_rate = 1.0
-    gd2_losses = []
-    gd2_accuracy = []
-    for step in range(1000):
+    gd2_b = 0.0                         # the intercept, 0 at the start
+    gd2_losses = []                     # the log loss after each epoch
+    gd2_accuracy = []                   # the training accuracy after each epoch
+    for epoch in range(epochs):
         gd2_chance = 1 / (1 + np.exp(-(gd2_X @ gd2_w + gd2_b)))   # the sigmoid: a chance of failure from 0 to 1
         gd2_losses.append(-np.mean(gd2_y * np.log(gd2_chance) + (1 - gd2_y) * np.log(1 - gd2_chance)))   # log loss
-        gd2_accuracy.append(np.mean((gd2_chance >= 0.5) == gd2_y))   # share of training runs called right
-        gd2_w = gd2_w - learning_rate * (gd2_X.T @ (gd2_chance - gd2_y)) / len(gd2_y)   # one small step downhill
+        gd2_accuracy.append(np.mean((gd2_chance >= 0.5) == gd2_y))   # share of training runs called right at threshold 0.5
+        gd2_w = gd2_w - learning_rate * (gd2_X.T @ (gd2_chance - gd2_y)) / len(gd2_y)   # new w = old w - learning rate x slope
         gd2_b = gd2_b - learning_rate * np.mean(gd2_chance - gd2_y)
 
-    print("Log loss at the start:", round(gd2_losses[0], 3), "| after 1000 steps:", round(gd2_losses[-1], 3))
-    print("Training accuracy at the start:", round(gd2_accuracy[0], 3), "| after 1000 steps:", round(gd2_accuracy[-1], 3))
+    print("Log loss at the start:", round(gd2_losses[0], 3), "| after", epochs, "epochs:", round(gd2_losses[-1], 3))
+    print("Training accuracy at the start:", round(gd2_accuracy[0], 3), "| after", epochs, "epochs:", round(gd2_accuracy[-1], 3))
+
     plt.figure()
     plt.plot(gd2_losses)
-    plt.title("Gradient descent: the training log loss falls step by step")
-    plt.xlabel("Step")
+    plt.title("Gradient descent: the training log loss falls epoch by epoch")
+    plt.xlabel("Epoch")
     plt.ylabel("Log loss")
     plt.show()
 
     plt.figure()
     plt.plot(gd2_accuracy)
-    plt.title("Training accuracy at each step")
-    plt.xlabel("Step")
+    plt.title("Training accuracy at each epoch")
+    plt.xlabel("Epoch")
     plt.ylabel("Training accuracy")
     plt.show()
 
-    # The learned weights: gradient descent next to LogisticRegression, on the same scaled features
-    # (LogisticRegression adds a small penalty and runs to the end, so its weights are close, not equal)
+    # The learned weights: gradient descent next to LogisticRegression, on the same standardised features
+    # (LogisticRegression adds a small penalty, so its weights are close, not equal)
     gd2_check = LogisticRegression(max_iter=1000).fit(gd2_X, gd2_y)
     gd2_weights = pd.DataFrame({"feature": M_FEATURES, "gradient descent": gd2_w, "LogisticRegression": gd2_check.coef_[0]})
     display(gd2_weights.round(2))
     print("Intercept, gradient descent:", round(gd2_b, 2), "| LogisticRegression:", round(gd2_check.intercept_[0], 2))
-'''),
+''', '''**How to read the two charts and the weights table**
+- **Accuracy starts near 0.03:** with every weight at 0, every run gets a chance of 0.5, so the model warns about every run and is right only for the few that failed. Within a few epochs it reaches about 0.97 by saying "no failure" to almost every run. Failures are rare, so accuracy looks good even when most failures are missed: that is why we choose the warning model by **F1**.
+- **Weights:** each is the change in the log-odds of a failure when that feature rises by one standard deviation (the others held fixed). A positive weight makes a failure more likely; a negative one less likely. On one scale, a bigger weight (ignoring the sign) means a feature matters more.
+- The two columns are close: gradient descent ends near where `LogisticRegression()` lands.'''),
 }
 
 
