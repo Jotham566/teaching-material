@@ -11,7 +11,7 @@ The snapshots provide reproducible inputs. They do not, by themselves, validate 
 To verify downloaded files without contacting the internet:
 
 ```sh
-.iuea-grader-env/bin/python scripts/verify_sector_snapshots.py
+.iuea-grader-env/bin/python Build_Tools/scripts/verify_sector_snapshots.py
 ```
 
 `stage_sector_snapshots.py` is the explicit download/retrieval command. It refuses to replace a file whose bytes changed; create a separately versioned snapshot before adopting an upstream revision.

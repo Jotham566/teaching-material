@@ -337,7 +337,7 @@ def main():
         fail(f'camp_shop reference changed: {cs}')
     report = {'passed': passed, 'failed': len(failures), 'skipped_need_scikit_learn': skipped, 'scikit_learn_installed': HAVE_SK,
               'failures': failures}
-    out = ROOT.parents[1] / 'review' / '2026-10-31' / 'schools-camp' / 'verification.json'
+    out = ROOT.parents[1] / '_archive' / 'review' / '2026-10-31' / 'schools-camp' / 'verification.json'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2) + '\n')
     print(f'\n{passed} items passed, {len(failures)} failed, {len(skipped)} skipped (need scikit-learn: {", ".join(skipped) or "none"})')

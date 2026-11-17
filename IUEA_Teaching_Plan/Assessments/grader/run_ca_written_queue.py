@@ -65,7 +65,7 @@ def main():
         ledger_file=out.parent/'ledger.json'
         ledger_file.write_text(json.dumps(ledger,indent=2))
         temporary=out.parent/'IUEA_Continuous_Assessment.next.xlsx'
-        subprocess.run([str(NODE),str(ROOT/'scripts/build_continuous_assessment.mjs'),
+        subprocess.run([str(NODE),str(ROOT/'Build_Tools/scripts/build_continuous_assessment.mjs'),
                         str(ledger_file),str(temporary)],check=True)
         os.replace(temporary,out.parent/'IUEA_Continuous_Assessment.xlsx')
         return dict(collections.Counter(r['status'] for r in ledger['current']))

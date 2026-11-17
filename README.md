@@ -11,7 +11,7 @@ Everything I teach, in three programmes, plus the build engine that generates th
 | Run the final ML project (23 to 25 November 2026) | [IUEA_Teaching_Plan/Weeks_08-12/Project/](IUEA_Teaching_Plan/Weeks_08-12/Project/README.md) |
 | Teach the high school holiday camp (S.4 to S.6) | [High_School_Camp/](High_School_Camp/README.md) |
 | Teach professional and corporate classes | [Professional_Training/](Professional_Training/README.md) |
-| Rebuild or verify anything | [scripts/](scripts/) and the sections below |
+| Rebuild or verify anything | [Build_Tools/](Build_Tools/README.md) and the sections below |
 
 ## Layout
 
@@ -32,18 +32,17 @@ Professional_Training/         professional and corporate classes
   BIK_Capital/                   client programme
   Data_Analysis_Course/          the 5-week data analysis course for adults in work
   KLAi Logo/                     brand files
-scripts/  tests/               the shared build engine and its tests
-figs/  data/  qr/              figures, notes data and quiz QR codes used by the builds
+Build_Tools/                   the shared build engine: scripts/, tests/, figs/, data/, qr/, requirements.txt
 _archive/                      old backups and the September to October reviews
 ```
 
-The IUEA course and the data analysis course share `scripts/pptxkit.py` and `scripts/docxkit.py`, so a change to either affects both
+The IUEA course and the data analysis course share `Build_Tools/scripts/pptxkit.py` and `Build_Tools/scripts/docxkit.py`, so a change to either affects both
 and both validation harnesses should be run.
 
 **Weeks 1 to 7:** use the PowerPoints in [Weeks_01-07/decks](IUEA_Teaching_Plan/Weeks_01-07/decks/README.md) with Presenter View, the
 [lecturer guide](IUEA_Teaching_Plan/Lecturer_Guides/Beginner_Lecturer_Guide.md) and the matching student ZIP. Rebuild with
-`scripts/build_decks.py`; practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with
-`scripts/build_student_packages.py --beginner-update`.
+`Build_Tools/scripts/build_decks.py`; practice notebooks with `Build_Tools/scripts/build_beginner_pathway.py --verify`, then student ZIPs with
+`Build_Tools/scripts/build_student_packages.py --beginner-update`.
 
 **Weeks 8 to 12:** four classes in [Weeks_08-12/](IUEA_Teaching_Plan/Weeks_08-12/README.md) (slides, lab notebooks, lecturer guides,
 student packages, the plan PDF), then the individual, timed, automatically marked ML project.
@@ -65,7 +64,7 @@ interpreter, for example:
 ```bash
 python3.12 -m venv .iuea-grader-env
 source .iuea-grader-env/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r Build_Tools/requirements.txt
 ```
 
 LibreOffice and Poppler render documents and decks for visual review. Instructor
@@ -79,10 +78,10 @@ forms, complete-cohort grading and gradebook imports.
 **IUEA PowerPoint teaching edition**, from the repository root:
 
 ```bash
-python3 scripts/build_decks.py
-python3 scripts/build_beginner_pathway.py --verify
-python3 scripts/build_student_packages.py --beginner-update
-python3 scripts/build_beginner_lecturer_docx.py
+python3 Build_Tools/scripts/build_decks.py
+python3 Build_Tools/scripts/build_beginner_pathway.py --verify
+python3 Build_Tools/scripts/build_student_packages.py --beginner-update
+python3 Build_Tools/scripts/build_beginner_lecturer_docx.py
 ```
 
 Use the bundled Python runtime for Word generation. `build_decks.py` locates the bundled Artifact Tool runtime and preserves the four completed teaching decks. It creates QR images and hyperlinks within the revised decks using the existing link registry, so do not run the legacy QR insertion or legacy weekly deck builders afterwards. The older `pptxkit` builders and their notes belong to the previous teaching edition.
@@ -96,16 +95,16 @@ everything downstream reads the answer key it writes.
 Run the relevant validators before release. They check quiz arithmetic, selected SQL/pandas examples, dataset-derived claims, QR links and slide structure. Read their coverage and inspect rendered layouts; passing validators does not certify all teaching or assessment behaviour.
 
 ```bash
-python3 scripts/verify_quiz_arithmetic.py        # re-runs every quiz snippet
-python3 scripts/verify_da_track.py               # 41 checks
-python3 scripts/verify_da_decks.py               # 24 checks
-python3 scripts/verify_da_workbook.py
-python3 scripts/validation/overflow_scan.py      # both courses, 60 decks
-python3 scripts/validation/claim_check.py
-python3 scripts/validation/segref_check.py
-python3 scripts/qrgen_selftest.py                # needs OpenCV for the part
+python3 Build_Tools/scripts/verify_quiz_arithmetic.py        # re-runs every quiz snippet
+python3 Build_Tools/scripts/verify_da_track.py               # 41 checks
+python3 Build_Tools/scripts/verify_da_decks.py               # 24 checks
+python3 Build_Tools/scripts/verify_da_workbook.py
+python3 Build_Tools/scripts/validation/overflow_scan.py      # both courses, 60 decks
+python3 Build_Tools/scripts/validation/claim_check.py
+python3 Build_Tools/scripts/validation/segref_check.py
+python3 Build_Tools/scripts/qrgen_selftest.py                # needs OpenCV for the part
                                                  # that actually proves it
-python3 scripts/verify_beginner_pathway.py      # revised PPTX and student packages
+python3 Build_Tools/scripts/verify_beginner_pathway.py      # revised PPTX and student packages
 ```
 
 ## Legacy deck implementation notes

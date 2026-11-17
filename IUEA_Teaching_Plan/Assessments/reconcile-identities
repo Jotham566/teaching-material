@@ -1,0 +1,5 @@
+#!/bin/zsh
+set -eu
+root_dir="${0:A:h:h:h}"   # this file is in IUEA_Teaching_Plan/Assessments/; the repository is three levels up
+cd "$root_dir"
+exec caffeinate -i "$root_dir/.iuea-grader-env/bin/python" "$root_dir/IUEA_Teaching_Plan/Assessments/grader/recover_student_names.py" --reconcile-only "$@"

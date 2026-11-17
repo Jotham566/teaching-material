@@ -66,7 +66,7 @@ def main():
         out=grade_batch(Path(a.batch).expanduser(),a.out)
         if not a.no_workbook:
             node=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
-            subprocess.run([str(node),str(ROOT/'scripts/build_test_marks.mjs'),str(out/'workbook_data.json'),str(out/'Test_Marks.xlsx')],check=True)
+            subprocess.run([str(node),str(ROOT/'Build_Tools/scripts/build_test_marks.mjs'),str(out/'workbook_data.json'),str(out/'Test_Marks.xlsx')],check=True)
         if ca_private:
             try:
                 integrate_locked(out/'workbook_data.json', ca_private)

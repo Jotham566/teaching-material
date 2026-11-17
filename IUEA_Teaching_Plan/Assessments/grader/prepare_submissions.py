@@ -33,7 +33,7 @@ def select(rows,roster,key):
 
 
 def cohort_roster(roster,key):
-    records=json.loads((Path(__file__).resolve().parents[3]/'data/assessments.json').read_text())
+    records=json.loads((Path(__file__).resolve().parents[3]/'Build_Tools/data/assessments.json').read_text())
     if key not in {r['key'] for r in records}:raise ValueError('Unknown assessment key')
     cohorts={r['cohort'] for r in records}
     if any(r.get('cohort') not in cohorts for r in roster.values()):raise ValueError('Every roster row requires a valid cohort')

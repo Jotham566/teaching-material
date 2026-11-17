@@ -64,7 +64,7 @@ soffice --headless --convert-to pdf ML_Track_S5_S6_Syllabus.docx
 python3 ../scripts/verify_schools_track.py        # again, for the page checks
 ```
 
-`scripts/schools_content.py` is the single source of truth: the weeks, the
+`Build_Tools/scripts/schools_content.py` is the single source of truth: the weeks, the
 session block, the roadmap cards, the marks, the kit, the policies and the
 limits. Change a week there and the figure, the document and the verifier all
 follow. Weeks claim roadmap card NUMBERS, and the module refuses to import if
@@ -106,4 +106,4 @@ because a syllabus that goes home with a wrong date is worse than one with a
 gap.
 
 
-The syllabus, its PDF and its `figs/` folder were moved here from the track root on 31 October 2026. Their generators (scripts/build_schools_syllabus_docx.py, make_schools_figures.py, verify_schools_track.py) now point at this folder.
+The syllabus, its PDF and its `figs/` folder were moved here from the track root on 31 October 2026. Their generators (Build_Tools/scripts/build_schools_syllabus_docx.py, make_schools_figures.py, verify_schools_track.py) now point at this folder.

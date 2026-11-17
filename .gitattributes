@@ -31,9 +31,9 @@
 # output, and so diffs on them collapse by default in review.
 IUEA_Teaching_Plan/Weeks_01-07/decks/**  linguist-generated=true
 Professional_Training/Data_Analysis_Course/decks/**  linguist-generated=true
-figs/**                      linguist-generated=true
+Build_Tools/figs/**                      linguist-generated=true
 Professional_Training/Data_Analysis_Course/figs/**   linguist-generated=true
-qr/**                        linguist-generated=true
+Build_Tools/qr/**                        linguist-generated=true
 
 # The Business AI course inventory and provenance records pin exact source bytes.
 # Preserve exported CSV line endings and raw evidence when checking out the course.

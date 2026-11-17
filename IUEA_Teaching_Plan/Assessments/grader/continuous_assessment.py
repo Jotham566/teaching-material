@@ -25,7 +25,7 @@ PROJECT_PARTS=(('A',30),('B',15))  # (part, maximum); the project counts only wh
 PROJECT_MAX=sum(m for _,m in PROJECT_PARTS)
 PROVISIONAL_KEYS=('assignments','quizzes','practical_test_1')  # marked before the project
 PROVISIONAL_OUT_OF=sum(COURSE_WEIGHTS[k] for k in PROVISIONAL_KEYS)  # 60
-POLICY_FILE=Path(__file__).resolve().parents[3]/'data'/'assessment_policy_20261110.json'
+POLICY_FILE=Path(__file__).resolve().parents[3]/'Build_Tools'/'data'/'assessment_policy_20261110.json'
 
 def policy_check(path=None):
  """Compare this module's constants with the policy JSON; return a list of mismatch descriptions (empty = in step)."""

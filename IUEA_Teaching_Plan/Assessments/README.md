@@ -14,5 +14,6 @@ Everything that sets, collects and marks IUEA work.
 | `test_operations/`, `assessment_operations/` | Checklists and scripts for running tests and continuous assessment. Their `private/` folders hold marks and stay on this computer. |
 | `test_revision/` | Revision packs for the tests. |
 | `roster_template.csv` | The class list template. |
+| `grade-submissions`, `reconcile-identities`, `review-identities` | Terminal shortcuts for grading a downloaded ZIP and checking student identities, for example `./IUEA_Teaching_Plan/Assessments/grade-submissions EXPORT.zip` from the repository root. |
 
 The gradebook (`IUEA_ML_Gradebook_Semester1.xlsx`) and the by-hand grading notes are private and kept out of the public repository.

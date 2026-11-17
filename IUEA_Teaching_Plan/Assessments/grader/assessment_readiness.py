@@ -9,7 +9,7 @@ def report(evidence):
  from reasoned_artifact_grade import load_backend
  evidence=Path(evidence);identities={};rows=[]
  reports=[p for p in evidence.glob('*.json') if p.with_suffix(p.suffix+'.complete.json').is_file()]
- records=json.loads((ROOT/'data/assessments.json').read_text())
+ records=json.loads((ROOT/'Build_Tools/data/assessments.json').read_text())
  for aid in dict.fromkeys(r['id'] for r in records):
   row=dict(assessment=aid,final_grading='HELD',calibration=None,whole_packet=None)
   if aid=='W01':row['final_grading']='PRESERVE_EXISTING';row['note']='Do not regrade already taught Week 1.'

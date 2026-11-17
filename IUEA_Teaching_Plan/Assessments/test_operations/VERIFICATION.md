@@ -16,9 +16,9 @@ Automated checks to run from the repository root:
 
 ```sh
 python3 -m unittest tests.test_colab_submit
-node tests/test_test_portal.cjs
-node tests/test_exam_collection.cjs
-node tests/test_timed_takehome.cjs
+node Build_Tools/tests/test_test_portal.cjs
+node Build_Tools/tests/test_exam_collection.cjs
+node Build_Tools/tests/test_timed_takehome.cjs
 ```
 
 For a live rehearsal, use only a separate synthetic allocation and closed rehearsal Form/workbook. Sign in to two Google accounts in the browser, issue the notebook to account A, then select account B when Colab asks for authorization. Clicking Submit test must show B versus A in the warning, create no snapshot, and display no Form link. Switch Colab to A and rerun: the snapshot must be owned by A and only then should the link appear with `authuser=A`. Open it and verify the Form banner shows A before submitting; the isolated collector should record `COLLECTED`. Finally, deliberately open the Form under B in the rehearsal and confirm the collector logs both conflicting addresses without copying the snapshot. Do not use a production allocation or consume a student's one allowed response for this test.
@@ -210,7 +210,7 @@ Google Forms may acknowledge a raw late/duplicate response; collection rejects i
 - Submitted counts were unchanged after the reset (CML3111 14, CML3112 12, CML3113 22). Reset students show "Timer needs attention" until they re-enter; their new timer starts on the next portal visit.
 - Audit trail: `Test Retry Authorisations` tab.
 - Follow-up resets: 3 CML3112 timed-out students were reset. Julia Hafez Chol's never-started CML3111 allocation and a stray CML3113 allocation (typo email/registration) were removed; her accepted CML3113 submission was kept (not reset).
-- `Test Monitor` now ignores failures that predate a lecturer reset or reissue, hides superseded receipts, and shows reissued students as "Not started" until they open the test (`grader/test_monitor.gs`, `tests/test_test_monitor.cjs`).
+- `Test Monitor` now ignores failures that predate a lecturer reset or reissue, hides superseded receipts, and shows reissued students as "Not started" until they open the test (`grader/test_monitor.gs`, `Build_Tools/tests/test_test_monitor.cjs`).
 - Post-operation monitor (20:50 EAT): CML3111 15 submitted, CML3112 12, CML3113 22; no failed or expired rows other than the test account. The one-off batch scripts were removed from the collector project.
 - 30 Oct 2026: CML3113 Test 1 student 24/2015/BSPE-S was reset to thomemmajames@gmail.com after attempts under several Google accounts (two failed receipts cleared; no accepted submission). `authoriseFreshTestAttempt` now tolerates Form responses already removed by an earlier reset.
 - 30 Oct 2026 (17:45 EAT): grace period opened for non-submitters. Assignments A1-A5 (W01-W05) and Quizzes 1-5 for CML3111, CML3112 and CML3113 accept responses until 2026-11-02T23:59+03:00 (15 assignment forms and 15 quiz forms confirmed `accepting=true`). A6 and Quiz 6 stay waived. Opening times, existing submissions and scores were unchanged; the one-off scripts were removed from both Apps Script projects.
@@ -219,7 +219,7 @@ Google Forms may acknowledge a raw late/duplicate response; collection rejects i
 
 ## 30 October 2026: Test 2 now covers Weeks 8 to 13
 
-Test 2 has eight coding tasks and six interpretation choices (version `2026.12-colab-v3-weeks8-13`). In the sandbox the reference solution scored 100% on all nine parts for every cohort and variant against a NumPy stand-in for scikit-learn, and four common mistakes (wrong ridge alpha, unscaled neighbours, using E6 in cross-validation, wrong cost weights) lost marks. Not yet run: `tests/test_colab_exams.py` in Docker and `tests/test_test2_weeks8_13.py` with real scikit-learn, both on the Mac.
+Test 2 has eight coding tasks and six interpretation choices (version `2026.12-colab-v3-weeks8-13`). In the sandbox the reference solution scored 100% on all nine parts for every cohort and variant against a NumPy stand-in for scikit-learn, and four common mistakes (wrong ridge alpha, unscaled neighbours, using E6 in cross-validation, wrong cost weights) lost marks. Not yet run: `Build_Tools/tests/test_colab_exams.py` in Docker and `Build_Tools/tests/test_test2_weeks8_13.py` with real scikit-learn, both on the Mac.
 - 30 Oct 2026 (19:55 EAT): portal deployment `AKfycbxRlh_...` moved from version 22 to 23 ("Test 2 covers Weeks 8 to 13"); same /exec URL. Only the `PORTAL_PACKETS` line in the portal project's `Code.js` was replaced with `test_portal/Packets.gs` (18 packets; CML3111 Test 2 A has 8 tasks, checked locally before pushing). Execute-as and access settings, Cloudflare, collector and quiz projects unchanged. Test 2 entry pages still load; no test window was opened.
 - 31 Oct 2026 (13:32 EAT): Test 1 first batch graded on the Mac mini (73 submissions, all GRADED; private snapshot pushed). Two grader fixes: a Series answer no longer crashes the Q1 check (`test1_coding_v3.py`), and a notebook whose STUDENT_ID cell is no longer code is accepted only when its text matches the verified receipt, with an `identity_note` stored (`exam_intake.py`). The 7 timed-out students were reset with `authoriseFreshTestAttempt` (CML3112: 23/1514/BSCE-S, 24/UG/067/BARC-S; CML3113: 24/1452, 24/2112, 24/355, 24/2023, 24/2015, all BSPE-S). CML3113 Test 1 closed at 2026-10-30T23:59+03:00, so those five cannot start until the window is extended. The one-off reset script was removed from the collector project.
 

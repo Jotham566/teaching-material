@@ -50,13 +50,13 @@ python3 ../scripts/verify_da_workbook.py
 python3 ../scripts/validation/overflow_scan.py
 ```
 
-`scripts/da_content.py` is the single source of truth for the curriculum:
+`Build_Tools/scripts/da_content.py` is the single source of truth for the curriculum:
 session titles, outcomes, the traps, the five projects and datasets. Slide content
-lives in `scripts/da_deck_w1.py` through `da_deck_w5.py`. Change a session in
+lives in `Build_Tools/scripts/da_deck_w1.py` through `da_deck_w5.py`. Change a session in
 either place and the documents, the workbook, the decks and the guide all
 follow.
 
-Numbers come from `data/answer_key.json` through `scripts/da_keys.py`, so no
+Numbers come from `data/answer_key.json` through `Build_Tools/scripts/da_keys.py`, so no
 figure in any handout or on any slide is typed by hand. `verify_da_decks.py`
 enforces that: it executes every SQL block and every pandas block that
 appears on a slide against the real data, and traces every UGX figure on
@@ -124,7 +124,7 @@ carry later layers of speaker notes (lecturer cues, checks with expected answers
 recovery notes) that it does not regenerate, and `build_da_teaching_guide.py`
 runs the deck builder as a side effect. Running either overwrites those notes.
 So the live decks were changed on 4 November 2026 by
-`scripts/patch_da_no_assessment_20261104.py` (it changes slide and note text in
+`Build_Tools/scripts/patch_da_no_assessment_20261104.py` (it changes slide and note text in
 place, is safe to run twice, and also patches `decks/lecturer_notes/*.md`),
 and the same wording changes were made in the sources. If you rebuild the decks
 from source, run `patch_da_no_assessment_20261104.py` afterwards only if the
@@ -156,5 +156,5 @@ the university course. It is not used by this course.
 
 The [sector snapshots](data/sector_snapshots/README.md) (Bank Marketing, synthetic
 AI4I and a fixed Uganda GDP series) are the data for the session 13 investigation.
-Verify their hashes with `python scripts/verify_sector_snapshots.py` from the
+Verify their hashes with `python Build_Tools/scripts/verify_sector_snapshots.py` from the
 repository root.

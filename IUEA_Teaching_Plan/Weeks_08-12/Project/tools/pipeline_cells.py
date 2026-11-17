@@ -32,7 +32,7 @@ CELL_TIMEOUT, TOTAL_TIMEOUT = 30, 300          # the same limits as grade_projec
 
 def public_url():
     """The Cloudflare entry host (data/test_portal_config.json), the same host as the entry links."""
-    config = json.loads((ROOT / 'data/test_portal_config.json').read_text())
+    config = json.loads((ROOT / 'Build_Tools/data/test_portal_config.json').read_text())
     return config['public_url'].rstrip('/')
 
 

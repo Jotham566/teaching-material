@@ -40,7 +40,7 @@ def build(target):
         shutil.copytree(PROJECT / d, target / 'IUEA_Teaching_Plan/Weeks_08-12/Project' / d, ignore=SKIP)
     for name in PROJECT_TOOLS:
         copy(PROJECT / 'tools' / name, target / 'IUEA_Teaching_Plan/Weeks_08-12/Project/tools' / name)
-    copy(ROOT / 'data/test_portal_config.json', target / 'data/test_portal_config.json')
+    copy(ROOT / 'Build_Tools/data/test_portal_config.json', target / 'Build_Tools/data/test_portal_config.json')
     copy(HERE / 'workflow/grade-ml-project.yml', target / '.github/workflows/grade-ml-project.yml')
     (target / 'README.md').write_text('# IUEA ML project grading (private)\n\nInstant checks for the Engineering ML project, run by GitHub Actions. '
                                       'See IUEA_Teaching_Plan/Weeks_08-12/Project/deploy/SETUP_GITHUB_ACTIONS.md in the teaching repository. '

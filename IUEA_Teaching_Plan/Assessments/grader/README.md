@@ -4,12 +4,12 @@ Student notebooks run in a restricted Docker container. The authoritative checks
 
 ## First setup
 
-On this Mac, run `source .iuea-grader-env/bin/activate` from the repository root. The Python 3.12 environment and pinned dependencies are installed. Keep using that environment for the commands below; the older `.iuea-env` is Python 3.9. On another computer, create a Python 3.11+ environment and install `requirements.txt`. Start Docker Desktop, then build the pinned grading image:
+On this Mac, run `source .iuea-grader-env/bin/activate` from the repository root. The Python 3.12 environment and pinned dependencies are installed. Keep using that environment for the commands below; the older `.iuea-env` is Python 3.9. On another computer, create a Python 3.11+ environment and install `Build_Tools/requirements.txt`. Start Docker Desktop, then build the pinned grading image:
 
 ```sh
 docker build -t iuea-notebooks:2026.09 IUEA_Teaching_Plan/Assessments/grader
 python3 -m unittest discover -s tests -v
-node tests/test_assessment_pipeline.cjs
+node Build_Tools/tests/test_assessment_pipeline.cjs
 ```
 
 The container has no network, an unprivileged user, a read-only system, bounded temporary storage, memory and process limits, and a hard wall-clock timeout. Only copied teaching inputs are mounted. Hidden checks and the host filesystem are not available to student code. This reduces risk; it does not prove a container runtime has no vulnerabilities.
@@ -115,7 +115,7 @@ Letter bands remain placeholders until verified against the Faculty's actual rul
 python3 IUEA_Teaching_Plan/Assessments/grader/iuea_grader.py --selftest
 node IUEA_Teaching_Plan/Assessments/grader/gradebook.gs --test
 python3 -m unittest discover -s tests -v
-node tests/test_assessment_pipeline.cjs
+node Build_Tools/tests/test_assessment_pipeline.cjs
 ```
 
 See `_archive/review/2026-09-14/rework/` for the actual notebook isolation and cohort-simulation evidence. Rubrics for later reports/projects exist, but an arbitrary notebook's correctness is not proved by an AI reading its source. Practical exams need their issued task-specific deterministic checks before release.
@@ -210,7 +210,7 @@ Evaluate it with `calibrate_rubric.py --profile reasoned --model qwen3.5:4b` and
 
 ### Later independent-track numerical components
 
-The fixed sector snapshots and their source hashes are in `Professional_Training/Data_Analysis_Course/data/sector_snapshots/`. `scripts/verify_sector_snapshots.py` checks them offline. The draft S13 notebook exposes `SECTOR` and five `FINDINGS` values, with published populations and units. Its isolated specification awards at most 40 Analysis marks; the final DA importer rejects a 40-point component. The remaining 60 marks and complete-packet calibration are still required before release.
+The fixed sector snapshots and their source hashes are in `Professional_Training/Data_Analysis_Course/data/sector_snapshots/`. `Build_Tools/scripts/verify_sector_snapshots.py` checks them offline. The draft S13 notebook exposes `SECTOR` and five `FINDINGS` values, with published populations and units. Its isolated specification awards at most 40 Analysis marks; the final DA importer rejects a 40-point component. The remaining 60 marks and complete-packet calibration are still required before release.
 
 For S15, `dashboard_numbers.py --file REPORT.docx --out CHECK.json` verifies five reported revenue/order/AOV contexts from the accessible appendix specified in `Professional_Training/Data_Analysis_Course/assessment_banks/S15/NUMERICAL_EVIDENCE.md`. It returns `COMPONENT_ONLY` (20 marks), never final marks or an import-ready CSV. It checks reported numbers against the hashed clean Riverside inputs; it does not execute DAX or prove relationships, interactive filters, design or spoken delivery. Those remain release requirements. Both forms stay held closed.
 
@@ -262,4 +262,4 @@ The best-of rules above apply to Weeks 1 to 5 only (best 3 of 5; Week 6 is waive
 - Final mark /100 = assignments 20 (A1 to A5) + quizzes 20 (Q1 to Q5) + Practical Test 1 20 + Engineering ML project 40. See the table near the top of this file. Source of truth: `../../data/assessment_policy_20261110.json`; plain note `../Grading_Policy_2026-11-10.md`.
 - `gradebook.gs` now counts only `Q1` to `Q5` and `W01` to `W05`. The columns `Q6` to `Q12` and `W06`, `W08` to `W12` can stay in the Grades sheet and are ignored. `importMarkedResults` still accepts the `W` columns, `Practical Test 1` and the two project parts, and no longer accepts `Data Analysis Project`.
 - Paste the new `gradebook.gs` into the Apps Script editor by hand, then run `recomputeAll()`. The `Missing` column now reads like `Practical Test 1; quizzes: Q3, Q4; assignments: A2` and the provisional line reads `Semester 1 provisional: x of 60 marks, y percent`.
-- Offline copy: `../IUEA_ML_Gradebook_Semester1.xlsx` (built by `scripts/build_gradebook_xlsx_20261103.py`, verified by `scripts/verify_gradebook_xlsx_20261103.py`).
+- Offline copy: `../IUEA_ML_Gradebook_Semester1.xlsx` (built by `Build_Tools/scripts/build_gradebook_xlsx_20261103.py`, verified by `Build_Tools/scripts/verify_gradebook_xlsx_20261103.py`).

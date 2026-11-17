@@ -15,7 +15,7 @@ import time
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT/'scripts'))
+sys.path.insert(0, str(ROOT/'Build_Tools/scripts'))
 import continuous_assessment as ca
 from import_ca_audit import import_audit
 from import_ca_quiz_sheets import import_sheet
@@ -390,7 +390,7 @@ def preflight_workbook():
 
 def render(batch):
     from run_ca_written_queue import NODE
-    subprocess.run([str(NODE), str(ROOT/'scripts/build_continuous_assessment.mjs'),
+    subprocess.run([str(NODE), str(ROOT/'Build_Tools/scripts/build_continuous_assessment.mjs'),
                     str(batch/'ledger.json'), str(batch/BOOK)], check=True)
     # Validate the generated XML and cached formula values before publication.
     with zipfile.ZipFile(batch/BOOK) as z:

@@ -13,7 +13,7 @@ PASS  ONE supplied cell (Setup: run me first, collapsed) holds the identity: nam
 # Any change made here is undone: the ma]
 PASS  the setup cell shows a live clock, the time left after every cell, Press Ctrl+S in the last 30 and 10 minutes, and a warning when there is no deadline
 PASS  the notebook opens with at most 7 short lines, the deadline among them  [# CML3112 Engineering ML project: Part A 30 + Part B 15 marks, scaled to 40 percent
-**Your deadline: 2026-11-16 15:45:24 Kampala time.**
+**Your deadline: 2026-11-17 13:06:53 Kampala time.**
 1. Run **Setup** (the next cell) first. **Do not edit it.** It ]
 PASS  open entry: the off-list student starts normally with the typed name
 PASS  open entry: an off-list registration already used with another email is refused  [These details do not match the earlier allocation. Use the same Google email and registration number, or ask your lecturer for help.]
@@ -29,27 +29,27 @@ PASS  email fix: refused once work has been saved  [Your notebook already has sa
 PASS  email fix: the allocation now records the corrected email and the new file, and the change is logged
 PASS  email fix: refused after the first 15 minutes  [The email can only be corrected in the first 15 minutes. Tell your lecturer on the class channel.]
 PASS  I have finished: only the entry page itself can ask (same origin)
-PASS  I have finished: collected at once, from the saved notebook  [{'ok': True, 'result': {'course': 'CML3112', 'rehearsal': False, 'state': 'collected', 'deadline': '2026-11-16 15:45:24', 'collected': {'source': 'your saved notebook', 'time': '2026-11-16 13:35:24'}, 'last_backup': '', ]
+PASS  I have finished: collected at once, from the saved notebook  [{'ok': True, 'result': {'course': 'CML3112', 'rehearsal': False, 'state': 'collected', 'deadline': '2026-11-17 13:06:53', 'collected': {'source': 'your saved notebook', 'time': '2026-11-17 10:56:53'}, 'last_backup': '', ]
 PASS  I have finished: editing stops (read only), so a later save is refused
-PASS  backup: sent from Colab (no Origin), timestamped by the server, the issued file  [{'ok': True, 'result': {'received_at': '2026-11-16 13:45:25', 'on_time': True, 'other_file': False, 'closed': False}}]
-PASS  Check my work: the saved notebook is sent for the structural checks  [{'ok': True, 'result': {'check': 'C-f923786b009040e5aa3c', 'checked_version': '2026-11-16 13:45:25', 'issued_file': True, 'pending': True}}]
+PASS  backup: sent from Colab (no Origin), timestamped by the server, the issued file  [{'ok': True, 'result': {'received_at': '2026-11-17 11:06:55', 'on_time': True, 'other_file': False, 'closed': False}}]
+PASS  Check my work: the saved notebook is sent for the structural checks  [{'ok': True, 'result': {'check': 'C-75844e07dd094fd1865b', 'checked_version': '2026-11-17 11:06:55', 'issued_file': True, 'pending': True}}]
 PASS  Check my work: at most one check every two minutes  [Wait two minutes between checks. The last result is shown below.]
-PASS  Check my work: the page shows runs from the top, functions and MEMO found, the issued file, and no mark  [{'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': [], 'memo_found': True, 'issued_file': True, 'checked': '2026-11-16 13:45:34'}]
-PASS  saved a copy: the backup still arrives and the server says it is another file (the cell shows the warning)  [{'ok': True, 'result': {'received_at': '2026-11-16 14:25:34', 'on_time': True, 'other_file': True, 'closed': False}}]
+PASS  Check my work: the page shows runs from the top, functions and MEMO found, the issued file, and no mark  [{'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': [], 'memo_found': True, 'issued_file': True, 'checked': '2026-11-17 11:07:07'}]
+PASS  saved a copy: the backup still arrives and the server says it is another file (the cell shows the warning)  [{'ok': True, 'result': {'received_at': '2026-11-17 11:47:07', 'on_time': True, 'other_file': True, 'closed': False}}]
 PASS  whole-class extension: one call moves every CML3113 deadline and the window close, and is logged  [{'ok': True, 'changed': 1}]
 PASS  deadline: the trigger collects every project attempt past its deadline and none before  [['26/E2E/001/AAA', '26/E2E/002/BBB', '26/E2E/003/CCC', '26/E2E/005/EEE', '26/E2E/006/FFF', '26/E2E/007/GGG', '26/E2E/008/HHH', '26/E2E/009/III', '26/E2E/012/TTT', '26/E2E/013/UUU', '26/E2E/014/VVV', '26/E2E/015/BSCE-W']]
-PASS  deadline: editing stops (read only); the newer of the last save and the last backup is used  [Collected (deadline) from the newest on-time backup saved 2026-11-16 13:45:25; the Drive file was last saved 2026-11-16 13:45:24.]
-PASS  saved a copy: the newest on-time backup is marked, with the source on the row  [Collected (deadline) from the newest on-time backup saved 2026-11-16 14:25:34; the Drive file was last saved 2026-11-16 12:45:24; backups came from another file: file0000000018.]
-PASS  laptop died at minute 170: the newest of the last save (minute 160) and the last backup (minute 165) is collected  [Collected (deadline) from the newest on-time backup saved 2026-11-16 15:30:34; the Drive file was last saved 2026-11-16 15:25:34.]
+PASS  deadline: editing stops (read only); the newer of the last save and the last backup is used  [Collected (deadline) from the newest on-time backup saved 2026-11-17 11:06:55; the Drive file was last saved 2026-11-17 11:06:53.]
+PASS  saved a copy: the newest on-time backup is marked, with the source on the row  [Collected (deadline) from the newest on-time backup saved 2026-11-17 11:47:07; the Drive file was last saved 2026-11-17 10:06:53; backups came from another file: file0000000018.]
+PASS  laptop died at minute 170: the newest of the last save (minute 160) and the last backup (minute 165) is collected  [Collected (deadline) from the newest on-time backup saved 2026-11-17 12:52:07; the Drive file was last saved 2026-11-17 12:47:07.]
 PASS  stopped the backup thread: the last Drive save is collected
 PASS  pressed Start and nothing else: the issued notebook is collected (it will mark 0)
 PASS  never pressed anything: no allocation, nothing collected
-PASS  a backup after the deadline is kept and not used  [{'ok': True, 'result': {'received_at': '2026-11-16 15:50:34', 'on_time': False, 'other_file': False, 'closed': True}}]
+PASS  a backup after the deadline is kept and not used  [{'ok': True, 'result': {'received_at': '2026-11-17 13:12:08', 'on_time': False, 'other_file': False, 'closed': True}}]
 PASS  one-student extension: the attempt is opened again (editing restored) without touching any sheet by hand
 PASS  whole-class extension: K is collected only after the extended deadline
 PASS  one-student extension: G is collected again at the new deadline
 PASS  rehearsal: never locked (still an editor after the deadline and after I have finished) and nothing in Collection
-PASS  rehearsal: the checks are shown at once and there is never a mark  [{'course': 'CML3112', 'rehearsal': True, 'state': 'open', 'deadline': '2026-11-16 15:45:24', 'collected': None, 'last_backup': '', 'checks': {'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': ['houses']
+PASS  rehearsal: the checks are shown at once and there is never a mark  [{'course': 'CML3112', 'rehearsal': True, 'state': 'open', 'deadline': '2026-11-17 13:06:53', 'collected': None, 'last_backup': '', 'checks': {'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': ['houses']
 PASS  no mark before the release switch
 PASS  release switch on, window still open: still no mark
 PASS  release switch on and window closed: the mark is shown  [Part A 30, Part B 15, total 45 (final after the lecturer's checks)]

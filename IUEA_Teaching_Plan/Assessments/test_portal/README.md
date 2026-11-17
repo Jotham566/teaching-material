@@ -73,7 +73,7 @@ When deploying these changes, regenerate the student notebooks and `Packets.gs`,
 
 ## Maintaining the files
 
-Run scripts/build_colab_exams.py, then scripts/build_test_portal.py after any Test 1 content change. Update the portal's server source and deployment version so new downloads match Test 1. The final project's separate `ML_PROJECT` deployment bundle is maintained under `second_half/Project/deploy/`. No solutions or graders are included in Packets.gs.
+Run Build_Tools/scripts/build_colab_exams.py, then Build_Tools/scripts/build_test_portal.py after any Test 1 content change. Update the portal's server source and deployment version so new downloads match Test 1. The final project's separate `ML_PROJECT` deployment bundle is maintained under `second_half/Project/deploy/`. No solutions or graders are included in Packets.gs.
 
 The private Test allocations tab has one row per course/test and registration number. Do not delete allocations to reshuffle versions. For a genuine typo, verify the student's identity and check existing submissions before correcting the registration/email in that allocation row; keep its allocation code and variant. The student then retrieves the files with the corrected details. Already collected identity conflicts require separate resolution before releasing marks.
 
@@ -116,7 +116,7 @@ All six final Week 7/14 PPTX QR images and their rendered-slide QR images decode
 
 The browser reproduced Google's “unable to open” page after redirecting to `/macros/u/1/`, with two Google accounts signed in. This happens before the portal code runs. The lecturer also reported the same failure in a single-account private window, so multiple accounts are not a confirmed root cause. Further live deployment diagnosis is required; the private-window suggestion is only a troubleshooting step. Do not describe the QR as broken or a closed test as a missing file. A fresh single-account live download remains to be verified after this audit; no real test windows were changed.
 
-The expanded `tests/test_test_portal.cjs` exercises all nine active Test 1 download packets and compares their questions, CSV and instructions with the assessment files. It checks correct identity/allocation insertion, withdrawn Test 2 rejection, and disabled, early and expired windows across the three active entry points. These are local automated checks, separate from live browser verification.
+The expanded `Build_Tools/tests/test_test_portal.cjs` exercises all nine active Test 1 download packets and compares their questions, CSV and instructions with the assessment files. It checks correct identity/allocation insertion, withdrawn Test 2 rejection, and disabled, early and expired windows across the three active entry points. These are local automated checks, separate from live browser verification.
 
 ### Follow-up live diagnosis, 19 October, 16:37 Kampala
 

@@ -31,7 +31,7 @@ def main():
   grade_ca_batch.run(new,retry,out/'coding')
   # The existing checker already calculated these marks; only punctuation differs.
   import sys
-  sys.path.insert(0,str(ROOT/'scripts'))
+  sys.path.insert(0,str(ROOT/'Build_Tools/scripts'))
   from reconcile_ca_notebook_identity import reconcile
   coding=out/'coding/results.json';coding.write_text(json.dumps(reconcile(json.loads(coding.read_text())),indent=2))
   prepare_ca_written.prepare(new,retry,out/'text')
@@ -54,7 +54,7 @@ def main():
   (p/'written_text/prepared.json').write_text(json.dumps(prepared,indent=2))
   ledger_file=p/'ledger.json';ledger_file.write_text(json.dumps(ledger,indent=2))
   temporary=p/'IUEA_Continuous_Assessment.refresh.xlsx'
-  subprocess.run([str(NODE),str(ROOT/'scripts/build_continuous_assessment.mjs'),str(ledger_file),str(temporary)],check=True,
+  subprocess.run([str(NODE),str(ROOT/'Build_Tools/scripts/build_continuous_assessment.mjs'),str(ledger_file),str(temporary)],check=True,
                  env=dict(os.environ,IUEA_WORKBOOK_QA='1'))
   os.replace(temporary,p/'IUEA_Continuous_Assessment.xlsx')
   stage('COMPLETE',current_statuses=dict(collections.Counter(r['status'] for r in ledger['current'])))

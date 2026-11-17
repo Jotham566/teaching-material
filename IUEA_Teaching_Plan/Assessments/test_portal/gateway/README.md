@@ -18,7 +18,7 @@ Students' submitted name, email and registration number, and the returned test p
 4. From this folder deploy `worker.mjs` with the adjacent `wrangler.jsonc`, on Workers Free. Its server-side `APPS_SCRIPT_URL` must be the original Apps Script `/exec` URL. Use the assigned workers.dev address; no domain purchase is needed.
 5. Test all three Test 1 routes in an ordinary browser with multiple Google accounts signed in. Verify Test 2 routes return HTTP 410. Verify early, expired and disabled requests return no notebook or CSV. Use a separately authorised rehearsal window for live successful downloads; do not extend real windows for testing.
 6. Verify both download buttons and their contents, stable repeated allocations and the existing notebook-to-form submission flow. Confirm no identity data or download responses are cached.
-7. Only after live verification, run `python3 scripts/configure_test_portal.py ORIGINAL_APPS_SCRIPT_URL --public-url VERIFIED_GATEWAY_URL` from the repository root. Rebuild the three active Test 1 decks with the existing generators and review their access slides. The final project has a separate `ML_PROJECT` deployment bundle. Republish the link index and guides together. QR and visible clickable URL must point to the same course/test page on the new host.
+7. Only after live verification, run `python3 Build_Tools/scripts/configure_test_portal.py ORIGINAL_APPS_SCRIPT_URL --public-url VERIFIED_GATEWAY_URL` from the repository root. Rebuild the three active Test 1 decks with the existing generators and review their access slides. The final project has a separate `ML_PROJECT` deployment bundle. Republish the link index and guides together. QR and visible clickable URL must point to the same course/test page on the new host.
 
 The old Apps Script links remain usable as a fallback but retain Google's account-routing limitation. Publishing a gateway does not update already-shared PowerPoint copies; distribute the updated decks/links.
 
@@ -27,9 +27,9 @@ The old Apps Script links remain usable as a fallback but retain Google's accoun
 From the repository root:
 
 ```
-python3 scripts/build_test_gateway.py
-node tests/test_test_gateway.mjs
-node tests/test_test_portal.cjs
+python3 Build_Tools/scripts/build_test_gateway.py
+node Build_Tools/tests/test_test_gateway.mjs
+node Build_Tools/tests/test_test_portal.cjs
 ```
 
 The gateway tests run its real handler through `Gateway.gs` and the real portal allocation code with an in-memory workbook. They cover three Test 1 pages, all nine active packets, Test 2 rejection, repeat allocations, opening/deadline/disabled checks, missing/wrong secrets, malformed requests, upstream failures and prevention of browser-cookie forwarding. They do not establish that an undeployed public URL works.

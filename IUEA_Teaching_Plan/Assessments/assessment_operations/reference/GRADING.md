@@ -22,18 +22,18 @@ Do not share this workbook with the class: it contains students' private informa
 
 ## Updating after more submissions
 
-Use `./grade-submissions EXPORT.zip` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
+Use `./IUEA_Teaching_Plan/Assessments/grade-submissions EXPORT.zip` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
 
 The command preserves unchanged completed marks and held written-review decisions, merges receipts by response ID, saves older generations, and rebuilds totals. Changed attachment hashes trigger new checks. It retains existing test/project marks. `Grade_Tests.command` imports new production test results into the same cumulative generation automatically. Restoring or manually changing the active ledger outside this runner is detected and requires reconciliation before another refresh.
 
 ### Underlying stages (reference only)
 
 1. In the assignment collection spreadsheet, choose **Export Grading ZIP → Start / resume export**. The menu queues a request; the existing exporter processes it automatically and checkpoints its progress. Its temporary work trigger removes itself on completion; the menu listener remains installed. Forms, marks and deadlines are unchanged.
-2. Wait for **COMPLETE** in the collection workbook's **CA Export** tab; download the linked private folder as a ZIP and build the grading ZIP with `scripts/recover_ca_bundle.py`, as described in the repeat checklist. Older exports may link directly to a grading ZIP. The export includes 15 assignment manifests, 15 quiz exports, original files, audit timing and quiz deadlines at a fixed cutoff.
+2. Wait for **COMPLETE** in the collection workbook's **CA Export** tab; download the linked private folder as a ZIP and build the grading ZIP with `Build_Tools/scripts/recover_ca_bundle.py`, as described in the repeat checklist. Older exports may link directly to a grading ZIP. The export includes 15 assignment manifests, 15 quiz exports, original files, audit timing and quiz deadlines at a fixed cutoff.
 3. The runner verifies `ca_bundle.json` inventory, sizes and SHA-256 hashes before extraction, then validates source receipts and original attachment hashes. Missing files and export errors stop import, not award zero.
 4. Quiz marks come from saved response-sheet scores. Legacy receipts without a unique matching sheet row use existing recorded Form item scores, with a warning; missing scores remain pending. The quiz project mirrors its 15 current windows to the private collection workbook every 15 minutes and when links are saved. A stale/incomplete mirror blocks a new export. Previous window evidence is retained during import.
 5. Rebuild the ledger, grade new eligible notebooks using `grader/grade_ca_batch.py`, then rebuild the ledger with its `results.json`. The grader reuses unchanged results and rechecks changed submissions, checks or CSV data.
-6. Rebuild the Excel workbook using `scripts/build_continuous_assessment.mjs`. Check pending statuses before using the totals. Do not edit calculated cells manually.
+6. Rebuild the Excel workbook using `Build_Tools/scripts/build_continuous_assessment.mjs`. Check pending statuses before using the totals. Do not edit calculated cells manually.
 
 All paths above are relative to the repository root except `grader`, which is inside `IUEA_Teaching_Plan`.
 
@@ -64,7 +64,7 @@ Before using marks, check **Current marks** for pending statuses and **Source ma
 ## Identity and timing exceptions
 
 The ledger reconciles punctuation variants within the same programme and Google account when no competing account uses that number. A single early digit typo can also be reconciled when at least three later receipts consistently use the dominant number, that family represents at least 75% of the account's receipts, and neither number belongs to another account. Original entries and the reason are retained. Similar numbers alone are not sufficient.
-Remaining account/registration conflicts need verified identity evidence. Keep all original receipts and scores. `scripts/reconcile_ca_notebook_identity.py` also releases existing valid code checks when the notebook and form differ only in punctuation, spacing or case; it does not change the checker results.
+Remaining account/registration conflicts need verified identity evidence. Keep all original receipts and scores. `Build_Tools/scripts/reconcile_ca_notebook_identity.py` also releases existing valid code checks when the notebook and form differ only in punctuation, spacing or case; it does not change the checker results.
 Multiple accounts can share a student record when every account consistently uses that exact registration across at least two different assessments and none uses another registration in the programme. A single matching upload is not enough.
 
 Summary statuses:

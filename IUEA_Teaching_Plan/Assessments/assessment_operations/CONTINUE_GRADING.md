@@ -71,8 +71,8 @@ Sign into Google as **wirmbeesubs@gmail.com**.
 
    ```sh
    cd ~/Projects/teaching-material
-   .iuea-grader-env/bin/python scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_ready.zip
-   ./grade-submissions ~/Downloads/IUEA_CA_ready.zip --check
+   .iuea-grader-env/bin/python Build_Tools/scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_ready.zip
+   ./IUEA_Teaching_Plan/Assessments/grade-submissions ~/Downloads/IUEA_CA_ready.zip --check
    ```
 
    Replace the input with the downloaded folder ZIP path. The exporter-generated inventory is verified against every part before the output is released; stop if either command fails. The grader still enforces a 500 MB extraction limit. Use the resulting `IUEA_CA_ready.zip` in step 4 below.
@@ -87,8 +87,8 @@ Only use this for an export that reached **15/15 assignments and 15/15 quizzes**
 
 ```sh
 cd ~/Projects/teaching-material
-.iuea-grader-env/bin/python scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_recovered.zip
-./grade-submissions ~/Downloads/IUEA_CA_recovered.zip --check
+.iuea-grader-env/bin/python Build_Tools/scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_recovered.zip
+./IUEA_Teaching_Plan/Assessments/grade-submissions ~/Downloads/IUEA_CA_recovered.zip --check
 ```
 
 Replace the first ZIP path with the actual download; dragging the file into Terminal avoids typing its name. The recovery checks all 30 manifests, their shared cutoff, and attachment hashes from the saved assignment manifests. If there is no exporter-generated inventory, the tool says that it generated one **locally**; this cannot independently authenticate quiz data or prove an omitted receipt was collected. The second command validates the bundle and source data without grading. If either command fails, keep the download and existing marks and investigate; do not grade an incomplete export. Keep the recovered ZIP private.
@@ -131,10 +131,10 @@ Finish any unrelated Docker work first. The grading command manages Docker for c
 Close the marks workbook in Excel. Keep the Ollama window open. Choose **Shell → New Window** in Terminal, then run the following command in that second window:
 
 ```sh
-~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip
+~/Projects/teaching-material/IUEA_Teaching_Plan/Assessments/grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip
 ```
 
-The filename above is an example. Replace it with your downloaded ZIP. To avoid typing the path, type `~/Projects/teaching-material/grade-submissions ` (including the space), drag the ZIP from Finder into Terminal, then press Return. Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
+The filename above is an example. Replace it with your downloaded ZIP. To avoid typing the path, type `~/Projects/teaching-material/IUEA_Teaching_Plan/Assessments/grade-submissions ` (including the space), drag the ZIP from Finder into Terminal, then press Return. Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
 
 **If interrupted:** repeat the exact command before pulling or restoring anything. Saved grading checkpoints are reused; a completed batch is not added twice. The previous workbook remains available until the new workbook passes validation. Missing or inconsistent downloads stop the run with an explanation.
 
@@ -168,7 +168,7 @@ Repeated receipts are matched by response ID, not added again. Different submiss
 
 ## Automatic identity checks and optional deeper review
 
-Every new `./grade-submissions <ZIP>` run now gathers explicit names and registrations from new submission files, retains earlier local-AI identity evidence, and applies the full reconciliation rules before rebuilding Excel. This includes supported programme-letter typos, IG/UG entries and incomplete years. You do not need a separate reconciliation command after grading. The terminal reports **Identity checks complete**, with correction and released-mark counts. Test imports also rerun reconciliation before updating cumulative marks. Original receipts, duplicate-submission rules and uncertain identity holds are preserved.
+Every new `./IUEA_Teaching_Plan/Assessments/grade-submissions <ZIP>` run now gathers explicit names and registrations from new submission files, retains earlier local-AI identity evidence, and applies the full reconciliation rules before rebuilding Excel. This includes supported programme-letter typos, IG/UG entries and incomplete years. You do not need a separate reconciliation command after grading. The terminal reports **Identity checks complete**, with correction and released-mark counts. Test imports also rerun reconciliation before updating cumulative marks. Original receipts, duplicate-submission rules and uncertain identity holds are preserved.
 
 **Current lecturer policy:** Student Registration Number determines mark allocation. Different emails or missing/conflicting display names alone do not withhold marks for the same resolved registration. When the notebook and form disagree, the registration recorded by the notebook grader takes precedence only after verifying the original uploaded file and grader hashes. Original form entries remain in the audit. Names are descriptive and never invented from an email address. Unresolved malformed registrations, unreadable notebooks, incomplete grading and timing holds still need attention.
 
@@ -181,7 +181,7 @@ Document identity text is extracted in the existing Docker phase, before Docker 
 After grading finishes, close Excel and leave native Ollama running. Run:
 
 ```sh
-~/Projects/teaching-material/review-identities --resolve
+~/Projects/teaching-material/IUEA_Teaching_Plan/Assessments/review-identities --resolve
 ```
 
 This reads original files. It starts Docker to extract private, unredacted document text, then stops Docker before using native Ollama. It also reads notebook/README text and bounded text files inside ZIPs. Identity extraction is separate from the redacted text used to grade written answers. It never executes notebook code. Local AI proposes names with exact quotations; email spelling is only supporting evidence. Missing names are filled only when corroborated by distinct files, or by both the registration in the file and the email spelling. Existing names are preserved. Unreadable files, conflicting names and uncertain identities go into **Identity review**, with the original file links and evidence. No name is invented from an email address.
@@ -189,7 +189,7 @@ This reads original files. It starts Docker to extract private, unredacted docum
 The `--resolve` option also reconciles supported identities and rebuilds totals in the same run. To reuse already collected evidence without another extraction or AI pass, run:
 
 ```sh
-~/Projects/teaching-material/reconcile-identities
+~/Projects/teaching-material/IUEA_Teaching_Plan/Assessments/reconcile-identities
 ```
 
 For separator-only corrections (leaving letter, digit and programme-code differences for review), use `reconcile-identities --separators-only`. It requires the same account to have submitted an unambiguous structured registration, repeated across assessments; it never guesses where to split digits.

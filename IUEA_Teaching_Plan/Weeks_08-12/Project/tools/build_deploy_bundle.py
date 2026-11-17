@@ -214,7 +214,7 @@ def patch_index():
     # the Cloudflare gateway page: the same transformation as scripts/build_test_gateway.py
     page = s.replace('<base target="_top">', '')
     page = sub(page, '<?!= JSON.stringify(testKey) ?>', '__TEST_KEY_JSON__')
-    gateway_src = (ROOT / 'scripts/build_test_gateway.py').read_text()
+    gateway_src = (ROOT / 'Build_Tools/scripts/build_test_gateway.py').read_text()
     marker = "page=page.replace(\"let objectUrls=[];\",'''"
     start = gateway_src.index(marker)
     end = gateway_src.index("(portal/'gateway/page.mjs')")
@@ -340,9 +340,9 @@ def build_packets():
 def links_and_qr():
     """The three entry links (same Cloudflare host as Tests 1 and 2) and their QR codes, built exactly as scripts/configure_test_portal.py builds them."""
     from urllib.parse import urlencode
-    sys.path.insert(0, str(ROOT / 'scripts'))
+    sys.path.insert(0, str(ROOT / 'Build_Tools/scripts'))
     import qrgen
-    config = json.loads((ROOT / 'data/test_portal_config.json').read_text())
+    config = json.loads((ROOT / 'Build_Tools/data/test_portal_config.json').read_text())
     public = config['public_url'].rstrip('/') + '/'
     qrdir = DEPLOY / 'qr'
     qrdir.mkdir(exist_ok=True)

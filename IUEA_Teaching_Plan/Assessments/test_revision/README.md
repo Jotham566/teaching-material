@@ -23,4 +23,4 @@ Suggested message:
 
 > Please download both the revision slides and the practice CSV. Open a new Colab notebook, upload the CSV using the folder icon, and follow the examples in slide order. Try each practice question before checking its answer. Keep your work for revision; you do not need to submit it. On test day, you will receive different files through the test entry link.
 
-Revision ZIPs contain PDF slides, the matching practice CSV and START_HERE.txt. Editable PowerPoint masters remain in the lecturer decks directory. To rebuild: run `node scripts/export_test_revision_pdfs.mjs`, then `python3 scripts/build_test_revision_resources.py --package`.
+Revision ZIPs contain PDF slides, the matching practice CSV and START_HERE.txt. Editable PowerPoint masters remain in the lecturer decks directory. To rebuild: run `node Build_Tools/scripts/export_test_revision_pdfs.mjs`, then `python3 Build_Tools/scripts/build_test_revision_resources.py --package`.

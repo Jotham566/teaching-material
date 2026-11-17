@@ -39,7 +39,7 @@ For a fresh setup, install Python 3.12, then run:
    ```sh
    cd ~/Projects/teaching-material
    python3.12 -m venv .iuea-grader-env
-   .iuea-grader-env/bin/python -m pip install -r requirements.txt
+   .iuea-grader-env/bin/python -m pip install -r Build_Tools/requirements.txt
    ```
 
 ## Build Docker images — one-time setup

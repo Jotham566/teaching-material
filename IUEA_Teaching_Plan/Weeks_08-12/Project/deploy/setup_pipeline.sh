@@ -35,9 +35,9 @@ need gh "Install GitHub CLI and run gh auth login."; need npx "Install Node."; n
 [[ -f "$HOME/.clasprc.json" ]] || { echo "clasp is not signed in: run clasp login"; exit 1; }
 [[ -f "$GATEWAY/wrangler.jsonc" ]] || { echo "No wrangler config at $GATEWAY/wrangler.jsonc"; exit 1; }
 BOOK_ID="$(grep -oE "PORTAL_BOOK_ID = '[^']+'" "$HERE/Portal.gs" | cut -d"'" -f2)"
-PORTAL_EXEC="$("$PY" -c "import json;print(json.load(open('$ROOT/data/test_portal_config.json'))['deployment_url'])")"
+PORTAL_EXEC="$("$PY" -c "import json;print(json.load(open('$ROOT/Build_Tools/data/test_portal_config.json'))['deployment_url'])")"
 PORTAL_DEPLOYMENT="$(echo "$PORTAL_EXEC" | sed -E 's#.*/macros/s/([^/]+)/exec#\1#')"
-PUBLIC="$("$PY" -c "import json;print(json.load(open('$ROOT/data/test_portal_config.json'))['public_url'].rstrip('/'))")"
+PUBLIC="$("$PY" -c "import json;print(json.load(open('$ROOT/Build_Tools/data/test_portal_config.json'))['public_url'].rstrip('/'))")"
 echo "   tools found; workbook ${BOOK_ID:0:6}...; portal deployment ${PORTAL_DEPLOYMENT:0:10}...; gateway $PUBLIC"
 if (( ! DRY )); then gh auth status >/dev/null 2>&1 || { echo "gh is not signed in: gh auth login"; exit 1; }; fi
 

@@ -14,7 +14,7 @@ from datetime import datetime
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
-POLICY_PATH=HERE.parents[2]/'data'/'assessment_policy_20261110.json'
+POLICY_PATH=HERE.parents[2]/'Build_Tools'/'data'/'assessment_policy_20261110.json'
 COHORTS=('CML3111','CML3112','CML3113')
 PLACEHOLDER_NAMES=('','no name extracted','name not captured','none','nan')
 

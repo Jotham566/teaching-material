@@ -31,26 +31,26 @@ From 10 November your Semester 1 mark out of 100 is your five assignments A1 to 
 
 ## Files updated
 
-Everything below was changed by `scripts/apply_policy_20261110.py` (idempotent; `--dry` shows the list) unless a regeneration is named.
+Everything below was changed by `Build_Tools/scripts/apply_policy_20261110.py` (idempotent; `--dry` shows the list) unless a regeneration is named.
 
 - Dated notes (banner only, bodies unchanged): the three `Block_Assessment_Arrangement_*` notes, `Block_Assessment_By_Hand_Checklist_2026-11-02.md`, `Block_Assessment_Verification_2026-11-02.md`, `Grading_Update_By_Hand_2026-11-03.md`, `Stale_Documents_Audit_2026-11-04.md`, `Practical_Revision_Week6_Waiver.md`, `Week8_Onwards_Deck_Review_2026-10-29.md`, `Weeks8-12_Rebuild_Log_and_Industry_Coverage_2026-10-30.md`.
 - Living notes: `Teaching_Progress.md`, `Before_Each_Class_Checklist.md`, `Assignment_Submission_Links.md`, `assessment_operations/README.md`, `assessment_operations/reference/GRADING.md`, `second_half/README.md`, `second_half/Project/README.md`, `second_half/Build/AUTHORING_GUIDE.md`.
 - Student guides (all three cohorts): `B1.md`, `B2.md`, `ML_PROJECT.md`, `DA_PROJECT.md`, `W08.md` to `W12.md`, and `W06.md` for CML3112 and CML3113.
 - Assignment banks: `assessment_banks/W08` to `W12` (`ASSIGNMENT_INSTRUCTIONS.md`, `.txt` and the `W0x_student.ipynb` opening cell, task content untouched), `assessment_banks/W06` (CML3112, CML3113) and `assessment_banks/ML_PROJECT`.
 - Documents patched in place: the three syllabi, `IUEA_ML_Semester1_Master_Teaching_Plan.docx` and `.xlsx`, `IUEA_ML_Weekly_Quiz_Operations_Guide.docx`, `IUEA_ML_Lecturer_Teaching_Guide_W1-W15.docx`.
-- Regenerated from source: `grader/create_quiz_forms.gs` (by `scripts/build_quiz_forms_gs.py`), `second_half/Plan_Weeks_8-12.docx` and `.pdf` (`make_plan.py`), `second_half/Project/Student_Brief_*.docx` and `.pdf` and `Lecturer_Marking_Guide.docx` and `.pdf` (`tools/build_project_docs.py`), `second_half/Lecturer Guides/*` (`make_guides.py`; only Class 4 changed).
+- Regenerated from source: `grader/create_quiz_forms.gs` (by `Build_Tools/scripts/build_quiz_forms_gs.py`), `second_half/Plan_Weeks_8-12.docx` and `.pdf` (`make_plan.py`), `second_half/Project/Student_Brief_*.docx` and `.pdf` and `Lecturer_Marking_Guide.docx` and `.pdf` (`tools/build_project_docs.py`), `second_half/Lecturer Guides/*` (`make_guides.py`; only Class 4 changed).
 - Patched text in generated files: `grader/submission_forms.gs` (project and Data Analysis briefs), `data/assessments.json` (delivery note on W08 to W12), the nine `ML_PROJECT_student.ipynb` and nine solution notebooks, `second_half/Project/deploy/Portal.gs` and `PacketsMLProject.gs`, the `second_half/Build` sources (`content/c1.py` to `c4.py`, `_specs/*.json`, `kit/make_plan.py`), and the twelve `second_half/Slides` decks (slide text and speaker notes).
-- Builders and checks: `scripts/build_quiz_forms_gs.py`, `build_quizops_docx.py`, `build_quiz_timer.py`, `pptxkit.py`, `verify_quiz_arithmetic.py`, `quiz_timer.html`, and the project tools under `second_half/Project/tools/` and `grader_spec/grade_project.py`. `build_syllabi.py`, `build_master_docx.py`, `plan_content.py` and `build_xlsx.py` only have their header note extended (see below).
+- Builders and checks: `Build_Tools/scripts/build_quiz_forms_gs.py`, `build_quizops_docx.py`, `build_quiz_timer.py`, `pptxkit.py`, `verify_quiz_arithmetic.py`, `quiz_timer.html`, and the project tools under `second_half/Project/tools/` and `grader_spec/grade_project.py`. `build_syllabi.py`, `build_master_docx.py`, `plan_content.py` and `build_xlsx.py` only have their header note extended (see below).
 
 ## Not regenerated, and why
 
 - `build_syllabi.py`, `build_master_docx.py`, `plan_content.py`, `build_xlsx.py`: still the 15-week builders of September. Their files were changed afterwards by the `patch_*` scripts, so running them would undo that work. The documents above were patched in place instead.
-- `scripts/build_continuous_assessment.mjs` and the private `IUEA_Continuous_Assessment.xlsx`: need the lecturer's Mac artifact runtime. The private workbook still uses the old weights; do not use its totals.
+- `Build_Tools/scripts/build_continuous_assessment.mjs` and the private `IUEA_Continuous_Assessment.xlsx`: need the lecturer's Mac artifact runtime. The private workbook still uses the old weights; do not use its totals.
 - `second_half/Student Slides PDF/*` (the deck PDFs) and `second_half/Student Packages/*.zip`: the deck builder needs the pptx skill scripts, which are not available here. The decks were patched directly; the PDFs still show the 3 November wording on the Block and project slides.
 - Weeks 1 to 7 decks, the old Weeks 8 to 15 decks, `decks/lecturer_notes/*`, `guided_practice/*` and `student_packages/*`: delivered or superseded material (see `Stale_Documents_Audit_2026-11-04.md`). They still say "best 3 of 5", "10 percent" or "Block 1 is Weeks 8 to 10" in places.
 - `grader/oct15_pandas_quiz_revision.gs`: a one-off October script that carries the original quiz intro ("best ten of twelve"). The live forms are replaced from `create_quiz_forms.gs`.
 - Live Google Forms, Sheets and Apps Script projects: nothing on Google was touched. Re-running `create_quiz_forms.gs` or re-pasting `submission_forms.gs` is a by-hand step.
-- Owned by another session and not touched: `grader/gradebook.gs`, `grader/Grades_template.csv`, `grader/README.md`, `grader/continuous_assessment.py`, `grader/final_marks_export.py`, `grader/grade_test_batch.py`, `grader/test_collection_issues.py`, `test_operations/TEST_CHECKLIST.md`, `scripts/assessment_registry.py` and the gradebook xlsx builders.
+- Owned by another session and not touched: `grader/gradebook.gs`, `grader/Grades_template.csv`, `grader/README.md`, `grader/continuous_assessment.py`, `grader/final_marks_export.py`, `grader/grade_test_batch.py`, `grader/test_collection_issues.py`, `test_operations/TEST_CHECKLIST.md`, `Build_Tools/scripts/assessment_registry.py` and the gradebook xlsx builders.
 
 ## Correction of 10 November 2026: there is no live Google gradebook
 
