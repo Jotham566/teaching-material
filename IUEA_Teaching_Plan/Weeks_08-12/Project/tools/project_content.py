@@ -131,22 +131,19 @@ if hashlib.sha256(_bytes).hexdigest() != {data_sha()!r}:
 _data = json.loads(_bytes)
 # Houses: Ames, Iowa sales 2006 to 2010 (De Cock 2011). Machines: AI4I 2020, synthetic data modelled on real machine logs (Matzka 2020).
 # Both tables were organised for this project, and a few problems were ADDED on purpose for you to clean (see "The data").
-H_TARGET, H_UNIT = {cfg["h_target"]!r}, {cfg["h_unit"]!r}
-H_FEATURES = {cfg["h_features"]!r}
-TEXT_FEATURES = {cfg["h_text"]!r}
-M_TARGET, M_LIMIT = {cfg["m_target"]!r}, {cfg["m_limit"]!r}
-M_FEATURES = {cfg["m_features"]!r}
-THRESHOLD = {P.THRESHOLD}
-MAX_MAE, MAX_MS = {cfg["max_mae"]!r}, {P.MAX_MS}   # the client's limits: teaching numbers, not real ones
+# Save the two tables as CSV files next to this notebook: the cells below read them.
+for _name in ("houses", "machines"):
+    with open(_name + ".csv", "w") as _file:
+        _file.write(_data[_name])
+# The supplied model-choosing rules (Tasks 4 and 8) and the client's limits: teaching numbers, not real ones
+MAX_MAE, MAX_MS = {cfg["max_mae"]!r}, {P.MAX_MS}
 LATENCY_MS = {P.LATENCY_MS!r}
-houses_raw = pd.read_csv(io.StringIO(_data["houses"]))
-machines_raw = pd.read_csv(io.StringIO(_data["machines"]))
 def choose_model(maes):
     ok = [m for m in maes if maes[m] is not None and maes[m] <= MAX_MAE and LATENCY_MS[m] <= MAX_MS]
     return min(ok, key=lambda m: (maes[m], LATENCY_MS[m], m)) if ok else None
 def choose_warning_model(f1s):
     return "tree" if f1s["tree"] > f1s["logistic"] else "logistic"
-print("houses_raw:", houses_raw.shape, "| machines_raw:", machines_raw.shape)
+print("Data ready: houses.csv and machines.csv")
 """ + PL.backup_code() + PL.countdown_code()
 
 
@@ -155,7 +152,7 @@ def data_markdown():
     """The cell right after Setup: what the two tables are, every column in plain words, and the problems added for cleaning."""
     hp, mp = P.H_PROBLEMS, P.M_PROBLEMS
     return f'''## The data
-Setup loads two tables. Both are real published data, organised for this project. **A few problems were added on purpose** for you to clean. Question 1 (Tasks 1 to 4) uses only the houses; Question 2 (Tasks 5 to 8) uses only the machines.
+Setup saves two tables as CSV files (`houses.csv`, `machines.csv`); the supplied cell below this one reads the houses, and the machines are read at the start of Question 2. Both are real published data, organised for this project. **A few problems were added on purpose** for you to clean. Question 1 (Tasks 1 to 4) uses only the houses; Question 2 (Tasks 5 to 8) uses only the machines.
 
 **`houses_raw`**: {len(P.houses_given()):,} house sales in Ames, Iowa (USA), 2006 to 2010. One row is one sale. Question 1 predicts the price.
 
@@ -203,11 +200,14 @@ SUPPLIED_CELLS = {
 start every weight at 0, then repeat **new w = old w - learning rate x slope of the loss**.
 - **Epochs** are set in the line `epochs = 300`. One epoch is one pass over all the training houses; here every step uses all of them, so one step is one epoch.
 - **Learning rate** is set in the line `learning_rate = 0.1`: the size of each step.''',
-'''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
+'''# IUEA-SUPPLIED gd-houses: do not edit. Just run this cell; it is not marked.
+# if Tasks 1 and 2 have not made houses_train yet, say so instead of failing
 if "houses_train" not in globals():
-    print("Do Tasks 1 and 2 first: this cell needs houses_train.")
-else:
+    print("Do Tasks 1 and 2 first: this cell needs houses_train.")      # a friendly message instead of an error
+else:                             # otherwise, run gradient descent
+    # the imputer fills missing values with the training medians
     gd_imputer = SimpleImputer(strategy="median")
+    # the scaler standardises every feature (mean 0, standard deviation 1)
     gd_scaler = StandardScaler()
     gd_filled = gd_imputer.fit_transform(houses_train[H_FEATURES])   # fill gaps with the training medians
     gd_X = gd_scaler.fit_transform(gd_filled)                         # standardise: every feature has mean 0 and standard deviation 1
@@ -219,36 +219,47 @@ else:
     gd_b = 0.0                        # the intercept, 0 at the start
     gd_losses = []                    # the loss (MSE) after each epoch
     gd_errors = []                    # the training MAE after each epoch
-    for epoch in range(epochs):
+    for epoch in range(epochs):       # repeat once per epoch: predict, measure the loss, step downhill
         gd_guess = gd_X @ gd_w + gd_b                 # the model's price for every training house: b + w1 x1 + w2 x2 + ...
         gd_gap = gd_guess - gd_y                      # how far off each guess is
         gd_losses.append(np.mean(gd_gap ** 2))        # the loss: mean squared error (MSE)
         gd_errors.append(np.mean(np.abs(gd_gap)))     # the training MAE, in thousand USD
         gd_w = gd_w - learning_rate * 2 * (gd_X.T @ gd_gap) / len(gd_y)   # new w = old w - learning rate x slope of the loss
-        gd_b = gd_b - learning_rate * 2 * np.mean(gd_gap)
+        gd_b = gd_b - learning_rate * 2 * np.mean(gd_gap)              # the same step for the intercept
 
+    # the loss at the first and the last epoch
     print("Loss (MSE) at the start:", round(gd_losses[0]), "| after", epochs, "epochs:", round(gd_losses[-1]))
+    # the training MAE at the first and the last epoch
     print("Training MAE at the start:", round(gd_errors[0], 1), "thousand USD | after", epochs, "epochs:", round(gd_errors[-1], 1))
 
+    # Chart: the loss at each epoch
     plt.figure()
+    # one point per epoch, joined by a line
     plt.plot(gd_losses)
-    plt.title("Gradient descent: the training loss falls epoch by epoch")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss: MSE (thousand USD, squared)")
+    plt.title("Gradient descent: the training loss falls epoch by epoch")   # the chart title
+    plt.xlabel("Epoch")                                    # the label under the horizontal axis
+    plt.ylabel("Loss: MSE (thousand USD, squared)")        # the label beside the vertical axis, with its unit
+    # draw the chart
     plt.show()
 
     # Regression has no accuracy (a price is never exactly right or wrong): its training curve is the error at each epoch
     plt.figure()
+    # the training MAE at each epoch
     plt.plot(gd_errors)
-    plt.title("Training error at each epoch (lower is better)")
-    plt.xlabel("Epoch")
-    plt.ylabel("Training MAE (thousand USD)")
+    plt.title("Training error at each epoch (lower is better)")             # the chart title
+    plt.xlabel("Epoch")                                    # the label under the horizontal axis
+    plt.ylabel("Training MAE (thousand USD)")              # the label beside the vertical axis, with its unit
+    # draw the chart
     plt.show()
 
     # The learned weights: gradient descent next to LinearRegression, on the same standardised features
+    # LinearRegression solves the same problem directly, with the least-squares formula (no epochs)
     gd_check = LinearRegression().fit(gd_X, gd_y)
+    # a table: one row per feature, the weight from each method side by side
     gd_weights = pd.DataFrame({"feature": H_FEATURES, "gradient descent": gd_w, "LinearRegression": gd_check.coef_})
+    # show it, rounded to 2 decimals
     display(gd_weights.round(2))
+    # the two intercepts
     print("Intercept, gradient descent:", round(gd_b, 2), "| LinearRegression:", round(gd_check.intercept_, 2))
 ''', '''**How to read the weights table**
 - Each row is one feature. A weight is the change in price, **in thousand USD**, when that feature rises by **one standard deviation** (the others held fixed). Example: a living_area_m2 weight of 34 means a house about one standard deviation bigger sells for about 34,000 USD more.
@@ -262,11 +273,14 @@ measures the log loss, and moves every weight a small step downhill.
 - **Epochs** are set in the line `epochs = 1000`: one epoch is one pass over all the training runs.
 - **Learning rate** is set in the line `learning_rate = 1.0`.
 - The second chart is the **training accuracy** at each epoch: the share of training runs the model calls right.''',
-'''# IUEA-SUPPLIED: do not edit. Just run this cell; it is not marked.
+'''# IUEA-SUPPLIED gd-machines: do not edit. Just run this cell; it is not marked.
+# if Tasks 5 and 6 have not made machines_train yet, say so instead of failing
 if "machines_train" not in globals():
-    print("Do Tasks 5 and 6 first: this cell needs machines_train.")
-else:
+    print("Do Tasks 5 and 6 first: this cell needs machines_train.")    # a friendly message instead of an error
+else:                             # otherwise, run gradient descent
+    # the imputer fills missing values with the training medians
     gd2_imputer = SimpleImputer(strategy="median")
+    # the scaler standardises every feature (mean 0, standard deviation 1)
     gd2_scaler = StandardScaler()
     gd2_filled = gd2_imputer.fit_transform(machines_train[M_FEATURES])   # fill gaps with the training medians
     gd2_X = gd2_scaler.fit_transform(gd2_filled)                          # standardise: mean 0, standard deviation 1
@@ -278,41 +292,122 @@ else:
     gd2_b = 0.0                         # the intercept, 0 at the start
     gd2_losses = []                     # the log loss after each epoch
     gd2_accuracy = []                   # the training accuracy after each epoch
-    for epoch in range(epochs):
+    for epoch in range(epochs):       # repeat once per epoch: predict, measure the loss, step downhill
         gd2_chance = 1 / (1 + np.exp(-(gd2_X @ gd2_w + gd2_b)))   # the sigmoid: a chance of failure from 0 to 1
         gd2_losses.append(-np.mean(gd2_y * np.log(gd2_chance) + (1 - gd2_y) * np.log(1 - gd2_chance)))   # log loss
         gd2_accuracy.append(np.mean((gd2_chance >= 0.5) == gd2_y))   # share of training runs called right at threshold 0.5
         gd2_w = gd2_w - learning_rate * (gd2_X.T @ (gd2_chance - gd2_y)) / len(gd2_y)   # new w = old w - learning rate x slope
-        gd2_b = gd2_b - learning_rate * np.mean(gd2_chance - gd2_y)
+        gd2_b = gd2_b - learning_rate * np.mean(gd2_chance - gd2_y)     # the same step for the intercept
 
+    # the log loss at the first and the last epoch
     print("Log loss at the start:", round(gd2_losses[0], 3), "| after", epochs, "epochs:", round(gd2_losses[-1], 3))
+    # the training accuracy at the first and the last epoch
     print("Training accuracy at the start:", round(gd2_accuracy[0], 3), "| after", epochs, "epochs:", round(gd2_accuracy[-1], 3))
 
+    # Chart: the log loss at each epoch
     plt.figure()
-    plt.plot(gd2_losses)
-    plt.title("Gradient descent: the training log loss falls epoch by epoch")
-    plt.xlabel("Epoch")
-    plt.ylabel("Log loss")
+    plt.plot(gd2_losses)                                   # one point per epoch, joined by a line
+    plt.title("Gradient descent: the training log loss falls epoch by epoch")   # the chart title
+    plt.xlabel("Epoch")                                    # the label under the horizontal axis
+    plt.ylabel("Log loss")                                 # the label beside the vertical axis
+    # draw the chart
     plt.show()
 
+    # Chart: the training accuracy at each epoch
     plt.figure()
-    plt.plot(gd2_accuracy)
-    plt.title("Training accuracy at each epoch")
-    plt.xlabel("Epoch")
-    plt.ylabel("Training accuracy")
+    plt.plot(gd2_accuracy)                                 # one point per epoch, joined by a line
+    plt.title("Training accuracy at each epoch")                            # the chart title
+    plt.xlabel("Epoch")                                    # the label under the horizontal axis
+    plt.ylabel("Training accuracy")                        # the label beside the vertical axis (0 to 1)
+    # draw the chart
     plt.show()
 
     # The learned weights: gradient descent next to LogisticRegression, on the same standardised features
     # (LogisticRegression adds a small penalty, so its weights are close, not equal)
+    # LogisticRegression on the same standardised features
     gd2_check = LogisticRegression(max_iter=1000).fit(gd2_X, gd2_y)
+    # a table: one row per feature, the weight from each method side by side
     gd2_weights = pd.DataFrame({"feature": M_FEATURES, "gradient descent": gd2_w, "LogisticRegression": gd2_check.coef_[0]})
+    # show it, rounded to 2 decimals
     display(gd2_weights.round(2))
+    # the two intercepts
     print("Intercept, gradient descent:", round(gd2_b, 2), "| LogisticRegression:", round(gd2_check.intercept_[0], 2))
 ''', '''**How to read the two charts and the weights table**
 - **Accuracy starts near 0.03:** with every weight at 0, every run gets a chance of 0.5, so the model warns about every run and is right only for the few that failed. Within a few epochs it reaches about 0.97 by saying "no failure" to almost every run. Failures are rare, so accuracy looks good even when most failures are missed: that is why we choose the warning model by **F1**.
 - **Weights:** each is the change in the log-odds of a failure when that feature rises by one standard deviation (the others held fixed). A positive weight makes a failure more likely; a negative one less likely. On one scale, a bigger weight (ignoring the sign) means a feature matters more.
 - The two columns are close: gradient descent ends near where `LogisticRegression()` lands.'''),
 }
+
+
+# Visible supplied cells (lecturer, 17 November 2026): reading the data and naming the columns happen in plain sight, at the stage where they
+# are used, not inside Setup. They are filled in and marked "# IUEA-SUPPLIED <id>:"; the marking computer puts the original back if one is
+# edited and defines the same names itself if one is deleted (grading_defaults). The two read cells sit OUTSIDE every task section (before
+# Task 1, and under the Question 2 heading, which belongs to Task 4's section and does not touch its results), so a hidden-data rerun of a
+# task never reads the visible files over its hidden inputs.
+SUPPLIED_RE = r'# IUEA-SUPPLIED ([a-z-]+):'
+SUPPLIED_HEAD = '# IUEA-SUPPLIED {id}: do not edit. Just run this cell; it is not marked.\n'
+
+
+def visible_cells(cfg=P.EXAM):
+    """{id: (where, source)}. where: 'data' (after The data), 'question2' (under the Question 2 heading) or a task key (before the student's cell)."""
+    head = lambda i: SUPPLIED_HEAD.format(id=i)
+    return {
+        'data-houses': ('data', head('data-houses') + f'''# read the house table from the CSV file that Setup saved: one row per sale
+houses_raw = pd.read_csv("houses.csv")
+# the target: the column Question 1 predicts (the price, in {cfg["h_unit"]})
+H_TARGET = {cfg["h_target"]!r}
+# the size of the table: (rows, columns)
+print("houses_raw:", houses_raw.shape)
+'''),
+        'data-machines': ('question2', head('data-machines') + f'''# read the machine table from the CSV file that Setup saved: one row per run
+machines_raw = pd.read_csv("machines.csv")
+# the target: the column Question 2 predicts
+M_TARGET = {cfg["m_target"]!r}
+# a run counts as a failure when M_TARGET is at or above this limit
+M_LIMIT = {cfg["m_limit"]!r}
+# the size of the table: (rows, columns)
+print("machines_raw:", machines_raw.shape)
+'''),
+        'features-houses': ('regression', head('features-houses') + f'''# the number columns the house models read: the features (X). The target H_TARGET is not one of them.
+H_FEATURES = {cfg["h_features"]!r}
+# how many features, and which
+print(len(H_FEATURES), "features:", H_FEATURES)
+'''),
+        'features-text': ('encoded', head('features-text') + f'''# the text columns Task 3b adds to the number columns
+TEXT_FEATURES = {cfg["h_text"]!r}
+# which text columns
+print("text features:", TEXT_FEATURES)
+'''),
+        'features-machines': ('classify', head('features-machines') + f'''# the columns the machine models read: the features (X). The target M_TARGET is not one of them.
+M_FEATURES = {cfg["m_features"]!r}
+# warn when the probability of a failure is at or above this threshold
+THRESHOLD = {P.THRESHOLD}
+# how many features, and which
+print(len(M_FEATURES), "features:", M_FEATURES)
+'''),
+    }
+
+
+def supplied_sources(cfg=P.EXAM):
+    """{id: original source} of every supplied cell outside Setup, for the marking computer to restore."""
+    out = {i: src for i, (_, src) in visible_cells(cfg).items()}
+    out['gd-houses'] = SUPPLIED_CELLS['regression'][1]
+    out['gd-machines'] = SUPPLIED_CELLS['classify'][1]
+    return out
+
+
+def grading_defaults(cfg=P.EXAM):
+    """The names the visible cells define, added by the marking computer after Setup, so a deleted supplied cell costs nothing."""
+    return (f'''# IUEA-GRADER-DEFAULTS (added by the marking computer)
+houses_raw = pd.read_csv("houses.csv")
+machines_raw = pd.read_csv("machines.csv")
+H_TARGET = {cfg["h_target"]!r}
+M_TARGET, M_LIMIT = {cfg["m_target"]!r}, {cfg["m_limit"]!r}
+H_FEATURES = {cfg["h_features"]!r}
+TEXT_FEATURES = {cfg["h_text"]!r}
+M_FEATURES = {cfg["m_features"]!r}
+THRESHOLD = {P.THRESHOLD}
+''')
 
 
 # ------------------------------------------------------------------------------------------------ the tasks
@@ -365,7 +460,7 @@ print(len(houses_train), len(houses_valid), len(houses_test))
 '''))
     out.append(dict(key='regression', question=1, title='Linear regression and a decision tree', marks=dict(regression=marks['regression'], errors=marks['errors'], leakage=marks['leakage'], charts=marks['charts']),
         inputs=['houses_train', 'houses_valid'], results=['linear_pred', 'tree_pred', 'linear_mae', 'tree_mae', 'linear_rmse', 'tree_rmse'],
-        text=('Train linear regression first, all the way, then the decision tree. Use the columns `H_FEATURES` and the target `H_TARGET`; '
+        text=('Train linear regression first, all the way, then the decision tree. Use the columns `H_FEATURES` (named in the supplied cell below) and the target `H_TARGET`; '
               'import `mean_absolute_error` and `mean_squared_error` from `sklearn.metrics`.\n'
               '1. Make the features and the target: `X_train` and `y_train` from `houses_train`, `X_valid` and `y_valid` from `houses_valid`. Print their shapes and the missing values in `X_train`.\n'
               '2. Linear regression: create `make_pipeline(SimpleImputer(strategy="median"), LinearRegression())` and fit it on the training rows.\n'
@@ -396,7 +491,7 @@ plt.show()
 '''.replace('UNIT', u)))
     out.append(dict(key='encoded', question=1, label='3b', title='Do the text columns help?', marks=dict(encoded=marks['encoded']), inputs=['houses_train', 'houses_valid'],
         results=['encoded_pred', 'encoded_mae'],
-        text=('A comparison only: not one of the models in Task 4. Use the columns `H_FEATURES + TEXT_FEATURES`.\n'
+        text=('A comparison only: not one of the models in Task 4. Use the columns `H_FEATURES + TEXT_FEATURES` (`TEXT_FEATURES` is named in the supplied cell below).\n'
               '1. Look at the text columns with `houses_train[TEXT_FEATURES].head()`: a model cannot use words directly.\n'
               '2. Build this pipeline. Number columns: fill gaps with the median. Text columns: fill gaps with the most frequent value, then one 0/1 column per category:\n'
               '`make_pipeline(make_column_transformer((SimpleImputer(strategy="median"), H_FEATURES), (make_pipeline(SimpleImputer(strategy="most_frequent"), '
@@ -455,7 +550,7 @@ print(len(machines_train), len(machines_valid), len(machines_test))
         inputs=['machines_train', 'machines_valid'],
         results=['logistic_proba', 'logistic_warn', 'tree_warn', 'logistic_counts', 'tree_counts', 'logistic_precision', 'logistic_recall', 'logistic_f1',
                  'tree_precision', 'tree_recall', 'tree_f1'],
-        text=('Train logistic regression first, all the way, then the decision tree. Use the columns `M_FEATURES`. A warning means a failure: `M_TARGET >= M_LIMIT`.\n'
+        text=('Train logistic regression first, all the way, then the decision tree. Use the columns `M_FEATURES` (named in the supplied cell below, with `THRESHOLD`). A warning means a failure: `M_TARGET >= M_LIMIT`.\n'
               '1. Make `X_train` and `X_valid`, and the targets: 1 for a failure, 0 otherwise (`(... >= M_LIMIT).astype(int)`). Print how many failures each set has.\n'
               '2. Logistic regression: create `make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))` and fit it on the training rows.\n'
               '3. Read its intercept and weights (`.named_steps["logisticregression"]`).\n'

@@ -67,14 +67,20 @@ def build_notebook(code, mode, require_forms=False):
     setup = PC.setup_cell(cfg, code, test_id)
     cells = [cell(intro_cell(code, mode, configured)), cell(setup, True, ['iuea-support'], True)]
     cells.append(cell(PC.data_markdown()))
+    visible = PC.visible_cells(cfg)                                                  # reading the data and naming the columns, in plain sight
+    put = lambda where: [cells.append(cell(src, True, ['iuea-supplied'])) for w, src in visible.values() if w == where]
+    put('data')
     starters = []
     tasks = PC.tasks(cfg)
     for i, task in enumerate(tasks, 1):
         if task['question'] != (tasks[i - 2]['question'] if i > 1 else 0):         # a clear break between the two questions
             cells.append(cell(PC.QUESTION_HEADINGS[task['question']]))
+            if task['question'] == 2:
+                put('question2')
         if mode == 'rehearsal' and task['key'] in PC.REHEARSAL_NOTES:
             cells.append(cell(PC.REHEARSAL_NOTES[task['key']]))
         cells.append(cell(PC.task_markdown(i, task)))
+        put(task['key'])                                                             # the feature names, just before the student's work
         starters.append(task['starter'])
         cells.append(cell(task['solution'] if mode == 'solution' else task['starter'], True))
         if task['key'] in PC.SUPPLIED_CELLS:                                       # ready-made "watch it learn" cell, not marked

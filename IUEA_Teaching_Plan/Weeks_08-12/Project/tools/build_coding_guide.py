@@ -67,11 +67,17 @@ def tight(p, before=0, after=0, line=1.0):
 def cells_block(d, *keys):
     """One shaded box per notebook cell, numbered within the task as in the notebook, with a small gap between boxes."""
     n = 0
+    where = {'clean_h': ('data',), 'clean_m': ('question2',)}
     for key in keys:
+        for w, src in PC.visible_cells(P.REHEARSAL).values():          # the visible supplied cells that come before the student's work
+            if w == key or w in where.get(key, ()):
+                if n:
+                    gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
+                n = n or 0
+                code_block(d, src, label='Supplied cell (already in the students\' notebook; not marked)')
         for part in WA.answer_cells(key, P.REHEARSAL['split_seed']):
             n += 1
-            if n > 1:
-                gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
+            gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
             code_block(d, part, label=f'Cell {n}')
         if key == 'encoded':                                         # the revision-only demo (not in the project)
             for part in WA.demo_cells():

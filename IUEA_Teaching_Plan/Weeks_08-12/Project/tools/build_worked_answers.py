@@ -78,6 +78,10 @@ def answered(code, mode):
                     cells.append(one)
                 cells.append(BN.cell(W.DEMO_TEXT_READ))
             continue
+        if practice and cell['cell_type'] == 'markdown' and text.startswith('**How to read the weights table**'):
+            cells.append(cell)                                              # the supplied note, then the revision-only sentence
+            cells.append(BN.cell(W.GD_SENTENCE))
+            continue
         if cell['cell_type'] == 'code' and text.startswith('# Fill in every field'):
             cell['source'] = (PRACTICE_MEMO if mode == 'students' else PC.memo_solution(code, cfg)).splitlines(True)
         cells.append(cell)
