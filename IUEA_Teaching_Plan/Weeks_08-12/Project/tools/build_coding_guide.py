@@ -64,13 +64,29 @@ def tight(p, before=0, after=0, line=1.0):
     pf.space_before, pf.space_after, pf.line_spacing = Pt(before), Pt(after), line
 
 
-def code_block(d, code):
+def cells_block(d, *keys):
+    """One shaded box per notebook cell, numbered within the task as in the notebook, with a small gap between boxes."""
+    n = 0
+    for key in keys:
+        for part in WA.answer_cells(key, P.REHEARSAL['split_seed']):
+            n += 1
+            if n > 1:
+                gap = d.add_paragraph(); tight(gap, line=0.5); run(gap, ' ', 2)
+            code_block(d, part, label=f'Cell {n}')
+
+
+def code_block(d, code, label=''):
     """Full-width shaded box; comments in green, code in ink, one paragraph per line."""
     t = d.add_table(rows=1, cols=1)
     no_borders(t)
     c = t.rows[0].cells[0]
-    shade(c, PALE); cell_margins(c, 0.15)
+    shade(c, PALE); cell_margins(c, 0.12)
     first = True
+    if label:
+        p = c.paragraphs[0]
+        first = False
+        tight(p, line=0.92)
+        run(p, label, 6.5, bold=True, color=TEAL)
     for line in code.rstrip('\n').split('\n'):
         p = c.paragraphs[0] if first else c.add_paragraph()
         first = False
@@ -134,7 +150,7 @@ def main():
     p1 = d.add_paragraph(); tight(p1, after=2)
     run(p1, 'Lecturer copy, do not post. CML3112 Tuesday 17, CML3113 and CML3111 Friday 20 November. ', 8.5, bold=True, color=GREY)
     run(p1, f'Open Rehearsal_Answers_<course>.ipynb (random_state={seed}; the project uses 17) and choose Runtime > Run all. Read "The data" together, '
-            'then walk down the cells: say what each line does, then read its printout. Every change is followed by a peek. '
+            'then go one cell at a time: explain the step, then read its printout together before moving on. Every change is followed by a peek. '
             'Finish Question 1 before opening Question 2.', 8.5, color=GREY)
 
     def question(text):
@@ -143,44 +159,44 @@ def main():
 
     question('Question 1: what will a house sell for? (regression, houses only)')
     heading(d, 'Task 1. Clean the house table', '3 marks + chart, 15 minutes')
-    code_block(d, WA.answer('clean_h', seed))
+    cells_block(d, 'clean_h')
     notes(d, 'head(), info() and describe() first: info() shows the gaps, describe() the impossible min and max. Then one fix per step, with the shape after each. Other gaps stay for the imputer.',
           f'10 duplicates, 6 with no price. {n["houses_raw"]:,} to {n["houses"]:,} houses.',
           'Why not drop every row that has any gap?')
     heading(d, 'Task 2. Split the houses', '1 mark, 5 minutes')
-    code_block(d, WA.answer('split_h', seed))
+    cells_block(d, 'split_h')
     notes(d, 'Test first, then validation from the rest: 60/20/20. Same seed, same rows for everyone. Test stays sealed until Task 4.',
           f'{n["houses_train"]:,}, {n["houses_valid"]:,}, {n["houses_test"]:,}.',
           'What goes wrong if we pick the model on the test rows?')
     heading(d, 'Task 3. Linear regression and a decision tree', '11 marks with Chart 2, 20 minutes')
-    code_block(d, WA.answer('regression', seed))
+    cells_block(d, 'regression')
     notes(d, 'X is the table the model reads, y the price. Imputer, not .fillna(): it learns medians from train only (show learned_medians) and reuses them on valid and test. Create, fit on train, predict valid. RMSE punishes big misses.',
           f'MAE {f(vm["linear"])} and {f(vm["tree"])} USD. RMSE {f(vr["linear"])} and {f(vr["tree"])}.',
           'Why is it wrong to fill the gaps before the split?')
     heading(d, 'Task 3b. Do the text columns help?', '2 marks, 10 minutes')
-    code_block(d, WA.answer('encoded', seed))
+    cells_block(d, 'encoded')
     notes(d, 'One 0/1 column per category, learned from train; "ignore" gives an unseen category all zeros. A comparison only.',
           f'{f(enc)} USD against {f(vm["linear"])}: the text columns help.',
           'A neighbourhood train never saw: what happens without "ignore"?')
     heading(d, 'Task 4. Choose the house model, then use the test set once', '1 mark, 10 minutes')
-    code_block(d, WA.answer('test_h', seed))
+    cells_block(d, 'test_h')
     notes(d, 'Choose on validation numbers only; refit on train + valid; score the test rows once and report what comes out.',
           f'{p["chosen_model"]} (the tree, {f(vm["tree"])}, is over the {cfg["max_mae"]:,} limit). Test MAE {f(test["mae"])} USD.',
           'The test MAE is lower than validation. Is the model better than we thought?')
 
     question('Question 2: will this machine run fail? (classification, machines only)')
     heading(d, 'Tasks 5 and 6. Clean and split the machine table', '4 marks, 10 minutes')
-    code_block(d, WA.answer('clean_m', seed) + '\n' + WA.answer('split_m', seed))
+    cells_block(d, 'clean_m', 'split_m')
     notes(d, 'The same steps as Question 1, on a new table. product_type becomes a number: a model needs numbers.',
           f'12 duplicates, 8 with no label. {n["machines_raw"]:,} to {n["machines"]:,}; {n["machines_train"]:,}, {n["machines_valid"]:,}, {n["machines_test"]:,}.',
           'Which steps were the same as for the houses?')
     heading(d, 'Task 7. Logistic regression and a decision tree', '5 marks, 25 minutes')
-    code_block(d, WA.answer('classify', seed))
+    cells_block(d, 'classify')
     notes(d, 'Logistic gives a probability (warn at 0.5 or more); the tree answers 0 or 1. Failures are rare, so both miss most. CML3112: draw the 2 by 2 table first.',
           f'Logistic TP {w["tp"]}, FP {w["fp"]}, FN {w["fn"]}, F1 {w["f1"]:.3f}. Tree TP {wt["tp"]}, FP {wt["fp"]}, FN {wt["fn"]}, F1 {wt["f1"]:.3f}.',
           'For the maintenance manager, which costs more: a false alarm or a missed failure?')
     heading(d, 'Task 8. Choose the warning model, then use the test set once', '1 mark, 10 minutes')
-    code_block(d, WA.answer('test_m', seed))
+    cells_block(d, 'test_m')
     notes(d, 'The higher validation F1 wins; refit on train + valid; score the test runs once.',
           f'{p["chosen_warning"]} (F1 {wt["f1"]:.3f} against {w["f1"]:.3f}). Test F1 {test["warning"]["f1"]:.3f}.',
           'The two F1 values are very close. Would you trust this choice?')

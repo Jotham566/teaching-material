@@ -7,6 +7,7 @@ tools/worked_answers.py holds the answer code and stays on this computer only (g
 With --proof-dir, also writes the same answers on the project's split (random_state=17) as a submission to grade, to prove full marks.
 """
 import argparse
+import copy
 import json
 import re
 import sys
@@ -21,7 +22,7 @@ import project_numpy_reference as P  # noqa: E402
 
 OUT = PC.PLAN / 'Weeks_08-12/Lecturer Guides'
 TITLE = '''# {code} Engineering ML project: REHEARSAL ANSWERS (lecturer only, do not post)
-Every task is answered. Choose **Runtime > Run all**. The split uses random_state=29, as in the rehearsal; the project uses 17.
+Every task is answered, one step per cell. Choose **Runtime > Run all**, then talk through one cell at a time. The split uses random_state=29, as in the rehearsal; the project uses 17.
 The clock and the automatic backup are off in this copy.'''
 
 
@@ -35,16 +36,22 @@ def answered(code, mode):
     cfg = P.REHEARSAL if mode == 'rehearsal' else P.EXAM
     labels = {t['label']: t['key'] for t in PC.tasks(cfg)}
     current = None
+    cells = []
     for cell in nb['cells']:
         text = src(cell)
         m = re.match(r'^## Task (\w+):', text)
         if cell['cell_type'] == 'markdown' and m:
             current = labels.get(m.group(1))
-            continue
         if cell['cell_type'] == 'code' and text.startswith('# Your code here.'):
-            cell['source'] = W.answer(current, cfg['split_seed']).splitlines(True)
-        elif cell['cell_type'] == 'code' and text.startswith('# Fill in every field'):
+            for part in W.answer_cells(current, cfg['split_seed']):       # one logical step per cell
+                one = copy.deepcopy(cell)
+                one['source'] = part.splitlines(True)
+                cells.append(one)
+            continue
+        if cell['cell_type'] == 'code' and text.startswith('# Fill in every field'):
             cell['source'] = PC.memo_solution(code, cfg).splitlines(True)
+        cells.append(cell)
+    nb['cells'] = cells
     if mode == 'rehearsal':
         nb['cells'][0]['source'] = TITLE.format(code=code).splitlines(True)
         setup = nb['cells'][1]
