@@ -133,8 +133,9 @@ def main():
     run(p0, 'Revision class: the coding guide', 15, bold=True, color=INK)
     p1 = d.add_paragraph(); tight(p1, after=2)
     run(p1, 'Lecturer copy, do not post. CML3112 Tuesday 17, CML3113 and CML3111 Friday 20 November. ', 8.5, bold=True, color=GREY)
-    run(p1, f'Rehearsal, random_state={seed} (project: 17). Enter with 26/DEMO/001/LECTURER, run Setup, read "The data". Type each block, run it, read the '
-            'printout together. Backup: Rehearsal_Answers_<course>.ipynb, Run all. Finish Question 1 before opening Question 2.', 8.5, color=GREY)
+    run(p1, f'Open Rehearsal_Answers_<course>.ipynb (random_state={seed}; the project uses 17) and choose Runtime > Run all. Read "The data" together, '
+            'then walk down the cells: say what each line does, then read its printout. Every change is followed by a peek. '
+            'Finish Question 1 before opening Question 2.', 8.5, color=GREY)
 
     def question(text):
         pq = d.add_paragraph(); tight(pq, before=5, after=0)
@@ -143,7 +144,7 @@ def main():
     question('Question 1: what will a house sell for? (regression, houses only)')
     heading(d, 'Task 1. Clean the house table', '3 marks + chart, 15 minutes')
     code_block(d, WA.answer('clean_h', seed))
-    notes(d, 'Look first. A duplicate counts a sale twice; no price teaches nothing; an area of 0 or a 2108 build year is a slip. Other gaps stay for the imputer.',
+    notes(d, 'head(), info() and describe() first: info() shows the gaps, describe() the impossible min and max. Then one fix per step, with the shape after each. Other gaps stay for the imputer.',
           f'10 duplicates, 6 with no price. {n["houses_raw"]:,} to {n["houses"]:,} houses.',
           'Why not drop every row that has any gap?')
     heading(d, 'Task 2. Split the houses', '1 mark, 5 minutes')
@@ -153,9 +154,9 @@ def main():
           'What goes wrong if we pick the model on the test rows?')
     heading(d, 'Task 3. Linear regression and a decision tree', '11 marks with Chart 2, 20 minutes')
     code_block(d, WA.answer('regression', seed))
-    notes(d, 'Create, fit on train, predict valid. Medians come from train only, so nothing leaks. RMSE punishes big misses.',
+    notes(d, 'X is the table the model reads, y the price. Imputer, not .fillna(): it learns medians from train only (show learned_medians) and reuses them on valid and test. Create, fit on train, predict valid. RMSE punishes big misses.',
           f'MAE {f(vm["linear"])} and {f(vm["tree"])} USD. RMSE {f(vr["linear"])} and {f(vr["tree"])}.',
-          'Why is RMSE always at least as big as MAE?')
+          'Why is it wrong to fill the gaps before the split?')
     heading(d, 'Task 3b. Do the text columns help?', '2 marks, 10 minutes')
     code_block(d, WA.answer('encoded', seed))
     notes(d, 'One 0/1 column per category, learned from train; "ignore" gives an unseen category all zeros. A comparison only.',
@@ -190,9 +191,9 @@ def main():
           'Why is the test set used only once, at the end?')
     heading(d, 'Finish, and the mistakes to watch for', '10 minutes')
     pm = d.add_paragraph(); tight(pm, after=1)
-    run(pm, 'Restart and run all, Ctrl+S, Check my work. No Submit button. ', 8.5)
+    run(pm, 'In the project students restart and run all, Ctrl+S, then Check my work. No Submit button. ', 8.5)
     run(pm, 'Watch for: ', 8.5, bold=True, color=TEAL)
-    run(pm, 'changing a raw table; filling every gap in cleaning; another split seed; the imputer fitted on train and valid; RMSE without the root; '
+    run(pm, 'changing a raw table; .fillna() on the whole table; another split seed; the imputer fitted on train and valid; RMSE without the root; '
             '> 0.5 for >= 0.5; F1 as a plain average; a test table read before its choice; typed numbers or choices (hidden rows catch them).', 8.5)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

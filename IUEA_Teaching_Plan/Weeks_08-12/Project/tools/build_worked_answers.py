@@ -3,6 +3,7 @@
 Writes Lecturer Guides/Rehearsal_Answers_<course>.ipynb: the rehearsal notebook (random_state=29) with every task answered by the code of
 tools/worked_answers.py and the MEMO filled in, so Runtime > Run all gives every result. In this copy the clock and the automatic backup are
 switched off (it is not an attempt from the entry page). FOR THE LECTURER ONLY: never post it.
+tools/worked_answers.py holds the answer code and stays on this computer only (git-ignored, 17 November 2026).
 With --proof-dir, also writes the same answers on the project's split (random_state=17) as a submission to grade, to prove full marks.
 """
 import argparse
