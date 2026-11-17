@@ -80,7 +80,10 @@ def build_notebook(code, mode, require_forms=False):
         if mode == 'rehearsal' and task['key'] in PC.REHEARSAL_NOTES:
             cells.append(cell(PC.REHEARSAL_NOTES[task['key']]))
         cells.append(cell(PC.task_markdown(i, task)))
-        put(task['key'])                                                             # the feature names, just before the student's work
+        if task['key'] in PC.EXPLORE_STARTER:                                       # Tasks 1 and 5: the student looks first ...
+            starters.append(PC.EXPLORE_STARTER[task['key']])
+            cells.append(cell(PC.EXPLORE_SOLUTION[task['key']] if mode == 'solution' else PC.EXPLORE_STARTER[task['key']], True))
+        put(task['key'])                                                             # ... then the target (Tasks 1, 5) or the feature names
         starters.append(task['starter'])
         cells.append(cell(task['solution'] if mode == 'solution' else task['starter'], True))
         if task['key'] in PC.SUPPLIED_CELLS:                                       # ready-made "watch it learn" cell, not marked

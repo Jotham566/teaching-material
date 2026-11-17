@@ -65,6 +65,12 @@ def answered(code, mode):
         m = re.match(r'^## Task (\w+):', text)
         if cell['cell_type'] == 'markdown' and m:
             current = labels.get(m.group(1))
+        if cell['cell_type'] == 'code' and text.startswith('# Your code here: look at the data'):   # Tasks 1 and 5: the look comes first
+            for part in W.answer_cells({'clean_h': 'explore_h', 'clean_m': 'explore_m'}[current], cfg['split_seed']):
+                one = copy.deepcopy(cell)
+                one['source'] = part.splitlines(True)
+                cells.append(one)
+            continue
         if cell['cell_type'] == 'code' and text.startswith('# Your code here.'):
             for part in W.answer_cells(current, cfg['split_seed']):       # one logical step per cell
                 one = copy.deepcopy(cell)

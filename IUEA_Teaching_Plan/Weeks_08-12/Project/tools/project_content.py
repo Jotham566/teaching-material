@@ -152,7 +152,7 @@ def data_markdown():
     """The cell right after Setup: what the two tables are, every column in plain words, and the problems added for cleaning."""
     hp, mp = P.H_PROBLEMS, P.M_PROBLEMS
     return f'''## The data
-Setup saves two tables as CSV files (`houses.csv`, `machines.csv`); the supplied cell below this one reads the houses, and the machines are read at the start of Question 2. Both are real published data, organised for this project. **A few problems were added on purpose** for you to clean. Question 1 (Tasks 1 to 4) uses only the houses; Question 2 (Tasks 5 to 8) uses only the machines.
+Setup saves two tables as CSV files (`houses.csv`, `machines.csv`); the supplied cell below this one reads the houses, and the machines are read at the start of Question 2. Each target is named in Task 1 and Task 5, after you have looked at the data. Both are real published data, organised for this project. **A few problems were added on purpose** for you to clean. Question 1 (Tasks 1 to 4) uses only the houses; Question 2 (Tasks 5 to 8) uses only the machines.
 
 **`houses_raw`**: {len(P.houses_given()):,} house sales in Ames, Iowa (USA), 2006 to 2010. One row is one sale. Question 1 predicts the price.
 
@@ -354,19 +354,25 @@ def visible_cells(cfg=P.EXAM):
     return {
         'data-houses': ('data', head('data-houses') + f'''# read the house table from the CSV file that Setup saved: one row per sale
 houses_raw = pd.read_csv("houses.csv")
-# the target: the column Question 1 predicts (the price, in {cfg["h_unit"]})
-H_TARGET = {cfg["h_target"]!r}
 # the size of the table: (rows, columns)
 print("houses_raw:", houses_raw.shape)
 '''),
+        'target-houses': ('clean_h', head('target-houses') + f'''# Having looked at the data, decide what we predict: the target (y). Question 1 predicts the sale price, in {cfg["h_unit"]}.
+H_TARGET = {cfg["h_target"]!r}
+# check that the column exists, and how many prices are missing (cleaning removes those rows: they cannot teach the model)
+print("target:", H_TARGET, "| missing prices:", houses_raw[H_TARGET].isna().sum())
+'''),
         'data-machines': ('question2', head('data-machines') + f'''# read the machine table from the CSV file that Setup saved: one row per run
 machines_raw = pd.read_csv("machines.csv")
-# the target: the column Question 2 predicts
+# the size of the table: (rows, columns)
+print("machines_raw:", machines_raw.shape)
+'''),
+        'target-machines': ('clean_m', head('target-machines') + f'''# Having looked at the data, decide what we predict: the target (y). Question 2 predicts whether a run fails.
 M_TARGET = {cfg["m_target"]!r}
 # a run counts as a failure when M_TARGET is at or above this limit
 M_LIMIT = {cfg["m_limit"]!r}
-# the size of the table: (rows, columns)
-print("machines_raw:", machines_raw.shape)
+# check that the column exists, and how many labels are missing (cleaning removes those rows)
+print("target:", M_TARGET, "| missing labels:", machines_raw[M_TARGET].isna().sum())
 '''),
         'features-houses': ('regression', head('features-houses') + f'''# the number columns the house models read: the features (X). The target H_TARGET is not one of them.
 H_FEATURES = {cfg["h_features"]!r}
@@ -386,6 +392,14 @@ THRESHOLD = {P.THRESHOLD}
 print(len(M_FEATURES), "features:", M_FEATURES)
 '''),
     }
+
+
+# Task 1 and Task 5 open with the student's own look at the data, BEFORE the supplied cell that names the target (a real project's order:
+# read, look, decide what to predict, then clean).
+EXPLORE_STARTER = {'clean_h': '# Your code here: look at the data (step 1). Nothing to store.\n',
+                   'clean_m': '# Your code here: look at the data (step 1). Nothing to store.\n'}
+EXPLORE_SOLUTION = {'clean_h': '# Step 1: look at the data\nhouses_raw.info()\n',
+                    'clean_m': '# Step 1: look at the data\nmachines_raw.info()\n'}
 
 
 def supplied_sources(cfg=P.EXAM):
@@ -421,15 +435,16 @@ def tasks(cfg=P.EXAM):
     out = []
     # ------------------------------------------------------------ Question 1: house prices (regression)
     out.append(dict(key='clean_h', question=1, title='Clean the house table', marks=dict(clean_h=marks['clean_h']), inputs=['houses_raw'], results=['houses'],
-        text=(f'Clean a copy of the house table one step at a time. After each step, print the shape to see what changed.\n'
-              '1. Look at the data first: `houses_raw.head()`, `houses_raw.info()` (column types and missing values) and `houses_raw.describe()` (min and max show impossible values).\n'
-              '2. Count the problems: duplicate rows (`.duplicated().sum()`) and rows with no price (`houses_raw[H_TARGET].isna().sum()`).\n'
-              '3. Start from a copy: `houses = houses_raw.copy()`.\n'
-              '4. Remove duplicate rows.\n'
-              '5. Remove the rows with no price (`H_TARGET`).\n'
-              f'6. Remove the rows with an impossible value: `living_area_m2` must be above 0 and `year_built` must be {P.LAST_YEAR} or earlier.\n'
-              '7. Check the result with `houses.isna().sum()` and `houses.describe()`. Leave the other missing values: in Task 3 the imputer fills them from the training rows only.\n'
-              f'8. **Chart 1:** a scatter of `{x}` (across) against `H_TARGET` (up), from `houses`, with a title, axis labels and the unit ({u}).'),
+        text=('Work in the order of a real project: look at the data, decide what to predict, then clean. After each cleaning step, print the shape.\n'
+              '1. In the first cell, look at the data: `houses_raw.head()`, `houses_raw.info()` (column types and missing values) and `houses_raw.describe()` (min and max show impossible values).\n'
+              '2. Run the supplied cell under it: having looked, it names the target `H_TARGET`, the column Question 1 predicts.\n'
+              '3. In the next cell, count the problems: duplicate rows (`.duplicated().sum()`) and rows with no price (`houses_raw[H_TARGET].isna().sum()`).\n'
+              '4. Start from a copy: `houses = houses_raw.copy()`.\n'
+              '5. Remove duplicate rows.\n'
+              '6. Remove the rows with no price (`H_TARGET`).\n'
+              f'7. Remove the rows with an impossible value: `living_area_m2` must be above 0 and `year_built` must be {P.LAST_YEAR} or earlier.\n'
+              '8. Check the result with `houses.isna().sum()` and `houses.describe()`. Leave the other missing values: in Task 3 the imputer fills them from the training rows only.\n'
+              f'9. **Chart 1:** a scatter of `{x}` (across) against `H_TARGET` (up), from `houses`, with a title, axis labels and the unit ({u}).'),
         solution=f'''houses = houses_raw.copy()
 houses = houses.drop_duplicates()
 houses = houses.dropna(subset=[H_TARGET])
@@ -519,14 +534,15 @@ print(chosen_house_model, test_mae)
 '''))
     # ------------------------------------------------------------ Question 2: machine failure (classification)
     out.append(dict(key='clean_m', question=2, title='Clean the machine table', marks=dict(clean_m=marks['clean_m']), inputs=['machines_raw'], results=['machines'],
-        text=('The same steps as Task 1, for the machines. After each step, print the shape.\n'
-              '1. Look at the data: `machines_raw.head()`, `machines_raw.info()` and `machines_raw.describe()`.\n'
-              '2. Count duplicate rows and rows with no label (`M_TARGET`).\n'
-              '3. Start from a copy: `machines = machines_raw.copy()`.\n'
-              '4. Remove duplicate rows.\n'
-              '5. Remove the rows with no label.\n'
-              '6. Remove the rows with an impossible value: `torque_nm` and `rotation_speed_rpm` must be above 0.\n'
-              '7. Change `product_type` to a number (L = 0, M = 1, H = 2) and check with `machines.head()`.\n\n'
+        text=('The same order as Task 1, for the machines. After each cleaning step, print the shape.\n'
+              '1. In the first cell, look at the data: `machines_raw.head()`, `machines_raw.info()` and `machines_raw.describe()`.\n'
+              '2. Run the supplied cell under it: it names the target `M_TARGET` and the failure limit `M_LIMIT`.\n'
+              '3. In the next cell, count duplicate rows and rows with no label (`M_TARGET`).\n'
+              '4. Start from a copy: `machines = machines_raw.copy()`.\n'
+              '5. Remove duplicate rows.\n'
+              '6. Remove the rows with no label.\n'
+              '7. Remove the rows with an impossible value: `torque_nm` and `rotation_speed_rpm` must be above 0.\n'
+              '8. Change `product_type` to a number (L = 0, M = 1, H = 2) and check with `machines.head()`.\n\n'
               'Leave the other missing values for the imputer.'),
         solution='''machines = machines_raw.copy()
 machines = machines.drop_duplicates()

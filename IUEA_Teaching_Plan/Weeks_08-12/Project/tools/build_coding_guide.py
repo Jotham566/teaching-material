@@ -67,7 +67,7 @@ def tight(p, before=0, after=0, line=1.0):
 def cells_block(d, *keys):
     """One shaded box per notebook cell, numbered within the task as in the notebook, with a small gap between boxes."""
     n = 0
-    where = {'clean_h': ('data',), 'clean_m': ('question2',)}
+    where = {'explore_h': ('data',), 'explore_m': ('question2',)}
     for key in keys:
         for w, src in PC.visible_cells(P.REHEARSAL).values():          # the visible supplied cells that come before the student's work
             if w == key or w in where.get(key, ()):
@@ -172,7 +172,7 @@ def main():
 
     question('Question 1: what will a house sell for? (regression, houses only)')
     heading(d, 'Task 1. Clean the house table', '3 marks + chart, 15 minutes')
-    cells_block(d, 'clean_h')
+    cells_block(d, 'explore_h', 'clean_h')
     notes(d, 'head(), info() and describe() first: info() shows the gaps, describe() the impossible min and max. Then one fix per step, with the shape after each. Other gaps stay for the imputer.',
           f'10 duplicates, 6 with no price. {n["houses_raw"]:,} to {n["houses"]:,} houses.',
           'Why not drop every row that has any gap?')
@@ -199,7 +199,7 @@ def main():
 
     question('Question 2: will this machine run fail? (classification, machines only)')
     heading(d, 'Tasks 5 and 6. Clean and split the machine table', '4 marks, 10 minutes')
-    cells_block(d, 'clean_m', 'split_m')
+    cells_block(d, 'explore_m', 'clean_m', 'split_m')
     notes(d, 'The same steps as Question 1, on a new table. product_type becomes a number: a model needs numbers.',
           f'12 duplicates, 8 with no label. {n["machines_raw"]:,} to {n["machines"]:,}; {n["machines_train"]:,}, {n["machines_valid"]:,}, {n["machines_test"]:,}.',
           'Which steps were the same as for the houses?')
