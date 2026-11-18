@@ -52,6 +52,11 @@ def sandbox_check(notebook_path, image):
     work = Path(tempfile.mkdtemp(prefix='check_'))
     (work / 'runner.py').write_text(PL.RUNNER)
     (work / 'notebook.json').write_bytes(Path(notebook_path).read_bytes())
+    # The sandbox runs as user 65534: on the Linux runner a mkdtemp folder (0700) is unreadable to it and python exits 2 before any
+    # report (every Check my work failed that way until 18 November 2026; Docker Desktop on a Mac hid it). Open it read-only to all.
+    work.chmod(0o755)
+    for f in work.iterdir():
+        f.chmod(0o644)
     args = json.dumps([PL.SKIP_MARKERS, PL.SELF_CHECK_MARKERS, PL.required_functions(), PL.memo_fields(), PL.CELL_TIMEOUT])
     cmd = ['docker', 'run', '--rm', '-i', '--network=none', '--read-only', '--cap-drop=ALL', '--security-opt=no-new-privileges',
            '--pids-limit=64', '--memory=1g', '--cpus=1', '--user=65534:65534', '--tmpfs=/tmp:rw,noexec,nosuid,size=128m',

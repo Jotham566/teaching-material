@@ -204,18 +204,23 @@ BACKUP_MINUTES = 5
 
 
 def backup_code(url=None):
+    """The silent backup, rebuilt 18 November 2026 after a live Colab test showed the old background thread never sent anything:
+    in Colab a background thread cannot talk to the page (output.eval_js hangs; get_ipynb is unreliable), and the page address it read was
+    the output frame's, not the notebook's. Now the notebook is read on the main thread right after a cell runs (at most every
+    BACKUP_MINUTES), the Drive file id comes from Colab's local Jupyter session list, and only the network send runs in a thread.
+    Cloudflare refuses Python's default client signature (error 1010), so the request names itself."""
     base = (url or public_url()).rstrip('/')
     return f'''
-# Automatic backup (supplied). Inside Colab, a copy of the notebook on your screen goes to your lecturer every {BACKUP_MINUTES} minutes.
+# Automatic backup (supplied). Inside Colab, after you run a cell (at most every {BACKUP_MINUTES} minutes), a copy of your notebook goes to your lecturer.
 # You do not need to do anything. Your work is collected automatically at your deadline.
 def _iuea_backup_start(address={base + "/api/backup"!r}, minutes={BACKUP_MINUTES}):
-    import json, threading, time, urllib.request
+    import json, os, socket, threading, time, urllib.request
     try:
         from IPython import get_ipython
         shell = get_ipython()
         if shell is None or "google.colab" not in type(shell).__module__:
             return                                   # not in Colab (the marking computer, Check my notebook): no backup
-        from google.colab import _message, output
+        from google.colab import _message
         from IPython.display import display, HTML
     except Exception:
         return
@@ -223,42 +228,74 @@ def _iuea_backup_start(address={base + "/api/backup"!r}, minutes={BACKUP_MINUTES
     if not attempt:
         print("Backup is off: this notebook has no attempt code. Open it from the entry page (Open my project in Colab).")
         return
-    old = globals().get("_iuea_backup_thread")
-    if old is not None and old.is_alive():
-        return
     note = display(HTML(""), display_id=True)
     packed = _PACKED.strip()
-    def send():
-        notebook = _message.blocking_request("get_ipynb", timeout_sec=60)["ipynb"]
-        for cell in notebook.get("cells", []):
-            text = "".join(cell.get("source", "")) if isinstance(cell.get("source"), list) else str(cell.get("source", ""))
-            if "# IUEA-SETUP-CELL" in text:
-                cell["source"] = text.replace(packed, "__IUEA_" + "PACKED_DATA__")
-        href = str(output.eval_js("location.href"))[:500]
-        body = json.dumps({{"attempt": attempt, "href": href, "notebook": json.dumps(notebook)}}).encode("utf-8")
-        request = urllib.request.Request(address, data=body, headers={{"Content-Type": "application/json"}}, method="POST")
-        with urllib.request.urlopen(request, timeout=60) as reply:
-            return json.loads(reply.read().decode("utf-8"))
-    def loop():
-        while True:
-            try:
-                answer = send() or {{}}
-                result = answer.get("result") or {{}}
-                if result.get("other_file"):
-                    note.update(HTML('<div style="border:3px solid #b3261e;background:#fff0ee;padding:10px;font-size:16px;color:#7a1712">'
-                                     '<b>You are working in a different file from your issued notebook.</b> Your work here is still backed up. '
-                                     'Go back to the entry page and click Resume, or keep working here and tell your lecturer on the class channel.</div>'))
-                elif answer.get("ok"):
-                    note.update(HTML('<div style="color:#526577;font-size:13px">Automatic backup sent at ' + time.strftime("%H:%M") + '. Your notebook also saves itself; press Ctrl+S now and then.</div>'))
-                elif result.get("closed") or "deadline" in str(answer.get("error", "")):
-                    note.update(HTML('<div style="color:#526577;font-size:13px">Your time has ended. Your work was collected at your deadline.</div>'))
-                    return
-            except Exception:
-                pass
-            time.sleep(minutes * 60)
-    thread = threading.Thread(target=loop, name="iuea-backup", daemon=True)
-    thread.start()
-    globals()["_iuea_backup_thread"] = thread
+    state = {{"last": 0.0, "busy": False, "stopped": False}}
+    def drive_link():
+        # the Drive file this notebook is (Colab's local Jupyter server lists it as fileId=...)
+        host = os.environ.get("COLAB_JUPYTER_IP") or socket.gethostbyname(socket.gethostname())
+        with urllib.request.urlopen("http://%s:9000/api/sessions" % host, timeout=10) as reply:
+            for session in json.loads(reply.read().decode("utf-8")):
+                path = str(session.get("path", ""))
+                if path.startswith("fileId="):
+                    return "https://colab.research.google.com/drive/" + path[len("fileId="):]
+        return ""
+    def send(notebook):
+        # runs in a background thread: network only
+        try:
+            for cell in notebook.get("cells", []):
+                text = "".join(cell.get("source", "")) if isinstance(cell.get("source"), list) else str(cell.get("source", ""))
+                if "# IUEA-SETUP-CELL" in text:
+                    cell["source"] = text.replace(packed, "__IUEA_" + "PACKED_DATA__")
+            body = json.dumps({{"attempt": attempt, "href": drive_link()[:500], "notebook": json.dumps(notebook)}}).encode("utf-8")
+            request = urllib.request.Request(address, data=body, headers={{"Content-Type": "application/json", "User-Agent": "iuea-notebook-backup/1.0"}}, method="POST")
+            with urllib.request.urlopen(request, timeout=60) as reply:
+                state["answer"] = json.loads(reply.read().decode("utf-8"))
+        except Exception as error:
+            state["answer"] = {{"ok": False, "error": str(error)[:200]}}
+        finally:
+            state["busy"] = False
+    def show():
+        # on the main thread: show what the last backup said, under the setup cell
+        answer = state.pop("answer", None)
+        if answer is None:
+            return
+        result = answer.get("result") or {{}}
+        if result.get("other_file"):
+            note.update(HTML('<div style="border:3px solid #b3261e;background:#fff0ee;padding:10px;font-size:16px;color:#7a1712">'
+                             '<b>You are working in a different file from your issued notebook.</b> Your work here is still backed up. '
+                             'Go back to the entry page and click Resume, or keep working here and tell your lecturer on the class channel.</div>'))
+        elif answer.get("ok"):
+            note.update(HTML('<div style="color:#526577;font-size:13px">Automatic backup sent at ' + time.strftime("%H:%M", time.gmtime(time.time() + 3 * 3600)) + ' Kampala time. Your notebook also saves itself; press Ctrl+S now and then.</div>'))
+        elif result.get("closed") or "deadline" in str(answer.get("error", "")):
+            note.update(HTML('<div style="color:#526577;font-size:13px">Your time has ended. Your work was collected at your deadline.</div>'))
+            state["stopped"] = True
+    def backup(wait=False):
+        if state["stopped"] or state["busy"]:
+            return
+        try:
+            notebook = _message.blocking_request("get_ipynb", timeout_sec=30)["ipynb"]
+        except Exception:
+            return
+        state.update(last=time.time(), busy=True)
+        if wait:
+            send(notebook)
+        else:
+            threading.Thread(target=send, args=(notebook,), name="iuea-backup", daemon=True).start()
+    def after_cell(*_):
+        show()
+        if time.time() - state["last"] >= minutes * 60:
+            backup()
+    old = globals().get("_iuea_backup_hook")
+    if old is not None:
+        try:
+            shell.events.unregister("post_run_cell", old)
+        except Exception:
+            pass
+    shell.events.register("post_run_cell", after_cell)
+    globals()["_iuea_backup_hook"] = after_cell
+    backup(wait=True)                                # the first backup now, so the setup cell shows that it works
+    show()
 _iuea_backup_start()
 '''
 

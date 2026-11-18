@@ -266,7 +266,8 @@ function mlpStatusOf_(book,a,st){
   last_backup:st.last_backup_at?mlpKampala_(st.last_backup_at):'',checks:null,pending:pending,mark:null};
  if(latest)out.checks={runs_from_top:latest.runs_from_top===true||String(latest.runs_from_top)==='true'||String(latest.runs_from_top)==='TRUE',first_failed_cell:String(latest.first_failed_cell||''),
   missing_functions:String(latest.missing_functions||'').split(',').filter(String),memo_found:latest.memo_found===true||/^true$/i.test(String(latest.memo_found)),
-  issued_file:latest.issued_file===true||/^true$/i.test(String(latest.issued_file)),checked:mlpKampala_(latest.checked_at)};
+  issued_file:latest.issued_file===true||/^true$/i.test(String(latest.issued_file)),checked:mlpKampala_(latest.checked_at),
+  unfinished:/^instant check did not finish/.test(String(latest.detail||''))};
  var graded=rows.filter(function(r){return r.kind==='grade'&&r.checked_at&&r.submission_id===st.submission_id;})[0];
  if(!rehearsal&&graded&&mlpReleased_(book,a.key)&&graded.total!=='')out.mark='Part A '+graded.part_a+', Part B '+graded.part_b+', total '+graded.total+' (final after the lecturer\'s checks)';
  return out;
@@ -359,6 +360,14 @@ function openMlProjectWindow(course,opensIso,closesIso,confirm,test){
  var ws=mlpBook_().getSheetByName('Test windows'),rows=ws.getDataRange().getValues(),n=0;
  rows.forEach(function(r,i){if(i&&String(r[0]).split('|')[1]===test&&(course==='ALL'||String(r[0]).split('|')[0]===course)){ws.getRange(i+1,2,1,4).setValues([[opensIso,closesIso,'YES',180]]);n++;}});
  console.log(n+' window rows set and enabled.');return n;
+}
+/** The windows as agreed on 18 November 2026, in one Run: the project 23 November 00:00 to 25 November 23:59 for all three courses (the entry
+ *  page releases nothing before 23 November 00:00), and the lecturer-only rehearsal from now to 22 November 23:59 (it opens only for the demo
+ *  numbers 26/DEMO/001/LECTURER and 26/SMOKE/001/TEST, which never open the project). Prints every window row so the result can be checked. */
+function scheduleMlProjectWindows(){
+ openMlProjectWindow('ALL','2026-11-23T00:00:00+03:00','2026-11-25T23:59:00+03:00','CONFIRMED');
+ openMlProjectWindow('ALL','2026-11-18T00:00:00+03:00','2026-11-22T23:59:00+03:00','CONFIRMED','ML_REHEARSAL');
+ mlpBook_().getSheetByName('Test windows').getDataRange().getValues().forEach(function(r){if(/ML_(PROJECT|REHEARSAL)$/.test(String(r[0])))console.log(r.slice(0,5).map(String).join(' | '));});
 }
 /** A fresh attempt after a reported technical failure, or after a wrong Google account (give the right email as replacementEmail).
  *  The old notebook becomes read only and the old allocation is withdrawn; the student opens the entry link again (still capped at the

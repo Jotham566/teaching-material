@@ -138,7 +138,8 @@ function render(r){
  const lines=[];
  if(r.state==='collected')lines.push('Your work was collected: '+r.collected.source+', saved '+r.collected.time+' (Kampala time).'+(rehearsal?'':' Editing has stopped.'));
  else if(r.last_backup)lines.push('Last automatic backup received '+r.last_backup+' (Kampala time).');
- if(r.checks){lines.push('Checked '+r.checks.checked+': runs from the top: '+(r.checks.runs_from_top?'yes':'no, first cell that stopped: '+r.checks.first_failed_cell)+'.');
+ if(r.checks&&r.checks.unfinished){lines.push('Checked '+r.checks.checked+': the check could not finish, so nothing is known yet. Press Check my work again; if this keeps happening, post a screenshot on the class channel.');}
+ else if(r.checks){lines.push('Checked '+r.checks.checked+': runs from the top: '+(r.checks.runs_from_top?'yes':'no, first cell that stopped: '+r.checks.first_failed_cell)+'.');
   lines.push('Required results found: '+(r.checks.missing_functions.length?'missing '+r.checks.missing_functions.join(', '):'all of them')+'. MEMO form found: '+(r.checks.memo_found?'yes':'no')+'.');
   if(!r.checks.issued_file)lines.push('This was not the notebook issued to you. Click Resume and work in the issued notebook.');}
  if(r.pending)lines.push('A check is running. This page updates by itself.');

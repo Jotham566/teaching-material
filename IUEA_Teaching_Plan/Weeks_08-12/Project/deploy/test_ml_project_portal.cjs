@@ -112,6 +112,7 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   assert.equal(ident.name, 'Synthetic Learner One', 'the name comes from the class list, not from what was typed');
   assert(setup.includes(packet.data) && !setup.includes('__IUEA_PACKED_DATA__'), 'the data block is put back into the setup cell');
   assert(setup.includes('post_run_cell') && setup.includes('Press Ctrl+S'), 'the countdown line after every cell, with the Ctrl+S reminders');
+  assert(/"User-Agent": "iuea-notebook-backup/.test(setup), 'the backup names its sender: Cloudflare refuses Python\'s default client signature (error 1010, 18 November 2026)');
   assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-|Do not edit/.test(String(c.source)) && !/# IUEA-SUPPLIED/.test(String(c.source))).length, 1, 'exactly one supplied setup cell');
   assert.equal(nb.cells.filter(c => c.cell_type === 'code' && /# IUEA-SUPPLIED/.test(String(c.source))).length, 16, 'the sixteen visible supplied cells: four import cells, two data reads, two targets, three feature lists, the THRESHOLD, two gradient descent cells, two model-choosing rules (17 November 2026)');
   assert.ok(/houses_raw = pd\.read_csv\("houses\.csv"\)/.test(nb.cells.map(c => String(c.source)).join('\n')), 'the house table is read in a visible cell');
